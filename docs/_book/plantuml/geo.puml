@@ -1,0 +1,50 @@
+@startuml
+scale 0.7
+
+skinparam class {
+  ArrowColor DarkBlue
+  ArrowFontColor DarkBlue
+  BackgroundColor LightBlue
+  BorderColor DarkGrey
+}
+skinparam dpi 300
+skinparam stereotypeCBackgroundColor Wheat
+skinparam classAttributeFontColor  Green
+
+/'
+ Definition of the classes referring the SSN-core part
+'/
+class System <<ssn>>
+class FeatureOfInterest <<ssn>>
+
+/'
+  Definition of the Geo-core part
+'/
+class _Feature <<geo>>
+class _Geometry <<geo>>
+class Point <<geo>>
+class Polygon <<geo>>
+class Hemisphere <<bem>>
+class Northern <<(I,orchid),hit2gap>>
+class Southern <<(I,orchid),hit2gap>>
+
+
+/'
+  Definition of the geospatial part using GeoOWL ontology
+'/
+
+_Feature --> _Geometry: geo:where
+_Geometry <|-- Point
+_Geometry <|-- Polygon
+
+_Feature <|-- FeatureOfInterest
+_Feature <|-- System
+
+_Feature --> Hemisphere: hit2gap:locatedInHemisphere
+
+Hemisphere ..[#orchid] Northern
+Hemisphere ..[#orchid] Southern
+
+
+
+@enduml

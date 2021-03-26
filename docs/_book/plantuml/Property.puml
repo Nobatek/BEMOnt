@@ -1,0 +1,256 @@
+@startuml
+
+scale 0.2
+
+skinparam class {
+  ArrowColor DarkBlue
+  ArrowFontColor DarkBlue
+  BackgroundColor LightBlue
+  BorderColor DarkGrey
+}
+skinparam dpi 300
+skinparam stereotypeCBackgroundColor Wheat
+skinparam classAttributeFontColor  Green
+
+/'
+  Definition of the Properties Medium
+'/
+
+class Property <<ssn>>
+class EconomicProperties <<bem>>
+class PhysicProperties <<bem>>
+class OccupantStateProperties <<bem>>
+
+class Stress <<bem>>
+class Pulse <<bem>>
+
+class Cost <<bem>>
+class Investment <<bem>>
+
+class Climate <<bem>>
+class Tropical <<bem>>
+class TropicalRainforest <<(I,orchid),hit2gap>>
+class TropicalMonsoon <<(I,orchid),hit2gap>>
+class TropicalSavanna <<(I,orchid),hit2gap>>
+
+class Arid <<bem>>
+class HotDesert <<(I,orchid),hit2gap>>
+class ColdDesert <<(I,orchid),hit2gap>>
+class MildDesert <<(I,orchid),hit2gap>>
+class HotSemiArid <<(I,orchid),hit2gap>>
+class ColdSemiArid <<(I,orchid),hit2gap>>
+class MildSemiArid <<(I,orchid),hit2gap>>
+
+class Temperate <<bem>>
+class HumidSubtropical <<(I,orchid),hit2gap>>
+class TemperateOceanic <<(I,orchid),hit2gap>>
+class SubpolarOceanic <<(I,orchid),hit2gap>>
+class MonsoonInfluencedHumidSubtropical <<(I,orchid),hit2gap>>
+class TemperateOceanicWithDryWinters <<(I,orchid),hit2gap>>
+class SubPolarOceanicWithDryWinters <<(I,orchid),hit2gap>>
+class HotSummerMediterranean <<(I,orchid),hit2gap>>
+class WarnSummerMediterranean <<(I,orchid),hit2gap>>
+class CoolSummerMediterranean <<(I,orchid),hit2gap>>
+
+
+class Continental <<bem>>
+class HotSummerHumidContinental <<(I,orchid),hit2gap>>
+class WarmSummerHumidContinental <<(I,orchid),hit2gap>>
+class Subartic <<(I,orchid),hit2gap>>
+class ExtremelyColdSubartic <<(I,orchid),hit2gap>>
+class MonsoonInfluencedHotSummerHumidContinental <<(I,orchid),hit2gap>>
+class MonsoonInfluencedWarmSummerHumidContinental <<(I,orchid),hit2gap>>
+class MonsoonInfluencedSubartic <<(I,orchid),hit2gap>>
+class MonsoonInfluencedExtremelyColdSubarctic <<(I,orchid),hit2gap>>
+class HotDrySummerContinental <<(I,orchid),hit2gap>>  
+class WarmDrySummerContinental <<(I,orchid),hit2gap>>  
+class DrySummerSubarctic <<(I,orchid),hit2gap>>  
+class ExtremelyColdDrySummerSubarctic <<(I,orchid),hit2gap>>  
+
+class Polar <<bem>>
+class MildTundra <<(I,orchid),hit2gap>>
+class FrostColdTundra <<(I,orchid),hit2gap>>
+class IceCap <<(I,orchid),hit2gap>>
+
+class Air <<bem>>
+class Water <<bem>>
+class Wind <<bem>>
+class WindOrientation <<bem>>
+class WindSpeed <<bem>>
+class Steam <<bem>>
+class State <<bem>>
+class Area <<bem>>
+class Capacity <<bem>>
+class ProductionCapacity <<bem>>
+class Color <<bem>>
+class Conductivity <<bem>>
+class Co2Rate <<bem>>
+class Density <<bem>>
+class Humidity <<bem>>
+class Depth <<bem>>
+class EquivalentDepth <<bem>>
+class Energy <<bem>>
+class ElectricEnergy <<bem>>
+class HeatFluxEnergy <<bem>>
+class Evaporation <<bem>>
+class Condensation <<bem>>
+class Medium <<bem>>
+class Precipitation <<bem>>
+class Pressure <<bem>>
+class Position <<bem>>
+class Longitude <<bem>>
+class Latitude <<bem>>
+class Altitude <<bem>>
+class Radiation <<bem>>
+class LightRadiation <<bem>>
+class IncidentRadiation <<bem>>
+class AbsorbedIncidentRadiation <<bem>>
+class ReflectedIncidentradiation <<bem>>
+class AbsorbedScatteredIncidentRadiation <<bem>>
+class TransmittedIncidentRadiation <<bem>>
+class Tension <<bem>>
+class Rainfall <<bem>>
+class Reflectivity <<bem>>
+class Shape <<bem>>
+class CrossSection <<bem>>
+class Height <<bem>>
+class Length <<bem>>
+class Slope <<bem>>
+class Weight <<bem>>
+class Width <<bem>>
+class Intensity <<bem>>
+class Speed <<bem>>
+class Temperature  <<bem>>
+class Time <<bem>>
+class Transparency <<bem>>
+class Velocity <<bem>>
+class Visibility <<bem>>
+class Volume <<bem>>
+class Discharge <<bem>>
+class Flow <<bem>>
+class Inflow <<bem>>
+class Outflow <<bem>>
+class AirMedium <<bem>>
+class AirQuality <<bem>>
+/'
+  Definition of the properties hierarchy
+'/
+
+Property <|-- EconomicProperties
+Property <|-- PhysicProperties
+Property <|-- OccupantStateProperties
+
+EconomicProperties <|-- Cost
+EconomicProperties <|-- Investment
+
+PhysicProperties <|-- Air
+PhysicProperties <|-- Water
+PhysicProperties <|-- Steam
+PhysicProperties <|-- State
+PhysicProperties <|-- Area
+PhysicProperties <|-- Capacity
+Capacity<|-- ProductionCapacity
+PhysicProperties <|-- Color
+PhysicProperties <|-- Conductivity
+PhysicProperties <|-- Density
+PhysicProperties <|-- Depth
+PhysicProperties <|-- Position
+Position <|-- Longitude
+Position <|-- Latitude
+Position <|-- Altitude
+PhysicProperties <|--EquivalentDepth
+PhysicProperties <|-- Energy
+Energy<|-- ElectricEnergy
+Energy<|-- HeatFluxEnergy
+PhysicProperties <|-- Wind
+Wind <|-- WindOrientation
+Wind <|-- WindSpeed 
+PhysicProperties <|-- Evaporation
+PhysicProperties <|-- Condensation
+PhysicProperties <|-- Co2Rate
+PhysicProperties <|-- Humidity
+PhysicProperties <|-- Medium
+PhysicProperties <|-- Precipitation
+PhysicProperties <|-- Pressure
+PhysicProperties <|-- Radiation
+PhysicProperties <|-- Tension
+Radiation<|-- IncidentRadiation
+Radiation<|-- LightRadiation
+IncidentRadiation<|-- AbsorbedIncidentRadiation
+IncidentRadiation<|-- ReflectedIncidentradiation
+IncidentRadiation<|-- AbsorbedScatteredIncidentRadiation
+IncidentRadiation<|-- TransmittedIncidentRadiation
+PhysicProperties <|-- Rainfall
+PhysicProperties <|-- Reflectivity
+PhysicProperties <|-- Intensity
+PhysicProperties <|-- Shape
+Shape<|-- CrossSection
+Shape<|-- Height
+Shape<|-- Length
+Shape<|-- Slope
+Shape<|-- Weight
+Shape<|-- Width
+PhysicProperties <|-- Speed
+PhysicProperties <|-- Temperature
+PhysicProperties <|-- Time
+PhysicProperties <|-- Transparency
+PhysicProperties <|-- Velocity
+PhysicProperties <|-- Visibility
+PhysicProperties <|-- Volume
+Volume<|-- Discharge
+Volume<|-- Flow
+Flow<|-- Inflow
+Flow<|-- Outflow
+Medium<|-- AirMedium
+Air<|-- AirQuality
+PhysicProperties <|-- Climate
+
+OccupantStateProperties <|-- Stress 
+OccupantStateProperties <|-- Pulse
+
+
+Climate <|-- Tropical
+Climate <|-- Arid
+Climate <|-- Temperate
+Climate <|-- Continental
+Climate <|-- Polar
+
+Tropical ..[#orchid] TropicalRainforest 
+Tropical ..[#orchid] TropicalMonsoon 
+Tropical ..[#orchid] TropicalSavanna 
+
+Arid ..[#orchid] HotDesert 
+Arid ..[#orchid] ColdDesert 
+Arid ..[#orchid] MildDesert 
+Arid ..[#orchid] HotSemiArid 
+Arid ..[#orchid] ColdSemiArid 
+Arid ..[#orchid] MildSemiArid 
+
+Temperate ..[#orchid] HumidSubtropical
+Temperate ..[#orchid] TemperateOceanic 
+Temperate ..[#orchid] SubpolarOceanic 
+Temperate ..[#orchid] MonsoonInfluencedHumidSubtropical
+Temperate ..[#orchid] TemperateOceanicWithDryWinters 
+Temperate ..[#orchid] SubPolarOceanicWithDryWinters 
+Temperate ..[#orchid] HotSummerMediterranean 
+Temperate ..[#orchid] WarnSummerMediterranean
+Temperate ..[#orchid] CoolSummerMediterranean
+
+Continental ..[#orchid] HotSummerHumidContinental 
+Continental ..[#orchid] WarmSummerHumidContinental 
+Continental ..[#orchid] Subartic 
+Continental ..[#orchid] ExtremelyColdSubartic 
+Continental ..[#orchid] MonsoonInfluencedHotSummerHumidContinental 
+Continental ..[#orchid] MonsoonInfluencedWarmSummerHumidContinental 
+Continental ..[#orchid] MonsoonInfluencedSubartic
+Continental ..[#orchid] MonsoonInfluencedExtremelyColdSubarctic 
+Continental ..[#orchid] HotDrySummerContinental 
+Continental ..[#orchid] WarmDrySummerContinental 
+Continental ..[#orchid] DrySummerSubarctic 
+Continental ..[#orchid] ExtremelyColdDrySummerSubarctic  
+
+Polar ..[#orchid] MildTundra 
+Polar ..[#orchid] FrostColdTundra 
+Polar ..[#orchid] IceCap
+
+@enduml

@@ -1,0 +1,89 @@
+@startuml
+
+scale 0.4
+
+skinparam class {
+  ArrowColor DarkBlue
+  ArrowFontColor DarkBlue
+  BackgroundColor LightBlue
+  BorderColor DarkGrey
+}
+skinparam dpi 300
+skinparam stereotypeCBackgroundColor Wheat
+skinparam classAttributeFontColor  Green
+
+
+/'
+ Definition of the classes referring the SSN-core part
+'/
+class System <<ssn>>
+class Sensor <<ssn>>
+class Observation <<ssn>> {
+  externalStorageID xsd:string
+}
+
+class MobileBuildingApplianceLocationObservation <<bem>>
+class MobileBuildingAppliance <<bem>>
+
+class FeatureOfInterest <<ssn>>
+class Property <<ssn>>
+class SensorOutput <<ssn>>
+class ObservationValue <<ssn>>
+class Instant <<time>>{
+    time:inXSDDateTime [xsd:DateTime]
+}
+class DateTimeInterval <<time>>{
+    time:inXSDDateTime [xsd:DateTime]
+}
+class Unit <<QUDT>>
+
+class IfcSensor <<ifc4>>
+class IfcSensorType <<ifc>>
+
+/'
+  Definition of the Geo-core part
+'/
+class _Feature <<geo>>
+class _Geometry <<geo>>
+class Point <<geo>>
+class Polygon <<geo>>
+
+
+/'
+ Definition of the SSN model to model the sensor observation of the building
+ facilities
+'/
+
+System --> System: ssn:hasSubSystem
+System <|-- Sensor
+
+Observation <|-- MobileBuildingApplianceLocationObservation
+MobileBuildingAppliance --> MobileBuildingApplianceLocationObservation: hit2gap:wasLocated
+
+IfcSensor --> Sensor: owl:equivalentClass
+Sensor --> Observation: ssn:observedBy
+Sensor --> Property: ssn:observes
+Observation --> FeatureOfInterest: ssn:featureOfInterest
+Observation --> Property: ssn:observedProperty
+FeatureOfInterest --> Property: ssn:Property
+Observation --> SensorOutput: ssn:ObservationResult
+SensorOutput --> ObservationValue: ssn:hasValue
+ObservationValue --> Unit: qudt:unit
+Observation --> Instant: ssn:observationResultTime
+Observation --> DateTimeInterval: ssn:observationResultTime
+
+/'
+  Definition of the geospatial part using GeoOWL ontology
+'/
+
+_Feature --> _Geometry: geo:where
+_Geometry <|-- Point
+_Geometry <|-- Polygon
+
+_Feature <|-- FeatureOfInterest
+_Feature <|-- System
+
+IfcSensor --> IfcSensorType: owl:equivalentClass
+
+
+@enduml

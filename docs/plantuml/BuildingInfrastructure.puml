@@ -1,0 +1,1125 @@
+@startuml
+
+scale 0.1
+
+skinparam class {
+  ArrowColor DarkBlue
+  ArrowFontColor DarkBlue
+  BackgroundColor LightBlue
+  BorderColor DarkGrey
+}
+skinparam dpi 300
+skinparam stereotypeCBackgroundColor Wheat
+skinparam classAttributeFontColor  Green
+
+/'
+ Definition of the classes referring the SSN-core part
+'/
+class System <<ssn>>
+class Sensor <<ssn>>
+class Observation <<ssn>>  {
+  externalStorageID xsd:string
+}
+
+class MobileBuildingApplianceLocationObservation <<bem>>
+class MobileBuildingAppliance <<bem>>
+class FeatureOfInterest <<ssn>>
+class Property <<ssn>>
+class SensorOutput <<ssn>>
+class ObservationValue <<ssn>>
+class Instant <<time>>{
+    time:inXSDDateTime [xsd:DateTime]
+}
+class DateTimeInterval <<time>>{
+    time:inXSDDateTime [xsd:DateTime]
+}
+class Unit <<QUDT>>
+
+
+/'
+  Definition of the Geo-core part
+'/
+class _Feature <<geo>>
+class _Geometry <<geo>>
+class Point <<geo>>
+class Polygon <<geo>>
+class Hemisphere <<bem>>
+class Climate <<bem>>
+class Northern <<(I,orchid),hit2gap>>
+class Southern <<(I,orchid),hit2gap>>
+
+class Tropical <<(I,orchid),hit2gap>>
+class TropicalRainforest <<(I,orchid),hit2gap>>
+class TropicalMonsoon <<(I,orchid),hit2gap>>
+class TropicalSavanna <<(I,orchid),hit2gap>>
+
+class Arid <<(I,orchid),hit2gap>>
+class HotDesert <<(I,orchid),hit2gap>>
+class ColdDesert <<(I,orchid),hit2gap>>
+class MildDesert <<(I,orchid),hit2gap>>
+class HotSemiArid <<(I,orchid),hit2gap>>
+class ColdSemiArid <<(I,orchid),hit2gap>>
+class MildSemiArid <<(I,orchid),hit2gap>>
+
+class Temperate <<(I,orchid),hit2gap>>
+class HumidSubtropical <<(I,orchid),hit2gap>>
+class TemperateOceanic <<(I,orchid),hit2gap>>
+class SubpolarOceanic <<(I,orchid),hit2gap>>
+class MonsoonInfluencedHumidSubtropical <<(I,orchid),hit2gap>>
+class TemperateOceanicWithDryWinters <<(I,orchid),hit2gap>>
+class SubPolarOceanicWithDryWinters <<(I,orchid),hit2gap>>
+class HotSummerMediterranean <<(I,orchid),hit2gap>>
+class WarnSummerMediterranean <<(I,orchid),hit2gap>>
+class CoolSummerMediterranean <<(I,orchid),hit2gap>>
+
+
+class Continental <<(I,orchid),hit2gap>>
+class HotSummerHumidContinental <<(I,orchid),hit2gap>>
+class WarmSummerHumidContinental <<(I,orchid),hit2gap>>
+class Subartic <<(I,orchid),hit2gap>>
+class ExtremelyColdSubartic <<(I,orchid),hit2gap>>
+class MonsoonInfluencedHotSummerHumidContinental <<(I,orchid),hit2gap>>
+class MonsoonInfluencedWarmSummerHumidContinental <<(I,orchid),hit2gap>>
+class MonsoonInfluencedSubartic <<(I,orchid),hit2gap>>
+class MonsoonInfluencedExtremelyColdSubarctic <<(I,orchid),hit2gap>>
+class HotDrySummerContinental <<(I,orchid),hit2gap>>
+class WarmDrySummerContinental <<(I,orchid),hit2gap>>
+class DrySummerSubarctic <<(I,orchid),hit2gap>>
+class ExtremelyColdDrySummerSubarctic <<(I,orchid),hit2gap>>
+
+class Polar <<(I,orchid),hit2gap>>
+class MildTundra <<(I,orchid),hit2gap>>
+class FrostColdTundra <<(I,orchid),hit2gap>>
+class IceCap <<(I,orchid),hit2gap>>
+
+
+/'
+  Definition of the Feature of interest classes
+'/
+class BuildingAppliance <<bem>>
+class StaticBuildingAppliance <<bem>>
+class MobileBuildingAppliance <<bem>>
+
+class BuildingType <<bem>>
+class IfcBuilding <<ifc>>
+class IfcElement <<ifc>>
+class IfcSpatialElement <<ifc4>>
+
+class IfcBuildingElement <<ifc>>
+class IfcSpatialStructureElement <<ifc>>{
+  hasSpatialStructureCapacity: xsd:double;
+}
+
+class IfcElementComponent <<ifc>>
+class IfcDistributionControlElement <<ifc>>
+class IfcDistributionFlowElement <<ifc>>
+class IfcZone <<ifc>>
+class IfcSpatialZone <<ifc4>>
+class Orientation <<bem>>
+
+class North <<(I,orchid),hit2gap>>
+class South <<(I,orchid),hit2gap>>
+class West <<(I,orchid),hit2gap>>
+class East <<(I,orchid),hit2gap>>
+class North_East <<(I,orchid),hit2gap>>
+class North_West <<(I,orchid),hit2gap>>
+class South_East <<(I,orchid),hit2gap>>
+class South_West <<(I,orchid),hit2gap>>
+
+
+/'
+  Building types class definition
+'/
+class Agricultural <<bem>>
+class Barn <<(I,orchid),hit2gap>>
+class Cellar <<(I,orchid),hit2gap>>
+class Farmhouse <<(I,orchid),hit2gap>>
+class Greenhouse <<(I,orchid),hit2gap>>
+class Silo <<(I,orchid),hit2gap>>
+
+class Commercial <<bem>>
+class AutomobileRepair <<(I,orchid),hit2gap>>
+class ConventionCenter <<(I,orchid),hit2gap>>
+class Drugstore <<(I,orchid),hit2gap>>
+class Hotel <<(I,orchid),hit2gap>>
+class Pharmacy <<(I,orchid),hit2gap>>
+class Office <<(I,orchid),hit2gap>>
+class MallSupermarket <<(I,orchid),hit2gap>>
+class BarRestaurant <<(I,orchid),hit2gap>>
+class Shop <<(I,orchid),hit2gap>>
+
+class Residential  <<bem>>
+class Apartment <<(I,orchid),hit2gap>>
+class House <<(I,orchid),hit2gap>>
+class Bungalow <<(I,orchid),hit2gap>>
+
+class Educational <<bem>>
+class University <<(I,orchid),hit2gap>>
+class Secondary <<(I,orchid),hit2gap>>
+class Primary <<(I,orchid),hit2gap>>
+
+class Industrial <<bem>>
+class Factory <<(I,orchid),hit2gap>>
+class DataCenter <<(I,orchid),hit2gap>>
+class LogisticPlatform <<(I,orchid),hit2gap>>
+class PowerPlant <<(I,orchid),hit2gap>>
+class Warehouse <<(I,orchid),hit2gap>>
+
+class Religious <<bem>>
+
+class Public <<bem>>
+class Library <<(I,orchid),hit2gap>>
+class Nursery <<(I,orchid),hit2gap>>
+class SwimmingCenter <<(I,orchid),hit2gap>>
+class Gym <<(I,orchid),hit2gap>>
+class Administration <<(I,orchid),hit2gap>>
+class NightClubConcert <<(I,orchid),hit2gap>>
+class Cinema <<(I,orchid),hit2gap>>
+class MuseumGallery <<(I,orchid),hit2gap>>
+class Hospital <<(I,orchid),hit2gap>>
+
+class Transports <<bem>>
+class Airport <<(I,orchid),hit2gap>>
+class TrainStation <<(I,orchid),hit2gap>>
+class BusStation <<(I,orchid),hit2gap>>
+class Metro <<(I,orchid),hit2gap>>
+
+/'
+  Building Zones types definition
+'/
+
+class Room <<bem>>
+class Floor <<bem>>
+class OpenSpace <<bem>>
+class Desk <<bem>>
+class Subterranean <<bem>>
+class Ground <<bem>>
+
+
+/'
+ Definition of Building Elements subclasses
+'/
+
+class IfcBeam <<ifc>>
+class IfcColumn <<ifc>>
+class IfcCovering <<ifc>>
+class IfcCurtainWall <<ifc>>
+class IfcDoor <<ifc>>
+class IfcFooting <<ifc>>
+class IfcMember <<ifc>>
+class IfcPile <<ifc>>
+class IfcPlate <<ifc>>
+class IfcRailing <<ifc>>
+class IfcRamp <<ifc>>
+class IfcRampFlight <<ifc>>
+class IfcRoof <<ifc>>
+class IfcShadingDevice <<ifc4>>
+class IfcSlab <<ifc>>
+class IfcStair <<ifc>>
+class IfcStairFlight <<ifc>>
+class IfcWall <<ifc>>
+class IfcWindow <<ifc>>
+class IfcSpace <<ifc>>
+
+/'
+  Definition of the types of Sensors
+'/
+
+class IfcActuator <<ifc4>>
+class IfcActuatorType <<ifc>>
+
+class IfcAlarm <<ifc4>>
+class IfcAlarmType <<ifc>>
+
+class IfcController <<ifc4>>
+class IfcControllerType <<ifc>>
+
+class IfcFlowInstrument <<ifc4>>
+class IfcFlowInstrumentType <<ifc>>
+
+class IfcProtectiveDeviceTrippingUnit <<ifc4>>
+
+class IfcSensor <<ifc4>>
+class IfcSensorType <<ifc>>
+
+class IfcUnitaryControlElement <<ifc4>>
+class Meter <<bem>>
+
+/'
+ Definition of Spaces  Types
+'/
+
+class Office <<bem>>
+class CirculationArea <<bem>>
+class WetArea <<bem>>
+class ConferenceRoom <<bem>>
+class Balcony <<bem>>
+class Kitchen <<bem>>
+class Toilets <<bem>>
+class Bathroom <<bem>>
+class RestRoom <<bem>>
+class Canteen <<bem>>
+class Cafeteria <<bem>>
+
+/'
+ Definition of IfcWindows
+'/
+
+class WindowCoverings <<bem>>
+class Curtains <<bem>>
+class Blinds <<bem>>
+class Shutters <<bem>>
+class Shades <<bem>>
+
+/'
+  Definition of microgrid part
+'/
+
+class IfcSystem <<ifc>>
+class Microgrid <<ontomg>>
+class  Branch <<ontomg>>
+class ESBranch <<ontomg>>
+class DERBranch <<ontomg>>
+class ELBranch <<ontomg>>
+class InfraBranch <<ontomg>>
+
+class EnergyStorage <<ontomg>>
+class BranchController <<ontomg>>
+
+class BranchSwitch <<ontomg>>
+class NonRenewableDERBranch <<ontomg>>
+class RenewableDERBranch <<ontomg>>
+class SolarPowerBranch <<ontomg>>
+class WindPowerBranch <<ontomg>>
+
+class Converter <<ontomg>>
+class Inverter <<ontomg>>
+class AcDcConverter <<ontomg>>
+class SmallWindTurbine <<ontomg>>
+class MicroturbinesBranch <<bem>>
+class SolarHybridBranch <<bem>>
+class WindHybridBranch <<bem>>
+class PhotovoltaicBranch <<bem>>
+
+
+class SolarCell <<ontomg>>
+class FuelCellBranch <<ontomg>>
+class CHPPPowerBranch <<ontomg>>
+class DieselGenerator <<ontomg>>
+class MonophasicInverter <<ontomg>>
+class TriphasicInverter <<ontomg>>
+
+class ConductingEquipement <<cim>>
+class RectifierInverter <<cim>>
+
+class HydroPowerBranch <<bem>>
+class GeoThermalBranch <<bem>>
+class BiomassBranch <<bem>>
+class OilBranch <<bem>>
+class GasBranch <<bem>>
+class CoalBranch <<bem>>
+class NuclearBranch <<bem>>
+class MicroCHPPPowerBranch <<bem>>
+class ReciprocatingBranch <<bem>>
+class StirlingBranch <<bem>>
+
+class IfcDistributionCircuit <<ifc4>>
+class IfcDistributionSystem <<ifc4>>
+
+
+/'
+  Definition of DistributionFlow Element
+'/
+
+class ElectricElement <<bem>>
+class WereableElement <<bem>>
+class IfcDistributionChamberElement <<ifc>>
+class IfcEnergyConversionDevice <<ifc>> {
+  hasSetPoint xsd:boolean
+}
+class IfcFlowController <<ifc>>
+class IfcFlowFitting <<ifc>>
+class IfcFlowMovingDevice <<ifc>>
+class IfcFlowTerminal <<ifc>>
+class IfcFlowStorageDevice <<ifc>>
+class IfcFlowTreatmentDevice <<ifc>>
+
+/'
+  Definition of the Energy Conversion Device
+'/
+
+class AirHandlingUnit <<bem>>
+class IfcBoiler <<ifc4>>
+class IfcBoilerType <<ifc>>
+
+class IfcChiller <<ifc4>>
+class IfcChillerType <<ifc>>
+
+class IfcCoil <<ifc4>>
+class IfcCoilType <<ifc>>
+
+class IfcBurner <<ifc4>>
+
+class IfcEvaporativeCooler <<ifc4>>
+class IfcEvaporativeCoolerType <<ifc>>
+
+class IfcEngine <<ifc4>>
+class WaterPlant <<bem>>
+class SteamPlant <<bem>>
+
+class IfcHeatExchanger <<ifc4>>
+class IfcHeatExchangerType <<ifc>>
+
+class IfcAirToAirHeatRecovery <<ifc4>>
+class IfcAirToAirHeatRecoveryType <<ifc>>
+
+class IfcHumidifier <<ifc4>>
+class IfcHumidifierType <<ifc>>
+
+class IfcEvaporator <<ifc4>>
+class IfcEvaporatorType <<ifc>>
+
+class ChilledBeams <<bem>>
+
+class IfcCoolingTower <<ifc4>>
+class IfcCoolingTowerType <<ifc>>
+
+class IfcCondenser <<ifc4>>
+class IfcCondenserType <<ifc>>
+
+class IfcTransformer <<ifc4>>
+class IfcTransformerType <<ifc>>
+
+class IfcElectricGenerator <<ifc4>>
+class IfcElectricGeneratorType <<ifc>>
+
+class IfcElectricMotor <<ifc4>>
+class IfcElectricMotorType <<ifc>>
+
+class IfcSolarDevice <<ifc4>>
+
+class ElectricHeater <<bem>>
+
+class SOLARCOLLECTOR <<(I,orchid),ifc4>>
+class SOLARPANEL <<(I,orchid),ifc4>>
+class SOLARELECTRIC <<(I,orchid),bem>>
+class SOLARTHERMAL <<(I,orchid),bem>>
+
+
+/'
+ Definition of the Element Component Devices
+'/
+class IfcVibrationIsolator <<ifc4>>
+class IfcVibrationIsolatorType <<ifc>>
+
+/'
+ Definition of the Flow Terminal Devices
+'/
+
+class IfcSpaceHeater <<ifc4>>
+class IfcSpaceHeaterType <<ifc>>
+
+class IfcFireSuppressionTerminal <<ifc4>>
+class IfcFireSuppressionTerminalType <<ifc>>
+
+class IfcSanitaryTerminal <<ifc4>>
+class IfcSanitaryTerminalType <<ifc>>
+
+class IfcStackTerminal <<ifc4>>
+class IfcStackTerminalType <<ifc>>
+
+class IfcWasteTerminal <<ifc4>>
+class IfcWasteTerminalType <<ifc>>
+
+class IfcAudioVisualAppliance <<ifc4>>
+class IfcCommunicationAppliance <<ifc4>>
+
+class IfcElectricAppliance <<ifc4>>
+class IfcElectricApplianceType <<ifc>>
+
+class IfcLamp <<ifc4>>
+class IfcLampType <<ifc>>
+
+class IfcOutlet <<ifc4>>
+class IfcOutletType <<ifc>>
+
+class LampType <<hit2ga>>
+class CentralLight  <<(I,orchid),bem>>
+class DeskLight  <<(I,orchid),bem>>
+class OutdoorlLight  <<(I,orchid),bem>>
+
+/'
+ Definition of the Moving Devices
+'/
+
+class IfcCompressor <<ifc4>>
+class IfcCompressorType <<ifc>>
+
+class IfcFan <<ifc4>>
+class IfcFanType <<ifc>>
+
+class IfcPump <<ifc4>>
+class IfcPumpType <<ifc>>
+
+class FanCoilUnit <<bem>>
+class HeatPump <<bem>>
+
+/'
+  Definition of the Flow Storage Device
+'/
+
+class IfcTank <<ifc4>>
+class IfcTankType <<ifc>>
+
+class IfcElectricFlowStorageDevice <<ifc4>>
+class IfcElectricFlowStorageDeviceType <<ifc>>
+
+/'
+ Definition of the Flow Controller
+'/
+class IfcValve <<ifc4>>
+class IfcValveType <<ifc>>
+
+class IfcDamper <<ifc4>>
+class IfcDamperType <<ifc>>
+
+/'
+ Definition of the Treatment Devices
+'/
+class IfcInterceptor <<ifc4>>
+
+/'
+ Definition of the Physical Medium
+'/
+
+class PhysicalMedium <<bem>>
+class Oil <<bem>>
+class Gas <<bem>>
+class Water <<bem>>
+class Air <<bem>>
+class Steam <<bem>>
+class Radiation <<bem>>
+
+/'
+  Definition of building elements (systems)
+'/
+
+class Monitoring <<bem>>
+class Wereable <<bem>>
+class Smartwatch <<bem>>
+class Smartphone <<bem>>
+
+/'
+  Definition of the Properties Medium
+'/
+
+class EconomicProperties <<bem>>
+class PhysicProperties <<bem>>
+class OccupantStateProperties <<bem>>
+
+class Stress <<bem>>
+class Pulse <<bem>>
+
+class Cost <<bem>>
+class Investment <<bem>>
+
+class Air <<bem>>
+class Area <<bem>>
+class Capacity <<bem>>
+class ProductionCapacity <<bem>>
+class Color <<bem>>
+class Conductivity <<bem>>
+class Density <<bem>>
+class Depth <<bem>>
+class EquivalentDepth <<bem>>
+class Energy <<bem>>
+class ElectricEnergy <<bem>>
+class HeatFluxEnergy <<bem>>
+class Evaporation <<bem>>
+class Condensation <<bem>>
+class Medium <<bem>>
+class Precipitation <<bem>>
+class Pressure <<bem>>
+class Radiation <<bem>>
+class IncidentRadiation <<bem>>
+class AbsorbedIncidentRadiation <<bem>>
+class ReflectedIncidentradiation <<bem>>
+class AbsorbedScatteredIncidentRadiation <<bem>>
+class TransmittedIncidentRadiation <<bem>>
+class Rainfall <<bem>>
+class Reflectivity <<bem>>
+class Shape <<bem>>
+class CrossSection <<bem>>
+class Height <<bem>>
+class Length <<bem>>
+class Slope <<bem>>
+class Weight <<bem>>
+class Width <<bem>>
+class Speed <<bem>>
+class Temperature  <<bem>>
+class Time <<bem>>
+class Transparency <<bem>>
+class Velocity <<bem>>
+class Visibility <<bem>>
+class Volume <<bem>>
+class Discharge <<bem>>
+class Flow <<bem>>
+class Inflow <<bem>>
+class Outflow <<bem>>
+class AirMedium <<bem>>
+
+class IfcDistributionElement <<ifc>>
+class DistributionElementState <<bem>>
+class DiscreteState <<bem>>
+class ContinousState <<bem>>
+
+class IfcBuildingStorey <<ifc>>
+class IfcSite <<ifc>>
+class IfcSpace <<ifc>>
+
+class SpaceCapacity <<bem>>
+
+/'
+ Definition of the SSN model to model the sensor observation of the building
+ facilities
+'/
+
+System <|-- Sensor
+Observation <|-- MobileBuildingApplianceLocationObservation
+MobileBuildingAppliance --> MobileBuildingApplianceLocationObservation: hit2gap:wasLocated
+
+System --> System: ssn:hasSubSystem
+IfcSensor --> Sensor: owl:equivalentClass
+Sensor --> Observation: ssn:observedBy
+Sensor --> Property: ssn:observes
+Observation --> FeatureOfInterest: ssn:featureOfInterest
+Observation --> Property: ssn:observedProperty
+FeatureOfInterest --> Property: ssn:Property
+Observation --> SensorOutput: ssn:ObservationResult
+SensorOutput --> ObservationValue: ssn:hasValue
+ObservationValue --> Unit: qudt:unit
+Observation --> Instant: ssn:observationResultTime
+Observation --> DateTimeInterval: ssn:observationResultTime
+
+
+/'
+  Definition of the geospatial part using GeoOWL ontology
+'/
+
+_Feature --> _Geometry: geo:where
+_Geometry <|-- Point
+_Geometry <|-- Polygon
+
+_Feature <|-- FeatureOfInterest
+_Feature <|-- System
+_Feature --> Hemisphere: hit2gap:locatedInHemisphere
+
+Hemisphere ..[#orchid] Northern
+Hemisphere ..[#orchid] Southern
+
+
+Climate ..[#orchid] Tropical
+Climate ..[#orchid] Arid
+Climate ..[#orchid] Temperate
+Climate ..[#orchid] Continental
+Climate ..[#orchid] Polar
+
+Tropical ..[#orchid] TropicalRainforest
+Tropical ..[#orchid] TropicalMonsoon
+Tropical ..[#orchid] TropicalSavanna
+
+Arid ..[#orchid] HotDesert
+Arid ..[#orchid] ColdDesert
+Arid ..[#orchid] MildDesert
+Arid ..[#orchid] HotSemiArid
+Arid ..[#orchid] ColdSemiArid
+Arid ..[#orchid] MildSemiArid
+
+Temperate ..[#orchid] HumidSubtropical
+Temperate ..[#orchid] TemperateOceanic
+Temperate ..[#orchid] SubpolarOceanic
+Temperate ..[#orchid] MonsoonInfluencedHumidSubtropical
+Temperate ..[#orchid] TemperateOceanicWithDryWinters
+Temperate ..[#orchid] SubPolarOceanicWithDryWinters
+Temperate ..[#orchid] HotSummerMediterranean
+Temperate ..[#orchid] WarnSummerMediterranean
+Temperate ..[#orchid] CoolSummerMediterranean
+
+Continental ..[#orchid] HotSummerHumidContinental
+Continental ..[#orchid] WarmSummerHumidContinental
+Continental ..[#orchid] Subartic
+Continental ..[#orchid] ExtremelyColdSubartic
+Continental ..[#orchid] MonsoonInfluencedHotSummerHumidContinental
+Continental ..[#orchid] MonsoonInfluencedWarmSummerHumidContinental
+Continental ..[#orchid] MonsoonInfluencedSubartic
+Continental ..[#orchid] MonsoonInfluencedExtremelyColdSubarctic
+Continental ..[#orchid] HotDrySummerContinental
+Continental ..[#orchid] WarmDrySummerContinental
+Continental ..[#orchid] DrySummerSubarctic
+Continental ..[#orchid] ExtremelyColdDrySummerSubarctic
+
+Polar ..[#orchid] MildTundra
+Polar ..[#orchid] FrostColdTundra
+Polar ..[#orchid] IceCap
+
+/'
+  Definition of the types of FoIs
+'/
+
+FeatureOfInterest <|-- IfcBuilding
+FeatureOfInterest <|-- BuildingAppliance
+FeatureOfInterest <|-- IfcElement
+FeatureOfInterest <|-- IfcSpatialElement
+
+IfcSpatialStructureElement <|-- IfcBuilding
+IfcSpatialElement <|-- IfcSpatialStructureElement
+
+
+
+IfcSpatialStructureElement <|-- IfcBuildingStorey
+IfcSpatialStructureElement <|-- IfcSite
+IfcSpatialStructureElement <|-- IfcSpace
+
+
+IfcSpatialElement <|-- IfcSpatialZone
+
+IfcSpatialStructureElement --> SpaceCapacity: hit2gap:hasCapacity
+
+IfcSite --> IfcSite: hit2gap:contains
+IfcSite --> IfcBuilding: hit2gap:contains
+IfcSite --> Climate: hit2gap:locatedInClimate
+IfcBuilding --> IfcBuilding: hit2gap:contains
+IfcBuildingStorey -->IfcSpace: hit2gap:contains
+IfcZone -->IfcZone: hit2gap:contains
+IfcZone -->IfcSpace: hit2gap:contains
+
+IfcBuilding -->IfcSpatialZone: hit2gap:contains
+IfcBuilding -->IfcSpace: hit2gap:contains
+IfcBuilding --> IfcBuildingStorey: hit2gap:contains
+IfcSpatialZone --> IfcElement: hit2gap:contains
+
+
+IfcElement <|-- IfcDistributionElement
+IfcElement <|-- IfcBuildingElement
+IfcElement <|-- IfcElementComponent
+
+IfcDistributionElement <|-- IfcDistributionControlElement
+IfcDistributionElement <|-- IfcDistributionFlowElement
+
+IfcDistributionElement --> DistributionElementState: hit2gap:hasState
+DistributionElementState <|-- ContinousState
+DistributionElementState <|-- DiscreteState
+
+IfcDistributionElement --> IfcBuildingElement: hit2gap:contains
+
+BuildingType <|-- Agricultural
+Agricultural ..[#orchid] Barn
+Agricultural ..[#orchid] Cellar
+Agricultural ..[#orchid] Farmhouse
+Agricultural ..[#orchid] Greenhouse
+Agricultural ..[#orchid] Silo
+
+BuildingType <|-- Commercial
+Commercial ..[#orchid] AutomobileRepair
+Commercial ..[#orchid] ConventionCenter
+Commercial ..[#orchid] Drugstore
+Commercial ..[#orchid] Hotel
+Commercial ..[#orchid] Pharmacy
+Commercial ..[#orchid] Office
+Commercial ..[#orchid] MallSupermarket
+Commercial ..[#orchid] BarRestaurant
+Commercial ..[#orchid] Shop
+
+BuildingType <|-- Residential
+Residential ..[#orchid] Apartment
+Residential ..[#orchid] House
+Residential ..[#orchid] Bungalow
+
+BuildingType <|-- Educational
+Educational ..[#orchid] University
+Educational ..[#orchid] Secondary
+Educational ..[#orchid] Primary
+
+BuildingType <|-- Industrial
+Industrial ..[#orchid] Factory
+Industrial ..[#orchid] DataCenter
+Industrial ..[#orchid] LogisticPlatform
+Industrial ..[#orchid] PowerPlant
+Industrial ..[#orchid] Warehouse
+
+BuildingType <|-- Religious
+
+BuildingType <|-- Public
+Public ..[#orchid] Library
+Public ..[#orchid] Nursery
+Public ..[#orchid] SwimmingCenter
+Public ..[#orchid] Gym
+Public ..[#orchid] Administration
+Public ..[#orchid] NightClubConcert
+Public ..[#orchid] Cinema
+Public ..[#orchid] MuseumGallery
+Public ..[#orchid] Hospital
+
+BuildingType <|-- Transports
+Transports ..[#orchid] Airport
+Transports ..[#orchid] TrainStation
+Transports ..[#orchid] BusStation
+Transports ..[#orchid] Metro
+
+IfcBuilding --> BuildingType: hit2gap:hasType
+
+BuildingAppliance <|-- StaticBuildingAppliance
+BuildingAppliance <|-- MobileBuildingAppliance
+
+StaticBuildingAppliance <|-- IfcFlowTerminal
+StaticBuildingAppliance <|-- Monitoring
+MobileBuildingAppliance <|-- Wereable
+BuildingAppliance --> BuildingAppliance: hit2gap:contains
+Monitoring --> BuildingAppliance: hit2gap:MeasureInputOutput
+StaticBuildingAppliance --> IfcZone: hit2gap:isLocatedIn
+IfcEnergyConversionDevice --> IfcZone: hit2gap:InputOutput
+StaticBuildingAppliance <|-- IfcFlowStorageDevice
+StaticBuildingAppliance <|-- IfcFlowMovingDevice
+StaticBuildingAppliance <|-- IfcFlowController
+StaticBuildingAppliance <|-- IfcFlowTreatmentDevice
+StaticBuildingAppliance <|-- IfcEnergyConversionDevice
+
+Wereable <|-- Smartwatch
+Wereable <|-- Smartphone
+
+Monitoring <|-- IfcSensor
+Monitoring <|-- IfcActuator
+Monitoring <|-- IfcAlarm
+Monitoring <|-- Meter
+
+IfcBuildingElement <|-- IfcBeam
+IfcBuildingElement <|-- IfcChimmey
+IfcBuildingElement <|-- IfcColumn
+IfcBuildingElement <|-- IfcCovering
+IfcBuildingElement <|-- IfcCurtainWall
+IfcBuildingElement <|-- IfcDoor
+IfcBuildingElement <|-- IfcFooting
+IfcBuildingElement <|-- IfcMember
+IfcBuildingElement <|-- IfcPile
+IfcBuildingElement <|-- IfcPlate
+IfcBuildingElement <|-- IfcRailing
+IfcBuildingElement <|-- IfcRamp
+IfcBuildingElement <|-- IfcRampFlight
+IfcBuildingElement <|-- IfcRoof
+IfcBuildingElement <|-- IfcShadingDevice
+IfcBuildingElement <|-- IfcSlab
+IfcBuildingElement <|-- IfcStair
+IfcBuildingElement <|-- IfcStairFlight
+IfcBuildingElement <|-- IfcWall
+IfcBuildingElement <|-- IfcWindow
+
+
+IfcSpace <|-- Office
+IfcSpace <|-- CirculationArea
+IfcSpace <|-- WetArea
+IfcSpace <|-- ConferenceRoom
+IfcSpace <|-- Balcony
+IfcSpace <|-- Kitchen
+IfcSpace <|-- Toilets
+IfcSpace <|-- Bathroom
+IfcSpace <|-- RestRoom
+IfcSpace <|-- Canteen
+IfcSpace <|-- Cafeteria
+IfcSpace <|-- Room
+IfcSpace <|-- Desk
+IfcSpace <|-- OpenSpace
+
+IfcBuildingStorey <|-- Floor
+Floor <|-- Subterranean
+Floor <|-- Ground
+
+IfcWindow --> WindowCoverings: hit2gap:hasCoverings
+WindowCoverings <|-- Curtains
+WindowCoverings <|-- Blinds
+WindowCoverings <|-- Shutters
+WindowCoverings <|-- Shades
+
+IfcActuator --> IfcWindow: hit2gap:OpenClose
+IfcActuator --> IfcWindowCoverings: hit2gap:OpenClose
+
+IfcDistributionElement <|-- IfcDistributionControlElement
+IfcDistributionControlElement <|-- IfcActuator
+IfcDistributionControlElement <|-- IfcAlarm
+IfcDistributionControlElement <|-- IfcController
+IfcDistributionControlElement <|-- IfcFlowInstrument
+IfcDistributionControlElement <|-- IfcProtectiveDeviceTrippingUnit
+IfcDistributionControlElement <|-- IfcSensor
+IfcDistributionControlElement <|-- IfcUnitaryControlElement
+
+IfcSite --> Orientation: hit2gap:hasOrientation
+IfcBuilding --> Orientation: hit2gap:hasOrientation
+
+Orientation..[#orchid] North
+Orientation..[#orchid] South
+Orientation..[#orchid] West
+Orientation..[#orchid] East
+Orientation..[#orchid] North_East
+Orientation..[#orchid] North_West
+Orientation..[#orchid] South_East
+Orientation..[#orchid] South_West
+
+/'
+    Incorporation of micro-grid description to the building
+'/
+
+Microgrid --> Property: hit2gap:hasProperty
+FeatureOfInterest <|-- Microgrid
+
+Microgrid --> Branch: ontomg:hasBranch
+Branch --> Branch: ontomg:isComposedOf
+Branch <|-- ESBranch
+Branch <|-- DERBranch
+Branch <|-- ELBranch
+Branch <|-- InfraBranch
+
+Branch --> BranchController: hit2gap:hasA
+
+IfcDistributionSystem <|-- IfcDistributionCircuit
+BranchController <|-- IfcFlowController
+ConductingEquipement <|-- BranchController
+InfraBranch <|-- IfcDistributionCircuit
+ESBranch <|-- IfcDistributionElement
+ELBranch <|-- IfcDistributionElement
+EnergyStorage <|-- IfcElectricalFlowStorageDevice
+ELBranch <|-- IfcFlowMovingDevice
+ELBranch <|-- IfcEnergyConversionDevice
+
+IfcSystem <|-- IfcDistributionElement
+
+DERBranch --> BranchSwitch: ontomg:hasA
+DERBranch<|-- RenewableDERBranch
+DERBranch<|-- NonRenewableDERBranch
+
+RenewableDERBranch <|-- SolarPowerBranch
+RenewableDERBranch <|-- SmallWindPowerBranch
+RenewableDERBranch <|-- HydroPowerBranch
+RenewableDERBranch <|-- GeoThermalBranch
+RenewableDERBranch <|-- BiomassBranch
+RenewableDERBranch <|-- MicroturbinesBranch
+RenewableDERBranch <|-- SolarHybridBranch
+RenewableDERBranch <|-- WindHybridBranch
+RenewableDERBranch <|-- PhotovoltaicBranch
+
+SolarPowerBranch--> SolarCell: ontomg:hasA
+WindPowerBranch --> WindTurbine: ontomg:hasA
+
+RegulatingCongEq <|-- WindTurbine
+RegulatingCongEq <|-- SolarCell
+
+SolarPowerBranch --> Converter: ontomg:hasA
+WindPowerBranch --> Converter: ontomg:hasA
+
+RectifierInverter <|-- Converter
+Converter <|-- Inverter
+Converter <|-- AcDcConverter
+
+Inverter <|-- MonophasicInverter
+Inverter <|-- TriphasicInverter
+
+
+NonRenewableDERBranch <|-- OilBranch
+NonRenewableDERBranch <|-- GasBranch
+NonRenewableDERBranch <|-- CoalBranch
+NonRenewableDERBranch <|-- NuclearBranch
+OilBranch <|-- FuelCellBranch
+NonRenewableDERBranch <|-- CHPPPowerBranch
+NonRenewableDERBranch <|-- MicroCHPPPowerBranch
+NonRenewableDERBranch <|-- ReciprocatingBranch
+NonRenewableDERBranch <|-- StirlingBranch
+
+FuelCellBranch --> Converter: ontomg:hasA
+FuelCellBranch --> DieselGenerator: ontomg:hasA
+
+/'
+ Definiton of Mechanical Building Elements
+'/
+
+IfcDistributionFlowElement <|-- ElectricElement
+IfcDistributionFlowElement <|-- MonitoringElement
+IfcDistributionFlowElement <|-- WereableElement
+IfcDistributionFlowElement <|-- IfcDistributionChamberElement
+IfcDistributionFlowElement <|-- IfcEnergyConversionDevice
+IfcDistributionFlowElement <|-- IfcFlowController
+IfcDistributionFlowElement <|-- IfcFlowFitting
+IfcDistributionFlowElement <|-- IfcFlowMovingDevice
+IfcDistributionFlowElement <|-- IfcFlowTerminal
+IfcDistributionFlowElement <|-- IfcFlowStorageDevice
+IfcDistributionFlowElement <|-- IfcFlowTreatmentDevice
+
+IfcEnergyConversionDevice <|-- AirHandlingUnit
+IfcEnergyConversionDevice <|-- IfcBoiler
+IfcEnergyConversionDevice <|-- IfcChiller
+IfcEnergyConversionDevice <|-- IfcCoil
+IfcEnergyConversionDevice <|-- IfcBurner
+IfcEnergyConversionDevice <|-- IfcCoil
+IfcEnergyConversionDevice <|-- IfcEvaporativeCooler
+IfcEnergyConversionDevice <|-- IfcEngine
+IfcEnergyConversionDevice <|-- WaterPlant
+IfcEnergyConversionDevice <|-- SteamPlant
+IfcEnergyConversionDevice <|-- IfcHeatExchanger
+IfcEnergyConversionDevice <|-- IfcAirToAirHeatRecovery
+IfcEnergyConversionDevice <|-- IfcHumidifier
+IfcEnergyConversionDevice <|-- IfcEvaporator
+IfcEnergyConversionDevice <|-- ChilledBeams
+IfcEnergyConversionDevice <|-- IfcCoolingTower
+IfcEnergyConversionDevice <|-- IfcCondenser
+IfcEnergyConversionDevice <|-- IfcTransformer
+IfcEnergyConversionDevice <|-- IfcElectricGenerator
+IfcEnergyConversionDevice <|-- IfcElectricMotor
+IfcEnergyConversionDevice <|-- IfcSolarDevice
+
+IfcSolarDevice ..[#orchid] SOLARCOLLECTOR
+IfcSolarDevice ..[#orchid] SOLARPANEL
+IfcSolarDevice ..[#orchid] SOLARELECTRIC
+IfcSolarDevice ..[#orchid] SOLARTHERMAL
+
+IfcElementComponent <|-- IfcVibrationIsolator
+
+IfcFlowTerminal <|-- IfcSpaceHeater
+IfcFlowTerminal <|-- IfcFireSuppressionTerminal
+IfcFlowTerminal <|-- IfcSanitaryTerminal
+IfcFlowTerminal <|-- IfcStackTerminal
+IfcFlowTerminal <|-- IfcWasteTerminal
+IfcFlowTerminal <|-- IfcAudioVisualAppliance
+IfcFlowTerminal <|-- IfcCommunicationAppliance
+IfcFlowTerminal <|-- IfcElectricAppliance
+IfcFlowTerminal <|-- IfcLamp
+IfcFlowTerminal <|-- IfcOutlet
+IfcFlowTerminal <|-- ElectricHeater
+
+IfcLamp --> LampType: hit2gap:hasLampType
+LampType ..[#orchid] CentralLight
+LampType ..[#orchid] DeskLight
+LampType ..[#orchid] OutdoorlLight
+
+IfcFlowMovingDevice <|-- IfcCompressor
+IfcFlowMovingDevice <|-- IfcFan
+IfcFan <|-- FanCoilUnit
+IfcFlowMovingDevice <|-- IfcPump
+IfcPump <|-- HeatPump
+
+IfcFlowStorageDevice <|-- IfcTank
+IfcFlowStorageDevice <|-- IfcElectricFlowStorageDevice
+
+IfcFlowController <|-- IfcValve
+IfcFlowController <|-- IfcDamper
+
+IfcFlowTreatmentDevice <|-- IfcInterceptor
+
+
+/'
+  Definition of the properties hierarchy
+'/
+
+Property <|-- EconomicProperties
+Property <|-- PhysicProperties
+Property <|-- OccupantStateProperties
+
+EconomicProperties <|-- Cost
+EconomicProperties <|-- Investment
+
+PhysicProperties <|-- Air
+PhysicProperties <|-- Area
+PhysicProperties <|-- Capacity
+Capacity<|-- ProductionCapacity
+PhysicProperties <|-- Color
+PhysicProperties <|-- Conductivity
+PhysicProperties <|-- Density
+PhysicProperties <|-- Depth
+PhysicProperties <|--EquivalentDepth
+PhysicProperties <|-- Energy
+Energy<|-- ElectricEnergy
+Energy<|-- HeatFluxEnergy
+PhysicProperties <|-- Evaporation
+PhysicProperties <|-- Condensation
+PhysicProperties <|-- Medium
+PhysicProperties <|-- Precipitation
+PhysicProperties <|-- Pressure
+PhysicProperties <|-- Radiation
+Radiation<|-- IncidentRadiation
+IncidentRadiation<|-- AbsorbedIncidentRadiation
+IncidentRadiation<|-- ReflectedIncidentradiation
+IncidentRadiation<|-- AbsorbedScatteredIncidentRadiation
+IncidentRadiation<|-- TransmittedIncidentRadiation
+PhysicProperties <|-- Rainfall
+PhysicProperties <|-- Reflectivity
+PhysicProperties <|-- Shape
+Shape<|-- CrossSection
+Shape<|-- Height
+Shape<|-- Length
+Shape<|-- Slope
+Shape<|-- Weight
+Shape<|-- Width
+PhysicProperties <|-- Speed
+PhysicProperties <|-- Temperature
+PhysicProperties <|-- Time
+PhysicProperties <|-- Transparency
+PhysicProperties <|-- Velocity
+PhysicProperties <|-- Visibility
+PhysicProperties <|-- Volume
+Volume<|-- Discharge
+Volume<|-- Flow
+Flow<|-- Inflow
+Flow<|-- Outflow
+Medium<|-- AirMedium
+PhysicProperties <|-- Climate
+
+PhysicalMedium <|-- Oil
+PhysicalMedium <|-- Gas
+PhysicalMedium <|-- Water
+PhysicalMedium <|-- Air
+PhysicalMedium <|-- Steam
+PhysicalMedium <|-- Radiation
+
+IfcFlowMovingDevice --> PhysicalMedium: hit2gap:transports
+IfcEnergyConversionDevice --> PhysicalMedium: hit2gap:consumes
+IfcEnergyConversionDevice --> PhysicalMedium: hit2gap:produces
+IfcFlowStorageDevice --> PhysicalMedium: hit2gap:stores
+IfcFlowController --> PhysicalMedium: hit2gap:controls
+IfcFlowTerminal --> PhysicalMedium: hit2gap:consumes
+
+
+OccupantStateProperties <|-- Stress
+OccupantStateProperties <|-- Pulse
+
+IfcActuator --> IfcActuatorType: owl:equivalentClass
+IfcAlarm --> IfcAlarmType: owl:equivalentClass
+IfcController --> IfcControllerType: owl:equivalentClass
+IfcSensor --> IfcSensorType: owl:equivalentClass
+IfcFlowInstrument  --> IfcFlowInstrumentType: owl:equivalentClass
+IfcBoiler --> IfcBoilerType: owl:equivalentClass
+IfcChiller --> IfcChillerType: owl:equivalentClass
+IfcCoil  --> IfcCoilType: owl:equivalentClass
+IfcEvaporativeCooler --> IfcEvaporativeCoolerType: owl:equivalentClass
+IfcHeatExchanger --> IfcHeatExchangerType: owl:equivalentClass
+IfcAirToAirHeatRecovery --> IfcAirToAirHeatRecoveryType: owl:equivalentClass
+IfcHumidifier --> IfcHumidifierType: owl:equivalentClass
+IfcEvaporator --> IfcEvaporatorType: owl:equivalentClass
+IfcCoolingTower --> IfcCoolingTowerType: owl:equivalentClass
+IfcCondenser --> IfcCondenserType: owl:equivalentClass
+IfcTransformer --> IfcTransformerType: owl:equivalentClass
+IfcElectricGenerator --> IfcElectricGeneratorType: owl:equivalentClass
+IfcElectricMotor --> IfcElectricMotorType: owl:equivalentClass
+IfcVibrationIsolator --> IfcVibrationIsolatorType: owl:equivalentClass
+IfcSpaceHeater --> IfcSpaceHeaterType: owl:equivalentClass
+IfcFireSuppressionTerminal --> IfcFireSuppressionTerminalType: owl:equivalentClass
+IfcSanitaryTerminal --> IfcSanitaryTerminalType: owl:equivalentClass
+IfcStackTerminal --> IfcStackTerminalType: owl:equivalentClass
+IfcWasteTerminal --> IfcWasteTerminalType: owl:equivalentClass
+IfcElectricAppliance --> IfcElectricApplianceType: owl:equivalentClass
+IfcLamp  --> IfcLampType: owl:equivalentClass
+IfcOutlet --> IfcOutletType: owl:equivalentClass
+IfcCompressor --> IfcCompressorType: owl:equivalentClass
+IfcFan --> IfcFanType: owl:equivalentClass
+IfcPump --> IfcPumpType: owl:equivalentClass
+IfcTank --> IfcTankType: owl:equivalentClass
+IfcElectricFlowStorageDevice --> IfcElectricFlowStorageDeviceType: owl:equivalentClass
+IfcValve --> IfcValveType: owl:equivalentClass
+IfcDamper --> IfcDamperType: owl:equivalentClass
+
+@enduml

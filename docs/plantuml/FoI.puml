@@ -1,0 +1,319 @@
+@startuml
+
+scale 0.5
+
+skinparam class {
+  ArrowColor DarkBlue
+  ArrowFontColor DarkBlue
+  BackgroundColor LightBlue
+  BorderColor DarkGrey
+}
+skinparam dpi 300
+skinparam stereotypeCBackgroundColor Wheat
+skinparam classAttributeFontColor  Green
+
+
+/'
+  Definition of the Feature of interest classes
+'/
+class FeatureOfInterest <<ssn>>
+
+class Observation <<ssn>>  {
+  externalStorageID xsd:string
+}
+
+class MobileBuildingApplianceLocationObservation <<bem>>
+
+class IfcBuilding <<ifc>>
+class IfcElement <<ifc>>
+class IfcSpatialElement <<ifc4>>
+class Microgrid <<ontomg>>
+class IfcSpatialStructureElement <<ifc>>{
+  hasSpatialStructureCapacity: xsd:double;
+}
+class IfcBuildingElement <<ifc>>
+class IfcElementComponent <<ifc>>
+class IfcDistributionControlElement <<ifc>>
+class IfcDistributionFlowElement <<ifc>>
+class IfcZone <<ifc>>
+class IfcSpatialZone <<ifc4>>
+
+class IfcFlowInstrument <<ifc4>>
+class IfcFlowInstrumentType <<ifc>>
+
+class IfcElectricalFlowStorageDevice <<ifc4>>
+class IfcElectricalFlowStorageDeviceType <<ifc>>
+class IfcTank <<ifc4>>
+class IfcTankType <<ifc>>
+
+class IfcSensor <<ifc4>>
+class IfcSensorType <<ifc>>
+
+class IfcProtectiveDeviceTrippingUnit <<ifc4>>
+
+class IfcUnitaryControlElement <<ifc4>>
+class IfcFlowTerminal <<ifc>>
+
+class IfcFlowStorageDevice <<ifc>>
+
+class IfcFlowTreatmentDevice <<ifc>>
+
+class IfcEnergyConversionDevice <<ifc>> {
+  hasSetPoint xsd:boolean
+}
+
+class IfcFlowController <<ifc>>
+
+class IfcFlowMovingDevice <<ifc>>
+
+class BuildingAppliance <<bem>>
+class BuildingType <<bem>>
+class StaticBuildingAppliance <<bem>>
+class MobileBuildingAppliance <<bem>>
+
+class Monitoring <<bem>>
+class Wereable <<bem>>
+
+class Smartwatch <<bem>>
+class Smartphone <<bem>>
+
+class Meter <<bem>>
+
+class IfcActuator <<ifc4>>
+class IfcActuatorType <<ifc>>
+
+class IfcAlarm <<ifc4>>
+class IfcAlarmType <<ifc>>
+
+class IfcController <<ifc4>>
+class IfcControllerType <<ifc>>
+
+class ELBranch <<ontomg>>
+class EnergyStorage <<ontomg>>
+class BranchController <<ontomg>>
+
+/'
+  Building types class definition
+'/
+class Agricultural <<bem>>
+class Commercial <<bem>>
+class Residential  <<bem>>
+class Educational <<bem>>
+class Industrial <<bem>>
+class Religious <<bem>>
+class Public <<bem>>
+class Transports <<bem>>
+
+/'
+  Building Zones types definition
+'/
+
+class Room <<bem>>
+class Floor <<bem>>
+class OpenSpace <<bem>>
+class Desk <<bem>>
+class Subterranean <<bem>>
+class Ground <<bem>>
+
+class IfcDistributionElement <<ifc>>
+class DistributionElementState <<bem>>
+class DiscreteState <<bem>>
+class ContinousState <<bem>>
+
+class IfcBuildingStorey <<ifc>>
+class IfcSite <<ifc>>
+class IfcSpace <<ifc>>
+class SpaceCapacity <<bem>>
+
+class Orientation <<bem>>
+
+class North <<(I,orchid),hit2gap>>
+class South <<(I,orchid),hit2gap>>
+class West <<(I,orchid),hit2gap>>
+class East <<(I,orchid),hit2gap>>
+class North_East <<(I,orchid),hit2gap>>
+class North_West <<(I,orchid),hit2gap>>
+class South_East <<(I,orchid),hit2gap>>
+class South_West <<(I,orchid),hit2gap>>
+
+
+/'
+  Definition of the types of Physical Medium
+'/
+
+class PhysicalMedium <<bem>>
+class Oil <<bem>>
+class Gas <<bem>>
+class Water <<bem>>
+class Air <<bem>>
+class Steam <<bem>>
+class Radiation <<bem>>
+
+/'
+  Definition of the types of FoIs
+'/
+
+FeatureOfInterest <|-- IfcBuilding
+FeatureOfInterest <|-- BuildingAppliance
+FeatureOfInterest <|-- IfcElement
+FeatureOfInterest <|-- Microgrid
+FeatureOfInterest <|-- IfcSpatialElement
+
+
+IfcSpatialStructureElement <|-- IfcBuilding
+IfcSpatialElement <|-- IfcSpatialStructureElement
+IfcSpatialElement <|-- IfcSpatialZone
+
+IfcSpatialStructureElement --> SpaceCapacity: hit2gap:hasCapacity
+
+
+IfcSpatialStructureElement <|-- IfcBuildingStorey
+IfcSpatialStructureElement <|-- IfcSite
+IfcSpatialStructureElement <|-- IfcSpace
+
+
+
+IfcBuilding -->IfcSpatialZone: hit2gap:contains
+IfcSpatialZone --> IfcElement: hit2gap:contains
+
+
+IfcSite --> IfcSite: hit2gap:contains
+IfcSite --> IfcBuilding: hit2gap:contains
+IfcBuilding --> IfcBuilding: hit2gap:contains
+IfcBuildingStorey -->IfcSpace: hit2gap:contains
+IfcZone -->IfcZone: hit2gap:contains
+IfcZone -->IfcSpace: hit2gap:contains
+
+IfcBuilding -->IfcSpace: hit2gap:contains
+IfcBuilding --> IfcBuildingStorey: hit2gap:contains
+
+IfcSite --> Orientation: hit2gap:hasOrientation
+IfcBuilding --> Orientation: hit2gap:hasOrientation
+
+Orientation..[#orchid] North
+Orientation..[#orchid] South
+Orientation..[#orchid] West
+Orientation..[#orchid] East
+Orientation..[#orchid] North_East
+Orientation..[#orchid] North_West
+Orientation..[#orchid] South_East
+Orientation..[#orchid] South_West
+
+
+IfcElement <|-- IfcDistributionElement
+IfcElement <|-- IfcBuildingElement
+IfcElement <|-- IfcElementComponent
+
+IfcDistributionElement <|-- IfcDistributionControlElement
+IfcDistributionElement <|-- IfcDistributionFlowElement
+
+IfcDistributionFlowElement <|-- IfcFlowStorageDevice
+IfcDistributionFlowElement <|-- IfcFlowMovingDevice
+IfcDistributionFlowElement <|-- IfcFlowController
+IfcDistributionFlowElement <|-- IfcFlowTerminal
+IfcDistributionFlowElement <|-- IfcFlowTreatmentDevice
+IfcDistributionFlowElement <|-- IfcEnergyConversionDevice
+
+IfcDistributionElement --> DistributionElementState: hit2gap:hasState
+DistributionElementState <|-- ContinousState
+DistributionElementState <|-- DiscreteState
+
+IfcDistributionElement --> IfcBuildingElement: hit2gap:contains
+
+BuildingType <|-- Agricultural
+BuildingType <|-- Commercial
+BuildingType <|-- Residential
+BuildingType <|-- Educational
+BuildingType <|-- Industrial
+BuildingType <|-- Religious
+BuildingType <|-- Public
+BuildingType <|-- Transports
+
+IfcBuilding --> BuildingType: hit2gap:hasType
+
+BuildingAppliance <|-- StaticBuildingAppliance 
+BuildingAppliance <|-- MobileBuildingAppliance
+
+StaticBuildingAppliance <|-- IfcFlowTerminal
+StaticBuildingAppliance <|-- Monitoring
+MobileBuildingAppliance <|-- Wereable
+
+BuildingAppliance --> BuildingAppliance: hit2gap:contains
+StaticBuildingAppliance --> IfcZone: hit2gap:isLocatedIn
+Monitoring --> BuildingAppliance: hit2gap:MeasureInputOutput
+IfcEnergyConversionDevice --> IfcZone: hit2gap:InputOutput
+StaticBuildingAppliance <|-- IfcFlowStorageDevice
+IfcFlowStorageDevice <|-- IfcElectricalFlowStorageDevice
+IfcFlowStorageDevice <|-- IfcTank
+StaticBuildingAppliance <|-- IfcFlowMovingDevice
+StaticBuildingAppliance <|-- IfcFlowController
+StaticBuildingAppliance <|-- IfcFlowTreatmentDevice
+StaticBuildingAppliance <|-- IfcEnergyConversionDevice
+Observation <|-- MobileBuildingApplianceLocationObservation
+MobileBuildingAppliance --> MobileBuildingApplianceLocationObservation: hit2gap:wasLocated
+
+
+BranchController <|-- IfcFlowController
+EnergyStorage <|-- IfcElectricalFlowStorageDevice
+ELBranch <|-- IfcFlowMovingDevice
+ELBranch <|-- IfcEnergyConversionDevice
+
+
+Wereable <|-- Smartwatch
+Wereable <|-- Smartphone
+
+Monitoring <|-- IfcSensor
+Monitoring <|-- IfcActuator
+Monitoring <|-- IfcAlarm
+Monitoring <|-- Meter
+
+IfcSpace <|-- Office
+IfcSpace <|-- CirculationArea
+IfcSpace <|-- WetArea
+IfcSpace <|-- ConferenceRoom
+IfcSpace <|-- Balcony
+IfcSpace <|-- Kitchen
+IfcSpace <|-- Toilets
+IfcSpace <|-- Bathroom
+IfcSpace <|-- RestRoom
+IfcSpace <|-- Canteen
+IfcSpace <|-- Cafeteria
+IfcSpace <|-- Room
+IfcSpace <|-- Desk
+IfcSpace <|-- OpenSpace
+
+IfcBuildingStorey <|-- Floor
+Floor <|-- Subterranean
+Floor <|-- Ground
+
+IfcDistributionElement <|-- IfcDistributionControlElement
+IfcDistributionControlElement <|-- IfcActuator
+IfcDistributionControlElement <|-- IfcAlarm
+IfcDistributionControlElement <|-- IfcController
+IfcDistributionControlElement <|-- IfcFlowInstrument
+IfcDistributionControlElement <|-- IfcProtectiveDeviceTrippingUnit
+IfcDistributionControlElement <|-- IfcSensor
+IfcDistributionControlElement <|-- IfcUnitaryControlElement
+
+PhysicalMedium <|-- Oil
+PhysicalMedium <|-- Gas
+PhysicalMedium <|-- Water
+PhysicalMedium <|-- Air
+PhysicalMedium <|-- Steam
+PhysicalMedium <|-- Radiation
+
+IfcFlowMovingDevice --> PhysicalMedium: hit2gap:transports
+IfcEnergyConversionDevice --> PhysicalMedium: hit2gap:consumes
+IfcEnergyConversionDevice --> PhysicalMedium: hit2gap:produces
+IfcFlowStorageDevice --> PhysicalMedium: hit2gap:stores
+IfcFlowController --> PhysicalMedium: hit2gap:controls
+IfcFlowTerminal --> PhysicalMedium: hit2gap:consumes
+
+IfcFlowInstrument --> IfcFlowInstrumentType: owl:equivalentClass
+IfcSensor --> IfcSensorType: owl:equivalentClass
+IfcActuator --> IfcActuatorType: owl:equivalentClass
+IfcAlarm --> IfcAlarmType: owl:equivalentClass
+IfcController --> IfcControllerType: owl:equivalentClass
+IfcElectricalFlowStorageDevice --> IfcElectricalFlowStorageDeviceType: owl:equivalentClass
+IfcTank --> IfcTankType: owl:equivalentClass
+@enduml
