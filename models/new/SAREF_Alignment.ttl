@@ -1,0 +1,55 @@
+@prefix : <http://bemserver.org/appliance/SAREF_Alignment#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .  
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix voaf: <http://purl.org/vocommons/voaf#> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+@prefix schema: <https://schema.org/> .
+@prefix appliance: <http://bemserver.org/appliance#> .
+@prefix saref: <https://saref.etsi.org/core#> .
+@prefix saref4bldg: <https://saref.etsi.org/saref4bldg#> .
+@base <http://bemserver.org/appliance/SAREF_Alignment#> .
+
+<http://bemserver.org/xbot/IFCOWL4x1_Alignment#> rdf:type owl:Ontology , voaf:Vocabulary ;
+	dcterms:title "ifcOWL4x1 to BOT alignment."@en ;
+	dcterms:description """This ontology defines proposed alignments with the ifcOWL4x1 ontology. It is inspired by the alignement of IFC4_ADD2 and BOT available at https://w3id.org/bot"""@en ;
+	dcterms:issued "2021-03-10"^^xsd:date ;
+    owl:versionInfo "v1.0.0" ;
+    owl:versionIRI <http://bemserver.org/appliance/SAREF_Alignment-1.0> ;
+	dcterms:creator <https://orcid.org/0000-0002-5520-2270> ;
+	dcterms:creator "Nathalie Charbel" ;
+	owl:imports 	<https://saref.etsi.org/core#> ,
+					<https://saref.etsi.org/saref4bldg#>,
+					<https://standards.buildingsmart.org/IFC/DEV/IFC4_1/OWL> .
+
+dcterms:title a owl:AnnotationProperty .
+dcterms:description a owl:AnnotationProperty .
+dcterms:issued a owl:AnnotationProperty .
+dcterms:modified a owl:AnnotationProperty .
+dcterms:creator a owl:AnnotationProperty .
+dcterms:contributor a owl:AnnotationProperty .
+dcterms:license a owl:AnnotationProperty .
+vann:preferredNamespacePrefix a owl:AnnotationProperty .
+vann:preferredNamespaceUri a owl:AnnotationProperty .
+vcard:fn a owl:AnnotationProperty .
+schema:name a owl:AnnotationProperty .
+
+<https://orcid.org/0000-0002-5520-2270> a vcard:Individual , schema:Person; 
+	vcard:fn    "Nathalie Charbel" ;
+	schema:name "Nathalie Charbel" .
+
+#################################################################
+#    Classes
+#################################################################
+
+appliance:BuildingAppliance rdfs:subClassOf saref4bldg:BuildingDevice .
+appliance:Meter owl:equivalentClass saref:Meter .
+appliance:AHUCoolingMethod rdfs:subClassOf saref:HVAC .
+appliance:AHUDeliveryMode rdfs:subClassOf saref:HVAC .
+appliance:AHUDuct rdfs:subClassOf saref:HVAC .
+appliance:AHUHeatingMethod rdfs:subClassOf saref:HVAC .
+appliance:AHUVolumeControl rdfs:subClassOf saref:HVAC .
+appliance:ChillerModel rdfs:subClassOf saref:HVAC .
