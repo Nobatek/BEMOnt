@@ -1,0 +1,52 @@
+@prefix : <http://bemserver.org/xbot/IFCOWL4x1_Alignment#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .  
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix voaf: <http://purl.org/vocommons/voaf#> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+@prefix schema: <https://schema.org/> .
+@prefix bot: <https://w3id.org/bot#> .
+@prefix ifc: <https://standards.buildingsmart.org/IFC/DEV/IFC4_1/OWL#> .
+@base <http://bemserver.org/xbot/IFCOWL4x1_Alignment#> .
+
+<http://bemserver.org/xbot/IFCOWL4x1_Alignment#> rdf:type owl:Ontology , voaf:Vocabulary ;
+	dcterms:title "ifcOWL4x1 to BOT alignment."@en ;
+	dcterms:description """This ontology defines proposed alignments with the ifcOWL4x1 ontology. It is inspired by the alignement of IFC4_ADD2 and BOT available at https://w3id.org/bot"""@en ;
+	dcterms:issued "2021-02-23"^^xsd:date ;
+    owl:versionInfo "v1.0.0" ;
+    owl:versionIRI <http://bemserver.org/xbot/IFCOWL4x1_Alignment-1.0> ;
+	dcterms:creator <https://orcid.org/0000-0002-5520-2270> ;
+	dcterms:creator "Nathalie Charbel" ;
+	owl:imports 	<https://w3id.org/bot> ,
+					<https://standards.buildingsmart.org/IFC/DEV/IFC4_1/OWL> .
+
+dcterms:title a owl:AnnotationProperty .
+dcterms:description a owl:AnnotationProperty .
+dcterms:issued a owl:AnnotationProperty .
+dcterms:modified a owl:AnnotationProperty .
+dcterms:creator a owl:AnnotationProperty .
+dcterms:contributor a owl:AnnotationProperty .
+dcterms:license a owl:AnnotationProperty .
+vann:preferredNamespacePrefix a owl:AnnotationProperty .
+vann:preferredNamespaceUri a owl:AnnotationProperty .
+vcard:fn a owl:AnnotationProperty .
+schema:name a owl:AnnotationProperty .
+
+<https://orcid.org/0000-0002-5520-2270> a vcard:Individual , schema:Person; 
+	vcard:fn    "Nathalie Charbel" ;
+	schema:name "Nathalie Charbel" .
+
+#################################################################
+#    Classes
+#################################################################
+
+ifc:IfcSite owl:equivalentClass bot:Site .
+ifc:IfcBuilding owl:equivalentClass bot:Building .
+ifc:IfcBuildingStorey owl:equivalentClass bot:Storey .
+ifc:IfcSpace owl:equivalentClass bot:Space .
+ifc:IfcElement rdfs:subClassOf bot:Element .
+ifc:IfcSpatialElement rdfs:subClassOf bot:Zone .
+ifc:IfcZone rdfs:subClassOf bot:Zone .
