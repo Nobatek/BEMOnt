@@ -15,9 +15,9 @@
 <http://bemserver.org/xbot/IFCOWL4x1_Alignment#> rdf:type owl:Ontology , voaf:Vocabulary ;
 	dcterms:title "BuildingElements to BOT alignment."@en ;
 	dcterms:description """This ontology defines proposed alignments between BuildingElements and BOT ontologies."""@en ;
-	dcterms:issued "2021-02-23"^^xsd:date ;
+	dcterms:issued "2021-03-30"^^xsd:date ;
     owl:versionInfo "v1.0.0" ;
-    owl:versionIRI <http://bemserver.org/xbot/IFCOWL4x1_Alignment-1.0> ;
+    owl:versionIRI <http://bemserver.org/bot/BuildingElements_Alignment-1.0> ;
 	dcterms:creator <https://orcid.org/0000-0002-5520-2270> ;
 	dcterms:creator "Nathalie Charbel" ;
 	owl:imports 	<https://w3id.org/bot> ,
@@ -43,10 +43,4 @@ schema:name a owl:AnnotationProperty .
 #    Classes
 #################################################################
 
-ifc:IfcSite owl:equivalentClass bot:Site .
-ifc:IfcBuilding owl:equivalentClass bot:Building .
-ifc:IfcBuildingStorey owl:equivalentClass bot:Storey .
-ifc:IfcSpace owl:equivalentClass bot:Space .
-ifc:IfcElement rdfs:subClassOf bot:Element .
-ifc:IfcSpatialElement rdfs:subClassOf bot:Zone .
-ifc:IfcZone rdfs:subClassOf bot:Zone .
+buildingelements:BuildingElement rdfs:subClassOf bot:Element
