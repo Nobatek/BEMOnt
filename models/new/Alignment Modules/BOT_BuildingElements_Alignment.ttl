@@ -43,4 +43,4 @@ schema:name a owl:AnnotationProperty .
 #    Classes
 #################################################################
 
-buildingelements:BuildingElement rdfs:subClassOf bot:Element
+buildingelements:BuildingElement rdfs:subClassOf bot:Element .

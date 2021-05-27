@@ -43,4 +43,4 @@ schema:name a owl:AnnotationProperty .
 #    Classes
 #################################################################
 
-buildingelement:BuildingElement rdfs:subClassOf saref:FeatureOfInterest 
+buildingelement:BuildingElement rdfs:subClassOf saref:FeatureOfInterest .
