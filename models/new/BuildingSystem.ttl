@@ -1,0 +1,40 @@
+@prefix : <http://bemserver.org/buildingsystem#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix bemserver-system: <http://bemserver.org/buildingsystem#> .
+@base <http://bemserver.org/buildingsystem#> .
+
+<http://bemserver.org/buildingsystem#> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://bemserver.org/appliance#hasPart
+bemserver-system:hasPart rdf:type owl:ObjectProperty .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://bemserver.org/buildingsystem#ConsumptionStation
+bemserver-system:ConsumptionStation rdf:type owl:Class ;
+									rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                        owl:onProperty bemserver-system:hasPart ;
+                                                        owl:allValuesFrom bemserver-system:BuildingSystem
+                                                      ] ;
+                                      rdfs:comment "Cunsumption stations represent groups of consumption elements (aka systems) that consume energy to deliver specific functions (e.g., lighting, Domestic Hot Water (DHW), Heating, Cooling, Ventilation, etc.) ."@en ;
+                                      rdfs:label "Consumption Station"@en,
+												 "Poste de Consommation"@fr .
+
+
+###  http://bemserver.org/buildingsystem#ConsumptionElement
+bemserver-system:ConsumptionElement rdf:type owl:Class ;
+								rdfs:comment "Consumption Elements (aka Systems) represent building components that consume energy to deliver specific functions (e.g., lighting, Domestic Hot Water (DHW), Heating, Cooling, Ventilation, etc.). Exemples of building systems include but not limited to building appliances (e.g., lifts), radiators, chillers, etc."@en ;
+                                      rdfs:label "Consumption Element"@en,
+												 "Système"@fr .
+
