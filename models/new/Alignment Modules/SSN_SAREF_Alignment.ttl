@@ -11,7 +11,7 @@
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
 @prefix ssn: <http://www.w3.org/ns/ssn/> .
 @prefix saref: <https://saref.etsi.org/core/> .
-@prefix saref4bldg : <https://saref.etsi.org/saref4bldg/> .
+@prefix saref4bldg: <https://saref.etsi.org/saref4bldg/> .
 @base <http://bemserver.org/sensor/SSN_SAREF_Alignment#> .
 
 <http://bemserver.org/sensor/SSN_SAREF4BLDG_Alignment#> rdf:type owl:Ontology , voaf:Vocabulary ;
@@ -50,7 +50,7 @@ sosa:FeatureOfInterest owl:equivalentClass saref:FeatureOfInterest .
 sosa:Observation rdfs:subClassOf saref:Measurement .
 sosa:ObservableProperty owl:equivalentClass saref:Property .
 saref:Sensor rdfs:subClassOf sosa:Sensor .
-saref4bldg:BuildingDevice sosa:FeatureOfInterest .
+saref4bldg:BuildingDevice rdfs:subClassOf sosa:FeatureOfInterest .
 
 #################################################################
 #    Object property alignement

@@ -23,7 +23,7 @@
 @prefix bot: <https://w3id.org/bot#> .
 @base <https://w3id.org/bot/SAREF4BLDGAlignment#> .
 
-:SAREFG4BLDGAlignment a owl:Ontology , voaf:Vocabulary ;
+<https://w3id.org/bot/SAREF4BLDGAlignment#> a owl:Ontology , voaf:Vocabulary ;
   dcterms:title "SAREF4BLDG Alignment."@en ;
   dcterms:description """This ontology defines proposed alignments of SAREF4BLDG with the BOT ontology."""@en ;
   dcterms:issued "2017-07-13"^^xsd:date ;
