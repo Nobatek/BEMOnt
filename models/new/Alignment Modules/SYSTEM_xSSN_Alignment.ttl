@@ -1,4 +1,4 @@
-@prefix : <http://bemserver.org/sensor/SSN_xBOT_Alignment#> .
+@prefix : <http://bemserver.org/buildingsystem/SYSTEM_xSSN_Alignment#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
@@ -10,19 +10,19 @@
 @prefix schema: <https://schema.org/> .
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
 @prefix ssn: <http://www.w3.org/ns/ssn/> .
-@prefix bot: <https://w3id.org/bot#> .
-@base <http://bemserver.org/sensor/SSN_xBOT_Alignment#> .
+@prefix building-system: <http://bemserver.org/builingsystem#> .
+@base <http://bemserver.org/buildingsystem/SYSTEM_xSSN_Alignment#> .
 
-<http://bemserver.org/sensor/SSN_xBOT_Alignment#> rdf:type owl:Ontology , voaf:Vocabulary ;
-	dcterms:title "SSN to SAREF alignment."@en ;
-	dcterms:description """This ontology defines proposed alignments between SSN and BOT ontology."""@en ;
-	dcterms:issued "2021-05-26"^^xsd:date ;
+<http://bemserver.org/buildingsystem/SYSTEM_xSSN_Alignment#> rdf:type owl:Ontology , voaf:Vocabulary ;
+	dcterms:title "SYSTEM to SSN alignment."@en ;
+	dcterms:description """This ontology defines proposed alignments between Building System and xSSN ontology."""@en ;
+	dcterms:issued "2021-06-14"^^xsd:date ;
     owl:versionInfo "v1.0.0" ;
-    owl:versionIRI <http://bemserver.org/sensor/SSN_xBOT_Alignment-1.0> ;
+    owl:versionIRI <http://bemserver.org/buildingsystem/SYSTEM_xSSN_Alignment-1.0> ;
 	dcterms:creator <https://orcid.org/0000-0002-5520-2270> ;
 	dcterms:creator "Nathalie Charbel" ;
-	owl:imports 	<http://www.w3.org/ns/ssn/> ,
-					<http://bemserver.org/xbot#> .
+	owl:imports 	<http://www.bemserver.org/sensor/xssn/#> ,
+					<http://bemserver.org/builingsystem#> .
 
 dcterms:title a owl:AnnotationProperty .
 dcterms:description a owl:AnnotationProperty .
@@ -44,6 +44,5 @@ schema:name a owl:AnnotationProperty .
 #    Class alignment
 #################################################################
 
-bot:Zone rdfs:subClassOf sosa:FeatureOfInterest .
-sosa:Sensor rdfs:subClassOf  bot:Element .
-sosa:Actuator rdfs:subClassOf  bot:Element .
+building-system:ConsumptionStation rdfs:subClassOf sosa:FeatureOfInterest .
+building-system:ConsumptionElement rdfs:subClassOf sosa:FeatureOfInterest .

@@ -1,0 +1,173 @@
+@prefix : <http://www.bemserver.org/sensor/xssn/#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix ssn: <http://www.w3.org/ns/ssn/> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix xssn: <http://www.bemserver.org/sensor/xssn/#> .
+@base <http://www.bemserver.org/sensor/xssn/#> .
+
+<http://www.bemserver.org/sensor/xssn/#> rdf:type owl:Ontology ;
+                                          owl:imports ssn: .
+
+#################################################################
+#    Datatypes
+#################################################################
+
+###  http://www.bemserver.org/sensor/xssn/#ObservationMethod
+xssn:ObservationMethod rdf:type rdfs:Datatype ;
+                       owl:equivalentClass [ rdf:type rdfs:Datatype ;
+                                             owl:oneOf [ rdf:type rdf:List ;
+                                                         rdf:first "AT_FREQUENCY" ;
+                                                         rdf:rest [ rdf:type rdf:List ;
+                                                                    rdf:first "ON_CHANGE" ;
+                                                                    rdf:rest rdf:nil
+                                                                  ]
+                                                       ]
+                                           ] .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.bemserver.org/sensor/xssn/#isLocatedIn
+xssn:isLocatedIn rdf:type owl:ObjectProperty .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.bemserver.org/sensor/xssn/#accuracy
+xssn:accuracy rdf:type owl:DatatypeProperty ;
+              rdfs:comment "Accuracy represnts the closeness of agreement between the value of an observation and the true value of the observed quality."@en ;
+              rdfs:seeAlso "http://www.w3.org/ns/ssn/systems/Accuracy" .
+
+
+###  http://www.bemserver.org/sensor/xssn/#frequency
+xssn:frequency rdf:type owl:DatatypeProperty ;
+               rdfs:comment "Frequency represents the frequency of an observation capture in ms."@en ;
+               rdfs:seeAlso "http://www.w3.org/ns/ssn/systems/Frequency" .
+
+
+###  http://www.bemserver.org/sensor/xssn/#isAmbient
+xssn:isAmbient rdf:type owl:DatatypeProperty ;
+               rdfs:comment "isAmbient indicates whether the measure is an ambient one or not. For instance, a sensor measurement performed on the temperature in ome room/area of a building. Set points and measures made on HVAC equipment must not be ambient."@en .
+
+
+###  http://www.bemserver.org/sensor/xssn/#isIndexValue
+xssn:isIndexValue rdf:type owl:DatatypeProperty ;
+                  rdfs:comment "isIndexValue indicates whether the measure is made on an index. In this case, values are cumulative."@en .
+
+
+###  http://www.bemserver.org/sensor/xssn/#isSetPoint
+xssn:isSetPoint rdf:type owl:DatatypeProperty ;
+                rdfs:comment "isSetPoint indicates whether the measure is a set point."@en .
+
+
+###  http://www.bemserver.org/sensor/xssn/#latency
+xssn:latency rdf:type owl:DatatypeProperty ;
+             rdfs:comment "Latency represents the time (in ms) between a request for an observation and the sensor providing a result."@en ;
+             rdfs:seeAlso "http://www.w3.org/ns/ssn/systems/Latency" .
+
+
+###  http://www.bemserver.org/sensor/xssn/#maxValue
+xssn:maxValue rdf:type owl:DatatypeProperty ;
+              rdfs:comment "minValue represents the maximum value accepted by the sensor"@en .
+
+
+###  http://www.bemserver.org/sensor/xssn/#minValue
+xssn:minValue rdf:type owl:DatatypeProperty ;
+              rdfs:comment "minValue represents the minimum value accepted by the sensor"@en .
+
+
+###  http://www.bemserver.org/sensor/xssn/#precision
+xssn:precision rdf:type owl:DatatypeProperty ;
+               rdfs:comment "Precision represents the closeness of agreement between replicate observations on an unchanged or similar quality value: i.e., a measure of a sensor's ability to consitently reproduce an observation."@en ;
+               rdfs:seeAlso "IRI: http://www.w3.org/ns/ssn/systems/Precision" .
+
+
+###  http://www.bemserver.org/sensor/xssn/#sensitivity
+xssn:sensitivity rdf:type owl:DatatypeProperty ;
+                 rdfs:comment "Sensitivity represents the quotient of the change in a result of sensor and the corresponding change in a value of a quality being observed."@en ;
+                 rdfs:seeAlso "http://www.w3.org/ns/ssn/systems/Sensitivity" .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.bemserver.org/sensor/xssn/#Location
+xssn:Location rdf:type owl:Class ;
+              rdfs:comment "Location represents the location of an observation or the location of a sensor. More details on Location can be represented through alignements with other ontologies such as xBOT"@en .
+
+
+###  http://www.w3.org/ns/sosa/Observation
+sosa:Observation rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                   owl:onProperty xssn:isLocatedIn ;
+                                   owl:allValuesFrom xssn:Location
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty xssn:accuracy ;
+                                   owl:allValuesFrom xsd:decimal
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty xssn:frequency ;
+                                   owl:allValuesFrom xsd:decimal
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty xssn:latency ;
+                                   owl:allValuesFrom xsd:integer
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty xssn:precision ;
+                                   owl:allValuesFrom xsd:decimal
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty xssn:sensitivity ;
+                                   owl:allValuesFrom xsd:decimal
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty xssn:isAmbient ;
+                                   owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                   owl:onDataRange xsd:boolean
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty xssn:isIndexValue ;
+                                   owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                   owl:onDataRange xsd:boolean
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty xssn:isSetPoint ;
+                                   owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                   owl:onDataRange xsd:boolean
+                                 ] .
+
+
+###  http://www.w3.org/ns/sosa/Sensor
+sosa:Sensor rdfs:subClassOf [ rdf:type owl:Restriction ;
+                              owl:onProperty xssn:isLocatedIn ;
+                              owl:allValuesFrom xssn:Location
+                            ] .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.bemserver.org/sensor/xssn/#AT_FREQUENCY
+xssn:AT_FREQUENCY rdf:type owl:NamedIndividual .
+
+
+###  http://www.bemserver.org/sensor/xssn/#ON_VALUE_CHANGE
+xssn:ON_VALUE_CHANGE rdf:type owl:NamedIndividual .
+
+
+###  http://www.bemserver.org/sensor/xssn/#OTHER
+xssn:OTHER rdf:type owl:NamedIndividual .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi

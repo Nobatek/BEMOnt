@@ -1,4 +1,4 @@
-@prefix : <http://bemserver.org/sensor/SSN_SAREF4BLDG_Alignment#> .
+@prefix : <http://bemserver.org/sensor/xSSN_SAREF4BLDG_Alignment#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
@@ -12,17 +12,17 @@
 @prefix ssn: <http://www.w3.org/ns/ssn/> .
 @prefix saref: <https://saref.etsi.org/core/> .
 @prefix saref4bldg: <https://saref.etsi.org/saref4bldg/> .
-@base <http://bemserver.org/sensor/SSN_SAREF_Alignment#> .
+@base <http://bemserver.org/sensor/xSSN_SAREF_Alignment#> .
 
-<http://bemserver.org/sensor/SSN_SAREF4BLDG_Alignment#> rdf:type owl:Ontology , voaf:Vocabulary ;
-	dcterms:title "SSN to SAREF alignment."@en ;
-	dcterms:description """This ontology defines proposed alignments between SSN and SAREF ontology."""@en ;
+<http://bemserver.org/sensor/xSSN_SAREF4BLDG_Alignment#> rdf:type owl:Ontology , voaf:Vocabulary ;
+	dcterms:title "xSSN to SAREF alignment."@en ;
+	dcterms:description """This ontology defines proposed alignments between xSSN and SAREF ontology."""@en ;
 	dcterms:issued "2021-05-26"^^xsd:date ;
     owl:versionInfo "v1.0.0" ;
-    owl:versionIRI <http://bemserver.org/sensor/SSN_SAREF_Alignment-1.0> ;
+    owl:versionIRI <http://bemserver.org/sensor/xSSN_SAREF_Alignment-1.0> ;
 	dcterms:creator <https://orcid.org/0000-0002-5520-2270> ;
 	dcterms:creator "Nathalie Charbel" ;
-	owl:imports 	<http://www.w3.org/ns/ssn/> ,
+	owl:imports 	<http://www.bemserver.org/sensor/xssn/#> ,
 					<https://saref.etsi.org/core/> , 
 					<https://saref.etsi.org/saref4bldg/> .
 
@@ -43,7 +43,7 @@ schema:name a owl:AnnotationProperty .
 	schema:name "Nathalie Charbel" .
 
 #################################################################
-#    Classe alignment
+#    Class alignment
 #################################################################
 
 sosa:FeatureOfInterest owl:equivalentClass saref:FeatureOfInterest .
