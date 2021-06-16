@@ -1,0 +1,268 @@
+# baseURI: http://bemserver.org/services
+
+@prefix : <http://bemserver.org/services#> .
+@prefix bot: <https://w3id.org/bot#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix hydra: <http://www.w3.org/ns/hydra/core#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix qudt: <http://qudt.org/schema/qudt#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix services: <http://bemserver.org/services#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://bemserver.org/services>
+  rdf:type owl:Ontology ;
+  dcterms:creator "Lara Kallab" ;
+  dcterms:creator "Nathalie Charbel" ;
+  dcterms:creator "Pierre Bourreau" ;
+  dcterms:description "This ontology is used to describe services that are client of BEMServer. Services are programs that can read/get data from BEMServer to perform specific operations, and/or push/write information on BEMServer. In some cases, services can also be seen as specific cases of sensors, producing timeseries to BEMServer. The ontology can be used to generate a catalogue of services that are installed on BEMServer."@en ;
+  dcterms:title "BEMServer services ontology"@en ;
+  owl:versionIRI <http://bemserver.org/services/0.1> ;
+  owl:versionInfo "v0.1" ;
+.
+services:ComposedService
+  rdf:type owl:Class ;
+  rdfs:label "ComposedService" ;
+  rdfs:subClassOf services:Service ;
+  owl:disjointWith services:SingleService ;
+.
+services:DataCollectionService
+  rdf:type owl:Class ;
+  rdfs:description "A data collection service can only collect information. An example is a weather prediction service, or energy price. It cannot make complex computations on the data." ;
+  rdfs:subClassOf services:SingleService ;
+  owl:disjointWith services:DataComputationService ;
+  owl:disjointWith services:DataPreProcessingService ;
+.
+services:DataComputationService
+  rdf:type owl:Class ;
+  rdfs:description "A data computation service is one that performs complex operations, in opposition with a data collection service. It typically takes some inputs from BEMServer and performs operations. Results can be pushed back to BEMServer or not." ;
+  rdfs:subClassOf services:SingleService ;
+  owl:disjointWith services:DataCollectionService ;
+  owl:disjointWith services:DataPreProcessingService ;
+.
+services:DataPreProcessingService
+  rdf:type owl:Class ;
+  rdfs:description "Data preprocessing services are those that are used to transform, accomodate data to ease their exploitation by other services. For instance, a preprocessing service can resample data, perform atomic operations like computing means, sums... on timeseries." ;
+  rdfs:subClassOf services:SingleService ;
+  owl:disjointWith services:DataCollectionService ;
+  owl:disjointWith services:DataComputationService ;
+.
+services:Event
+  rdf:type owl:Class ;
+  rdfs:description "Events are specific outputs, that are notification of some event happening in the building or on BEMServer itself. For instance, an event can be an alert on energy peaks, faulty HVAC systems..." ;
+  rdfs:label "Event" ;
+  rdfs:subClassOf services:Output ;
+  owl:disjointWith services:TimeSeries ;
+.
+services:Model
+  rdf:type owl:Class ;
+  rdfs:comment "A model is a particular configuration of service. As such it can be seen as a sub-service; For instance, if the service runs neural networks, it can run over different neural networks models."@en ;
+  rdfs:label "Model"@en ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:allValuesFrom services:Output ;
+      owl:onProperty services:hasOutput ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:allValuesFrom services:Parameter ;
+      owl:onProperty services:parameters ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:allValuesFrom services:Service ;
+      owl:onProperty services:partOfService ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onProperty services:description ;
+      owl:someValuesFrom xsd:string ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onProperty services:id ;
+      owl:someValuesFrom xsd:string ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onProperty services:name ;
+      owl:someValuesFrom xsd:string ;
+    ] ;
+.
+services:Output
+  rdf:type owl:Class ;
+  rdfs:desription "The output of a service that pushed data to BEMServer. Outputs can be of different kinds. A service may have many outputs." ;
+  rdfs:label "Output" ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:allValuesFrom services:Service ;
+      owl:onProperty services:service ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onProperty services:model ;
+      owl:someValuesFrom services:Model ;
+    ] ;
+.
+services:Parameter
+  rdf:type owl:Class ;
+  rdfs:description "Parameters of the service or model, presented as a couple (name, value)." ;
+  rdfs:label "Input" ;
+  rdfs:label "Parameter" ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onProperty services:param_name ;
+      owl:someValuesFrom xsd:string ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onProperty services:param_value ;
+      owl:someValuesFrom xsd:string ;
+    ] ;
+.
+services:Service
+  rdf:type owl:Class ;
+  rdfs:comment "A service defined in BEMServer is an external component that is a client of BEMServer. It can get data from BEMServer, or push some new data to it. As such, it can provide one or more functionalities."@en ;
+  rdfs:label "Service"@en ;
+  rdfs:label "Service"@fr ;
+  rdfs:label "Web service"@en ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:allValuesFrom xsd:string ;
+      owl:onProperty services:id ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:allValuesFrom bot:Site ;
+      owl:onProperty services:installedOn ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onDataRange xsd:boolean ;
+      owl:onProperty services:hasFrontend ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onProperty services:usesModel ;
+      owl:someValuesFrom services:Model ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onProperty hydra:description ;
+      owl:someValuesFrom xsd:string ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onProperty hydra:entrypoint ;
+      owl:someValuesFrom xsd:anyURI ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onProperty hydra:title ;
+      owl:someValuesFrom xsd:string ;
+    ] ;
+.
+services:SingleService
+  rdf:type owl:Class ;
+  rdfs:description "A single service is a service that is not composed. In a service composition framework, it is the smallest element available." ;
+  rdfs:label "SingleService" ;
+  rdfs:subClassOf services:Service ;
+  owl:disjointWith services:ComposedService ;
+.
+services:TimeSeries
+  rdf:type owl:Class ;
+  rdfs:description "Time series are specific outputs, similar to time series collected from sensors. BEMServer services can themselves be timeseries clients, and/or timeseries producers." ;
+  rdfs:label "TimeSeries" ;
+  rdfs:subClassOf services:Output ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onProperty services:externalID ;
+      owl:someValuesFrom xsd:string ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onProperty services:localization ;
+      owl:someValuesFrom bot:Zone ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onProperty services:sampling ;
+      owl:someValuesFrom xsd:float ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onProperty services:valueType ;
+      owl:someValuesFrom <http://bemserver.org/property#property> ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onProperty services:valueUnit ;
+      owl:someValuesFrom qudt:Unit ;
+    ] ;
+  owl:disjointWith services:Event ;
+.
+services:description
+  rdf:type owl:DatatypeProperty ;
+  rdfs:description "A description of the service. Must be explicit and clear enough to allow other service developers to understand the suitability of the service for their own use." ;
+  rdfs:subPropertyOf hydra:description ;
+.
+services:externalID
+  rdf:type owl:DatatypeProperty ;
+  rdfs:description "The external Identifier of time series generated by the service if needed (i.e. in case the time series storage uses IDs different from the IDs used to describe time series) " ;
+.
+services:hasFrontend
+  rdf:type owl:DatatypeProperty ;
+  rdfs:description "A boolean o whether the service has a frontend/user interface or not. This can be used to filter services to present to end users. " ;
+.
+services:hasOutput
+  rdf:type owl:ObjectProperty ;
+  owl:inverseOf services:model ;
+.
+services:id
+  rdf:type owl:DatatypeProperty ;
+  rdfs:range xsd:string ;
+.
+services:installedOn
+  rdf:type owl:ObjectProperty ;
+.
+services:localization
+  rdf:type owl:ObjectProperty ;
+.
+services:model
+  rdf:type owl:ObjectProperty ;
+.
+services:name
+  rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf hydra:title ;
+.
+services:param_name
+  rdf:type owl:DatatypeProperty ;
+.
+services:param_value
+  rdf:type owl:DatatypeProperty ;
+.
+services:parameters
+  rdf:type owl:ObjectProperty ;
+.
+services:partOfService
+  rdf:type owl:ObjectProperty ;
+  owl:inverseOf services:usesModel ;
+.
+services:sampling
+  rdf:type owl:DatatypeProperty ;
+.
+services:service
+  rdf:type owl:ObjectProperty ;
+.
+services:usesModel
+  rdf:type owl:ObjectProperty ;
+.
+services:valueType
+  rdf:type owl:ObjectProperty ;
+.
+services:valueUnit
+  rdf:type owl:ObjectProperty ;
+.
