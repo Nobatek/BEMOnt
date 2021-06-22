@@ -1,0 +1,62 @@
+@prefix rdf:    	<http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl:    	<http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:   	<http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:    	<http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms:	<http://purl.org/dc/terms/> .
+@prefix vann:   	<http://purl.org/vocab/vann/> .
+@prefix voaf:   	<http://purl.org/vocommons/voaf#> .
+@prefix vs:     	<http://www.w3.org/2003/06/sw-vocab-status/ns#> .
+@prefix vcard: 		<http://www.w3.org/2006/vcard/ns#> .
+@prefix schema: 	<https://schema.org/> .
+@prefix dce:    	<http://purl.org/dc/elements/1.1/> .
+@prefix dbo:    	<http://dbpedia.org/ontology/> .
+@prefix saref4bldg:	<https://saref.etsi.org/saref4bldg/> .
+@prefix bot: <https://w3id.org/bot#> .
+@base <http://bemserver.org/appliance/SAREF_xBOT_Alignment#> .
+
+<http://bemserver.org/appliance/SAREF_xBOT_Alignment#> a owl:Ontology , voaf:Vocabulary ;
+  dcterms:title "SAREF4BLDG xBOT Alignment."@en ;
+  dcterms:description """This ontology defines proposed alignments of SAREF4BLDG with the xBOT ontology."""@en ;
+  dcterms:issued "2021-06-22"^^xsd:date ;
+  owl:versionInfo "v1.0.0" ;
+  owl:versionIRI <https://bemserver.org/appliance/SAREF_xBOT_Alignment-1.0.0> ;
+  owl:imports <http://bemserver.org/xbot#> ;
+  owl:imports <https://saref.etsi.org/saref4bldg> .
+
+voaf:Vocabulary a owl:Class .
+dcterms:title a owl:AnnotationProperty .
+dcterms:description a owl:AnnotationProperty .
+dcterms:issued a owl:AnnotationProperty .
+dcterms:modified a owl:AnnotationProperty .
+dcterms:creator a owl:AnnotationProperty .
+dcterms:contributor a owl:AnnotationProperty .
+dcterms:license a owl:AnnotationProperty .
+vann:preferredNamespacePrefix a owl:AnnotationProperty .
+vann:preferredNamespaceUri a owl:AnnotationProperty .
+vs:term_status a owl:AnnotationProperty .
+vcard:fn a owl:AnnotationProperty .
+schema:name a owl:AnnotationProperty .
+
+<https://orcid.org/0000-0002-5520-2270> a vcard:Individual , schema:Person; 
+	vcard:fn    "Nathalie Charbel" ;
+	schema:name "Nathalie Charbel" .
+   
+   
+#################################
+# Class alignments
+#################################
+
+saref4bldg:Building         rdfs:subClassOf bot:Building .
+saref4bldg:PhysicalObject   rdfs:subClassOf bot:Element .
+saref4bldg:Sensor           rdfs:subClassOf bot:Element .
+saref4bldg:Actuator         rdfs:subClassOf bot:Element .
+saref4bldg:BuildingSpace    rdfs:subClassOf bot:Space .
+
+#################################
+# Object property alignments
+#################################
+
+saref4bldg:hasSpace         rdfs:subPropertyOf bot:containsZone .
+saref4bldg:contains         rdfs:subPropertyOf bot:containsElement .
+
+
