@@ -1,0 +1,138 @@
+@prefix : <http://bemserver.org/energy#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix energy: <http://bemserver.org/energy#> .
+@base <http://bemserver.org/energy#> .
+
+<http://bemserver.org/energy#> rdf:type owl:Ontology .
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://bemserver.org/energy#NonRenewableEnergySource
+energy:NonRenewableEnergySource rdf:type owl:Class ;
+                                owl:equivalentClass [ rdf:type owl:Class ;
+                                                      owl:oneOf ( energy:COAL
+                                                                  energy:DIESEL
+                                                                  energy:FUEL
+                                                                  energy:GAS
+                                                                  energy:NUCLEAR
+                                                                  energy:OIL
+                                                                )
+                                                    ] .
+
+
+###  http://bemserver.org/energy#RenewableEnergySource
+energy:RenewableEnergySource rdf:type owl:Class ;
+                             owl:equivalentClass [ rdf:type owl:Class ;
+                                                   owl:oneOf ( energy:BIOMASS
+                                                               energy:GEOTHERMAL
+                                                               energy:MICROTURBINE
+                                                               energy:PHOTOVOLTAIC
+                                                               energy:SOLARHYBRID
+                                                               energy:SOLARPOWER
+                                                               energy:WINDHYBRID
+                                                               energy:WINDPOWER
+                                                             )
+                                                 ] .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://bemserver.org/energy#BIOMASS
+energy:BIOMASS rdf:type owl:NamedIndividual ;
+               rdfs:comment "BIOMASS a source from which energy is produced  by burning wood and other organic matter."@en ;
+               rdfs:label "Biomass"@en .
+
+
+###  http://bemserver.org/energy#COAL
+energy:COAL rdf:type owl:NamedIndividual ;
+            rdfs:comment "COAL represents a source from which energy is produced."@en ;
+            rdfs:label "Coal"@en .
+
+
+###  http://bemserver.org/energy#DIESEL
+energy:DIESEL rdf:type owl:NamedIndividual ;
+              rdfs:comment "DIESEL represents a source from which energy is produced."@en ;
+              rdfs:label "Diesel"@en .
+
+
+###  http://bemserver.org/energy#FUEL
+energy:FUEL rdf:type owl:NamedIndividual ;
+            rdfs:comment "FUEL represents a source from which energy is produced."@en ;
+            rdfs:label "Fuel"@en .
+
+
+###  http://bemserver.org/energy#GAS
+energy:GAS rdf:type owl:NamedIndividual ;
+           rdfs:comment "GAS represents a source from which energy is produced."@en ;
+           rdfs:label "Gas"@en .
+
+
+###  http://bemserver.org/energy#GEOTHERMAL
+energy:GEOTHERMAL rdf:type owl:NamedIndividual ;
+                  rdfs:comment "GEOTHERMAL represents a source from which energy is produced by using reservoirs of hot water that exist at varying temperatures and depths below the Earth's surface."@en ;
+                  rdfs:label "Geothermal"@en .
+
+
+###  http://bemserver.org/energy#HYDROPOWER
+energy:HYDROPOWER rdf:type owl:NamedIndividual ;
+                  rdfs:label "HYDROPOWER represents a source from which energy is produced by using falling water or fast running water."@en ,
+                             "Hydropower"@en .
+
+
+###  http://bemserver.org/energy#MICROTURBINE
+energy:MICROTURBINE rdf:type owl:NamedIndividual ;
+                    rdfs:label "Microturbine represents a source from which energy is produced by using  both heat and electricity on a relatively small scale."@en ,
+                               "Microturbines"@en .
+
+
+###  http://bemserver.org/energy#NUCLEAR
+energy:NUCLEAR rdf:type owl:NamedIndividual ;
+               rdfs:comment "NUCLEAR represents a source from which energy is produced."@en ;
+               rdfs:label "Nuclear"@en .
+
+
+###  http://bemserver.org/energy#OIL
+energy:OIL rdf:type owl:NamedIndividual ;
+           rdfs:comment "OIL represents a source from which energy is produced."@en ;
+           rdfs:label "Oil"@en .
+
+
+###  http://bemserver.org/energy#PHOTOVOLTAIC
+energy:PHOTOVOLTAIC rdf:type owl:NamedIndividual ;
+                    rdfs:label "PHOTOVOLTAIC represents a photovoltaic power system that directly converts solar energy into electricity."@en ,
+                               "Photovoltaic"@en .
+
+
+###  http://bemserver.org/energy#SOLARHYBRID
+energy:SOLARHYBRID rdf:type owl:NamedIndividual ;
+                   rdfs:label "SOLARHYBRID represents a power system that transforms energy from sunlight into electricity, either directly by using photovoltaics (PV) or indirectly by using concentrated solar power or by using them both."@en ,
+                              "Solar hybrid"@en .
+
+
+###  http://bemserver.org/energy#SOLARPOWER
+energy:SOLARPOWER rdf:type owl:NamedIndividual ;
+                  rdfs:label "SOLARPOWER represents a power system that directly converts solar energy into electricity."@en ,
+                             "Solar power"@en .
+
+
+###  http://bemserver.org/energy#WINDHYBRID
+energy:WINDHYBRID rdf:type owl:NamedIndividual ;
+                  rdfs:label "WINDHYBRID represents a source from which energy is produced by using air flow through wind turbines and power generators."@en ,
+                             "Wind hybrid"@en .
+
+
+###  http://bemserver.org/energy#WINDPOWER
+energy:WINDPOWER rdf:type owl:NamedIndividual ;
+                 rdfs:comment "WINDPOWER represents a source from which energy is produced by using air flow through wind turbines."@en ;
+                 rdfs:label "Wind power"@en .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
