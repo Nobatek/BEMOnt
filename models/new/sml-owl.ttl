@@ -1,0 +1,503 @@
+# baseURI: https://w3id.org/sml/owl/def
+# imports: https://w3id.org/sml/rdfs/def
+# imports: http://qudt.org/schema/qudt
+# imports: http://qudt.org/vocab/quantitykind
+# imports: http://qudt.org/vocab/unit
+# imports: http://www.w3.org/2004/02/skos/core
+# imports: https://www.w3.org/2006/time
+# prefix: sml
+
+@prefix sml: <https://w3id.org/sml/def#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix quantitykind: <http://qudt.org/vocab/quantitykind/> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix unit: <http://qudt.org/vocab/unit/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://w3id.org/sml/owl/def>
+  a owl:Ontology ;
+  owl:imports <https://w3id.org/sml/rdfs/def> ;
+  owl:imports <http://qudt.org/schema/qudt> ;
+  owl:imports <http://qudt.org/vocab/quantitykind> ;
+  owl:imports <http://qudt.org/vocab/unit> ;
+  owl:imports <https://www.w3.org/2006/time> ;
+.
+sml:AbstractConcept
+  a owl:Class ;
+.
+sml:Activity
+  a owl:Class ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:allValuesFrom sml:Activity ;
+      owl:onProperty sml:hasPart ;
+    ] ;
+.
+sml:AggregationStateType
+  a owl:Class ;
+  owl:oneOf (
+      sml:Solid
+      sml:Fluid
+      sml:Gas
+    ) ;
+.
+sml:AmountOfBulkMatter
+  a owl:Class ;
+.
+sml:ChemicalBonding
+  a owl:Class ;
+.
+sml:ChemicalElement
+  a owl:Class ;
+.
+sml:ConcreteConcept
+  a owl:Class ;
+.
+sml:Connection
+  a owl:Class ;
+.
+sml:DiscreteObject
+  a owl:Class ;
+.
+sml:Entity
+  a owl:Class ;
+.
+sml:EnumerationType
+  a owl:Class ;
+.
+sml:Event
+  a owl:Class ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:allValuesFrom sml:Event ;
+      owl:onProperty sml:hasPart ;
+    ] ;
+.
+sml:FunctionalEntity
+  a owl:Class ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:allValuesFrom [
+          a owl:Class ;
+          owl:unionOf (
+              sml:Entity
+              rdfs:Container
+            ) ;
+        ] ;
+      owl:onProperty sml:hasPart ;
+    ] ;
+.
+sml:GeometricEntity
+  a owl:Class ;
+.
+sml:HeterogeneousMixture
+  a owl:Class ;
+.
+sml:HomogeneousMixture
+  a owl:Class ;
+.
+sml:InformationObject
+  a owl:Class ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:allValuesFrom sml:InformationObject ;
+      owl:onProperty sml:hasPart ;
+    ] ;
+.
+sml:Interaction
+  a owl:Class ;
+.
+sml:Interface
+  a owl:Class ;
+.
+sml:Matter
+  a owl:Class ;
+.
+sml:MatterPortion
+  a owl:Class ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty sml:portion ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:onClass sml:Matter ;
+      owl:onProperty rdf:value ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+.
+sml:Mixture
+  a owl:Class ;
+.
+sml:Object
+  a owl:Class ;
+.
+sml:ObjectType
+  a owl:Class ;
+.
+sml:Objectification
+  a owl:Class ;
+.
+sml:PhysicalObject
+  a owl:Class ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:allValuesFrom [
+          a owl:Class ;
+          owl:unionOf (
+              sml:PhysicalObject
+              rdfs:Container
+            ) ;
+        ] ;
+      owl:onProperty sml:hasPart ;
+    ] ;
+.
+sml:PlannedEntity
+  a owl:Class ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:allValuesFrom [
+          a owl:Class ;
+          owl:unionOf (
+              sml:PlannedEntity
+              rdfs:Container
+            ) ;
+        ] ;
+      owl:onProperty sml:hasPart ;
+    ] ;
+.
+sml:Port
+  a owl:Class ;
+.
+sml:PureSubstance
+  a owl:Class ;
+.
+sml:QualityValue
+  a owl:Class ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:allValuesFrom xsd:string ;
+      owl:onProperty rdf:value ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty rdf:value ;
+    ] ;
+.
+sml:QuantityValue
+  a owl:Class ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:allValuesFrom xsd:float ;
+      owl:onProperty rdf:value ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty rdf:value ;
+    ] ;
+.
+sml:RealObject
+  a owl:Class ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:allValuesFrom [
+          a owl:Class ;
+          owl:unionOf (
+              sml:RealObject
+              rdfs:Container
+              sml:Port
+            ) ;
+        ] ;
+      owl:onProperty sml:hasPart ;
+    ] ;
+.
+sml:RealizedEntity
+  a owl:Class ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:allValuesFrom [
+          a owl:Class ;
+          owl:unionOf (
+              sml:RealizedEntity
+              rdfs:Container
+            ) ;
+        ] ;
+      owl:onProperty sml:hasPart ;
+    ] ;
+.
+sml:RelationReference
+  a owl:Class ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:allValuesFrom xsd:anyURI ;
+      owl:onProperty rdf:value ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty rdf:value ;
+    ] ;
+.
+sml:Representation
+  a owl:Class ;
+.
+sml:Requirement
+  a owl:Class ;
+.
+sml:RequirementSeverityType
+  a owl:Class ;
+  owl:oneOf (
+      sml:Demand
+      sml:Wish
+    ) ;
+.
+sml:RequirementSourceType
+  a owl:Class ;
+  owl:oneOf (
+      sml:Definition
+      sml:LawOrRegulation
+      sml:Sector
+      sml:Client
+    ) ;
+.
+sml:SpatialRegion
+  a owl:Class ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:allValuesFrom [
+          a owl:Class ;
+          owl:unionOf (
+              sml:SpatialRegion
+              rdfs:Container
+              sml:Port
+            ) ;
+        ] ;
+      owl:onProperty sml:hasPart ;
+    ] ;
+.
+sml:State
+  a owl:Class ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:allValuesFrom sml:State ;
+      owl:onProperty sml:hasPart ;
+    ] ;
+.
+sml:TechnicalEntity
+  a owl:Class ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:allValuesFrom [
+          a owl:Class ;
+          owl:unionOf (
+              sml:Entity
+              rdfs:Container
+            ) ;
+        ] ;
+      owl:onProperty sml:hasPart ;
+    ] ;
+.
+sml:TopConcept
+  a owl:Class ;
+.
+sml:TransferType
+  a owl:Class ;
+  owl:oneOf (
+      sml:MaterialFlow
+      sml:EnergyFlow
+      sml:InformationFlow
+      sml:Force
+    ) ;
+.
+sml:Type
+  a owl:Class ;
+.
+sml:abbreviation
+  a owl:AnnotationProperty ;
+.
+sml:aggregationStateType
+  a owl:ObjectProperty ;
+.
+sml:amountOfIndividuals
+  a owl:ObjectProperty ;
+.
+sml:begins
+  a owl:ObjectProperty ;
+.
+sml:chemicalFormula
+  a owl:DatatypeProperty ;
+.
+sml:connectsObject
+  a owl:ObjectProperty ;
+  rdfs:domain [
+      a owl:Class ;
+      owl:unionOf (
+          sml:Connection
+          sml:Interface
+        ) ;
+    ] ;
+.
+sml:connectsPort
+  a owl:ObjectProperty ;
+  rdfs:domain [
+      a owl:Class ;
+      owl:unionOf (
+          sml:Connection
+          sml:Interface
+        ) ;
+    ] ;
+.
+sml:consistsOf
+  a owl:ObjectProperty ;
+  rdfs:domain [
+      a owl:Class ;
+      owl:unionOf (
+          sml:RealObject
+          sml:Mixture
+          sml:MatterPortion
+        ) ;
+    ] ;
+.
+sml:ends
+  a owl:ObjectProperty ;
+.
+sml:hasBoundary
+  a owl:ObjectProperty ;
+.
+sml:hasFunctionalPart
+  a owl:ObjectProperty ;
+  rdfs:range [
+      a owl:Class ;
+      owl:unionOf (
+          sml:FunctionalEntity
+          rdfs:Container
+        ) ;
+    ] ;
+.
+sml:hasInterior
+  a owl:ObjectProperty ;
+.
+sml:hasPart
+  a owl:ObjectProperty ;
+  rdfs:range [
+      a owl:Class ;
+      owl:unionOf (
+          sml:ConcreteConcept
+          rdfs:Container
+        ) ;
+    ] ;
+.
+sml:hasQuantityKind
+  a owl:ObjectProperty ;
+.
+sml:hasRequirement
+  a owl:ObjectProperty ;
+.
+sml:hasRequirementSpecification
+  a owl:DatatypeProperty ;
+.
+sml:hasState
+  a owl:ObjectProperty ;
+.
+sml:hasTechnicalPart
+  a owl:ObjectProperty ;
+  rdfs:range [
+      a owl:Class ;
+      owl:unionOf (
+          sml:TechnicalEntity
+          rdfs:Container
+        ) ;
+    ] ;
+.
+sml:hasTemporalEntity
+  a owl:ObjectProperty ;
+.
+sml:hasUnit
+  a owl:ObjectProperty ;
+.
+sml:isBoundBy
+  a owl:ObjectProperty ;
+.
+sml:isConnectedTo
+  a owl:ObjectProperty ;
+.
+sml:isDescribedBy
+  a owl:ObjectProperty ;
+.
+sml:isImplementedBy
+  a owl:ObjectProperty ;
+.
+sml:isRealizedBy
+  a owl:ObjectProperty ;
+.
+sml:overConnection
+  a owl:ObjectProperty ;
+.
+sml:overInterface
+  a owl:ObjectProperty ;
+.
+sml:participatesIn
+  a owl:ObjectProperty ;
+.
+sml:performs
+  a owl:ObjectProperty ;
+.
+sml:portion
+  a owl:ObjectProperty ;
+.
+sml:requirementSeverityType
+  a owl:ObjectProperty ;
+.
+sml:requirementSourceType
+  a owl:ObjectProperty ;
+.
+sml:transferType
+  a owl:ObjectProperty ;
+.
+sml:transforms
+  a owl:ObjectProperty ;
+.
+sml:triggers
+  a owl:ObjectProperty ;
+.
+sml:typeOfIndividuals
+  a owl:ObjectProperty ;
+.
+[
+  a owl:AllDisjointClasses ;
+  owl:members (
+      sml:FunctionalEntity
+      sml:TechnicalEntity
+    ) ;
+].
+[
+  a owl:AllDisjointClasses ;
+  owl:members (
+      sml:PhysicalObject
+      sml:InformationObject
+      sml:Activity
+      sml:Event
+      sml:State
+    ) ;
+].
+[
+  a owl:AllDisjointClasses ;
+  owl:members (
+      sml:PlannedEntity
+      sml:RealizedEntity
+    ) ;
+].
+[
+  a owl:AllDisjointClasses ;
+  owl:members (
+      sml:RealObject
+      sml:SpatialRegion
+    ) ;
+].

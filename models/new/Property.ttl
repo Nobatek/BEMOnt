@@ -1,0 +1,596 @@
+@prefix : <http://bemserver.org/property#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix ssn: <http://www.w3.org/ns/ssn/> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix qudt: <http://qudt.org/schema/qudt#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix vaem: <http://www.linkedmodel.org/schema/vaem#> .
+@prefix xssn: <http://www.bemserver.org/sensor/xssn/#> .
+@prefix dtype: <http://www.linkedmodel.org/schema/dtype#> .
+@prefix sml: <https://w3id.org/sml/owl/def> .
+@prefix terms: <http://purl.org/dc/terms/> .
+@prefix quantitykind: <http://qudt.org/vocab/quantitykind/> .
+@base <http://bemserver.org/property#> .
+
+<http://bemserver.org/property#> rdf:type owl:Ontology ;
+                                  owl:imports <http://qudt.org/vocab/quantitykind/> ,
+                                              xssn: ,
+                                              <https://w3id.org/sml/owl/def> ;
+                                  dc:description "This Ontology imports xSSN ontolo. Its main purpose is to extend ssn:Property to cover physical and occupant properties."@en ,
+                                                 "skos:definition"@en ;
+                                  dc:title "Refactored BEMServerProperty ontology"@en .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/elements/1.1/contributor
+dc:contributor rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/creator
+dc:creator rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/description
+dc:description rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/title
+dc:title rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/license
+terms:license rdf:type owl:AnnotationProperty .
+
+
+###  http://qudt.org/schema/qudt#code
+qudt:code rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#closeMatch
+skos:closeMatch rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#definition
+skos:definition rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#exactMatch
+skos:exactMatch rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#example
+skos:example rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Datatypes
+#################################################################
+
+###  http://qudt.org/schema/qudt#string1024
+qudt:string1024 rdf:type rdfs:Datatype .
+
+
+###  http://www.w3.org/2001/XMLSchema#anySimpleType
+xsd:anySimpleType rdf:type rdfs:Datatype .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://bemserver.org/property#hasOccupantProperty
+:hasOccupantProperty rdf:type owl:ObjectProperty ;
+                     rdfs:subPropertyOf :hasPhenomenonProperty .
+
+###  http://bemserver.org/property#hasPhenomenonProperty
+:hasPhenomenonProperty rdf:type owl:ObjectProperty ;
+                       rdfs:subPropertyOf ssn:hasProperty ;
+					   rdfs:range sml:QuantityValue .
+
+###  http://bemserver.org/property#hasPhysicalProperty
+:hasPhysicalProperty rdf:type owl:ObjectProperty ;
+                       rdfs:subPropertyOf :hasPhenomenonProperty .
+					   
+###  http://bemserver.org/property#capacity
+:capacity rdf:type owl:ObjectProperty ;
+          rdfs:subPropertyOf :hasPhysicalProperty ;
+		  sml:quantityKind quantitykind:Capacity ;
+          rdfs:comment "capacity represents an observation of the measure of the capacity of an elment in the building."@en ;
+          rdfs:label "capacity"@en .
+
+###  http://bemserver.org/property#color
+:color rdf:type owl:ObjectProperty ;
+       rdfs:subPropertyOf :hasPhysicalProperty ;
+       rdfs:comment "color represents an observation of the value of the color of an element in the building in a specific time."@en ;
+       rdfs:label "color"@en .
+
+###  http://bemserver.org/property#conductivity
+:conductivity rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf :hasPhysicalProperty ;
+			  sml:quantityKind quantitykind:Conductivity ;
+              rdfs:comment "conductivity represents an observation of the measure of the conductivity of an element in the building in a specific time."@en ;
+              rdfs:label "conductivity"@en .
+
+###  http://bemserver.org/property#degreeDays
+:degreeDays rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf :hasPhysicalProperty ;
+            rdfs:label "degreeDays" .
+
+###  http://bemserver.org/property#density
+:density rdf:type owl:ObjectProperty ;
+         rdfs:subPropertyOf :hasPhysicalProperty ;
+		 sml:quantityKind quantitykind:Density ;
+         rdfs:comment "density represents an observation of the measure of the density of an element in the building in a specific time."@en ;
+         rdfs:label "density"@en .
+
+###  http://bemserver.org/property#energy
+:energy rdf:type owl:ObjectProperty ;
+		sml:quantityKind quantitykind:Energy ;
+        rdfs:subPropertyOf :hasPhysicalProperty ;
+        rdfs:label "energy" .
+
+###  http://bemserver.org/property#enthalpy
+:enthalpy rdf:type owl:ObjectProperty ;
+          rdfs:subPropertyOf :hasPhysicalProperty ;
+		  sml:quantityKind quantitykind:Enthalpy ;
+          rdfs:label "enthalpy"^^xsd:string .
+
+###  http://bemserver.org/property#humidity
+:humidity rdf:type owl:ObjectProperty ;
+          rdfs:subPropertyOf :hasPhysicalProperty ;
+		  sml:quantityKind quantitykind:AbsoluteHumidity ;
+          rdfs:comment "humidity represents an observation of the  measure of the humidity in a specific time."@en ;
+          rdfs:label "humidity"@en .
+
+###  http://bemserver.org/property#intensity
+:intensity rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf :hasPhysicalProperty ;
+           rdfs:comment "intensity represents an observation of the measure of the intensity in a specific time."@en ;
+           rdfs:label "intensity"@en .
+
+###  http://bemserver.org/property#position
+:position rdf:type owl:ObjectProperty ;
+          rdfs:subPropertyOf :hasPhysicalProperty ;
+          rdfs:comment "position represents an observation of the measure of the position of an element in the building  in a specific time."@en ;
+          rdfs:label "position"@en .
+
+###  http://bemserver.org/property#power
+:Power rdf:type owl:ObjectProperty ;
+       rdfs:subPropertyOf :hasPhysicalProperty ;
+	   sml:quantityKind quantitykind:Power ;
+       rdfs:label "power"@en .
+
+###  http://bemserver.org/property#pressure
+:pressure rdf:type owl:ObjectProperty ;
+          rdfs:subPropertyOf :hasPhysicalProperty ;
+		  sml:quantityKind quantitykind:Pressure ;
+          rdfs:comment "pressure represents an observation of the measure of the pressure in a specific time."@en ;
+          rdfs:label "pressure"@en .
+
+###  http://bemserver.org/property#reflectivity
+:reflectivity rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf :hasPhysicalProperty ;
+              rdfs:comment "reflectivity represents an observation of the reflectivity of an element in the building."@en ;
+              rdfs:label "reflectivity"@en .
+
+###  http://bemserver.org/property#state
+:state rdf:type owl:ObjectProperty ;
+       rdfs:subPropertyOf :hasPhysicalProperty ;
+       rdfs:comment "state represents an observation of the state of an element in the building."@en ;
+       rdfs:label "state"@en .
+
+###  http://bemserver.org/property#temperature
+:temperature rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf :hasPhysicalProperty ;
+			 sml:quantityKind quantitykind:Temperature ;
+             rdfs:comment "temperature represents an observation of the measure of the temperature in a specific time."@en ;
+             rdfs:label "temperature"@en .
+
+###  http://bemserver.org/property#tension
+:tension rdf:type owl:ObjectProperty ;
+         rdfs:subPropertyOf :hasPhysicalProperty ;
+		 sml:quantityKind quantitykind:Tension ;
+         rdfs:comment "tension represents an observation of the measure of the tension of an element in the building."@en ;
+         rdfs:label "tension"@en .
+
+###  http://bemserver.org/property#time
+:time rdf:type owl:ObjectProperty ;
+      rdfs:subPropertyOf :hasPhysicalProperty ;
+	  sml:quantityKind quantitykind:Time ;
+      rdfs:comment "time represents an observation of the  measure of the time."@en ;
+      rdfs:label "time"@en .
+
+###  http://bemserver.org/property#transparency
+:transparency rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf :hasPhysicalProperty ;
+              rdfs:comment "transparency represents an observation of the measure of the transparence of an element in the building in a specific time."@en ;
+              rdfs:label "transparency"@en .
+
+###  http://bemserver.org/property#visibility
+:visibility rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf :hasPhysicalProperty ;
+            rdfs:comment "visibility represents an observation of the measure of the visibility of an elment in the building in a specific time."@en ;
+            rdfs:label "visibility"@en .
+
+###  http://bemserver.org/property#airQuality
+:airQuality rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf :hasPhysicalProperty ;
+            rdfs:comment "airQuality represents an observation of the measure of the air quality in a specific time."@en ;
+            rdfs:label "airQuality"@en .
+
+###  http://bemserver.org/property#climateProperty
+:climateProperty rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf :hasPhysicalProperty .
+				 
+###  http://bemserver.org/property#geometryProperty
+:geometryProperty rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf :hasPhysicalProperty .
+				  
+###  http://bemserver.org/property#ligthningProperty
+:ligthningProperty rdf:type owl:ObjectProperty ;
+                   rdfs:subPropertyOf :hasPhysicalProperty .		   
+
+###  http://bemserver.org/property#matterMovement
+:matterMovement rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf :hasPhysicalProperty .
+
+###  http://bemserver.org/property#matterStateChange
+:matterStateChange rdf:type owl:ObjectProperty ;
+                   rdfs:subPropertyOf :hasPhysicalProperty .
+
+### http://bemserver.org/property#co2Rate
+:co2Rate rdf:type owl:ObjectProperty ;
+                   rdfs:subPropertyOf :hasPhysicalProperty .
+				   
+###  http://bemserver.org/property#productionCapacity
+:productionCapacity rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf :capacity ;
+                    rdfs:comment "productionCapacity represents an observation of the measure of the capacity of production of an element in the building."@en ;
+                    rdfs:label "productionCapacity"@en .		
+
+###  http://bemserver.org/property#spaceCapacity
+:spaceCapacity rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf :capacity ;
+               rdfs:comment "spaceCapacity represents an observation of the measure of the capacity of the space in the building."@en ;
+               rdfs:label "spaceCapacity"@en .
+
+###  http://bemserver.org/property#cloudiness
+:cloudiness rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf :climateProperty ;
+            rdfs:comment "cloudiness represents the percentage of clouds in a surface of the sky."@en ;
+            rdfs:label "cloudiness"@en .
+			
+###  http://bemserver.org/property#rainfall
+:rainfall rdf:type owl:ObjectProperty ;
+          rdfs:subPropertyOf :climateProperty ;
+          rdfs:comment "rainfall represents an observation of the  measure of the rainfall."@en ;
+          rdfs:label "rainfall"@en .
+
+###  http://bemserver.org/property#windProperty
+:windProperty rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf :climateProperty .
+
+
+###  http://bemserver.org/property#windDirection
+:windDirection rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf :windProperty ;
+               rdfs:label "windDirection"@en .
+			   
+
+###  http://bemserver.org/property#windOrientation
+:windOrientation rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf :windProperty ;
+                 rdfs:comment "windOrientation represents an observation of the measure of the wind orientation in a specific time."@en ;
+                 rdfs:label "windOrientation"@en .
+				 
+###  http://bemserver.org/property#windSpeed
+:windSpeed rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf :windProperty ;
+		   sml:quantityKind quantitykind:Speed ;
+           rdfs:comment "windSpeed represents an observation of the measure of the wind speed in a specific time."@en ;
+           rdfs:label "windSpeed"@en .
+
+###  http://bemserver.org/property#coefficientOfPerformance
+:coefficientOfPerformance rdf:type owl:ObjectProperty ;
+                          rdfs:subPropertyOf :energy ;
+                          rdfs:label "COP"@en,
+                                     "Coefficient of Performance"@en .
+
+###  http://bemserver.org/property#area
+:area rdf:type owl:ObjectProperty ;
+      rdfs:subPropertyOf :geometryProperty ;
+	  sml:quantityKind quantitykind:Area ;
+      rdfs:comment "area represents an observation of the measure of the area."@en ;
+      rdfs:label "area"@en .
+
+###  http://bemserver.org/property#shape
+:shape rdf:type owl:ObjectProperty ;
+       rdfs:subPropertyOf :geometryProperty ;
+       rdfs:comment "shape represents an observation of the measure of the shape of an element in the building."@en ;
+       rdfs:label "shape"@en .
+	   
+###  http://bemserver.org/property#crossSection
+:crossSection rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf :shape ;
+              rdfs:comment "crossSection represents an observation of the cross section of an element in the building."@en ;
+              rdfs:label "crossSection"@en .
+			  
+###  http://bemserver.org/property#depth
+:depth rdf:type owl:ObjectProperty ;
+       rdfs:subPropertyOf :shape ;
+	   sml:quantityKind quantitykind:Depth ;
+       rdfs:comment "depth represents an observation of the measure of the depth of an element in the building in a specific time."@en ;
+       rdfs:label "depth"@en .
+	   
+###  http://bemserver.org/property#height
+:height rdf:type owl:ObjectProperty ;
+        rdfs:subPropertyOf :shape ;
+		sml:quantityKind quantitykind:Height ;
+        rdfs:comment "height represents an observation of the height of an element in the building."@en ;
+        rdfs:label "height"@en .
+
+###  http://bemserver.org/property#length
+:length rdf:type owl:ObjectProperty ;
+        rdfs:subPropertyOf :shape ;
+		sml:quantityKind quantitykind:Length ;
+        rdfs:comment "length represents an observation of the length of an element in the building."@en ;
+        rdfs:label "length"@en .	
+		
+###  http://bemserver.org/property#slope
+:slope rdf:type owl:ObjectProperty ;
+       rdfs:subPropertyOf :shape ;
+       rdfs:comment "slope represents an observation of the slope of an element in the building."@en ;
+       rdfs:label "slope"@en .
+
+###  http://bemserver.org/property#volume
+:volume rdf:type owl:ObjectProperty ;
+        rdfs:subPropertyOf :geometryProperty ;
+		sml:quantityKind quantitykind:Volume ;
+        rdfs:comment "volume represents an observation of the measure of the volume of an element in the building in a specific time."@en ;
+        rdfs:label "volume"@en .
+
+###  http://bemserver.org/property#weight
+:weight rdf:type owl:ObjectProperty ;
+        rdfs:subPropertyOf :shape ;
+		sml:quantityKind quantitykind:Weight ;
+        rdfs:comment "weight represents an observation of the weight of an element in the building."@en ;
+        rdfs:label "weight"@en .
+
+###  http://bemserver.org/property#width
+:width rdf:type owl:ObjectProperty ;
+       rdfs:subPropertyOf :shape ;
+	   sml:quantityKind quantitykind:Width ;
+       rdfs:comment "width represents an observation of the width of an element in the building."@en ;
+       rdfs:label "width"@en .
+
+###  http://bemserver.org/property#speed
+:speed rdf:type owl:ObjectProperty ;
+       rdfs:subPropertyOf :matterMovement ;
+	   sml:quantityKind quantitykind:Speed ;
+       rdfs:comment "speed represents an observation of the measure of the speed of an element in the building in a specific time."@en ;
+       rdfs:label "speed"@en .
+	   
+###  http://bemserver.org/property#velocity
+:velocity rdf:type owl:ObjectProperty ;
+          rdfs:subPropertyOf :matterMovement ;
+		  sml:quantityKind quantitykind:Velocity ;
+          rdfs:comment "velocity represents an observation of the measure of the velocity of an element in the building in a specific time."@en ;
+          rdfs:label "velocity"@en .
+		  
+###  http://bemserver.org/property#discharge
+:discharge rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf :velocity ;
+           rdfs:comment "discharge represents an observation of the measure of the volume of a discharge in the building in a specific time."@en ;
+           rdfs:label "discharge"@en .
+
+###  http://bemserver.org/property#outflow
+:outflow rdf:type owl:ObjectProperty ;
+         rdfs:subPropertyOf :flow ;
+         rdfs:comment "outflow represents an observation of the measure of the volume of an output flow in the building in a specific time."@en ;
+         rdfs:label "outflow"@en .
+		 
+###  http://bemserver.org/property#inflow
+:inflow rdf:type owl:ObjectProperty ;
+        rdfs:subPropertyOf :flow ;
+        rdfs:comment "inflow represents an observation of the measure of the volume of an input flow in the building in a specific time."@en ;
+        rdfs:label "inflow"@en .
+		 
+###  http://bemserver.org/property#flow
+:flow rdf:type owl:ObjectProperty ;
+      rdfs:subPropertyOf :velocity ;
+      rdfs:comment "flow represents an observation of the measure of the volume of a flow in the building in a specific time."@en ;
+      rdfs:label "flow"@en .  
+
+###  http://bemserver.org/property#condensation
+:condensation rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf :matterStateChange ;
+              rdfs:comment "condensation represents an observation of the measure of the condensation in a specific time."@en ;
+              rdfs:label "condensation"@en .	  
+
+###  http://bemserver.org/property#evaporation
+:evaporation rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf :matterStateChange ;
+             rdfs:comment "evaporation represents an observation of the measure of the evaporation in a specific time."@en ;
+             rdfs:label "evaporation"@en .
+
+###  http://bemserver.org/property#altitude
+:altitude rdf:type owl:ObjectProperty ;
+          rdfs:subPropertyOf :position ;
+		  sml:quantityKind quantitykind:Altitude ;
+          rdfs:comment "altitude represents an observation of the measure of the position altitude of an element in the building in a specific time."@en ;
+          rdfs:label "altitude"@en .
+		  
+###  http://bemserver.org/property#latitude
+:latitude rdf:type owl:ObjectProperty ;
+          rdfs:subPropertyOf :position ;
+          rdfs:comment "latitude represents an observation of the measure of the position latitude of an element in the building in a specific time."@en ;
+          rdfs:label "latitude"@en .		  
+
+###  http://bemserver.org/property#longitude
+:longitude rdf:type owl:ObjectProperty ;
+          rdfs:subPropertyOf :position ;
+          rdfs:comment "longitude represents an observation of the  measure of the position longitude  of an element in the building  in a specific time.."@en ;
+          rdfs:label "longitude"@en .
+		  
+###  http://bemserver.org/property#frequency
+:frequency rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf :time ;
+		   sml:quantityKind quantitykind:Frequency ;
+           rdfs:comment "frequency represents an observation of the measure of the rate of occurrence."@en ;
+           rdfs:label "frequency"@en .
+
+###  http://bemserver.org/property#absorbedIncidentRadiation
+:absorbedIncidentRadiation rdf:type owl:ObjectProperty ;
+                           rdfs:subPropertyOf :incidentRadiation ;
+                           rdfs:comment "absorbedIncidentRadiation represents an observation of the measure of the absorbed incident radiation in a specific time."@en ;
+                           rdfs:label "absorbedIncidentRadiation"@en .
+
+###  http://bemserver.org/property#absorbedScatteredIncidentRadiation
+:absorbedScatteredIncidentRadiation rdf:type owl:ObjectProperty ;
+                                    rdfs:subPropertyOf :incidentRadiation ;
+                                    rdfs:comment "absorbedScatteredIncidentRadiation represents an observation of the measure of the absorbed scattered incident radiation in a specific time."@en ;
+                                    rdfs:label "absorbedScatteredIncidentRadiation"@en .
+
+###  http://bemserver.org/property#incidentRadiation
+:incidentRadiation rdf:type owl:ObjectProperty ;
+                   rdfs:subPropertyOf :radiation ;
+                   rdfs:comment "incidentRadiation represents an observation of the measure of the incident radiation in a specific time."@en ;
+                   rdfs:label "incidentRadiation"@en .
+
+###  http://bemserver.org/property#radiation
+:radiation rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf :ligthningProperty ;
+           rdfs:comment "radiation represents an observation of the measure of the radiation in a specific time."@en ;
+           rdfs:label "radiation"@en .
+		  
+###  http://bemserver.org/property#irradiance
+:irradiance rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf :ligthningProperty ;
+            rdfs:label "irradiance"@en .
+
+###  http://bemserver.org/property#illuminance
+:illuminance rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf :ligthningProperty ;
+             rdfs:label "illuminance"@en .
+			 
+###  http://bemserver.org/property#reflectedIncidentradiation
+:reflectedIncidentradiation rdf:type owl:ObjectProperty ;
+                            rdfs:subPropertyOf :incidentRadiation ;
+                            rdfs:comment "reflectedIncidentRadiation represents an observation of the measure of the reflected incident radiation in a specific time."@en ;
+                            rdfs:label "reflectedIncidentRadiation"@en .	
+
+###  http://bemserver.org/property#lightRadiation
+:lightRadiation rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf :radiation ;
+                rdfs:comment "lightRadiation represents an observation of the measure of the light radiation in a specific time."@en ;
+                rdfs:label "lightRadiation"@en .
+
+###  http://bemserver.org/property#transmittedIncidentRadiation
+:transmittedIncidentRadiation rdf:type owl:ObjectProperty ;
+                              rdfs:subPropertyOf :incidentRadiation ;
+                              rdfs:comment "transmittedIncidentRadiation represents an observation of the measure of the transmittedincident radiation in a specific time."@en ;
+                              rdfs:label "transmittedIncidentRadiation"@en .
+							
+###  http://bemserver.org/property#distributionElementState
+:distributionElementState rdf:type owl:ObjectProperty ;
+                          rdfs:subPropertyOf :state ;
+                          rdfs:comment "distributionElementState represents an observation of the state of a distribution element in the building."@en ;
+                          rdfs:label "distributionElementState"@en .
+
+###  http://bemserver.org/property#continuousState
+:continuousState rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf :distributionElementState ;
+                 rdfs:comment "represents an observation of a continuous state"@en ;
+                 rdfs:label "continuousState"@en .
+				 
+###  http://bemserver.org/property#discreteState
+:discreteState rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf :distributionElementState ;
+               rdfs:comment "represents an observation of a discrete state."@en ;
+               rdfs:label "discreteState"@en .
+
+###  http://bemserver.org/property#RunningTime
+:runningTime rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf :time ;
+             rdfs:label "RunningTime"^^xsd:string .
+
+###  http://bemserver.org/property#movement
+:movement rdf:type owl:ObjectProperty ;
+          rdfs:subPropertyOf :occupantProperty ;
+          rdfs:label "Movement"@en .
+		  
+###  http://bemserver.org/property#occupancyCapacityProperty
+:occupancyCapacityProperty rdf:type owl:ObjectProperty ;
+                           rdfs:subPropertyOf :occupantProperty ;
+						   sml:quantityKind quantitykind:Capacity ;
+                           rdfs:comment "The occupancy capacity property describes the capacity for occupants in the structural elements of the building. For example, this part of the ontology allows to represent the maximum occupancy capacity and the permanent occupancy in an structural element of the building."@en ;
+                           rdfs:label "occupancyCapacityProperty"@en .		  
+
+###  http://bemserver.org/property#maxOccupancy
+:maxOccupancy rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf :occupancyCapacityProperty ;
+              rdfs:comment "maxOccupancy represents an observation of the measure of the maximum capacity of occupants in a structiral element of the building."@en ;
+              rdfs:label "maxOccupancy" .
+
+###  http://bemserver.org/property#permanentOccupancy
+:permanentOccupancy rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf :occupancyCapacityProperty ;
+                    rdfs:comment "permanent Occupancy represents an observation of the measure of the permanent number of occupants in a structiral element of the building."@en ;
+                    rdfs:label "permanentOccupancy"@en .
+
+###  http://bemserver.org/property#occupantStateProperty
+:occupantStateProperty rdf:type owl:ObjectProperty ;
+                       rdfs:subPropertyOf :occupantProperty ;
+                       rdfs:comment "The occupant state property describes the state of an occupant of the building. For example, this part of the ontology allows to represent the pulse and stress of an occupant."@en ;
+                       rdfs:label "occupantStateProperty"@en .
+
+###  http://bemserver.org/property#pulse
+:pulse rdf:type owl:ObjectProperty ;
+       rdfs:subPropertyOf :occupantStateProperty ;
+       rdfs:comment "pulse represents an observation of the measure of the pulse of an occupant of the building in a specific time."@en ;
+       rdfs:label "pulse"@en .
+
+###  http://bemserver.org/property#stress
+:stress rdf:type owl:ObjectProperty ;
+        rdfs:subPropertyOf :occupantStateProperty ;
+        rdfs:comment "stress represents an observation of the measure of the stress of an occupant of the building in a specific time."@en ;
+        rdfs:label "stress"@en .
+
+###  http://bemserver.org/property#presence
+:presence rdf:type owl:ObjectProperty ;
+          rdfs:subPropertyOf :occupantProperty ;
+          rdfs:label "presence"@en .
+
+###  http://bemserver.org/property#nbEntries
+:nbEntries rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf :presence ;
+           rdfs:label "nbEntries"@en .
+
+###  http://bemserver.org/property#nbExit
+:nbExit rdf:type owl:ObjectProperty ;
+        rdfs:subPropertyOf :presence ;
+        rdfs:label "nbEntries"@en .
+		
+###  http://bemserver.org/property#productionCapacity
+:productionCapacity rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf :capacity ;
+                    rdfs:comment "productionCapacity represents an observation of the measure of the capacity of production of an element in the building."@en ;
+                    rdfs:label "productionCapacity"@en .
+	
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.bemserver.org/sensor/xssn/#Property
+xssn:Property rdf:type owl:Class ;
+			  rdfs:subClassOf qudt:QuantityValue .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
