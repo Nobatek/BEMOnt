@@ -1,0 +1,50 @@
+@prefix : <http://bemserver.org/energy/Energy_System_Alignment#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .  
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix voaf: <http://purl.org/vocommons/voaf#> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+@prefix schema: <https://schema.org/> .
+@prefix building-system: <http://bemserver.org/builingsystem#> .
+@prefix energy: <http://bemserver.org/energy#> .
+@base <http://bemserver.org/energy/Energy_System_Alignment#> .
+
+<http://bemserver.org/energy/Energy_System_Alignment#> rdf:type owl:Ontology , voaf:Vocabulary ;
+	dcterms:title "Energy to System alignment."@en ;
+	dcterms:description """This ontology defines proposed alignments between Energy and System ontology."""@en ;
+	dcterms:issued "2021-07-20"^^xsd:date ;
+    owl:versionInfo "v1.0.0" ;
+    owl:versionIRI <http://bemserver.org/energy/Energy_System_Alignment-1.0> ;
+	dcterms:creator <https://orcid.org/0000-0002-5520-2270> ;
+	dcterms:creator "Nathalie Charbel" ;
+	owl:imports 	<http://bemserver.org/builingsystem#> ,
+					<http://bemserver.org/energy#> .
+
+dcterms:title a owl:AnnotationProperty .
+dcterms:description a owl:AnnotationProperty .
+dcterms:issued a owl:AnnotationProperty .
+dcterms:modified a owl:AnnotationProperty .
+dcterms:creator a owl:AnnotationProperty .
+dcterms:contributor a owl:AnnotationProperty .
+dcterms:license a owl:AnnotationProperty .
+vann:preferredNamespacePrefix a owl:AnnotationProperty .
+vann:preferredNamespaceUri a owl:AnnotationProperty .
+vcard:fn a owl:AnnotationProperty .
+schema:name a owl:AnnotationProperty .
+
+<https://orcid.org/0000-0002-5520-2270> a vcard:Individual , schema:Person; 
+	vcard:fn    "Nathalie Charbel" ;
+	schema:name "Nathalie Charbel" .
+
+#################################################################
+#    Alignment through new relation
+#################################################################
+:hasEnergyTariff rdf:type owl:ObjectProperty .
+
+building-system:ConsumptionStation rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                              owl:onProperty :hasEnergyTariff ;
+                                              owl:allValuesFrom energy:Tariff
+                                            ] .

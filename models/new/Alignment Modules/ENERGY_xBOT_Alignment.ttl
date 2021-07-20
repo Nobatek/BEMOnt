@@ -1,0 +1,49 @@
+@prefix : <http://bemserver.org/energy/Energy_xBOT_Alignment#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .  
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix voaf: <http://purl.org/vocommons/voaf#> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+@prefix schema: <https://schema.org/> .
+@prefix energy: <http://bemserver.org/energy#> .
+@prefix bot: <https://w3id.org/bot#> .
+@base <http://bemserver.org/energy/Energy_xBOT_Alignment#> .
+
+<http://bemserver.org/energy/Energy_xBOT_Alignment#> rdf:type owl:Ontology , voaf:Vocabulary ;
+	dcterms:title "Energy to xBOT alignment."@en ;
+	dcterms:description """This ontology defines proposed alignments between Energy and xBOT ontology."""@en ;
+	dcterms:issued "2021-07-20"^^xsd:date ;
+    owl:versionInfo "v1.0.0" ;
+    owl:versionIRI <http://bemserver.org/energy/Energy_xBOT_Alignment-1.0> ;
+	dcterms:creator <https://orcid.org/0000-0002-5520-2270> ;
+	dcterms:creator "Nathalie Charbel" ;
+	owl:imports 	<http://www.bemserver.org/energy#> ,
+					<http://bemserver.org/xbot#> .
+
+dcterms:title a owl:AnnotationProperty .
+dcterms:description a owl:AnnotationProperty .
+dcterms:issued a owl:AnnotationProperty .
+dcterms:modified a owl:AnnotationProperty .
+dcterms:creator a owl:AnnotationProperty .
+dcterms:contributor a owl:AnnotationProperty .
+dcterms:license a owl:AnnotationProperty .
+vann:preferredNamespacePrefix a owl:AnnotationProperty .
+vann:preferredNamespaceUri a owl:AnnotationProperty .
+vcard:fn a owl:AnnotationProperty .
+schema:name a owl:AnnotationProperty .
+
+<https://orcid.org/0000-0002-5520-2270> a vcard:Individual , schema:Person; 
+	vcard:fn    "Nathalie Charbel" ;
+	schema:name "Nathalie Charbel" .
+
+#################################################################
+#    Alignment through existing relation
+#################################################################
+ 
+bot:Building rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                              owl:onProperty energy:meterPower ;
+                                              owl:allValuesFrom xsd:decimal
+                                            ] .
