@@ -1,5 +1,5 @@
 # BEMOnt (formerly HIT2GAPOnt)  refactored ontology
-![alt text](./Overview.png)
+![alt text](./overview.png)
 
 
 ## Authors
