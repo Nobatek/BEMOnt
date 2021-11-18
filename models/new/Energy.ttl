@@ -5,9 +5,14 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix energy: <http://bemserver.org/energy#> .
+@prefix sml: <https://w3id.org/sml/owl/def> .
+@prefix quantitykind: <http://qudt.org/vocab/quantitykind/> .
 @base <http://bemserver.org/energy#> .
 
-<http://bemserver.org/energy#> rdf:type owl:Ontology .
+<http://bemserver.org/energy#> rdf:type owl:Ontology ;
+								owl:imports <http://qudt.org/vocab/quantitykind/> ,
+                                              <https://w3id.org/sml/owl/def> ;
+                                rdfs:comment "this ontology represents the different energy tarriffs, price, and renewable energy source types." .
 
 #################################################################
 #    Object Properties
@@ -16,19 +21,28 @@
 ###  http://bemserver.org/energy#hasPart
 energy:hasPart rdf:type owl:ObjectProperty .
 
-
 #################################################################
-#    Data properties
+#    Object Properties
 #################################################################
 
 ###  http://bemserver.org/energy#fromTime
-energy:fromTime rdf:type owl:DatatypeProperty ;
-                rdfs:comment "fromTime represents a starting hour of an energy tariff."@en ;
-                rdfs:label "From time"@en .
-
+:fromTime rdf:type owl:ObjectProperty ;
+          rdfs:range sml:QuantityValue;
+		  sml:quantityKind quantitykind:Time ;
+		  rdfs:comment "fromTime represents a starting hour of an energy tariff."@en ;
+          rdfs:label "From time"@en .
+					 
+###  http://bemserver.org/energy#toTime
+:toTime rdf:type owl:ObjectProperty ;
+          rdfs:range sml:QuantityValue;
+		  sml:quantityKind quantitykind:Time ;
+		  rdfs:comment "toTime represents an end hour of an energy tariff."@en ;
+          rdfs:label "To time"@en .
 
 ###  http://bemserver.org/energy#meterPower
-energy:meterPower rdf:type owl:DatatypeProperty ;
+energy:meterPower rdf:type owl:ObjectProperty ;
+				  rdfs:range sml:QuantityValue;
+				  sml:quantityKind quantitykind:ApparentPower ;
                   rdfs:comment "La puissance souscrite représente la quantité d’électricité maximale utilisable simultanément par les équipements électriques et s'exprime en kilovoltampère (kVA)."@fr ,
                                "meterPower represents the maximum quantity of electricity that can be used simultaneously by the electrical equipments and is expressed in kilovoltampere (kVA)."@en ;
                   rdfs:label "Meter power"@en ,
@@ -36,15 +50,11 @@ energy:meterPower rdf:type owl:DatatypeProperty ;
 
 
 ###  http://bemserver.org/energy#price
-energy:price rdf:type owl:DatatypeProperty ;
+energy:price rdf:type owl:ObjectProperty ;
+		     rdfs:range sml:QuantityValue;
              rdfs:comment "Price represents energy price in euros."@en ;
              rdfs:label "Price"@en .
 
-
-###  http://bemserver.org/energy#toTime
-energy:toTime rdf:type owl:DatatypeProperty ;
-              rdfs:comment "toTime represents an end hour of an energy tariff."@en ;
-              rdfs:label "To time"@en .
 
 
 #################################################################
@@ -70,56 +80,24 @@ energy:NonRenewableEnergySource rdf:type owl:Class ;
                                                                 )
                                                     ] ;
                                 rdfs:comment "NonRenewableEnergySource represents a natural substance that is not replenished with the speed at which it is consumed."@en ;
-                                rdfs:label "Non renewable energy source"@en .
+                                rdfs:label "Non renewable energy source"@en ;
+                                rdfs:seeAlso "https://w3id.org/seas/UnrenewableEnergyForm" .
 
 
 ###  http://bemserver.org/energy#PeakHours
 energy:PeakHours rdf:type owl:Class ;
-                 rdfs:subClassOf [ rdf:type owl:Restriction ;
-                                   owl:onProperty energy:fromTime ;
-                                   owl:allValuesFrom xsd:decimal
-                                 ] ,
-                                 [ rdf:type owl:Restriction ;
-                                   owl:onProperty energy:price ;
-                                   owl:allValuesFrom xsd:decimal
-                                 ] ,
-                                 [ rdf:type owl:Restriction ;
-                                   owl:onProperty energy:toTime ;
-                                   owl:allValuesFrom xsd:decimal
-                                 ] ;
                  rdfs:comment "PeakHours represents a period of time during a day which has a specific energy cost. It is part of a variable energy tariff, specifically PeakOffPeakHours."@en ;
                  rdfs:label "Peak hours"@en .
 
 
 ###  http://bemserver.org/energy#PeakOffHours
 energy:PeakOffHours rdf:type owl:Class ;
-                    rdfs:subClassOf [ rdf:type owl:Restriction ;
-                                      owl:onProperty energy:fromTime ;
-                                      owl:allValuesFrom xsd:decimal
-                                    ] ,
-                                    [ rdf:type owl:Restriction ;
-                                      owl:onProperty energy:price ;
-                                      owl:allValuesFrom xsd:decimal
-                                    ] ,
-                                    [ rdf:type owl:Restriction ;
-                                      owl:onProperty energy:toTime ;
-                                      owl:allValuesFrom xsd:decimal
-                                    ] ;
                     rdfs:comment "Peak off hours"@en ,
                                  "PeakOffHours represents a period of time during a day which has a specific energy cost. It is part of a variable energy tariff, specifically PeakOffPeakHours."@en .
 
 
 ###  http://bemserver.org/energy#PeakOffPeakHours
 energy:PeakOffPeakHours rdf:type owl:Class ;
-                        rdfs:subClassOf energy:VariableTariff ,
-                                        [ rdf:type owl:Restriction ;
-                                          owl:onProperty energy:hasPart ;
-                                          owl:someValuesFrom energy:PeakHours
-                                        ] ,
-                                        [ rdf:type owl:Restriction ;
-                                          owl:onProperty energy:hasPart ;
-                                          owl:someValuesFrom energy:PeakOffHours
-                                        ] ;
                         rdfs:label "Peak off peak hours"@en ,
                                    "PeakOffPeakHours represents a variable energy tariff type depending on peek off and peek hours"@en .
 
@@ -138,7 +116,8 @@ energy:RenewableEnergySource rdf:type owl:Class ;
                                                              )
                                                  ] ;
                              rdfs:comment "RenewableEnergySource represents a natural source or a process that is constantly replenished."@en ;
-                             rdfs:label "Renewable energy source"@en .
+                             rdfs:label "Renewable energy source"@en ;
+                             rdfs:seeAlso "https://w3id.org/seas/RenewableEnergyForm" .
 
 
 ###  http://bemserver.org/energy#Tariff
@@ -156,51 +135,18 @@ energy:VariableTariff rdf:type owl:Class ;
 
 ###  http://bemserver.org/energy#WeekDaysHours
 energy:WeekDaysHours rdf:type owl:Class ;
-                     rdfs:subClassOf [ rdf:type owl:Restriction ;
-                                       owl:onProperty energy:fromTime ;
-                                       owl:allValuesFrom xsd:decimal
-                                     ] ,
-                                     [ rdf:type owl:Restriction ;
-                                       owl:onProperty energy:price ;
-                                       owl:allValuesFrom xsd:decimal
-                                     ] ,
-                                     [ rdf:type owl:Restriction ;
-                                       owl:onProperty energy:toTime ;
-                                       owl:allValuesFrom xsd:decimal
-                                     ] ;
                      rdfs:comment "Week day hours"@en ,
                                   "WeekDaysHours represents a period of time during week days which has a specific energy cost. It is part of a variable energy tariff, specifically WeekEnWeekDays."@en .
 
 
 ###  http://bemserver.org/energy#WeekEndHours
 energy:WeekEndHours rdf:type owl:Class ;
-                    rdfs:subClassOf [ rdf:type owl:Restriction ;
-                                      owl:onProperty energy:fromTime ;
-                                      owl:allValuesFrom xsd:decimal
-                                    ] ,
-                                    [ rdf:type owl:Restriction ;
-                                      owl:onProperty energy:price ;
-                                      owl:allValuesFrom xsd:decimal
-                                    ] ,
-                                    [ rdf:type owl:Restriction ;
-                                      owl:onProperty energy:toTime ;
-                                      owl:allValuesFrom xsd:decimal
-                                    ] ;
                     rdfs:comment "Week end hours"@en ,
                                  "WeekEndHours represents a period of time during a weekend which has a specific energy cost. It is part of a variable energy tariff, specifically WeekEndWeekDays."@en .
 
 
 ###  http://bemserver.org/energy#WeekEndWeekDays
 energy:WeekEndWeekDays rdf:type owl:Class ;
-                       rdfs:subClassOf energy:VariableTariff ,
-                                       [ rdf:type owl:Restriction ;
-                                         owl:onProperty energy:hasPart ;
-                                         owl:someValuesFrom energy:WeekDaysHours
-                                       ] ,
-                                       [ rdf:type owl:Restriction ;
-                                         owl:onProperty energy:hasPart ;
-                                         owl:someValuesFrom energy:WeekEndHours
-                                       ] ;
                        rdfs:comment "Week days week ends"@en ,
                                     "WeekEndWeekDays represents a variable enrgy tariff type depending on week days or week ends"@en .
 

@@ -1,4 +1,4 @@
-@prefix : <http://bemserver.org/appliance/SAREF_Alignment#> .
+@prefix : <http://bemserver.org/occupant/Occupant_xSSN_Alignment#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
@@ -8,21 +8,21 @@
 @prefix voaf: <http://purl.org/vocommons/voaf#> .
 @prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
 @prefix schema: <https://schema.org/> .
-@prefix appliance: <http://bemserver.org/appliance#> .
-@prefix saref: <https://saref.etsi.org/core#> .
-@prefix saref4bldg: <https://saref.etsi.org/saref4bldg#> .
-@base <http://bemserver.org/appliance/SAREF_Alignment#> .
+@prefix occupant: <http://bemserver.org/occupant#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix ssn: <http://www.w3.org/ns/ssn/> .
+@base <http://bemserver.org/occupant/Occupant_xSSN_Alignment#> .
 
-<http://bemserver.org/appliance/SAREF_Alignment#> rdf:type owl:Ontology , voaf:Vocabulary ;
-	dcterms:title "Building Appliance to SAREF4BLDG alignment."@en ;
-	dcterms:description """This ontology defines proposed alignments with the SAREF4BLDG ontology."""@en ;
-	dcterms:issued "2021-03-10"^^xsd:date ;
+<http://bemserver.org/occupant/Occupant_xSSN_Alignment#> rdf:type owl:Ontology , voaf:Vocabulary ;
+	dcterms:title "Occupant to xSSN alignment."@en ;
+	dcterms:description """This ontology defines proposed alignments between UserBheaviour and xSSN ontology."""@en ;
+	dcterms:issued "2021-05-26"^^xsd:date ;
     owl:versionInfo "v1.0.0" ;
-    owl:versionIRI <http://bemserver.org/appliance/SAREF_Alignment-1.0> ;
+    owl:versionIRI <http://bemserver.org/occupant/Occupant_xSSN_Alignment-1.0> ;
 	dcterms:creator <https://orcid.org/0000-0002-5520-2270> ;
 	dcterms:creator "Nathalie Charbel" ;
-	owl:imports 	<https://saref.etsi.org/core#> ,
-					<https://saref.etsi.org/saref4bldg#> .
+	owl:imports 	<http://bemserver.org/occupant#> ,
+					<http://www.bemserver.org/sensor/xssn/#> .
 
 dcterms:title a owl:AnnotationProperty .
 dcterms:description a owl:AnnotationProperty .
@@ -41,14 +41,9 @@ schema:name a owl:AnnotationProperty .
 	schema:name "Nathalie Charbel" .
 
 #################################################################
-#    Classes
+#    Class alignment
 #################################################################
 
-appliance:BuildingAppliance rdfs:subClassOf saref4bldg:BuildingDevice .
-appliance:Meter owl:equivalentClass saref:Meter .
-appliance:AHUCoolingMethod rdfs:subClassOf saref:HVAC .
-appliance:AHUDeliveryMode rdfs:subClassOf saref:HVAC .
-appliance:AHUDuct rdfs:subClassOf saref:HVAC .
-appliance:AHUHeatingMethod rdfs:subClassOf saref:HVAC .
-appliance:AHUVolumeControl rdfs:subClassOf saref:HVAC .
-appliance:ChillerModel rdfs:subClassOf saref:HVAC .
+occupant:Driver rdfs:subClassOf sosa:Observation .
+occupant:Action rdfs:subClassOf sosa:Actuation .
+occupant:Event occupant:isAssociatedTo sosa:Result .

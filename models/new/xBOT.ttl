@@ -1,3 +1,4 @@
+@prefix : <http://bemserver.org/xbot#> .
 @prefix bot: <https://w3id.org/bot#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -8,7 +9,8 @@
 @base <http://bemserver.org/xbot> .
 
 <http://bemserver.org/xbot> rdf:type owl:Ontology ;
-                             owl:imports <https://w3id.org/bot-0.3.2> .
+                             owl:imports <https://w3id.org/bot-0.3.2> ;
+                             rdfs:comment "This ontology is based on on BOT for describing building topology and extends it towards representing a wise set of building types (including residential and non residential buildings), spaces and storeys based on the Omniclass standard."@en .
 
 #################################################################
 #    Data properties
@@ -63,7 +65,8 @@ bemserver-xbot:AutomobileRepair rdf:type owl:Class ;
 bemserver-xbot:Balcony rdf:type owl:Class ;
                        rdfs:subClassOf bot:Space ;
                        rdfs:comment "Balcony is an instance of IfcSpace in the building representing a balcony."@en ;
-                       rdfs:label "Balcony"@en .
+                       rdfs:label "Balcony"@en ;
+                       rdfs:seeAlso "https://w3id.org/seas/Balcony" .
 
 
 ###  http://bemserver.org/xbot#BarRestaurant
@@ -82,7 +85,8 @@ bemserver-xbot:Barn rdf:type owl:Class ;
 bemserver-xbot:Bathroom rdf:type owl:Class ;
                         rdfs:subClassOf bot:Space ;
                         rdfs:comment "Bathroom is an instance of IfcSpace in the building representing a bathroom."@en ;
-                        rdfs:label "Bathroom"@en .
+                        rdfs:label "Bathroom"@en ;
+                        rdfs:seeAlso "https://w3id.org/seas/Bathroom" .
 
 
 ###  http://bemserver.org/xbot#Bungalow
@@ -192,7 +196,8 @@ bemserver-xbot:DrugStore rdf:type owl:Class ;
 ###  http://bemserver.org/xbot#EducationalBuilding
 bemserver-xbot:EducationalBuilding rdf:type owl:Class ;
                                    rdfs:subClassOf bot:Building ;
-                                   rdfs:label "EducationalBuilding" .
+                                   rdfs:label "EducationalBuilding" ;
+                                   rdfs:seeAlso "https://w3id.org/seas/EducationalBuilding" .
 
 
 ###  http://bemserver.org/xbot#Factory
@@ -215,7 +220,8 @@ bemserver-xbot:Floor rdf:type owl:Class ;
                                        owl:allValuesFrom xsd:integer
                                      ] ;
                      rdfs:comment "A Floor is an instance of a story in the building."@en ;
-                     rdfs:label "Floor"@en .
+                     rdfs:label "Floor"@en ;
+                     rdfs:seeAlso "https://w3id.org/seas/Floor" .
 
 
 ###  http://bemserver.org/xbot#GovernmentSubsidizedBuilding
@@ -229,7 +235,8 @@ bemserver-xbot:GovernmentSubsidizedBuilding rdf:type owl:Class ;
 ###  http://bemserver.org/xbot#Greenhouse
 bemserver-xbot:Greenhouse rdf:type owl:Class ;
                           rdfs:subClassOf bemserver-xbot:AgriculturalBuilding ;
-                          rdfs:label "Greenhouse" .
+                          rdfs:label "Greenhouse" ;
+                          rdfs:seeAlso "https://w3id.org/seas/Greenhouse" .
 
 
 ###  http://bemserver.org/xbot#Ground
@@ -266,14 +273,16 @@ bemserver-xbot:House rdf:type owl:Class ;
 ###  http://bemserver.org/xbot#IndustrialBuilding
 bemserver-xbot:IndustrialBuilding rdf:type owl:Class ;
                                   rdfs:subClassOf bot:Building ;
-                                  rdfs:label "IndustrialBuilding" .
+                                  rdfs:label "IndustrialBuilding" ;
+                                  rdfs:seeAlso "https://w3id.org/seas/InstitutionalBuilding" .
 
 
 ###  http://bemserver.org/xbot#Kitchen
 bemserver-xbot:Kitchen rdf:type owl:Class ;
                        rdfs:subClassOf bot:Space ;
                        rdfs:comment "Kitchen is an instance of IfcSpace in the building representing a kitchen."@en ;
-                       rdfs:label "Kitchen"@en .
+                       rdfs:label "Kitchen"@en ;
+                       rdfs:seeAlso "https://w3id.org/seas/Kitchen" .
 
 
 ###  http://bemserver.org/xbot#Laboratory
@@ -342,13 +351,15 @@ bemserver-xbot:Nursery rdf:type owl:Class ;
 bemserver-xbot:Office rdf:type owl:Class ;
                       rdfs:subClassOf bot:Space ;
                       rdfs:comment "Office is an instance of IfcSpace in the building representing an office."@en ;
-                      rdfs:label "Office"@en .
+                      rdfs:label "Office"@en ;
+                      rdfs:seeAlso "https://w3id.org/seas/Office" .
 
 
 ###  http://bemserver.org/xbot#OfficeBuilding
 bemserver-xbot:OfficeBuilding rdf:type owl:Class ;
                               rdfs:subClassOf bot:Building ;
-                              rdfs:label "OfficeBuilding" .
+                              rdfs:label "OfficeBuilding" ;
+                              rdfs:seeAlso "https://w3id.org/seas/OfficeBuilding" .
 
 
 ###  http://bemserver.org/xbot#OpenSpace
@@ -397,7 +408,8 @@ bemserver-xbot:ReligiousBuilding rdf:type owl:Class ;
 ###  http://bemserver.org/xbot#ResidentialBuilding
 bemserver-xbot:ResidentialBuilding rdf:type owl:Class ;
                                    rdfs:subClassOf bot:Building ;
-                                   rdfs:label "ResidentialBuilding" .
+                                   rdfs:label "ResidentialBuilding" ;
+                                   rdfs:seeAlso "https://w3id.org/seas/ResidentalBuilding" .
 
 
 ###  http://bemserver.org/xbot#RestRoom
@@ -411,7 +423,8 @@ bemserver-xbot:RestRoom rdf:type owl:Class ;
 bemserver-xbot:Room rdf:type owl:Class ;
                     rdfs:subClassOf bot:Space ;
                     rdfs:comment "Room is an instance of IfcSpace in the building representing a Room."@en ;
-                    rdfs:label "Room"@en .
+                    rdfs:label "Room"@en ;
+                    rdfs:seeAlso "https://w3id.org/seas/Room" .
 
 
 ###  http://bemserver.org/xbot#SecondarySchool
@@ -527,6 +540,21 @@ bemserver-xbot:WetArea rdf:type owl:Class ;
                        rdfs:subClassOf bot:Space ;
                        rdfs:comment "WetArea is an instance of IfcSpace in the building representing a wet area."@en ;
                        rdfs:label "WetArea"@en .
+
+
+###  https://w3id.org/bot#Building
+bot:Building rdf:type owl:Class ;
+             rdfs:seeAlso "https://w3id.org/seas/Building" .
+
+
+###  https://w3id.org/bot#Space
+bot:Space rdf:type owl:Class ;
+          rdfs:seeAlso "https://w3id.org/seas/BuildingSpace" .
+
+
+###  https://w3id.org/bot#Storey
+bot:Storey rdf:type owl:Class ;
+           rdfs:seeAlso "https://w3id.org/seas/BuildingStorey" .
 
 
 ###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi

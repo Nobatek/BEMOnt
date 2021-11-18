@@ -21,7 +21,7 @@
                                   owl:imports <http://qudt.org/vocab/quantitykind/> ,
                                               xssn: ,
                                               <https://w3id.org/sml/owl/def> ;
-                                  dc:description "This Ontology imports xSSN ontolo. Its main purpose is to extend ssn:Property to cover physical and occupant properties."@en ,
+                                  dc:description "This Ontology imports xSSN ontology and extends it towards covering physical and occupant properties. It also imports sml-owl ontology to follow the same method proposed by the CEN comittee in defining well-known physical measures and units based on QUDT ontology."@en ,
                                                  "skos:definition"@en ;
                                   dc:title "Refactored BEMServerProperty ontology"@en .
 
@@ -92,7 +92,7 @@ xsd:anySimpleType rdf:type rdfs:Datatype .
 ###  http://bemserver.org/property#hasPhenomenonProperty
 :hasPhenomenonProperty rdf:type owl:ObjectProperty ;
                        rdfs:subPropertyOf ssn:hasProperty ;
-					   rdfs:range sml:QuantityValue .
+					   rdfs:range xssn:Property .
 
 ###  http://bemserver.org/property#hasPhysicalProperty
 :hasPhysicalProperty rdf:type owl:ObjectProperty ;

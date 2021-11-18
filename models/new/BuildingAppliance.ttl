@@ -7,7 +7,9 @@
 @prefix bemserver-appliance: <http://bemserver.org/appliance#> .
 @base <http://bemserver.org/appliance#> .
 
-<http://bemserver.org/appliance#> rdf:type owl:Ontology .
+<http://bemserver.org/appliance#> rdf:type owl:Ontology ;
+                                   owl:imports <https://saref.etsi.org/saref4bldg/v1.1.2/> ;
+                                   rdfs:comment "This ontology is based on SAREF4BLDG since it is the standardized ontology for representing building appliances. It extends it towards representing specific building appliances and types." .
 
 #################################################################
 #    Object Properties
@@ -64,7 +66,8 @@ bemserver-appliance:AHUVolumeControl rdf:type owl:Class ;
 
 ###  http://bemserver.org/appliance#BuildingAppliance
 bemserver-appliance:BuildingAppliance rdf:type owl:Class ;
-                                      rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                      rdfs:subClassOf <https://saref.etsi.org/saref4bldg/BuildingDevice> ,
+                                                      [ rdf:type owl:Restriction ;
                                                         owl:onProperty bemserver-appliance:contains ;
                                                         owl:someValuesFrom bemserver-appliance:BuildingAppliance
                                                       ] ,

@@ -10,7 +10,8 @@
 @base <http://www.bemserver.org/sensor/xssn/#> .
 
 <http://www.bemserver.org/sensor/xssn/#> rdf:type owl:Ontology ;
-                                          owl:imports ssn: .
+                                          owl:imports ssn: ;
+                                          rdfs:comment "This ontology is based on the SSN ontology to model sensors, observations, features of intereset, etc. and extends it towards representing a location of a sensor or a location of an observation made by the sensor,  observation properties, and medium types on which the measurements are performed. It also introduces a new concept xssn:Property, which generalizes ssn:Property to further represent a wider set of properties including physical and occupant properties." .
 
 #################################################################
 #    Datatypes
@@ -172,6 +173,16 @@ sosa:Observation rdfs:subClassOf [ rdf:type owl:Restriction ;
                                    owl:onProperty xssn:isSetPoint ;
                                    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                    owl:onDataRange xsd:boolean
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty xssn:maxValue ;
+                                   owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                   owl:onDataRange xsd:decimal
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty xssn:minValue ;
+                                   owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                   owl:onDataRange xsd:decimal
                                  ] .
 
 

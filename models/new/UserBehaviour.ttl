@@ -1,0 +1,993 @@
+@prefix : <http://bemserver.org/occupant#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix occupant: <http://bemserver.org/occupant#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix bibo: <http://purl.org/ontology/bibo/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix terms: <http://purl.org/dc/terms/> .
+@prefix schema: <http://schema.org/> .
+@base <http://bemserver.org/occupant#> .
+
+<http://bemserver.org/occupant#> rdf:type owl:Ontology ;
+                                  dc:description "This ontology describes the occupants behaviour inside a building. It  is based on the idetification of Drivers Needs and Actions for each occupant to make underestandable the occupant-building interaction and different comfort states."@en .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/elements/1.1/abstract
+dc:abstract rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/contributor
+dc:contributor rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/creator
+dc:creator rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/date
+dc:date rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/description
+dc:description rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/identifier
+dc:identifier rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/title
+dc:title rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/license
+terms:license rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/ontology/bibo/status
+bibo:status rdf:type owl:AnnotationProperty .
+
+
+###  http://schema.org/description
+schema:description rdf:type owl:AnnotationProperty .
+
+
+###  http://schema.org/license
+schema:license rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://bemserver.org/occupant#acts
+occupant:acts rdf:type owl:ObjectProperty ;
+         rdfs:subPropertyOf owl:topObjectProperty ;
+         rdfs:comment "Relation to define that an iser acto ober certain device changing their behaviour."@en ;
+         rdfs:label "acts"@en .
+
+
+###  http://bemserver.org/occupant#assignedTo
+occupant:assignedTo rdf:type owl:ObjectProperty ;
+               owl:inverseOf occupant:isAssignedTo ;
+               rdfs:comment "Relation between the context and indoor or outddor factors."@en ;
+               rdfs:label "assigned to"@en .
+
+
+###  http://bemserver.org/occupant#associatedTo
+occupant:associatedTo rdf:type owl:ObjectProperty ;
+                 rdfs:comment "Relation between the context and certain sensor output"@en ;
+                 rdfs:label "associated to"@en .
+
+
+###  http://bemserver.org/occupant#changes
+occupant:changes rdf:type owl:ObjectProperty ;
+            rdfs:comment "The relation to represent the result of an action in terms of changing something inside the buildign (system, sensors, etc)."@en ;
+            rdfs:label "changes"@en .
+
+
+###  http://bemserver.org/occupant#concerns
+occupant:concerns rdf:type owl:ObjectProperty ;
+             rdfs:comment "Relation focused on depicting the link between the users and the corresponding feedback"@en ;
+             rdfs:label "concerns"@en .
+
+
+###  http://bemserver.org/occupant#hasBehaviour
+occupant:hasBehaviour rdf:type owl:ObjectProperty ;
+                 rdfs:comment "relation focused on indicating that certain user have defined certain behaviour"@en ;
+                 rdfs:label "has behaviour"@en .
+
+
+###  http://bemserver.org/occupant#hasComfortRequirements
+occupant:hasComfortRequirements rdf:type owl:ObjectProperty ;
+                           rdfs:comment "The relation to represent that a user has certain comfort requirements to be satisfied"@en ;
+                           rdfs:label "has comfort requirements"@en .
+
+
+###  http://bemserver.org/occupant#hasConstraints
+occupant:hasConstraints rdf:type owl:ObjectProperty ;
+                   rdfs:comment "the relation to represent that an event have a set of contraints"@en ;
+                   rdfs:label "has constraints"@en .
+
+
+###  http://bemserver.org/occupant#hasContext
+occupant:hasContext rdf:type owl:ObjectProperty ;
+               rdfs:comment "Indicate the relation between an event and certain context"@en ;
+               rdfs:label "has context"@en .
+
+
+###  http://bemserver.org/occupant#hasFunction
+occupant:hasFunction rdf:type owl:ObjectProperty ;
+                rdfs:comment "Property to define in the Drivers several functions to measure the comfort."@en ;
+                rdfs:label "has Function"@en .
+
+
+###  http://bemserver.org/occupant#hasGender
+occupant:hasGender rdf:type owl:ObjectProperty ;
+              rdfs:comment "property to associate to the users their corresponding gender"@en ;
+              rdfs:label "has gender"@en .
+
+
+###  http://bemserver.org/occupant#hasIndicator
+occupant:hasIndicator rdf:type owl:ObjectProperty ;
+                 rdfs:label "has indicator"@en ,
+                            "property to indicate to the drivers the associations to certain indicators."@en .
+
+
+###  http://bemserver.org/occupant#hasModelResult
+occupant:hasModelResult rdf:type owl:ObjectProperty ;
+                   rdfs:comment "property to link the drivers with certain model results."@en ;
+                   rdfs:label "has model result"@en .
+
+
+###  http://bemserver.org/occupant#hasOccupantAttitude
+occupant:hasOccupantAttitude rdf:type owl:ObjectProperty ;
+                        rdfs:range occupant:OccupantAttitude ;
+                        rdfs:comment "object property to represent the occupant attitude of the building occupants."@en ;
+                        rdfs:label "has occupant attitude"@en .
+
+
+###  http://bemserver.org/occupant#hasOccupantCharacteristics
+occupant:hasOccupantCharacteristics rdf:type owl:ObjectProperty ;
+                               rdfs:subPropertyOf owl:topObjectProperty ;
+                               rdfs:range occupant:OccupantCharacteristics ;
+                               rdfs:comment "property to define the association between users and their daily activities"@en ;
+                               rdfs:label "has occuant characteristics"@en .
+
+
+###  http://bemserver.org/occupant#hasProbability
+occupant:hasProbability rdf:type owl:ObjectProperty ;
+                   rdfs:comment "property to represent the probability of happen certain event"@en ;
+                   rdfs:label "has probability"@en .
+
+
+###  http://bemserver.org/occupant#hasRole
+occupant:hasRole rdf:type owl:ObjectProperty ;
+            rdfs:comment "property to associate the building occupants to certain role"@en ;
+            rdfs:label "has role"@en .
+
+
+###  http://bemserver.org/occupant#hasState
+occupant:hasState rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf owl:topObjectProperty ;
+             owl:inverseOf occupant:isStatedBy ;
+             rdfs:range occupant:BuildingState ;
+             rdfs:comment "property to asign to the building systems certain associated abstract state"@en ;
+             rdfs:label "has state"@en .
+			 
+###  http://bemserver.org/occupant#occupies
+occupant:occupies rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf owl:topObjectProperty ;
+             rdfs:domain occupant:Occupant ;
+             rdfs:comment "property to asign to the occupant occupying a certain bot:Zone"@en ;
+             rdfs:label "occupies"@en .
+
+###  http://bemserver.org/occupant#isAssociatedTo
+occupant:isAssociatedTo rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf owl:topObjectProperty ;
+             rdfs:domain occupant:Event ;
+             rdfs:comment "property to asign to the event a sosa:Result"@en ;
+             rdfs:label "isAssociatedTo"@en .
+
+###  http://bemserver.org/occupant#hasStatus
+occupant:hasStatus rdf:type owl:ObjectProperty ;
+              rdfs:comment "property to represent the asignment to the driver of certain status"@en ;
+              rdfs:label "has status"@en .
+
+
+###  http://bemserver.org/occupant#isAssignedTo
+occupant:isAssignedTo rdf:type owl:ObjectProperty ;
+                 rdfs:comment "is assigned to"@en .
+
+
+###  http://bemserver.org/occupant#isBasedOn
+occupant:isBasedOn rdf:type owl:ObjectProperty ;
+              rdfs:label "is Based on"@en .
+
+
+###  http://bemserver.org/occupant#isProvokedBy
+occupant:isProvokedBy rdf:type owl:ObjectProperty ;
+                 owl:inverseOf occupant:provokes ;
+                 rdfs:label "is provoked by"@en .
+
+
+###  http://bemserver.org/occupant#isStatedBy
+occupant:isStatedBy rdf:type owl:ObjectProperty ;
+               rdfs:label "is stated by"@en .
+
+
+###  http://bemserver.org/occupant#performsAction
+occupant:performsAction rdf:type owl:ObjectProperty ;
+                   rdfs:range occupant:Actions ;
+                   rdfs:label "perform action"@en .
+
+
+###  http://bemserver.org/occupant#prefers
+occupant:prefers rdf:type owl:ObjectProperty ;
+            rdfs:comment "property to link user with modalitites"@en ;
+            rdfs:label "prefers"@en .
+
+
+###  http://bemserver.org/occupant#provokes
+occupant:provokes rdf:type owl:ObjectProperty ;
+             rdfs:label "provokes"@en .
+
+
+###  http://bemserver.org/occupant#receives
+occupant:receives rdf:type owl:ObjectProperty ;
+             rdfs:comment "property to represent the action of receiving notification from the system according t certain building anomalies"@en ;
+             rdfs:label "receives"@en .
+
+
+###  http://bemserver.org/occupant#receivesAlerts
+occupant:receivesAlerts rdf:type owl:ObjectProperty ;
+                   rdfs:range occupant:Alert ;
+                   rdfs:comment "relation to represent the recepcion of alerts to certain users"@en ;
+                   rdfs:label "receives alerts"@en .
+				   
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://bemserver.org/occupant#age
+occupant:age rdf:type owl:DatatypeProperty ;
+        rdfs:range xsd:double ;
+        rdfs:comment "Data property to define the age of certain building occupant"@en ;
+        rdfs:label "age"@en .
+
+
+###  http://bemserver.org/occupant#endWorktime
+occupant:endWorktime rdf:type owl:DatatypeProperty ;
+                rdfs:range xsd:dateTime ;
+                rdfs:comment "proeprty to define the date time of end of wrok"@en ;
+                rdfs:label "end of work time"@en .
+
+
+###  http://bemserver.org/occupant#id
+occupant:id rdf:type owl:DatatypeProperty ;
+       rdfs:range xsd:string ;
+       rdfs:comment "text representation of the ids"@en ;
+       rdfs:label "id"@en .
+
+
+###  http://bemserver.org/occupant#jobType
+occupant:jobType rdf:type owl:DatatypeProperty ;
+            rdfs:range xsd:string ;
+            rdfs:comment "text definition of the job type"@en ;
+            rdfs:label "job type"@en .
+
+
+###  http://bemserver.org/occupant#lifestyle
+occupant:lifestyle rdf:type owl:DatatypeProperty ;
+              rdfs:subPropertyOf owl:topDataProperty ;
+              rdfs:range xsd:string ;
+              rdfs:label "lifestyle"@en .
+
+
+###  http://bemserver.org/occupant#maxValue
+occupant:maxValue rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf owl:topDataProperty ;
+             rdfs:range xsd:double ;
+             rdfs:comment "maximun value marked as an upper threshold measure"@en ;
+             rdfs:label "maximun value"@en .
+
+
+###  http://bemserver.org/occupant#minValue
+occupant:minValue rdf:type owl:DatatypeProperty ;
+             rdfs:range xsd:double ;
+             rdfs:comment "minimun value marked as the lower limit of the threshold"@en ;
+             rdfs:label "minimun value"@en .
+
+
+###  http://bemserver.org/occupant#name
+occupant:name rdf:type owl:DatatypeProperty ;
+         rdfs:range xsd:string ;
+         rdfs:comment "name of the instances (text field)"@en ;
+         rdfs:label "name"@en .
+
+
+###  http://bemserver.org/occupant#numericValue
+occupant:numericValue rdf:type owl:DatatypeProperty ;
+                 rdfs:range xsd:double ;
+                 rdfs:label "numeric value"@en .
+
+
+###  http://bemserver.org/occupant#resultTime
+occupant:resultTime rdf:type owl:DatatypeProperty ;
+               rdfs:comment "The result time is the instant of time when the Observation, Actuation or Sampling activity was completed." ;
+               rdfs:isDefinedBy <http://www.w3.org/ns/sosa/> ;
+               rdfs:label "result time" .
+
+
+###  http://bemserver.org/occupant#startWorktime
+occupant:startWorktime rdf:type owl:DatatypeProperty ;
+                  rdfs:subPropertyOf owl:topDataProperty ;
+                  rdfs:range xsd:dateTime ;
+                  rdfs:comment "property to define the date time of start of wrok"@en ;
+                  rdfs:label "start of work time"@en .
+
+
+###  http://bemserver.org/sensor#externalID
+<http://bemserver.org/sensor#externalID> rdf:type owl:DatatypeProperty ;
+                                         rdfs:range xsd:anyURI ;
+                                         rdfs:comment "Data proeprty to define the external ID regaring the time series stored in Mondas"@en ;
+                                         rdfs:isDefinedBy "http://bemserver.org/sensor#externalID"@en ;
+                                         rdfs:label "externalID"@en .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://bemserver.org/occupant#ASHRAEAdaptiveComfort
+occupant:ASHRAEAdaptiveComfort rdf:type owl:Class ;
+                          rdfs:subClassOf occupant:ThermalComfort ;
+                          rdfs:comment "The ASHRAE Adaptive Comfort is a standard that provides minimum requirements for acceptable thermal indoor environments. It establishes the ranges of indoor environmental conditions that are acceptable to achieve thermal comfort for occupants. It was first published in 1966, and since 2004 has been updated periodically by a technical committee of industry experts in ASHRAE (American Society of Heating, Refrigerating and Air-Conditioning Engineers). The most recent version of the standard was published in 2013."@en ;
+                          rdfs:label "ASHRAE Adaptive Comfort"@en .
+
+
+###  http://bemserver.org/occupant#ASHRAEAdaptiveEnvelope
+occupant:ASHRAEAdaptiveEnvelope rdf:type owl:Class ;
+                           rdfs:subClassOf occupant:ThermalComfort ;
+                           rdfs:comment """Standard that includes prescriptive requirements for the following:
+- Building Envelope: minimum wall insulation, minimum roof insulation, roof reflectance, minimum glazing performance
+  - HVAC: minimum equipment efficiency, minimum system features, limitation on reheat, limitation on fan power
+  - Domestic Hot Water: minimum equipment efficiency, minimum system features
+  - Power: transformer efficiency, automatic receptacle controls, energy monitoring
+  - Lighting: maximum indoor lighting power density (LPD, expressed in Watts/Sq.Ft.), minimum lighting controls, exterior lighting, parking garage lighting
+  - Other Equipment: electric motors, potable water booster pumps, elevators, and escalators"""@en ;
+                           rdfs:label "ASHRAE Adaptive Envelope"@en .
+
+
+###  http://bemserver.org/occupant#AcousticComfort
+occupant:AcousticComfort rdf:type owl:Class ;
+                    rdfs:subClassOf occupant:Needs ;
+                    rdfs:comment "The acoustic comfort refers to the models to measure the level of background noise within an aceptable range."@en ;
+                    rdfs:label "Acoustic Comfort"@en .
+
+
+###  http://bemserver.org/occupant#Actions
+occupant:Actions rdf:type owl:Class ;
+            rdfs:comment "Actions are the specific building interactions performed by the building occupants. This actions can be caused by an initial discomfort or event as an occupant event. Nevertheless, the actions are connected with the drivers at time as the user changes a parameter in the building facilities. Moreover, the actions also has some influence over the needs due to this actions commonly are performed to satisfy user comfort requirements."@en ;
+            rdfs:label "Actions"@en .
+
+
+###  http://bemserver.org/occupant#ActivityModel
+occupant:ActivityModel rdf:type owl:Class ;
+                  rdfs:subClassOf occupant:Driver ;
+                  rdfs:comment "Model that consist on modelling the occupant activity inside the building"@en ;
+                  rdfs:label "Activity Model"@en .
+
+
+###  http://bemserver.org/occupant#Age
+occupant:Age rdf:type owl:Class .
+
+
+###  http://bemserver.org/occupant#Alert
+occupant:Alert rdf:type owl:Class ;
+          rdfs:subClassOf occupant:Notification ;
+          rdfs:comment "Defined as the quick to notice any unusual and potentially dangerous or difficult circumstances concerning the building state."@en ;
+          rdfs:label "Alert"@en .
+
+
+###  http://bemserver.org/occupant#BehaviourModel
+occupant:BehaviourModel rdf:type owl:Class ;
+                   rdfs:subClassOf occupant:Driver ,
+                                   [ rdf:type owl:Class ;
+                                     owl:unionOf ( [ rdf:type owl:Restriction ;
+                                                     owl:onProperty occupant:isBasedOn ;
+                                                     owl:someValuesFrom occupant:OccupantBehaviour
+                                                   ]
+                                                   [ rdf:type owl:Restriction ;
+                                                     owl:onProperty occupant:isBasedOn ;
+                                                     owl:someValuesFrom occupant:TimeBehaviour
+                                                   ]
+                                                 )
+                                   ] ;
+                   rdfs:comment "As variables that serve to measure the habits and activities inside the building. Defined to register and contextualise the occupant events (building interactions with the different systems)."@en ;
+                   rdfs:label "Behavioural Model"@en .
+
+
+###  http://bemserver.org/occupant#BlindClose
+occupant:BlindClose rdf:type owl:Class ;
+               rdfs:subClassOf occupant:BlindState ;
+               owl:disjointWith occupant:BlindOpen ;
+               rdfs:comment "Determines that the corresponding blind is close"@en ;
+               rdfs:label "Blind Close"@en .
+
+
+###  http://bemserver.org/occupant#BlindOpen
+occupant:BlindOpen rdf:type owl:Class ;
+              rdfs:subClassOf occupant:BlindState ;
+              rdfs:comment "Determines that the corresponding blind is open"@en ;
+              rdfs:label "Blind Open"@en .
+
+
+###  http://bemserver.org/occupant#BlindState
+occupant:BlindState rdf:type owl:Class ;
+               rdfs:subClassOf occupant:BuildingSimpleState ;
+               rdfs:comment "Refers to the state that a blind could achieve (Open or Closed)"@en ;
+               rdfs:label "Blind State"@en .
+
+
+###  http://bemserver.org/occupant#BuildingComplexState
+occupant:BuildingComplexState rdf:type owl:Class ;
+                         rdfs:subClassOf occupant:BuildingState ;
+                         rdfs:comment "In reference to the complex states, this refers as the states that require for the combination of different facilities to determine an overall state. For example, one complex state is the determination of the energy state of the building that can be energy efficient state or energy inefficient state considering anomalous energy consumption (e.g., thermostat on at same time as the windows are open)"@en ;
+                         rdfs:label "Building Complex State"@en .
+
+
+###  http://bemserver.org/occupant#BuildingSimpleState
+occupant:BuildingSimpleState rdf:type owl:Class ;
+                        rdfs:subClassOf occupant:BuildingState ;
+                        rdfs:comment "The building simple state refers to specific status of some building elements that highly impacts in the detection of building anomalies even related with energy or user comfort."@en ;
+                        rdfs:label "Building Simple State"@en .
+
+
+###  http://bemserver.org/occupant#BuildingState
+occupant:BuildingState rdf:type owl:Class ;
+                  rdfs:comment "The building state allows to conextualise and determine the building facilities status. This building state determinaton has been divided into simple building states and complex building states."@en ;
+                  rdfs:label "Building State"@en .
+
+
+###  http://bemserver.org/occupant#ComfortState
+occupant:ComfortState rdf:type owl:Class ;
+                 rdfs:subClassOf occupant:BuildingComplexState ;
+                 rdfs:comment "Comfort state is defined as the ocupant state according to the current building situation."@en ;
+                 rdfs:label "Comfort State"@en .
+
+
+###  http://bemserver.org/occupant#Constraints
+occupant:Constraints rdf:type owl:Class ;
+                rdfs:subClassOf occupant:Event ;
+                rdfs:comment "Event that limits the action of something."@en ;
+                rdfs:label "Constraints"@en .
+
+
+###  http://bemserver.org/occupant#Context
+occupant:Context rdf:type owl:Class ;
+            rdfs:subClassOf occupant:Event ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty occupant:isAssignedTo ;
+                              owl:someValuesFrom [ rdf:type owl:Class ;
+                                                   owl:unionOf ( occupant:Indoor
+                                                                 occupant:Outdoor
+                                                               )
+                                                 ]
+                            ] ;
+            rdfs:comment "Context in which applies the action"@en ;
+            rdfs:label "Context"@en .
+
+
+###  http://bemserver.org/occupant#DoorClose
+occupant:DoorClose rdf:type owl:Class ;
+              rdfs:subClassOf occupant:DoorState ;
+              owl:disjointWith occupant:DoorOpen ;
+              rdfs:comment "Determines that the corresponding door is close"@en ;
+              rdfs:label "Door Close"@en .
+
+
+###  http://bemserver.org/occupant#DoorOpen
+occupant:DoorOpen rdf:type owl:Class ;
+             rdfs:subClassOf occupant:DoorState ;
+             rdfs:comment "Determines that the corresponding door is open"@en ;
+             rdfs:label "Door Open"@en .
+
+
+###  http://bemserver.org/occupant#DoorState
+occupant:DoorState rdf:type owl:Class ;
+              rdfs:subClassOf occupant:BuildingSimpleState ;
+              rdfs:comment "Determines that the corresponding state of the Door (Open or Close)"@en ;
+              rdfs:label "Door State"@en .
+
+
+###  http://bemserver.org/occupant#Driver
+occupant:Driver rdf:type owl:Class ;
+           rdfs:subClassOf [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                    owl:onProperty occupant:hasFunction ;
+                                                    owl:someValuesFrom occupant:Function
+                                                  ]
+                                                  [ rdf:type owl:Restriction ;
+                                                    owl:onProperty occupant:hasIndicator ;
+                                                    owl:someValuesFrom occupant:Indicator
+                                                  ]
+                                                  [ rdf:type owl:Restriction ;
+                                                    owl:onProperty occupant:hasModelResult ;
+                                                    owl:someValuesFrom occupant:ModelResult
+                                                  ]
+                                                  [ rdf:type owl:Restriction ;
+                                                    owl:onProperty occupant:hasStatus ;
+                                                    owl:someValuesFrom occupant:Status
+                                                  ]
+                                                ) ;
+                             rdf:type owl:Class
+                           ] ;
+           rdfs:comment "Drivers represent the environmental factors from the outside world that stimulate occupants in their inside world to fulfill a physical, physiological or psychological need"@en ;
+           rdfs:label "Driver"@en .
+
+
+###  http://bemserver.org/occupant#EnergyFrugal
+occupant:EnergyFrugal rdf:type owl:Class ;
+                 rdfs:subClassOf occupant:OccupantAttitude ;
+                 rdfs:comment "Is the quality of being frugal, sparing, thrifty, prudent or economical in the consumption of consumable resources such as food, time or money, and avoiding waste, lavishness or extravagance"@en ;
+                 rdfs:label "Energy Frugal"@en .
+
+
+###  http://bemserver.org/occupant#EnergyIndiferent
+occupant:EnergyIndiferent rdf:type owl:Class ;
+                     rdfs:subClassOf occupant:OccupantAttitude ;
+                     rdfs:comment "Occupant trend to have no preference or being uninterested about building energy consumption and efficiency."@en ;
+                     rdfs:label "Energy Indiferent"@en .
+
+
+###  http://bemserver.org/occupant#EnergyProfligate
+occupant:EnergyProfligate rdf:type owl:Class ;
+                     rdfs:subClassOf occupant:OccupantAttitude ;
+                     rdfs:comment "Occupant that is recklessly, extravagant or wasteful in the use of resources."@en ;
+                     rdfs:label "Energy Profligate"@en .
+
+
+###  http://bemserver.org/occupant#EnergyState
+occupant:EnergyState rdf:type owl:Class ;
+                rdfs:subClassOf occupant:BuildingComplexState ;
+                rdfs:comment "Energy state is the combination of different direct measures or simple state measures to determine energy inefficiencies."@en ;
+                rdfs:label "Energy State"@en .
+
+
+###  http://bemserver.org/occupant#EnvironmentalBuildingFactors
+occupant:EnvironmentalBuildingFactors rdf:type owl:Class ;
+                                 rdfs:comment "Environmental Building Factors refers to the building inddor and outdor fixeed conditions for comfort and discomfort."@en ;
+                                 rdfs:label "Environmental Building Factors"@en .
+
+
+###  http://bemserver.org/occupant#EquipementModel
+occupant:EquipementModel rdf:type owl:Class ;
+                    rdfs:subClassOf occupant:Driver ,
+                                    [ rdf:type owl:Restriction ;
+                                      owl:onProperty occupant:isBasedOn ;
+                                      owl:someValuesFrom occupant:EnvironmentalBuildingFactors
+                                    ] ;
+                    rdfs:comment "Class for measuring the building features and the environmental factors including indoor and outdoor parameters."@en ;
+                    rdfs:label "Equipement Model"@en .
+
+
+###  http://bemserver.org/occupant#Event
+occupant:Event rdf:type owl:Class ;
+          rdfs:comment "Circumstances that may be driving occupant actions such as waking up, sleeping, leaving for work or returning from lunch"@en ;
+          rdfs:label "Event"@en .
+
+
+###  http://bemserver.org/occupant#EventModel
+occupant:EventModel rdf:type owl:Class ;
+               rdfs:subClassOf occupant:Driver ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty occupant:isBasedOn ;
+                                 owl:someValuesFrom occupant:Event
+                               ] ;
+               rdfs:comment "Defined to register the events that can be detected from the sensor readings."@en ;
+               rdfs:label "Event Model"@en .
+
+
+###  http://bemserver.org/occupant#Feedback
+occupant:Feedback rdf:type owl:Class ;
+             rdfs:subClassOf occupant:Actions ;
+             rdfs:comment "In building domain, Feedback is the actor retrofit with information regarding buildn state."@en ;
+             rdfs:label "Feedback"@en .
+
+
+###  http://bemserver.org/occupant#Function
+occupant:Function rdf:type owl:Class ;
+             rdfs:comment "Is the model function to determine indoor and outdoor environmental building factors."@en ;
+             rdfs:label "Function"@en .
+
+
+###  http://bemserver.org/occupant#Gender
+occupant:Gender rdf:type owl:Class ;
+           rdfs:comment "The Gender is is the range of characteristics pertaining to, and differentiating between, masculinity and femininity"@en ;
+           rdfs:label "Gender"@en .
+
+
+###  http://bemserver.org/occupant#IAQ
+occupant:IAQ rdf:type owl:Class ;
+        rdfs:subClassOf occupant:Needs ;
+        rdfs:comment "The IAQ corresponds to the types of measurements to determine the inddor environmental health."@en ;
+        rdfs:label "IAQ"@en .
+
+
+###  http://bemserver.org/occupant#ISOAdaptiveComfort
+occupant:ISOAdaptiveComfort rdf:type owl:Class ;
+                       rdfs:subClassOf occupant:ThermalComfort ;
+                       rdfs:comment "This International Standard covering the evaluation of moderate thermal environments was developed in parallel with the revised ASHRAE) standard 55 and is one of a series of ISO documents specifying methods for the measurement and evaluation of the moderate and extreme thermal environments to which human beings are exposed (ISO 7243, ISO 7933 and ISO/TR 11079, all three dealing with extreme environmental conditions, are others in the series)."@en ;
+                       rdfs:label "ISO Adaptive Comfort"@en .
+
+
+###  http://bemserver.org/occupant#Inaction
+occupant:Inaction rdf:type owl:Class ;
+             rdfs:subClassOf occupant:Actions ;
+             rdfs:comment "Refers to the performance of any action in the building."@en ;
+             rdfs:label "Inaction"@en .
+
+
+###  http://bemserver.org/occupant#Indicator
+occupant:Indicator rdf:type owl:Class ;
+              rdfs:comment "Complementing the Driver information, the indicator refers to the optimal measure that indicates the state or level of something."@en ;
+              rdfs:label "Indicator"@en .
+
+
+###  http://bemserver.org/occupant#Indoor
+occupant:Indoor rdf:type owl:Class ;
+           rdfs:comment "Considering the environmental factors and the context definition, the indoor class refers to those events that occur inside the building."@en ;
+           rdfs:label "Indoor"@en .
+
+
+###  http://bemserver.org/occupant#Modality
+occupant:Modality rdf:type owl:Class ;
+             rdfs:comment "Refers to the notification mode to the users. This notification could be via SMS, e-mail or telephone"@en ;
+             rdfs:label "Modality"@en .
+
+
+###  http://bemserver.org/occupant#ModelResult
+occupant:ModelResult rdf:type owl:Class ;
+                rdfs:comment "Model result is defined by the outputs of applying several user behaviour model according to the collected data."@en ;
+                rdfs:label "Model Result"@en .
+
+
+###  http://bemserver.org/occupant#Needs
+occupant:Needs rdf:type owl:Class ;
+          rdfs:comment "Needs represent the physical and non-physical requirements of the occupant's inside world that must be met in order to ensure the satisfaction of the occupant with their environment"@en ;
+          rdfs:label "Needs"@en .
+
+
+###  http://bemserver.org/occupant#Notification
+occupant:Notification rdf:type owl:Class ;
+                 rdfs:comment "The Notification refers to the mechanims to provide highlighted information to the building users."@en ;
+                 rdfs:label "Notification"@en .
+
+
+###  http://bemserver.org/occupant#OccupantAttitude
+occupant:OccupantAttitude rdf:type owl:Class ;
+                     rdfs:comment "Specific occupant attitude inside the building"@en ;
+                     rdfs:label "Occupant Attitude"@en .
+
+
+###  http://bemserver.org/occupant#OccupantBehaviour
+occupant:OccupantBehaviour rdf:type owl:Class ;
+                      rdfs:subClassOf occupant:Actions ;
+                      rdfs:comment "Occupant behaviour influences building systems by movement or actions and further determines the building environment and energy consumption. Both the building environment and energy consumption in turn affect occupant behaviour through psychological, physiological and economic factors together with several external factors like comfort and culture."@en ;
+                      rdfs:label "Occupant Behaviour"@en .
+
+
+###  http://bemserver.org/occupant#OccupantCharacteristics
+occupant:OccupantCharacteristics rdf:type owl:Class ;
+                            rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                              owl:onProperty occupant:endWorktime ;
+                                              owl:allValuesFrom xsd:dateTime
+                                            ] ,
+                                            [ rdf:type owl:Restriction ;
+                                              owl:onProperty occupant:startWorktime ;
+                                              owl:allValuesFrom xsd:dateTime
+                                            ] ;
+                            rdfs:comment "The occupant characteristics refers to the daily or most common activities that building occupants performs inside the building (e.g start or end work)"@en ;
+                            rdfs:label "Occupant Characteristics"@en .
+
+
+###  http://bemserver.org/occupant#OccupantComfort
+occupant:OccupantComfort rdf:type owl:Class ;
+                    rdfs:subClassOf occupant:ComfortState ;
+                    owl:disjointWith occupant:OccupantDiscomfort ;
+                    rdfs:comment "Occupamt comfort is the occupant satisfaction with the building situation (thermal, lighting, etc) considering their specific comfrt ranges and parameters."@en ;
+                    rdfs:label "Occupant Comfort"@en .
+
+
+###  http://bemserver.org/occupant#OccupantDiscomfort
+occupant:OccupantDiscomfort rdf:type owl:Class ;
+                       rdfs:subClassOf occupant:ComfortState ,
+                                       [ rdf:type owl:Restriction ;
+                                         owl:onProperty occupant:isProvokedBy ;
+                                         owl:someValuesFrom occupant:Actions
+                                       ] ;
+                       rdfs:comment "Occupamt discomfort will occur when building do not satisfy user requirements (comparison between needs and drivers)."@en ;
+                       rdfs:label "Occupant Discomfort"@en .
+
+
+###  http://bemserver.org/occupant#OccupantPreferences
+occupant:OccupantPreferences rdf:type owl:Class ;
+                        rdfs:subClassOf occupant:Needs ,
+                                        [ rdf:type owl:Restriction ;
+                                          owl:onProperty occupant:id ;
+                                          owl:allValuesFrom xsd:string
+                                        ] ,
+                                        [ rdf:type owl:Restriction ;
+                                          owl:onProperty occupant:maxValue ;
+                                          owl:allValuesFrom xsd:double
+                                        ] ,
+                                        [ rdf:type owl:Restriction ;
+                                          owl:onProperty occupant:minValue ;
+                                          owl:allValuesFrom xsd:double
+                                        ] ;
+                        rdfs:comment "The occupant preferences refers to the building occupants prefeerences regarding the comfort sempsation."@en ;
+                        rdfs:label "Occupant Preferences"@en .
+
+
+###  http://bemserver.org/occupant#OtherComfortEnvelope
+occupant:OtherComfortEnvelope rdf:type owl:Class ;
+                         rdfs:subClassOf occupant:ThermalComfort ;
+                         rdfs:comment "Other kind of standards that could appear or considered within the measurement and assessment of the thermal comfort."@en ;
+                         rdfs:label "Other Comfort Envelope"@en .
+
+
+###  http://bemserver.org/occupant#Outdoor
+occupant:Outdoor rdf:type owl:Class ;
+            rdfs:comment "Considering the environmental factors and the context definition, the outdoor class refers to those events that occur outside the building."@en ;
+            rdfs:label "Outdoor"@en .
+
+
+###  http://bemserver.org/occupant#Privacy
+occupant:Privacy rdf:type owl:Class ;
+            rdfs:subClassOf occupant:Needs ;
+            rdfs:comment "The privacy refers to need of privacy associated to the user information and the need to maintain outside views."@en ;
+            rdfs:label "Privacy"@en .
+
+
+###  http://bemserver.org/occupant#Probability
+occupant:Probability rdf:type owl:Class ;
+                rdfs:subClassOf occupant:Event ;
+                rdfs:comment "Likelihood measure to occur certain action"@en ;
+                rdfs:label "Probability"@en .
+
+
+###  http://bemserver.org/occupant#Recommendation
+occupant:Recommendation rdf:type owl:Class ;
+                   rdfs:subClassOf occupant:Notification ;
+                   rdfs:comment "The recomendation refers to the suggestions or proposals to improve the building efficiency or comfort."@en ;
+                   rdfs:label "Recommendation"@en .
+
+
+###  http://bemserver.org/occupant#Report
+occupant:Report rdf:type owl:Class ;
+           rdfs:subClassOf occupant:Feedback ;
+           rdfs:comment "Type of occupant feedback based on the building actor feedback using specific documants."@en ;
+           rdfs:label "Report"@en .
+
+
+###  http://bemserver.org/occupant#Role
+occupant:Role rdf:type owl:Class ;
+         rdfs:comment "Depending on the interactions and the building type, the occupants interact with the building according to their capacities to perform building actions, as for example, seeing the building thermostats (ssn:Device) or actuating over the temperature fan coils (ifc:Actuator). At this point, it is interesting to consider that the occupants only perform such interactions if building managers permit them according to the building policies."@en ;
+         rdfs:label "Role"@en .
+
+
+###  http://bemserver.org/occupant#Season
+occupant:Season rdf:type owl:Class ;
+           rdfs:subClassOf occupant:TimeBehaviour ;
+           rdfs:comment "It represent the season"@en ;
+           rdfs:label "Season"@en .
+
+
+###  http://bemserver.org/occupant#Status
+occupant:Status rdf:type owl:Class ;
+           rdfs:comment "State of the driver"@en ;
+           rdfs:label "Status"@en .
+
+
+###  http://bemserver.org/occupant#SystemActions
+occupant:SystemActions rdf:type owl:Class ;
+                  rdfs:subClassOf occupant:Actions ;
+                  rdfs:comment "System Actions are the intereactions between the different occupants and the building using the different building systems to modify the building states towards more comfortable states."@en ;
+                  rdfs:label "System Actions"@en .
+
+
+###  http://bemserver.org/occupant#ThermalComfort
+occupant:ThermalComfort rdf:type owl:Class ;
+                   rdfs:subClassOf occupant:Needs ;
+                   rdfs:comment "Thermal Comfort is defined by the models to determine suitable indoor temperature associated to the user comfort." ;
+                   rdfs:label "Thermal Comfort" .
+
+
+###  http://bemserver.org/occupant#TimeBehaviour
+occupant:TimeBehaviour rdf:type owl:Class ;
+                  rdfs:comment "The time of day and the day of the week are fundamental to the presence and location of occupants in a building. Some personal habits are time-driven, for example opening windows when first arriving at work or closing windows before leaving the office, or turning on lights when first arriving and turning off lights before leaving."@en ;
+                  rdfs:label "Time Behaviour"@en .
+
+
+###  http://bemserver.org/occupant#User
+occupant:User rdf:type owl:Class ;
+         rdfs:subClassOf [ rdf:type owl:Restriction ;
+                           owl:onProperty occupant:concerns ;
+                           owl:someValuesFrom occupant:Feedback
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty occupant:prefers ;
+                           owl:someValuesFrom occupant:Modality
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty occupant:receives ;
+                           owl:someValuesFrom occupant:Notification
+                         ] ;
+         rdfs:comment "Type of actor that corresponds to the BEMServer user."@en ;
+         rdfs:label "User"@en .
+
+
+###  http://bemserver.org/occupant#VisualComfort
+occupant:VisualComfort rdf:type owl:Class ;
+                  rdfs:subClassOf occupant:Needs ;
+                  rdfs:comment "Visual comfort criteria measure the ability of an individual to carry out tasks comfortably in terms of their photo-sensory perception of their environment.  They are dependent on many factors including: light intensity, direction of light source, reflection of surfaces, contrast of surfaces, the nature of the task being undertaken and the photo-sensory response of the eye.  International recommendations exist that specify the minimum level of illuminance required to provide visual comfort for various tasks and locations. As with thermal comfort temperatures, these light levels were derived experimentally and reflect an average person engaged in a specific activity within a defined environment."@en ;
+                  rdfs:label "Visual Comfort"@en .
+
+
+###  http://bemserver.org/occupant#WindowState
+occupant:WindowState rdf:type owl:Class ;
+                rdfs:subClassOf occupant:BuildingSimpleState ;
+                rdfs:comment "Determines the state of the specific window (Open or Close)"@en ;
+                rdfs:label "Window State"@en .
+
+
+###  http://bemserver.org/occupant#WindowsClose
+occupant:WindowsClose rdf:type owl:Class ;
+                 rdfs:subClassOf occupant:WindowState ;
+                 owl:disjointWith occupant:WindowsOpen ;
+                 rdfs:comment "Determines that the corresponding Window is close"@en ;
+                 rdfs:label "Windows Close"@en .
+
+
+###  http://bemserver.org/occupant#WindowsOpen
+occupant:WindowsOpen rdf:type owl:Class ;
+                rdfs:subClassOf occupant:WindowState ;
+                rdfs:comment "Determines that the corresponding windows is open"@en ;
+                rdfs:label "Windows Open"@en .
+
+
+###  http://bemserver.org/occupant#ZoneEmpty
+occupant:ZoneEmpty rdf:type owl:Class ;
+              rdfs:subClassOf occupant:ZoneOccupancy ;
+              owl:disjointWith occupant:ZoneOccupied ;
+              rdfs:comment "Determines the corrresponding building space have nobody inside (empty room)"@en ;
+              rdfs:label "Zone Empty"@en .
+
+
+###  http://bemserver.org/occupant#ZoneOccupancy
+occupant:ZoneOccupancy rdf:type owl:Class ;
+                  rdfs:subClassOf occupant:BuildingSimpleState ;
+                  rdfs:comment "Determines the number of people that are in a specific building space. In an abstract way, it determines wether the building space is empty or occupied."@en ;
+                  rdfs:label "Zone Occupancy"@en .
+
+
+###  http://bemserver.org/occupant#ZoneOccupied
+occupant:ZoneOccupied rdf:type owl:Class ;
+                 rdfs:subClassOf occupant:ZoneOccupancy ;
+                 rdfs:comment "Determines the corresponding building space have someone inside. Thus, the specific building space have one or more people inside."@en ;
+                 rdfs:label "Zone Occupied"@en .
+
+
+###  http://bemserver.org/occupant#Occupant
+occupant:Occupant rdf:type owl:Class ;
+          rdfs:subClassOf occupant:User .
+
+
+###  http://www.w3.org/2006/time#DateTimeInterval
+time:DateTimeInterval rdf:type owl:Class ;
+                      rdfs:subClassOf occupant:TimeBehaviour ;
+                      rdfs:comment "It enables compact representation of an interval corresponding to a single element in a date-time description (i.e. a specified year, month, week, day, hour, minute, second)"@en ;
+                      rdfs:label "Date Time Interval"@en .
+
+
+###  http://www.w3.org/2006/time#DayOfWeek
+time:DayOfWeek rdf:type owl:Class ;
+               rdfs:subClassOf occupant:TimeBehaviour ;
+               rdfs:comment "Correpondence to the seven days used in the Gregorian calendar, and using the English names :Sunday, :Monday, :Tuesday, :Wednesday, :Thursday, :Friday, :Saturday."@en ;
+               rdfs:label "Day Of Week"@en .
+
+
+###  http://www.w3.org/2006/time#Instant
+time:Instant rdf:type owl:Class ;
+             rdfs:subClassOf occupant:TimeBehaviour ;
+             rdfs:comment "A temporal entity with zero extent or duration."@en ;
+             rdfs:label "Instant"@en .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://bemserver.org/occupant#Autumn
+occupant:Autumn rdf:type owl:NamedIndividual ,
+                    occupant:Season .
+
+
+###  http://bemserver.org/occupant#Email
+occupant:Email rdf:type owl:NamedIndividual ,
+                   occupant:Modality .
+
+
+###  http://bemserver.org/occupant#Female
+occupant:Female rdf:type owl:NamedIndividual ,
+                    occupant:Gender .
+
+
+###  http://bemserver.org/occupant#Male
+occupant:Male rdf:type owl:NamedIndividual ,
+                  occupant:Gender .
+
+
+###  http://bemserver.org/occupant#Manager
+occupant:Manager rdf:type owl:NamedIndividual ,
+                     occupant:Role .
+
+
+###  http://bemserver.org/occupant#Owner
+occupant:Owner rdf:type owl:NamedIndividual ,
+                   occupant:Role .
+
+
+###  http://bemserver.org/occupant#Phone
+occupant:Phone rdf:type owl:NamedIndividual ,
+                   occupant:Modality .
+
+
+###  http://bemserver.org/occupant#SMS
+occupant:SMS rdf:type owl:NamedIndividual ,
+                 occupant:Modality .
+
+
+###  http://bemserver.org/occupant#Spring
+occupant:Spring rdf:type owl:NamedIndividual ,
+                    occupant:Season .
+
+
+###  http://bemserver.org/occupant#Summer
+occupant:Summer rdf:type owl:NamedIndividual ,
+                    occupant:Season .
+
+
+###  http://bemserver.org/occupant#Technician
+occupant:Technician rdf:type owl:NamedIndividual ,
+                        occupant:Role .
+
+
+###  http://bemserver.org/occupant#Winter
+occupant:Winter rdf:type owl:NamedIndividual ,
+                    occupant:Season .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( occupant:ActivityModel
+                occupant:BehaviourModel
+                occupant:EquipementModel
+                occupant:EventModel
+              )
+] .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
