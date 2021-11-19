@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+ <link rel="stylesheet" href="resources/primer.css" media="screen" />    <link rel="stylesheet" href="resources/rec.css" media="screen" />    <link rel="stylesheet" href="resources/extra.css" media="screen" />    <link rel="stylesheet" href="resources/owl.css" media="screen" />    <title>Services Ontology</title>
+
+
+<!-- SCHEMA.ORG METADATA -->
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","url":"http://bemserver.org/services","image":"http://vowl.visualdataweb.org/webvowl/#iri=http://bemserver.org/services","name":"Services Ontology", "headline":"This ontology is used to describe services that are client of BEMServer. Services are programs that can read/get data from BEMServer to perform specific operations, and/or push/write information on BEMServer. In some cases, services can also be seen as specific cases of sensors, producing timeseries to BEMServer. The ontology can be used to generate a catalogue of services that are installed on BEMServer.", "datePublished":"Fri Nov 19 09:54:18 CET 2021", "version":"v0.1", "author":[{"@type":"Person","name":"Lara Kallab"},{"@type":"Person","name":"Nathalie Charbel"},{"@type":"Person","name":"Pierre Bourreau"}]}</script>
+
+<script src="resources/jquery.js"></script> 
+<script src="resources/marked.min.js"></script> 
+    <script> 
+function loadHash() {
+  jQuery(".markdown").each(function(el){jQuery(this).after(marked(jQuery(this).text())).remove()});
+	var hash = location.hash;
+	if($(hash).offset()!=null){
+	  $('html, body').animate({scrollTop: $(hash).offset().top}, 0);
+}
+	loadTOC();
+}
+function loadTOC(){
+	//process toc dynamically
+	  var t='<h2>Table of contents</h2><ul>';i = 1;j=0;
+	  jQuery(".list").each(function(){
+		if(jQuery(this).is('h2')){
+			if(j>0){
+				t+='</ul>';
+				j=0;
+			}
+			t+= '<li>'+i+'. <a href=#'+ jQuery(this).attr('id')+'>'+ jQuery(this).ignore("span").text()+'</a></li>';
+			i++;
+		}
+		if(jQuery(this).is('h3')){
+			if(j==0){
+				t+='<ul>';
+			}
+			j++;
+			t+= '<li>'+(i-1)+'.'+j+'. '+'<a href=#'+ jQuery(this).attr('id')+'>'+ jQuery(this).ignore("span").text()+'</a></li>';
+		}
+	  });
+	  t+='</ul>';
+	  $("#toc").html(t); 
+}
+$(function(){
+    loadHash();
+}); $.fn.ignore = function(sel){
+        return this.clone().find(sel||">*").remove().end();
+ }; 
+   </script> 
+  </head> 
+
+<body>
+<div class="container">
+<div class="head">
+<div style="float:right">language <a href="index-en.html"><b>en</b></a> </div>
+<h1>Services Ontology</h1>
+
+
+<dl>
+<dt>This version:</dt>
+<dd><a href="http://bemserver.org/services/0.1">http://bemserver.org/services/0.1</a></dd>
+<dt>Latest version:</dt>
+<dd><a href="http://bemserver.org/services">http://bemserver.org/services</a></dd>
+<dt>Revision:</dt>
+<dd>v0.1</dd>
+<dt>Authors:</dt>
+<dd>Lara Kallab</dd><dd>Nathalie Charbel</dd><dd>Pierre Bourreau</dd>
+
+<dt>Download serialization:</dt><dd><span><a href="ontology.jsonld" target="_blank"><img src="https://img.shields.io/badge/Format-JSON_LD-blue.svg" alt="JSON-LD" /></a> </span><span><a href="ontology.rdf" target="_blank"><img src="https://img.shields.io/badge/Format-RDF/XML-blue.svg" alt="RDF/XML" /></a> </span><span><a href="ontology.nt" target="_blank"><img src="https://img.shields.io/badge/Format-N_Triples-blue.svg" alt="N-Triples" /></a> </span><span><a href="ontology.ttl" target="_blank"><img src="https://img.shields.io/badge/Format-TTL-blue.svg" alt="TTL" /></a> </span></dd><dt>License: </dt><dd><a href="http://insertlicenseURIhere.org" target="_blank"><img src="https://img.shields.io/badge/License-license%20name%20goes%20here-blue.svg" alt="http://insertlicenseURIhere.org" /></a>
+</dd><!-- <dt>Evaluation:</dt><dd><a href="OOPSEvaluation/oopsEval.html#" target="_blank"><img src="https://img.shields.io/badge/Evaluate_with-OOPS! (OntOlogy Pitfall Scanner!)-blue.svg" alt="Evaluate with OOPS!" /></a></dd> --><dt>Cite as:</dt>
+<dd>Lara Kallab,Nathalie Charbel,Pierre Bourreau. BEMServer services ontology. Revision: v0.1. Retrieved from: http://bemserver.org/services/0.1</dd>
+</dl>
+
+<hr/>
+</div>
+<div class="status">
+<div>
+<span>Ontology Specification Draft</span>
+</div>
+</div>     <div id="abstract"><h2>Abstract</h2><span class="markdown">
+This ontology is used to describe services that are client of BEMServer. Services are programs that can read/get data from BEMServer to perform specific operations, and/or push/write information on BEMServer. In some cases, services can also be seen as specific cases of sensors, producing timeseries to BEMServer. The ontology can be used to generate a catalogue of services that are installed on BEMServer.</span>
+</div>
+<div id="toc"></div> 
+
+<!--INTRODUCTION SECTION-->
+    <div id="introduction"><h2 id="intro" class="list">Introduction <span class="backlink"> back to <a href="#toc">ToC</a></span></h2>
+<span class="markdown">
+This is a place holder text for the introduction. The introduction should briefly describe the ontology, its motivation, state of the art and goals.</span>
+<div id="namespacedeclarations">
+<h3 id="ns" class="list">Namespace declarations</h3>
+<div id="ns" align="center">
+<table>
+<caption> <a href="#ns"> Table 1</a>: Namespaces used in the document </caption>
+<tbody>
+<tr><td><b>services</b></td><td>&lt;http://bemserver.org/services&gt;</td></tr>
+<tr><td><b>hydra</b></td><td>&lt;http://www.w3.org/ns/hydra/core&gt;</td></tr>
+<tr><td><b>qudt</b></td><td>&lt;http://qudt.org/schema/qudt&gt;</td></tr>
+<tr><td><b>owl</b></td><td>&lt;http://www.w3.org/2002/07/owl&gt;</td></tr>
+<tr><td><b>rdf</b></td><td>&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns&gt;</td></tr>
+<tr><td><b>bot</b></td><td>&lt;https://w3id.org/bot&gt;</td></tr>
+<tr><td><b>xml</b></td><td>&lt;http://www.w3.org/XML/1998/namespace&gt;</td></tr>
+<tr><td><b>xsd</b></td><td>&lt;http://www.w3.org/2001/XMLSchema&gt;</td></tr>
+<tr><td><b>property</b></td><td>&lt;http://bemserver.org/property&gt;</td></tr>
+<tr><td><b>dcterms</b></td><td>&lt;http://purl.org/dc/terms&gt;</td></tr>
+<tr><td><b>rdfs</b></td><td>&lt;http://www.w3.org/2000/01/rdf-schema&gt;</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+  
+
+<!--OVERVIEW SECTION-->
+    <div id="overview"><h2 id="overv" class="list">Services: Overview <span class="backlink"> back to <a href="#toc">ToC</a></span></h2>
+<span class="markdown">
+This ontology has the following classes and properties.</span>
+<h4>Classes</h4>
+<ul xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" class="hlist">
+   <li>
+      <a href="#ComposedService" title="http://bemserver.org/services#ComposedService">ComposedService</a>
+   </li>
+   <li>
+      <a href="#DataCollectionService"
+         title="http://bemserver.org/services#DataCollectionService">
+         <span>data collection service</span>
+      </a>
+   </li>
+   <li>
+      <a href="#DataComputationService"
+         title="http://bemserver.org/services#DataComputationService">
+         <span>data computation service</span>
+      </a>
+   </li>
+   <li>
+      <a href="#DataPreProcessingService"
+         title="http://bemserver.org/services#DataPreProcessingService">
+         <span>data pre processing service</span>
+      </a>
+   </li>
+   <li>
+      <a href="#Event" title="http://bemserver.org/services#Event">Event</a>
+   </li>
+   <li>
+      <a href="#Parameter" title="http://bemserver.org/services#Parameter">Input</a>
+   </li>
+   <li>
+      <a href="#Model" title="http://bemserver.org/services#Model">Model</a>
+   </li>
+   <li>
+      <a href="#Output" title="http://bemserver.org/services#Output">Output</a>
+   </li>
+   <li>
+      <a href="#Service" title="http://bemserver.org/services#Service">Service</a>
+   </li>
+   <li>
+      <a href="#SingleService" title="http://bemserver.org/services#SingleService">SingleService</a>
+   </li>
+   <li>
+      <a href="#TimeSeries" title="http://bemserver.org/services#TimeSeries">TimeSeries</a>
+   </li>
+</ul><h4>Object Properties</h4><ul xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" class="hlist">
+   <li>
+      <a href="#hasOutput" title="http://bemserver.org/services#hasOutput">
+         <span>has output</span>
+      </a>
+   </li>
+   <li>
+      <a href="#partOfService" title="http://bemserver.org/services#partOfService">
+         <span>part of service</span>
+      </a>
+   </li>
+</ul><h4>Data Properties</h4><ul xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" class="hlist">
+   <li>
+      <a href="#description" title="http://bemserver.org/services#description">
+         <span>description</span>
+      </a>
+   </li>
+   <li>
+      <a href="#externalID" title="http://bemserver.org/services#externalID">
+         <span>external i d</span>
+      </a>
+   </li>
+   <li>
+      <a href="#hasFrontend" title="http://bemserver.org/services#hasFrontend">
+         <span>has frontend</span>
+      </a>
+   </li>
+   <li>
+      <a href="#id" title="http://bemserver.org/services#id">
+         <span>id</span>
+      </a>
+   </li>
+   <li>
+      <a href="#name" title="http://bemserver.org/services#name">
+         <span>name</span>
+      </a>
+   </li>
+</ul><h4>Annotation Properties</h4><ul xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" class="hlist">
+   <li>
+      <a href="#http://purl.org/dc/terms/creator" title="http://purl.org/dc/terms/creator">
+         <span>creator</span>
+      </a>
+   </li>
+   <li>
+      <a href="#http://purl.org/dc/terms/description" title="http://purl.org/dc/terms/description">
+         <span>description</span>
+      </a>
+   </li>
+   <li>
+      <a href="#http://www.w3.org/2000/01/rdf-schema#description" title="http://www.w3.org/2000/01/rdf-schema#description">
+         <span>description</span>
+      </a>
+   </li>
+   <li>
+      <a href="#http://www.w3.org/2000/01/rdf-schema#desription" title="http://www.w3.org/2000/01/rdf-schema#desription">
+         <span>desription</span>
+      </a>
+   </li>
+   <li>
+      <a href="#http://purl.org/dc/terms/title" title="http://purl.org/dc/terms/title">
+         <span>title</span>
+      </a>
+   </li>
+</ul>
+</div>
+  
+
+<!--DESCRIPTION SECTION-->
+    <div id="description"><h2 id="desc" class="list">Services: Description <span class="backlink"> back to <a href="#toc">ToC</a></span></h2>
+<span class="markdown">
+This is a placeholder text for the description of your ontology. The description should include an explanation and a diagram explaining how the classes are related, examples of usage, etc.</span>
+
+</div>
+   
+
+<!--CROSSREF SECTION-->
+   <div id="crossref"><h2 id="crossreference" class="list">Cross reference for Services classes, properties and dataproperties <span class="backlink"> back to <a href="#toc">ToC</a></span></h2>
+This section provides details for each class and property defined by Services.
+<div xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="classes">
+   <h3 id="classes-headline" class="list">Classes</h3>
+   <ul class="hlist">
+      <li>
+         <a href="#ComposedService" title="http://bemserver.org/services#ComposedService">ComposedService</a>
+      </li>
+      <li>
+         <a href="#DataCollectionService"
+            title="http://bemserver.org/services#DataCollectionService">
+            <span>data collection service</span>
+         </a>
+      </li>
+      <li>
+         <a href="#DataComputationService"
+            title="http://bemserver.org/services#DataComputationService">
+            <span>data computation service</span>
+         </a>
+      </li>
+      <li>
+         <a href="#DataPreProcessingService"
+            title="http://bemserver.org/services#DataPreProcessingService">
+            <span>data pre processing service</span>
+         </a>
+      </li>
+      <li>
+         <a href="#Event" title="http://bemserver.org/services#Event">Event</a>
+      </li>
+      <li>
+         <a href="#Parameter" title="http://bemserver.org/services#Parameter">Input</a>
+      </li>
+      <li>
+         <a href="#Model" title="http://bemserver.org/services#Model">Model</a>
+      </li>
+      <li>
+         <a href="#Output" title="http://bemserver.org/services#Output">Output</a>
+      </li>
+      <li>
+         <a href="#Service" title="http://bemserver.org/services#Service">Service</a>
+      </li>
+      <li>
+         <a href="#SingleService" title="http://bemserver.org/services#SingleService">SingleService</a>
+      </li>
+      <li>
+         <a href="#TimeSeries" title="http://bemserver.org/services#TimeSeries">TimeSeries</a>
+      </li>
+   </ul>
+   <div class="entity" id="ComposedService">
+      <h3>ComposedService<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/services#ComposedService</p>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#Service" title="http://bemserver.org/services#Service">Service</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+         <dt>is disjoint with</dt>
+         <dd>
+            <a href="#SingleService" title="http://bemserver.org/services#SingleService">SingleService</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="DataCollectionService">
+      <h3>data collection service<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/services#DataCollectionService</p>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#SingleService" title="http://bemserver.org/services#SingleService">SingleService</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+         <dt>is disjoint with</dt>
+         <dd>
+            <a href="#DataComputationService"
+               title="http://bemserver.org/services#DataComputationService">data computation service</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#DataPreProcessingService"
+               title="http://bemserver.org/services#DataPreProcessingService">data pre processing service</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="DataComputationService">
+      <h3>data computation service<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/services#DataComputationService</p>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#SingleService" title="http://bemserver.org/services#SingleService">SingleService</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+         <dt>is disjoint with</dt>
+         <dd>
+            <a href="#DataCollectionService"
+               title="http://bemserver.org/services#DataCollectionService">data collection service</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#DataPreProcessingService"
+               title="http://bemserver.org/services#DataPreProcessingService">data pre processing service</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="DataPreProcessingService">
+      <h3>data pre processing service<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/services#DataPreProcessingService</p>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#SingleService" title="http://bemserver.org/services#SingleService">SingleService</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+         <dt>is disjoint with</dt>
+         <dd>
+            <a href="#DataCollectionService"
+               title="http://bemserver.org/services#DataCollectionService">data collection service</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#DataComputationService"
+               title="http://bemserver.org/services#DataComputationService">data computation service</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="Event">
+      <h3>Event<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/services#Event</p>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#Output" title="http://bemserver.org/services#Output">Output</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+         <dt>is disjoint with</dt>
+         <dd>
+            <a href="#TimeSeries" title="http://bemserver.org/services#TimeSeries">TimeSeries</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="Parameter">
+      <h3>Input<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/services#Parameter</p>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd/>
+      </dl>
+   </div>
+   <div class="entity" id="Model">
+      <h3>Model<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/services#Model</p>
+      <div class="comment">
+         <span class="markdown">A model is a particular configuration of service. As such it can be seen as a sub-service; For instance, if the service runs neural networks, it can run over different neural networks models.</span>
+      </div>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd/>
+      </dl>
+   </div>
+   <div class="entity" id="Output">
+      <h3>Output<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/services#Output</p>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd/>
+         <dt>has sub-classes</dt>
+         <dd>
+            <a href="#Event" title="http://bemserver.org/services#Event">Event</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#TimeSeries" title="http://bemserver.org/services#TimeSeries">TimeSeries</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="Service">
+      <h3>Service<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/services#Service</p>
+      <div class="comment">
+         <span class="markdown">A service defined in BEMServer is an external component that is a client of BEMServer. It can get data from BEMServer, or push some new data to it. As such, it can provide one or more functionalities.</span>
+      </div>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd/>
+         <dt>has sub-classes</dt>
+         <dd>
+            <a href="#ComposedService" title="http://bemserver.org/services#ComposedService">ComposedService</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#SingleService" title="http://bemserver.org/services#SingleService">SingleService</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="SingleService">
+      <h3>SingleService<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/services#SingleService</p>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#Service" title="http://bemserver.org/services#Service">Service</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+         <dt>has sub-classes</dt>
+         <dd>
+            <a href="#DataCollectionService"
+               title="http://bemserver.org/services#DataCollectionService">data collection service</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#DataComputationService"
+               title="http://bemserver.org/services#DataComputationService">data computation service</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#DataPreProcessingService"
+               title="http://bemserver.org/services#DataPreProcessingService">data pre processing service</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+         <dt>is disjoint with</dt>
+         <dd>
+            <a href="#ComposedService" title="http://bemserver.org/services#ComposedService">ComposedService</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="TimeSeries">
+      <h3>TimeSeries<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/services#TimeSeries</p>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#Output" title="http://bemserver.org/services#Output">Output</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+         <dt>is disjoint with</dt>
+         <dd>
+            <a href="#Event" title="http://bemserver.org/services#Event">Event</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+</div><div xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="objectproperties">
+   <h3 id="properties" class="list">Object Properties</h3>
+   <ul class="hlist">
+      <li>
+         <a href="#hasOutput" title="http://bemserver.org/services#hasOutput">
+            <span>has output</span>
+         </a>
+      </li>
+      <li>
+         <a href="#partOfService" title="http://bemserver.org/services#partOfService">
+            <span>part of service</span>
+         </a>
+      </li>
+   </ul>
+   <div class="entity" id="hasOutput">
+      <h3>has output<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/services#hasOutput</p>
+      <div class="description">
+         <dl>
+            <dt>is inverse of</dt>
+            <dd>
+               <a href="http://bemserver.org/services#model"
+                  target="_blank"
+                  title="http://bemserver.org/services#model">model</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="partOfService">
+      <h3>part of service<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/services#partOfService</p>
+      <div class="description">
+         <dl>
+            <dt>is inverse of</dt>
+            <dd>
+               <a href="http://bemserver.org/services#usesModel"
+                  target="_blank"
+                  title="http://bemserver.org/services#usesModel">uses model</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+</div><div xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="dataproperties">
+   <h3 id="dataproperties-headline" class="list">Data Properties</h3>
+   <ul class="hlist">
+      <li>
+         <a href="#description" title="http://bemserver.org/services#description">
+            <span>description</span>
+         </a>
+      </li>
+      <li>
+         <a href="#externalID" title="http://bemserver.org/services#externalID">
+            <span>external i d</span>
+         </a>
+      </li>
+      <li>
+         <a href="#hasFrontend" title="http://bemserver.org/services#hasFrontend">
+            <span>has frontend</span>
+         </a>
+      </li>
+      <li>
+         <a href="#id" title="http://bemserver.org/services#id">
+            <span>id</span>
+         </a>
+      </li>
+      <li>
+         <a href="#name" title="http://bemserver.org/services#name">
+            <span>name</span>
+         </a>
+      </li>
+   </ul>
+   <div class="entity" id="description">
+      <h3>description<sup class="type-dp" title="data property">dp</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#dataproperties">Data Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/services#description</p>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="http://www.w3.org/ns/hydra/core#description"
+                  target="_blank"
+                  title="http://www.w3.org/ns/hydra/core#description">description</a>
+               <sup class="type-dp" title="data property">dp</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="externalID">
+      <h3>external i d<sup class="type-dp" title="data property">dp</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#dataproperties">Data Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/services#externalID</p>
+   </div>
+   <div class="entity" id="hasFrontend">
+      <h3>has frontend<sup class="type-dp" title="data property">dp</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#dataproperties">Data Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/services#hasFrontend</p>
+   </div>
+   <div class="entity" id="id">
+      <h3>id<sup class="type-dp" title="data property">dp</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#dataproperties">Data Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/services#id</p>
+      <div class="description">
+         <dl>
+            <dt>has range</dt>
+            <dd>
+               <a href="http://www.w3.org/2001/XMLSchema#string"
+                  target="_blank"
+                  title="http://www.w3.org/2001/XMLSchema#string">string</a>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="name">
+      <h3>name<sup class="type-dp" title="data property">dp</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#dataproperties">Data Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/services#name</p>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="http://www.w3.org/ns/hydra/core#title"
+                  target="_blank"
+                  title="http://www.w3.org/ns/hydra/core#title">title</a>
+               <sup class="type-dp" title="data property">dp</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+</div><div xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     id="annotationproperties">
+   <h3 id="annotationproperties" class="list">Annotation Properties</h3>
+   <ul class="hlist">
+      <li>
+         <a href="#http://purl.org/dc/terms/creator" title="http://purl.org/dc/terms/creator">
+            <span>creator</span>
+         </a>
+      </li>
+      <li>
+         <a href="#http://purl.org/dc/terms/description" title="http://purl.org/dc/terms/description">
+            <span>description</span>
+         </a>
+      </li>
+      <li>
+         <a href="#http://www.w3.org/2000/01/rdf-schema#description" title="http://www.w3.org/2000/01/rdf-schema#description">
+            <span>description</span>
+         </a>
+      </li>
+      <li>
+         <a href="#http://www.w3.org/2000/01/rdf-schema#desription" title="http://www.w3.org/2000/01/rdf-schema#desription">
+            <span>desription</span>
+         </a>
+      </li>
+      <li>
+         <a href="#http://purl.org/dc/terms/title" title="http://purl.org/dc/terms/title">
+            <span>title</span>
+         </a>
+      </li>
+   </ul>
+   <div class="entity" id="http://purl.org/dc/terms/creator">
+      <h3>creator<sup class="type-ap" title="annotation property">ap</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#annotationproperties">Annotation Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://purl.org/dc/terms/creator</p>
+   </div>
+   <div class="entity" id="http://purl.org/dc/terms/description">
+      <h3>description<sup class="type-ap" title="annotation property">ap</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#annotationproperties">Annotation Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://purl.org/dc/terms/description</p>
+   </div>
+   <div class="entity" id="http://www.w3.org/2000/01/rdf-schema#description">
+      <h3>description<sup class="type-ap" title="annotation property">ap</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#annotationproperties">Annotation Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://www.w3.org/2000/01/rdf-schema#description</p>
+   </div>
+   <div class="entity" id="http://www.w3.org/2000/01/rdf-schema#desription">
+      <h3>desription<sup class="type-ap" title="annotation property">ap</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#annotationproperties">Annotation Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://www.w3.org/2000/01/rdf-schema#desription</p>
+   </div>
+   <div class="entity" id="http://purl.org/dc/terms/title">
+      <h3>title<sup class="type-ap" title="annotation property">ap</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#annotationproperties">Annotation Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://purl.org/dc/terms/title</p>
+   </div>
+</div><div id="legend">
+<h2>Legend <span class="backlink"> back to <a href="#toc">ToC</a></span></h2>
+<div   class="entity">
+<sup class="type-c" title="Classes">c</sup>: Classes <br/>
+<sup class="type-op" title="Object Properties">op</sup>: Object Properties <br/>
+<sup class="type-dp" title="Data Properties">dp</sup>: Data Properties <br/>
+<sup class="type-ni" title="Named Individuals">ni</sup>: Named Individuals
+</div>
+</div>
+</div>
+    
+
+<!--REFERENCES SECTION-->
+  <div id="references">
+<h2 id="ref" class="list">References <span class="backlink"> back to <a href="#toc">ToC</a></span></h2>
+<span class="markdown">
+Add your references here. It is recommended to have them as a list.</span>
+
+</div>
+<div id="acknowledgments">
+<h2 id="ack" class="list">Acknowledgments <span class="backlink"> back to <a href="#toc">ToC</a></span></h2>
+<p>
+The authors would like to thank <a href="http://www.essepuntato.it/">Silvio Peroni</a> for developing <a href="http://www.essepuntato.it/lode">LODE</a>, a Live OWL Documentation Environment, which is used for representing the Cross Referencing Section of this document and <a href="https://w3id.org/people/dgarijo">Daniel Garijo</a> for developing <a href="https://github.com/dgarijo/Widoco">Widoco</a>, the program used to create the template used in this documentation.</p>
+</div>
+
+
+</div>
+</body>
+</html>

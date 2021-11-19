@@ -1,0 +1,476 @@
+<http://bemserver.org/xbot> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Ontology> .
+<http://bemserver.org/xbot> <http://www.w3.org/2002/07/owl#imports> <https://w3id.org/bot-0.3.2> .
+<http://bemserver.org/xbot> <http://www.w3.org/2000/01/rdf-schema#comment> "This ontology is based on BOT for describing building topology and extends it towards representing a wise set of building types (including residential and non residential buildings), spaces and storeys based on the Omniclass standard."@en .
+# 
+# 
+# #################################################################
+# #
+# #    Data properties
+# #
+# #################################################################
+# 
+# 
+# http://bemserver.org/xbot#floorLevel
+<http://bemserver.org/xbot#floorLevel> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://bemserver.org/xbot#floorLevel> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#integer> .
+<http://bemserver.org/xbot#floorLevel> <http://www.w3.org/2000/01/rdf-schema#label> "floorLevel"@en .
+# 
+# 
+# 
+# #################################################################
+# #
+# #    Classes
+# #
+# #################################################################
+# 
+# 
+# http://bemserver.org/xbot#Administration
+<http://bemserver.org/xbot#Administration> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/xbot#Administration> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://bemserver.org/xbot#PublicBuilding> .
+<http://bemserver.org/xbot#Administration> <http://www.w3.org/2000/01/rdf-schema#label> "Administration" .
+# 
+# http://bemserver.org/xbot#AgriculturalBuilding
+<http://bemserver.org/xbot#AgriculturalBuilding> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/xbot#AgriculturalBuilding> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://w3id.org/bot#Building> .
+<http://bemserver.org/xbot#AgriculturalBuilding> <http://www.w3.org/2000/01/rdf-schema#label> "AgriculturalBuilding" .
+# 
+# http://bemserver.org/xbot#Airport
+<http://bemserver.org/xbot#Airport> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/xbot#Airport> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://bemserver.org/xbot#TransportBuilding> .
+<http://bemserver.org/xbot#Airport> <http://www.w3.org/2000/01/rdf-schema#label> "Airport" .
+# 
+# http://bemserver.org/xbot#Allotment
+<http://bemserver.org/xbot#Allotment> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/xbot#Allotment> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://bemserver.org/xbot#SingleFamilyHousing> .
+# 
+# http://bemserver.org/xbot#Apartment
+<http://bemserver.org/xbot#Apartment> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/xbot#Apartment> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://bemserver.org/xbot#ResidentialBuilding> .
+<http://bemserver.org/xbot#Apartment> <http://www.w3.org/2000/01/rdf-schema#label> "Apartment" .
+# 
+# http://bemserver.org/xbot#AutomobileRepair
+<http://bemserver.org/xbot#AutomobileRepair> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/xbot#AutomobileRepair> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://bemserver.org/xbot#CommercialBuilding> .
+<http://bemserver.org/xbot#AutomobileRepair> <http://www.w3.org/2000/01/rdf-schema#label> "AutomobileRepair" .
+# 
+# http://bemserver.org/xbot#Balcony
+<http://bemserver.org/xbot#Balcony> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/xbot#Balcony> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://w3id.org/bot#Space> .
+<http://bemserver.org/xbot#Balcony> <http://www.w3.org/2000/01/rdf-schema#comment> "Balcony is an instance of IfcSpace in the building representing a balcony."@en .
+<http://bemserver.org/xbot#Balcony> <http://www.w3.org/2000/01/rdf-schema#label> "Balcony"@en .
+<http://bemserver.org/xbot#Balcony> <http://www.w3.org/2000/01/rdf-schema#seeAlso> "https://w3id.org/seas/Balcony" .
+# 
+# http://bemserver.org/xbot#BarRestaurant
+<http://bemserver.org/xbot#BarRestaurant> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/xbot#BarRestaurant> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://bemserver.org/xbot#CommercialBuilding> .
+<http://bemserver.org/xbot#BarRestaurant> <http://www.w3.org/2000/01/rdf-schema#label> "BarRestaurant" .
+# 
+# http://bemserver.org/xbot#Barn
+<http://bemserver.org/xbot#Barn> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/xbot#Barn> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://bemserver.org/xbot#AgriculturalBuilding> .
+<http://bemserver.org/xbot#Barn> <http://www.w3.org/2000/01/rdf-schema#label> "Barn" .
+# 
+# http://bemserver.org/xbot#Bathroom
+<http://bemserver.org/xbot#Bathroom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/xbot#Bathroom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://w3id.org/bot#Space> .
+<http://bemserver.org/xbot#Bathroom> <http://www.w3.org/2000/01/rdf-schema#comment> "Bathroom is an instance of IfcSpace in the building representing a bathroom."@en .
+<http://bemserver.org/xbot#Bathroom> <http://www.w3.org/2000/01/rdf-schema#label> "Bathroom"@en .
+<http://bemserver.org/xbot#Bathroom> <http://www.w3.org/2000/01/rdf-schema#seeAlso> "https://w3id.org/seas/Bathroom" .
+# 
+# http://bemserver.org/xbot#Bungalow
+<http://bemserver.org/xbot#Bungalow> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/xbot#Bungalow> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://bemserver.org/xbot#ResidentialBuilding> .
+<http://bemserver.org/xbot#Bungalow> <http://www.w3.org/2000/01/rdf-schema#label> "Bungalow" .
+# 
+# http://bemserver.org/xbot#BusStation
+<http://bemserver.org/xbot#BusStation> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/xbot#BusStation> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://bemserver.org/xbot#TransportBuilding> .
+<http://bemserver.org/xbot#BusStation> <http://www.w3.org/2000/01/rdf-schema#label> "BusStation" .
+# 
+# http://bemserver.org/xbot#Cafeteria
+<http://bemserver.org/xbot#Cafeteria> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/xbot#Cafeteria> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://w3id.org/bot#Space> .
+<http://bemserver.org/xbot#Cafeteria> <http://www.w3.org/2000/01/rdf-schema#comment> "Cafeteria is an instance of IfcSpace in the building representing a cafeteria."@en .
+<http://bemserver.org/xbot#Cafeteria> <http://www.w3.org/2000/01/rdf-schema#label> "Cafeteria"@en .
+# 
+# http://bemserver.org/xbot#Canteen
+<http://bemserver.org/xbot#Canteen> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/xbot#Canteen> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://w3id.org/bot#Space> .
+<http://bemserver.org/xbot#Canteen> <http://www.w3.org/2000/01/rdf-schema#comment> "Canteen is an instance of IfcSpace in the building representing a canteen."@en .
+<http://bemserver.org/xbot#Canteen> <http://www.w3.org/2000/01/rdf-schema#label> "Canteen"@en .
+# 
+# http://bemserver.org/xbot#Cellar
+<http://bemserver.org/xbot#Cellar> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/xbot#Cellar> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://bemserver.org/xbot#AgriculturalBuilding> .
+<http://bemserver.org/xbot#Cellar> <http://www.w3.org/2000/01/rdf-schema#label> "Cellar" .
+# 
+# http://bemserver.org/xbot#Cinema
+<http://bemserver.org/xbot#Cinema> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/xbot#Cinema> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://bemserver.org/xbot#PublicBuilding> .
+<http://bemserver.org/xbot#Cinema> <http://www.w3.org/2000/01/rdf-schema#label> "Cinema" .
+# 
+# http://bemserver.org/xbot#CirculationArea
+<http://bemserver.org/xbot#CirculationArea> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/xbot#CirculationArea> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://w3id.org/bot#Space> .
+<http://bemserver.org/xbot#CirculationArea> <http://www.w3.org/2000/01/rdf-schema#comment> "CirculationArea is an instance of IfcSpace in the building representing a circulation area."@en .
+<http://bemserver.org/xbot#CirculationArea> <http://www.w3.org/2000/01/rdf-schema#label> "CirculationArea"@en .
+# 
+# http://bemserver.org/xbot#CommercialBuilding
+<http://bemserver.org/xbot#CommercialBuilding> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/xbot#CommercialBuilding> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://w3id.org/bot#Building> .
+<http://bemserver.org/xbot#CommercialBuilding> <http://www.w3.org/2000/01/rdf-schema#label> "CommercialBuilding" .
+# 
+# http://bemserver.org/xbot#Condominum
+<http://bemserver.org/xbot#Condominum> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/xbot#Condominum> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://bemserver.org/xbot#MultiDwellingHousing> .
+<http://bemserver.org/xbot#Condominum> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> "Part of 'Duplex' in Omniclass 11 (2013 02 26)"@en .
+<http://bemserver.org/xbot#Condominum> <http://www.w3.org/2000/01/rdf-schema#label> "Condominum"@en .
+# 
+# http://bemserver.org/xbot#ConferenceRoom
+<http://bemserver.org/xbot#ConferenceRoom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/xbot#ConferenceRoom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://w3id.org/bot#Space> .
+<http://bemserver.org/xbot#ConferenceRoom> <http://www.w3.org/2000/01/rdf-schema#comment> "ConferenceRoom is an instance of IfcSpace in the building representing a conference room."@en .
+<http://bemserver.org/xbot#ConferenceRoom> <http://www.w3.org/2000/01/rdf-schema#label> "ConferenceRoom"@en .
+# 
+# http://bemserver.org/xbot#ConventionCenter
+<http://bemserver.org/xbot#ConventionCenter> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/xbot#ConventionCenter> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://bemserver.org/xbot#CommercialBuilding> .
+<http://bemserver.org/xbot#ConventionCenter> <http://www.w3.org/2000/01/rdf-schema#label> "ConventionCenter" .
+# 
+# http://bemserver.org/xbot#DataCenter
+<http://bemserver.org/xbot#DataCenter> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/xbot#DataCenter> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://bemserver.org/xbot#IndustrialBuilding> .
+<http://bemserver.org/xbot#DataCenter> <http://www.w3.org/2000/01/rdf-schema#label> "DataCenter" .
+# 
+# http://bemserver.org/xbot#Desk
+<http://bemserver.org/xbot#Desk> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/xbot#Desk> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://w3id.org/bot#Space> .
+<http://bemserver.org/xbot#Desk> <http://www.w3.org/2000/01/rdf-schema#comment> "Desk is an instance of IfcSpace in the building representing a desk."@en .
+<http://bemserver.org/xbot#Desk> <http://www.w3.org/2000/01/rdf-schema#label> "Desk"@en .
+# 
+# http://bemserver.org/xbot#DetachedHouse
+<http://bemserver.org/xbot#DetachedHouse> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/xbot#DetachedHouse> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://bemserver.org/xbot#SingleFamilyHousing> .
+# 
+# http://bemserver.org/xbot#Dormitory
+<http://bemserver.org/xbot#Dormitory> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/xbot#Dormitory> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://bemserver.org/xbot#ResidentialBuilding> .
+<http://bemserver.org/xbot#Dormitory> <http://www.w3.org/2000/01/rdf-schema#comment> "A single facility containing multiple sleeping quarters and typically shared eating and lavatory facilities typically for students."@en .
+<http://bemserver.org/xbot#Dormitory> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://bsdd.buildingsmart.org/api/4.0/IfdConcept/3LQ_u01P4HtG0000PR1IRl> .
+<http://bemserver.org/xbot#Dormitory> <http://www.w3.org/2000/01/rdf-schema#label> "Dormitory"@en .
+<http://bemserver.org/xbot#Dormitory> <http://www.w3.org/2000/01/rdf-schema#label> "Dortoir"@fr .
+# 
+# http://bemserver.org/xbot#DrugStore
+<http://bemserver.org/xbot#DrugStore> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/xbot#DrugStore> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://bemserver.org/xbot#CommercialBuilding> .
+<http://bemserver.org/xbot#DrugStore> <http://www.w3.org/2000/01/rdf-schema#label> "DrugStore" .
+# 
+# http://bemserver.org/xbot#EducationalBuilding
+<http://bemserver.org/xbot#EducationalBuilding> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/xbot#EducationalBuilding> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://w3id.org/bot#Building> .
+<http://bemserver.org/xbot#EducationalBuilding> <http://www.w3.org/2000/01/rdf-schema#label> "EducationalBuilding" .
+<http://bemserver.org/xbot#EducationalBuilding> <http://www.w3.org/2000/01/rdf-schema#seeAlso> "https://w3id.org/seas/EducationalBuilding" .
+# 
+# http://bemserver.org/xbot#Factory
+<http://bemserver.org/xbot#Factory> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/xbot#Factory> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://bemserver.org/xbot#IndustrialBuilding> .
+<http://bemserver.org/xbot#Factory> <http://www.w3.org/2000/01/rdf-schema#label> "Factory" .
+# 
+# http://bemserver.org/xbot#Farmhouse
+<http://bemserver.org/xbot#Farmhouse> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/xbot#Farmhouse> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://bemserver.org/xbot#AgriculturalBuilding> .
+<http://bemserver.org/xbot#Farmhouse> <http://www.w3.org/2000/01/rdf-schema#label> "Farmhouse" .
+# 
+# http://bemserver.org/xbot#Floor
+<http://bemserver.org/xbot#Floor> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/xbot#Floor> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://w3id.org/bot#Storey> .
+<http://bemserver.org/xbot#Floor> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid1 .
+_:genid1 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid1 <http://www.w3.org/2002/07/owl#onProperty> <http://bemserver.org/xbot#floorLevel> .
+_:genid1 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://www.w3.org/2001/XMLSchema#integer> .
+<http://bemserver.org/xbot#Floor> <http://www.w3.org/2000/01/rdf-schema#comment> "A Floor is an instance of a story in the building."@en .
+<http://bemserver.org/xbot#Floor> <http://www.w3.org/2000/01/rdf-schema#label> "Floor"@en .
+<http://bemserver.org/xbot#Floor> <http://www.w3.org/2000/01/rdf-schema#seeAlso> "https://w3id.org/seas/Floor" .
+# 
+# http://bemserver.org/xbot#GovernmentSubsidizedBuilding
+<http://bemserver.org/xbot#GovernmentSubsidizedBuilding> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/xbot#GovernmentSubsidizedBuilding> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://bemserver.org/xbot#MultiDwellingHousing> .
+<http://bemserver.org/xbot#GovernmentSubsidizedBuilding> <http://www.w3.org/2000/01/rdf-schema#comment> "A dwelling (or dwellings) that has a lowered cost of ownership due to government funding and support."@en .
+<http://bemserver.org/xbot#GovernmentSubsidizedBuilding> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> "'Government Subsiduzed Building' in Omniclass 11 (2013 02 26)" .
+<http://bemserver.org/xbot#GovernmentSubsidizedBuilding> <http://www.w3.org/2000/01/rdf-schema#label> "Government Subsidized Building"@en .
+# 
+# http://bemserver.org/xbot#Greenhouse
+<http://bemserver.org/xbot#Greenhouse> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/xbot#Greenhouse> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://bemserver.org/xbot#AgriculturalBuilding> .
+<http://bemserver.org/xbot#Greenhouse> <http://www.w3.org/2000/01/rdf-schema#label> "Greenhouse" .
+<http://bemserver.org/xbot#Greenhouse> <http://www.w3.org/2000/01/rdf-schema#seeAlso> "https://w3id.org/seas/Greenhouse" .
+# 
+# http://bemserver.org/xbot#Ground
+<http://bemserver.org/xbot#Ground> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/xbot#Ground> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://bemserver.org/xbot#Floor> .
+<http://bemserver.org/xbot#Ground> <http://www.w3.org/2000/01/rdf-schema#comment> "A Ground represents a ground floor."@en .
+<http://bemserver.org/xbot#Ground> <http://www.w3.org/2000/01/rdf-schema#label> "Ground"@en .
+# 
+# http://bemserver.org/xbot#Gym
+<http://bemserver.org/xbot#Gym> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/xbot#Gym> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://bemserver.org/xbot#PublicBuilding> .
+<http://bemserver.org/xbot#Gym> <http://www.w3.org/2000/01/rdf-schema#label> "Gym" .
+# 
+# http://bemserver.org/xbot#Hospital
+<http://bemserver.org/xbot#Hospital> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/xbot#Hospital> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://bemserver.org/xbot#PublicBuilding> .
+<http://bemserver.org/xbot#Hospital> <http://www.w3.org/2000/01/rdf-schema#label> "Hospital" .
+# 
+# http://bemserver.org/xbot#Hotel
+<http://bemserver.org/xbot#Hotel> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/xbot#Hotel> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://bemserver.org/xbot#CommercialBuilding> .
+<http://bemserver.org/xbot#Hotel> <http://www.w3.org/2000/01/rdf-schema#label> "Hotel" .
+# 
+# http://bemserver.org/xbot#House
+<http://bemserver.org/xbot#House> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/xbot#House> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://bemserver.org/xbot#ResidentialBuilding> .
+<http://bemserver.org/xbot#House> <http://www.w3.org/2000/01/rdf-schema#label> "House" .
+# 
+# http://bemserver.org/xbot#IndustrialBuilding
+<http://bemserver.org/xbot#IndustrialBuilding> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/xbot#IndustrialBuilding> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://w3id.org/bot#Building> .
+<http://bemserver.org/xbot#IndustrialBuilding> <http://www.w3.org/2000/01/rdf-schema#label> "IndustrialBuilding" .
+<http://bemserver.org/xbot#IndustrialBuilding> <http://www.w3.org/2000/01/rdf-schema#seeAlso> "https://w3id.org/seas/InstitutionalBuilding" .
+# 
+# http://bemserver.org/xbot#Kitchen
+<http://bemserver.org/xbot#Kitchen> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/xbot#Kitchen> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://w3id.org/bot#Space> .
+<http://bemserver.org/xbot#Kitchen> <http://www.w3.org/2000/01/rdf-schema#comment> "Kitchen is an instance of IfcSpace in the building representing a kitchen."@en .
+<http://bemserver.org/xbot#Kitchen> <http://www.w3.org/2000/01/rdf-schema#label> "Kitchen"@en .
+<http://bemserver.org/xbot#Kitchen> <http://www.w3.org/2000/01/rdf-schema#seeAlso> "https://w3id.org/seas/Kitchen" .
+# 
+# http://bemserver.org/xbot#Laboratory
+<http://bemserver.org/xbot#Laboratory> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/xbot#Laboratory> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://w3id.org/bot#Space> .
+<http://bemserver.org/xbot#Laboratory> <http://www.w3.org/2000/01/rdf-schema#label> "Laboratory" .
+# 
+# http://bemserver.org/xbot#Library
+<http://bemserver.org/xbot#Library> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/xbot#Library> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://bemserver.org/xbot#PublicBuilding> .
+<http://bemserver.org/xbot#Library> <http://www.w3.org/2000/01/rdf-schema#label> "Library" .
+# 
+# http://bemserver.org/xbot#LogisticPlatform
+<http://bemserver.org/xbot#LogisticPlatform> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/xbot#LogisticPlatform> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://bemserver.org/xbot#IndustrialBuilding> .
+<http://bemserver.org/xbot#LogisticPlatform> <http://www.w3.org/2000/01/rdf-schema#label> "LogisticPlatform" .
+# 
+# http://bemserver.org/xbot#MallSupermarket
+<http://bemserver.org/xbot#MallSupermarket> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/xbot#MallSupermarket> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://bemserver.org/xbot#CommercialBuilding> .
+<http://bemserver.org/xbot#MallSupermarket> <http://www.w3.org/2000/01/rdf-schema#label> "MallSupermarket" .
+# 
+# http://bemserver.org/xbot#MeetingRoom
+<http://bemserver.org/xbot#MeetingRoom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/xbot#MeetingRoom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://w3id.org/bot#Space> .
+<http://bemserver.org/xbot#MeetingRoom> <http://www.w3.org/2000/01/rdf-schema#label> "MeetingRoom" .
+# 
+# http://bemserver.org/xbot#MetroStation
+<http://bemserver.org/xbot#MetroStation> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/xbot#MetroStation> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://bemserver.org/xbot#TransportBuilding> .
+<http://bemserver.org/xbot#MetroStation> <http://www.w3.org/2000/01/rdf-schema#label> "MetroStation" .
+# 
+# http://bemserver.org/xbot#MultiDwellingHousing
+<http://bemserver.org/xbot#MultiDwellingHousing> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/xbot#MultiDwellingHousing> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://bemserver.org/xbot#ResidentialBuilding> .
+<http://bemserver.org/xbot#MultiDwellingHousing> <http://www.w3.org/2000/01/rdf-schema#comment> "Multiple dwellings contained in a single structure."@en .
+<http://bemserver.org/xbot#MultiDwellingHousing> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> "'Multiple Family Residences' in Omniclass 11 (2013 02 26)"@en .
+<http://bemserver.org/xbot#MultiDwellingHousing> <http://www.w3.org/2000/01/rdf-schema#label> "Multi-Dwelling Housing"@en .
+# 
+# http://bemserver.org/xbot#MuseumGallery
+<http://bemserver.org/xbot#MuseumGallery> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/xbot#MuseumGallery> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://bemserver.org/xbot#PublicBuilding> .
+<http://bemserver.org/xbot#MuseumGallery> <http://www.w3.org/2000/01/rdf-schema#label> "MuseumGallery" .
+# 
+# http://bemserver.org/xbot#NightClubConcertHall
+<http://bemserver.org/xbot#NightClubConcertHall> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/xbot#NightClubConcertHall> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://bemserver.org/xbot#PublicBuilding> .
+<http://bemserver.org/xbot#NightClubConcertHall> <http://www.w3.org/2000/01/rdf-schema#label> "NighClubConcertHall" .
+# 
+# http://bemserver.org/xbot#Nursery
+<http://bemserver.org/xbot#Nursery> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/xbot#Nursery> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://bemserver.org/xbot#PublicBuilding> .
+<http://bemserver.org/xbot#Nursery> <http://www.w3.org/2000/01/rdf-schema#label> "Nursery" .
+# 
+# http://bemserver.org/xbot#Office
+<http://bemserver.org/xbot#Office> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/xbot#Office> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://w3id.org/bot#Space> .
+<http://bemserver.org/xbot#Office> <http://www.w3.org/2000/01/rdf-schema#comment> "Office is an instance of IfcSpace in the building representing an office."@en .
+<http://bemserver.org/xbot#Office> <http://www.w3.org/2000/01/rdf-schema#label> "Office"@en .
+<http://bemserver.org/xbot#Office> <http://www.w3.org/2000/01/rdf-schema#seeAlso> "https://w3id.org/seas/Office" .
+# 
+# http://bemserver.org/xbot#OfficeBuilding
+<http://bemserver.org/xbot#OfficeBuilding> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/xbot#OfficeBuilding> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://w3id.org/bot#Building> .
+<http://bemserver.org/xbot#OfficeBuilding> <http://www.w3.org/2000/01/rdf-schema#label> "OfficeBuilding" .
+<http://bemserver.org/xbot#OfficeBuilding> <http://www.w3.org/2000/01/rdf-schema#seeAlso> "https://w3id.org/seas/OfficeBuilding" .
+# 
+# http://bemserver.org/xbot#OpenSpace
+<http://bemserver.org/xbot#OpenSpace> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/xbot#OpenSpace> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://w3id.org/bot#Space> .
+<http://bemserver.org/xbot#OpenSpace> <http://www.w3.org/2000/01/rdf-schema#comment> "OpenSpace is an instance of IfcSpace in the building representing an open space."@en .
+<http://bemserver.org/xbot#OpenSpace> <http://www.w3.org/2000/01/rdf-schema#label> "OpenSpace"@en .
+# 
+# http://bemserver.org/xbot#Parking
+<http://bemserver.org/xbot#Parking> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/xbot#Parking> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://w3id.org/bot#Space> .
+<http://bemserver.org/xbot#Parking> <http://www.w3.org/2000/01/rdf-schema#label> "Parking" .
+# 
+# http://bemserver.org/xbot#Pharmacy
+<http://bemserver.org/xbot#Pharmacy> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/xbot#Pharmacy> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://bemserver.org/xbot#CommercialBuilding> .
+<http://bemserver.org/xbot#Pharmacy> <http://www.w3.org/2000/01/rdf-schema#label> "Pharmacy" .
+# 
+# http://bemserver.org/xbot#PowerPlant
+<http://bemserver.org/xbot#PowerPlant> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/xbot#PowerPlant> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://bemserver.org/xbot#IndustrialBuilding> .
+<http://bemserver.org/xbot#PowerPlant> <http://www.w3.org/2000/01/rdf-schema#label> "PowerPlant" .
+# 
+# http://bemserver.org/xbot#PrimarySchool
+<http://bemserver.org/xbot#PrimarySchool> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/xbot#PrimarySchool> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://bemserver.org/xbot#EducationalBuilding> .
+<http://bemserver.org/xbot#PrimarySchool> <http://www.w3.org/2000/01/rdf-schema#label> "PrimarySchool" .
+# 
+# http://bemserver.org/xbot#PublicBuilding
+<http://bemserver.org/xbot#PublicBuilding> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/xbot#PublicBuilding> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://w3id.org/bot#Building> .
+<http://bemserver.org/xbot#PublicBuilding> <http://www.w3.org/2000/01/rdf-schema#label> "PublicBuilding" .
+# 
+# http://bemserver.org/xbot#ReligiousBuilding
+<http://bemserver.org/xbot#ReligiousBuilding> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/xbot#ReligiousBuilding> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://w3id.org/bot#Building> .
+<http://bemserver.org/xbot#ReligiousBuilding> <http://www.w3.org/2000/01/rdf-schema#label> "ReligiousBuilding" .
+# 
+# http://bemserver.org/xbot#ResidentialBuilding
+<http://bemserver.org/xbot#ResidentialBuilding> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/xbot#ResidentialBuilding> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://w3id.org/bot#Building> .
+<http://bemserver.org/xbot#ResidentialBuilding> <http://www.w3.org/2000/01/rdf-schema#label> "ResidentialBuilding" .
+<http://bemserver.org/xbot#ResidentialBuilding> <http://www.w3.org/2000/01/rdf-schema#seeAlso> "https://w3id.org/seas/ResidentalBuilding" .
+# 
+# http://bemserver.org/xbot#RestRoom
+<http://bemserver.org/xbot#RestRoom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/xbot#RestRoom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://w3id.org/bot#Space> .
+<http://bemserver.org/xbot#RestRoom> <http://www.w3.org/2000/01/rdf-schema#comment> "RestRoom is an instance of IfcSpace in the building representing a rest room."@en .
+<http://bemserver.org/xbot#RestRoom> <http://www.w3.org/2000/01/rdf-schema#label> "RestRoom"@en .
+# 
+# http://bemserver.org/xbot#Room
+<http://bemserver.org/xbot#Room> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/xbot#Room> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://w3id.org/bot#Space> .
+<http://bemserver.org/xbot#Room> <http://www.w3.org/2000/01/rdf-schema#comment> "Room is an instance of IfcSpace in the building representing a Room."@en .
+<http://bemserver.org/xbot#Room> <http://www.w3.org/2000/01/rdf-schema#label> "Room"@en .
+<http://bemserver.org/xbot#Room> <http://www.w3.org/2000/01/rdf-schema#seeAlso> "https://w3id.org/seas/Room" .
+# 
+# http://bemserver.org/xbot#SecondarySchool
+<http://bemserver.org/xbot#SecondarySchool> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/xbot#SecondarySchool> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://bemserver.org/xbot#EducationalBuilding> .
+<http://bemserver.org/xbot#SecondarySchool> <http://www.w3.org/2000/01/rdf-schema#label> "SecondarySchool" .
+# 
+# http://bemserver.org/xbot#SeniorHousing
+<http://bemserver.org/xbot#SeniorHousing> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/xbot#SeniorHousing> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://bemserver.org/xbot#ResidentialBuilding> .
+<http://bemserver.org/xbot#SeniorHousing> <http://www.w3.org/2000/01/rdf-schema#comment> "Dwellings and commercial facilities designed and/or retrofitted for occupancy by Seniors."@en .
+<http://bemserver.org/xbot#SeniorHousing> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> "'Senior Housing' in Omniclass 11 (2013 02 26)" .
+# 
+# http://bemserver.org/xbot#Shop
+<http://bemserver.org/xbot#Shop> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/xbot#Shop> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://bemserver.org/xbot#CommercialBuilding> .
+<http://bemserver.org/xbot#Shop> <http://www.w3.org/2000/01/rdf-schema#label> "Shop" .
+# 
+# http://bemserver.org/xbot#Silo
+<http://bemserver.org/xbot#Silo> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/xbot#Silo> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://bemserver.org/xbot#AgriculturalBuilding> .
+<http://bemserver.org/xbot#Silo> <http://www.w3.org/2000/01/rdf-schema#label> "Silo" .
+# 
+# http://bemserver.org/xbot#SingleFamilyHousing
+<http://bemserver.org/xbot#SingleFamilyHousing> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/xbot#SingleFamilyHousing> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://bemserver.org/xbot#ResidentialBuilding> .
+<http://bemserver.org/xbot#SingleFamilyHousing> <http://www.w3.org/2000/01/rdf-schema#comment> "A dwelling unit for a service member or for an authorized government civilian and his/her authorized dependents when accompanied by those dependents."@en .
+<http://bemserver.org/xbot#SingleFamilyHousing> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://bsdd.buildingsmart.org/api/4.0/IfdConcept/2dXgc01P4HtG0000PR1IRl> .
+<http://bemserver.org/xbot#SingleFamilyHousing> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> "'Single Family Residence' in Omniclass 11 (2013 02 26)" .
+# 
+# http://bemserver.org/xbot#SocialHousingBuilding
+<http://bemserver.org/xbot#SocialHousingBuilding> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/xbot#SocialHousingBuilding> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://bemserver.org/xbot#MultiDwellingHousing> .
+<http://bemserver.org/xbot#SocialHousingBuilding> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> "'LIHTC Tax Credit Housing' in Omniclass 11 (2013 02 26)"@en .
+# 
+# http://bemserver.org/xbot#SpecialCareBuilding
+<http://bemserver.org/xbot#SpecialCareBuilding> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/xbot#SpecialCareBuilding> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://bemserver.org/xbot#ResidentialBuilding> .
+<http://bemserver.org/xbot#SpecialCareBuilding> <http://www.w3.org/2000/01/rdf-schema#comment> "A dwelling containing multiple sleeping quarters with shared eating, living and lavatory facilities in addition to offering additional care and medical/health assistance from trained staff."@en .
+<http://bemserver.org/xbot#SpecialCareBuilding> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://bsdd.buildingsmart.org/api/4.0/IfdConcept/3UzLO01P4HtG0000PR1IRl> .
+<http://bemserver.org/xbot#SpecialCareBuilding> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> "'Special Care Residence' in Omniclass 11 (2013 02 26)" .
+# 
+# http://bemserver.org/xbot#Stockroom
+<http://bemserver.org/xbot#Stockroom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/xbot#Stockroom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://w3id.org/bot#Space> .
+<http://bemserver.org/xbot#Stockroom> <http://www.w3.org/2000/01/rdf-schema#label> "Stockroom" .
+# 
+# http://bemserver.org/xbot#Subterranean
+<http://bemserver.org/xbot#Subterranean> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/xbot#Subterranean> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://bemserver.org/xbot#Floor> .
+<http://bemserver.org/xbot#Subterranean> <http://www.w3.org/2000/01/rdf-schema#comment> "A Sunterranean represents a subterranean floor."@en .
+<http://bemserver.org/xbot#Subterranean> <http://www.w3.org/2000/01/rdf-schema#label> "Subterranean"@en .
+# 
+# http://bemserver.org/xbot#SwimmingCenter
+<http://bemserver.org/xbot#SwimmingCenter> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/xbot#SwimmingCenter> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://bemserver.org/xbot#PublicBuilding> .
+<http://bemserver.org/xbot#SwimmingCenter> <http://www.w3.org/2000/01/rdf-schema#label> "SwimmingCenter" .
+# 
+# http://bemserver.org/xbot#TechnicalArea
+<http://bemserver.org/xbot#TechnicalArea> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/xbot#TechnicalArea> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://w3id.org/bot#Space> .
+<http://bemserver.org/xbot#TechnicalArea> <http://www.w3.org/2000/01/rdf-schema#label> "TechnicalArea" .
+# 
+# http://bemserver.org/xbot#Terraced
+<http://bemserver.org/xbot#Terraced> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/xbot#Terraced> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://bemserver.org/xbot#SingleFamilyHousing> .
+# 
+# http://bemserver.org/xbot#Toilets
+<http://bemserver.org/xbot#Toilets> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/xbot#Toilets> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://w3id.org/bot#Space> .
+<http://bemserver.org/xbot#Toilets> <http://www.w3.org/2000/01/rdf-schema#comment> "Toilets is an instance of IfcSpace in the building representing toilets."@en .
+<http://bemserver.org/xbot#Toilets> <http://www.w3.org/2000/01/rdf-schema#label> "Toilets"@en .
+# 
+# http://bemserver.org/xbot#TrainStation
+<http://bemserver.org/xbot#TrainStation> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/xbot#TrainStation> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://bemserver.org/xbot#TransportBuilding> .
+<http://bemserver.org/xbot#TrainStation> <http://www.w3.org/2000/01/rdf-schema#label> "TrainStation" .
+# 
+# http://bemserver.org/xbot#TransportBuilding
+<http://bemserver.org/xbot#TransportBuilding> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/xbot#TransportBuilding> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://w3id.org/bot#Building> .
+<http://bemserver.org/xbot#TransportBuilding> <http://www.w3.org/2000/01/rdf-schema#label> "TransportBuilding" .
+# 
+# http://bemserver.org/xbot#University
+<http://bemserver.org/xbot#University> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/xbot#University> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://bemserver.org/xbot#EducationalBuilding> .
+<http://bemserver.org/xbot#University> <http://www.w3.org/2000/01/rdf-schema#label> "University" .
+# 
+# http://bemserver.org/xbot#Warehouse
+<http://bemserver.org/xbot#Warehouse> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/xbot#Warehouse> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://bemserver.org/xbot#IndustrialBuilding> .
+<http://bemserver.org/xbot#Warehouse> <http://www.w3.org/2000/01/rdf-schema#label> "Warehouse" .
+# 
+# http://bemserver.org/xbot#WetArea
+<http://bemserver.org/xbot#WetArea> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/xbot#WetArea> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://w3id.org/bot#Space> .
+<http://bemserver.org/xbot#WetArea> <http://www.w3.org/2000/01/rdf-schema#comment> "WetArea is an instance of IfcSpace in the building representing a wet area."@en .
+<http://bemserver.org/xbot#WetArea> <http://www.w3.org/2000/01/rdf-schema#label> "WetArea"@en .
+# 
+# https://w3id.org/bot#Building
+<https://w3id.org/bot#Building> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://w3id.org/bot#Building> <http://www.w3.org/2000/01/rdf-schema#seeAlso> "https://w3id.org/seas/Building" .
+# 
+# https://w3id.org/bot#Space
+<https://w3id.org/bot#Space> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://w3id.org/bot#Space> <http://www.w3.org/2000/01/rdf-schema#seeAlso> "https://w3id.org/seas/BuildingSpace" .
+# 
+# https://w3id.org/bot#Storey
+<https://w3id.org/bot#Storey> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://w3id.org/bot#Storey> <http://www.w3.org/2000/01/rdf-schema#seeAlso> "https://w3id.org/seas/BuildingStorey" .
+# 
+# Generated by the OWL API (version 5.1.14) https://github.com/owlcs/owlapi/

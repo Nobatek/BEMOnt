@@ -1,0 +1,914 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://bemserver.org/xbot#"
+     xml:base="http://bemserver.org/xbot"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="http://bemserver.org/xbot">
+        <owl:imports rdf:resource="https://w3id.org/bot-0.3.2"/>
+        <rdfs:comment xml:lang="en">This ontology is based on BOT for describing building topology and extends it towards representing a wise set of building types (including residential and non residential buildings), spaces and storeys based on the Omniclass standard.</rdfs:comment>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+
+    
+
+
+    <!-- http://bemserver.org/xbot#floorLevel -->
+
+
+    <owl:DatatypeProperty rdf:about="http://bemserver.org/xbot#floorLevel">
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+        <rdfs:label xml:lang="en">floorLevel</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+
+    
+
+
+    <!-- http://bemserver.org/xbot#Administration -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/xbot#Administration">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/xbot#PublicBuilding"/>
+        <rdfs:label>Administration</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/xbot#AgriculturalBuilding -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/xbot#AgriculturalBuilding">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/bot#Building"/>
+        <rdfs:label>AgriculturalBuilding</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/xbot#Airport -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/xbot#Airport">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/xbot#TransportBuilding"/>
+        <rdfs:label>Airport</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/xbot#Allotment -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/xbot#Allotment">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/xbot#SingleFamilyHousing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/xbot#Apartment -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/xbot#Apartment">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/xbot#ResidentialBuilding"/>
+        <rdfs:label>Apartment</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/xbot#AutomobileRepair -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/xbot#AutomobileRepair">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/xbot#CommercialBuilding"/>
+        <rdfs:label>AutomobileRepair</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/xbot#Balcony -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/xbot#Balcony">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/bot#Space"/>
+        <rdfs:comment xml:lang="en">Balcony is an instance of IfcSpace in the building representing a balcony.</rdfs:comment>
+        <rdfs:label xml:lang="en">Balcony</rdfs:label>
+        <rdfs:seeAlso>https://w3id.org/seas/Balcony</rdfs:seeAlso>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/xbot#BarRestaurant -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/xbot#BarRestaurant">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/xbot#CommercialBuilding"/>
+        <rdfs:label>BarRestaurant</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/xbot#Barn -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/xbot#Barn">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/xbot#AgriculturalBuilding"/>
+        <rdfs:label>Barn</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/xbot#Bathroom -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/xbot#Bathroom">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/bot#Space"/>
+        <rdfs:comment xml:lang="en">Bathroom is an instance of IfcSpace in the building representing a bathroom.</rdfs:comment>
+        <rdfs:label xml:lang="en">Bathroom</rdfs:label>
+        <rdfs:seeAlso>https://w3id.org/seas/Bathroom</rdfs:seeAlso>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/xbot#Bungalow -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/xbot#Bungalow">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/xbot#ResidentialBuilding"/>
+        <rdfs:label>Bungalow</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/xbot#BusStation -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/xbot#BusStation">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/xbot#TransportBuilding"/>
+        <rdfs:label>BusStation</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/xbot#Cafeteria -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/xbot#Cafeteria">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/bot#Space"/>
+        <rdfs:comment xml:lang="en">Cafeteria is an instance of IfcSpace in the building representing a cafeteria.</rdfs:comment>
+        <rdfs:label xml:lang="en">Cafeteria</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/xbot#Canteen -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/xbot#Canteen">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/bot#Space"/>
+        <rdfs:comment xml:lang="en">Canteen is an instance of IfcSpace in the building representing a canteen.</rdfs:comment>
+        <rdfs:label xml:lang="en">Canteen</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/xbot#Cellar -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/xbot#Cellar">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/xbot#AgriculturalBuilding"/>
+        <rdfs:label>Cellar</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/xbot#Cinema -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/xbot#Cinema">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/xbot#PublicBuilding"/>
+        <rdfs:label>Cinema</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/xbot#CirculationArea -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/xbot#CirculationArea">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/bot#Space"/>
+        <rdfs:comment xml:lang="en">CirculationArea is an instance of IfcSpace in the building representing a circulation area.</rdfs:comment>
+        <rdfs:label xml:lang="en">CirculationArea</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/xbot#CommercialBuilding -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/xbot#CommercialBuilding">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/bot#Building"/>
+        <rdfs:label>CommercialBuilding</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/xbot#Condominum -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/xbot#Condominum">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/xbot#MultiDwellingHousing"/>
+        <rdfs:isDefinedBy xml:lang="en">Part of &apos;Duplex&apos; in Omniclass 11 (2013 02 26)</rdfs:isDefinedBy>
+        <rdfs:label xml:lang="en">Condominum</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/xbot#ConferenceRoom -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/xbot#ConferenceRoom">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/bot#Space"/>
+        <rdfs:comment xml:lang="en">ConferenceRoom is an instance of IfcSpace in the building representing a conference room.</rdfs:comment>
+        <rdfs:label xml:lang="en">ConferenceRoom</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/xbot#ConventionCenter -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/xbot#ConventionCenter">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/xbot#CommercialBuilding"/>
+        <rdfs:label>ConventionCenter</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/xbot#DataCenter -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/xbot#DataCenter">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/xbot#IndustrialBuilding"/>
+        <rdfs:label>DataCenter</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/xbot#Desk -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/xbot#Desk">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/bot#Space"/>
+        <rdfs:comment xml:lang="en">Desk is an instance of IfcSpace in the building representing a desk.</rdfs:comment>
+        <rdfs:label xml:lang="en">Desk</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/xbot#DetachedHouse -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/xbot#DetachedHouse">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/xbot#SingleFamilyHousing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/xbot#Dormitory -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/xbot#Dormitory">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/xbot#ResidentialBuilding"/>
+        <rdfs:comment xml:lang="en">A single facility containing multiple sleeping quarters and typically shared eating and lavatory facilities typically for students.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://bsdd.buildingsmart.org/api/4.0/IfdConcept/3LQ_u01P4HtG0000PR1IRl"/>
+        <rdfs:label xml:lang="en">Dormitory</rdfs:label>
+        <rdfs:label xml:lang="fr">Dortoir</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/xbot#DrugStore -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/xbot#DrugStore">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/xbot#CommercialBuilding"/>
+        <rdfs:label>DrugStore</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/xbot#EducationalBuilding -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/xbot#EducationalBuilding">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/bot#Building"/>
+        <rdfs:label>EducationalBuilding</rdfs:label>
+        <rdfs:seeAlso>https://w3id.org/seas/EducationalBuilding</rdfs:seeAlso>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/xbot#Factory -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/xbot#Factory">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/xbot#IndustrialBuilding"/>
+        <rdfs:label>Factory</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/xbot#Farmhouse -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/xbot#Farmhouse">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/xbot#AgriculturalBuilding"/>
+        <rdfs:label>Farmhouse</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/xbot#Floor -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/xbot#Floor">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/bot#Storey"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://bemserver.org/xbot#floorLevel"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment xml:lang="en">A Floor is an instance of a story in the building.</rdfs:comment>
+        <rdfs:label xml:lang="en">Floor</rdfs:label>
+        <rdfs:seeAlso>https://w3id.org/seas/Floor</rdfs:seeAlso>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/xbot#GovernmentSubsidizedBuilding -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/xbot#GovernmentSubsidizedBuilding">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/xbot#MultiDwellingHousing"/>
+        <rdfs:comment xml:lang="en">A dwelling (or dwellings) that has a lowered cost of ownership due to government funding and support.</rdfs:comment>
+        <rdfs:isDefinedBy>&apos;Government Subsiduzed Building&apos; in Omniclass 11 (2013 02 26)</rdfs:isDefinedBy>
+        <rdfs:label xml:lang="en">Government Subsidized Building</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/xbot#Greenhouse -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/xbot#Greenhouse">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/xbot#AgriculturalBuilding"/>
+        <rdfs:label>Greenhouse</rdfs:label>
+        <rdfs:seeAlso>https://w3id.org/seas/Greenhouse</rdfs:seeAlso>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/xbot#Ground -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/xbot#Ground">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/xbot#Floor"/>
+        <rdfs:comment xml:lang="en">A Ground represents a ground floor.</rdfs:comment>
+        <rdfs:label xml:lang="en">Ground</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/xbot#Gym -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/xbot#Gym">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/xbot#PublicBuilding"/>
+        <rdfs:label>Gym</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/xbot#Hospital -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/xbot#Hospital">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/xbot#PublicBuilding"/>
+        <rdfs:label>Hospital</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/xbot#Hotel -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/xbot#Hotel">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/xbot#CommercialBuilding"/>
+        <rdfs:label>Hotel</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/xbot#House -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/xbot#House">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/xbot#ResidentialBuilding"/>
+        <rdfs:label>House</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/xbot#IndustrialBuilding -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/xbot#IndustrialBuilding">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/bot#Building"/>
+        <rdfs:label>IndustrialBuilding</rdfs:label>
+        <rdfs:seeAlso>https://w3id.org/seas/InstitutionalBuilding</rdfs:seeAlso>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/xbot#Kitchen -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/xbot#Kitchen">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/bot#Space"/>
+        <rdfs:comment xml:lang="en">Kitchen is an instance of IfcSpace in the building representing a kitchen.</rdfs:comment>
+        <rdfs:label xml:lang="en">Kitchen</rdfs:label>
+        <rdfs:seeAlso>https://w3id.org/seas/Kitchen</rdfs:seeAlso>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/xbot#Laboratory -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/xbot#Laboratory">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/bot#Space"/>
+        <rdfs:label>Laboratory</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/xbot#Library -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/xbot#Library">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/xbot#PublicBuilding"/>
+        <rdfs:label>Library</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/xbot#LogisticPlatform -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/xbot#LogisticPlatform">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/xbot#IndustrialBuilding"/>
+        <rdfs:label>LogisticPlatform</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/xbot#MallSupermarket -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/xbot#MallSupermarket">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/xbot#CommercialBuilding"/>
+        <rdfs:label>MallSupermarket</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/xbot#MeetingRoom -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/xbot#MeetingRoom">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/bot#Space"/>
+        <rdfs:label>MeetingRoom</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/xbot#MetroStation -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/xbot#MetroStation">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/xbot#TransportBuilding"/>
+        <rdfs:label>MetroStation</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/xbot#MultiDwellingHousing -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/xbot#MultiDwellingHousing">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/xbot#ResidentialBuilding"/>
+        <rdfs:comment xml:lang="en">Multiple dwellings contained in a single structure.</rdfs:comment>
+        <rdfs:isDefinedBy xml:lang="en">&apos;Multiple Family Residences&apos; in Omniclass 11 (2013 02 26)</rdfs:isDefinedBy>
+        <rdfs:label xml:lang="en">Multi-Dwelling Housing</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/xbot#MuseumGallery -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/xbot#MuseumGallery">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/xbot#PublicBuilding"/>
+        <rdfs:label>MuseumGallery</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/xbot#NightClubConcertHall -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/xbot#NightClubConcertHall">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/xbot#PublicBuilding"/>
+        <rdfs:label>NighClubConcertHall</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/xbot#Nursery -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/xbot#Nursery">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/xbot#PublicBuilding"/>
+        <rdfs:label>Nursery</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/xbot#Office -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/xbot#Office">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/bot#Space"/>
+        <rdfs:comment xml:lang="en">Office is an instance of IfcSpace in the building representing an office.</rdfs:comment>
+        <rdfs:label xml:lang="en">Office</rdfs:label>
+        <rdfs:seeAlso>https://w3id.org/seas/Office</rdfs:seeAlso>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/xbot#OfficeBuilding -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/xbot#OfficeBuilding">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/bot#Building"/>
+        <rdfs:label>OfficeBuilding</rdfs:label>
+        <rdfs:seeAlso>https://w3id.org/seas/OfficeBuilding</rdfs:seeAlso>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/xbot#OpenSpace -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/xbot#OpenSpace">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/bot#Space"/>
+        <rdfs:comment xml:lang="en">OpenSpace is an instance of IfcSpace in the building representing an open space.</rdfs:comment>
+        <rdfs:label xml:lang="en">OpenSpace</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/xbot#Parking -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/xbot#Parking">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/bot#Space"/>
+        <rdfs:label>Parking</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/xbot#Pharmacy -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/xbot#Pharmacy">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/xbot#CommercialBuilding"/>
+        <rdfs:label>Pharmacy</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/xbot#PowerPlant -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/xbot#PowerPlant">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/xbot#IndustrialBuilding"/>
+        <rdfs:label>PowerPlant</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/xbot#PrimarySchool -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/xbot#PrimarySchool">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/xbot#EducationalBuilding"/>
+        <rdfs:label>PrimarySchool</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/xbot#PublicBuilding -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/xbot#PublicBuilding">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/bot#Building"/>
+        <rdfs:label>PublicBuilding</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/xbot#ReligiousBuilding -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/xbot#ReligiousBuilding">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/bot#Building"/>
+        <rdfs:label>ReligiousBuilding</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/xbot#ResidentialBuilding -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/xbot#ResidentialBuilding">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/bot#Building"/>
+        <rdfs:label>ResidentialBuilding</rdfs:label>
+        <rdfs:seeAlso>https://w3id.org/seas/ResidentalBuilding</rdfs:seeAlso>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/xbot#RestRoom -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/xbot#RestRoom">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/bot#Space"/>
+        <rdfs:comment xml:lang="en">RestRoom is an instance of IfcSpace in the building representing a rest room.</rdfs:comment>
+        <rdfs:label xml:lang="en">RestRoom</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/xbot#Room -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/xbot#Room">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/bot#Space"/>
+        <rdfs:comment xml:lang="en">Room is an instance of IfcSpace in the building representing a Room.</rdfs:comment>
+        <rdfs:label xml:lang="en">Room</rdfs:label>
+        <rdfs:seeAlso>https://w3id.org/seas/Room</rdfs:seeAlso>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/xbot#SecondarySchool -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/xbot#SecondarySchool">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/xbot#EducationalBuilding"/>
+        <rdfs:label>SecondarySchool</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/xbot#SeniorHousing -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/xbot#SeniorHousing">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/xbot#ResidentialBuilding"/>
+        <rdfs:comment xml:lang="en">Dwellings and commercial facilities designed and/or retrofitted for occupancy by Seniors.</rdfs:comment>
+        <rdfs:isDefinedBy>&apos;Senior Housing&apos; in Omniclass 11 (2013 02 26)</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/xbot#Shop -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/xbot#Shop">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/xbot#CommercialBuilding"/>
+        <rdfs:label>Shop</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/xbot#Silo -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/xbot#Silo">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/xbot#AgriculturalBuilding"/>
+        <rdfs:label>Silo</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/xbot#SingleFamilyHousing -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/xbot#SingleFamilyHousing">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/xbot#ResidentialBuilding"/>
+        <rdfs:comment xml:lang="en">A dwelling unit for a service member or for an authorized government civilian and his/her authorized dependents when accompanied by those dependents.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://bsdd.buildingsmart.org/api/4.0/IfdConcept/2dXgc01P4HtG0000PR1IRl"/>
+        <rdfs:isDefinedBy>&apos;Single Family Residence&apos; in Omniclass 11 (2013 02 26)</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/xbot#SocialHousingBuilding -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/xbot#SocialHousingBuilding">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/xbot#MultiDwellingHousing"/>
+        <rdfs:isDefinedBy xml:lang="en">&apos;LIHTC Tax Credit Housing&apos; in Omniclass 11 (2013 02 26)</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/xbot#SpecialCareBuilding -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/xbot#SpecialCareBuilding">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/xbot#ResidentialBuilding"/>
+        <rdfs:comment xml:lang="en">A dwelling containing multiple sleeping quarters with shared eating, living and lavatory facilities in addition to offering additional care and medical/health assistance from trained staff.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://bsdd.buildingsmart.org/api/4.0/IfdConcept/3UzLO01P4HtG0000PR1IRl"/>
+        <rdfs:isDefinedBy>&apos;Special Care Residence&apos; in Omniclass 11 (2013 02 26)</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/xbot#Stockroom -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/xbot#Stockroom">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/bot#Space"/>
+        <rdfs:label>Stockroom</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/xbot#Subterranean -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/xbot#Subterranean">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/xbot#Floor"/>
+        <rdfs:comment xml:lang="en">A Sunterranean represents a subterranean floor.</rdfs:comment>
+        <rdfs:label xml:lang="en">Subterranean</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/xbot#SwimmingCenter -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/xbot#SwimmingCenter">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/xbot#PublicBuilding"/>
+        <rdfs:label>SwimmingCenter</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/xbot#TechnicalArea -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/xbot#TechnicalArea">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/bot#Space"/>
+        <rdfs:label>TechnicalArea</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/xbot#Terraced -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/xbot#Terraced">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/xbot#SingleFamilyHousing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/xbot#Toilets -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/xbot#Toilets">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/bot#Space"/>
+        <rdfs:comment xml:lang="en">Toilets is an instance of IfcSpace in the building representing toilets.</rdfs:comment>
+        <rdfs:label xml:lang="en">Toilets</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/xbot#TrainStation -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/xbot#TrainStation">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/xbot#TransportBuilding"/>
+        <rdfs:label>TrainStation</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/xbot#TransportBuilding -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/xbot#TransportBuilding">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/bot#Building"/>
+        <rdfs:label>TransportBuilding</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/xbot#University -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/xbot#University">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/xbot#EducationalBuilding"/>
+        <rdfs:label>University</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/xbot#Warehouse -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/xbot#Warehouse">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/xbot#IndustrialBuilding"/>
+        <rdfs:label>Warehouse</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/xbot#WetArea -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/xbot#WetArea">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/bot#Space"/>
+        <rdfs:comment xml:lang="en">WetArea is an instance of IfcSpace in the building representing a wet area.</rdfs:comment>
+        <rdfs:label xml:lang="en">WetArea</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/bot#Building -->
+
+
+    <owl:Class rdf:about="https://w3id.org/bot#Building">
+        <rdfs:seeAlso>https://w3id.org/seas/Building</rdfs:seeAlso>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/bot#Space -->
+
+
+    <owl:Class rdf:about="https://w3id.org/bot#Space">
+        <rdfs:seeAlso>https://w3id.org/seas/BuildingSpace</rdfs:seeAlso>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/bot#Storey -->
+
+
+    <owl:Class rdf:about="https://w3id.org/bot#Storey">
+        <rdfs:seeAlso>https://w3id.org/seas/BuildingStorey</rdfs:seeAlso>
+    </owl:Class>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 5.1.14) https://github.com/owlcs/owlapi/ -->
+
+

@@ -1,0 +1,298 @@
+<http://bemserver.org/services> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Ontology> .
+<http://bemserver.org/services> <http://www.w3.org/2002/07/owl#versionIRI> <http://bemserver.org/services/0.1> .
+<http://bemserver.org/services> <http://purl.org/dc/terms/creator> "Lara Kallab" .
+<http://bemserver.org/services> <http://purl.org/dc/terms/creator> "Nathalie Charbel" .
+<http://bemserver.org/services> <http://purl.org/dc/terms/creator> "Pierre Bourreau" .
+<http://bemserver.org/services> <http://purl.org/dc/terms/description> "This ontology is used to describe services that are client of BEMServer. Services are programs that can read/get data from BEMServer to perform specific operations, and/or push/write information on BEMServer. In some cases, services can also be seen as specific cases of sensors, producing timeseries to BEMServer. The ontology can be used to generate a catalogue of services that are installed on BEMServer."@en .
+<http://bemserver.org/services> <http://purl.org/dc/terms/title> "BEMServer services ontology"@en .
+<http://bemserver.org/services> <http://www.w3.org/2002/07/owl#versionInfo> "v0.1" .
+# 
+# 
+# #################################################################
+# #
+# #    Annotation properties
+# #
+# #################################################################
+# 
+# 
+# http://purl.org/dc/terms/creator
+<http://purl.org/dc/terms/creator> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
+# 
+# http://purl.org/dc/terms/description
+<http://purl.org/dc/terms/description> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
+# 
+# http://purl.org/dc/terms/title
+<http://purl.org/dc/terms/title> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
+# 
+# http://www.w3.org/2000/01/rdf-schema#description
+<http://www.w3.org/2000/01/rdf-schema#description> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
+# 
+# http://www.w3.org/2000/01/rdf-schema#desription
+<http://www.w3.org/2000/01/rdf-schema#desription> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
+# 
+# 
+# 
+# #################################################################
+# #
+# #    Object Properties
+# #
+# #################################################################
+# 
+# 
+# http://bemserver.org/services#hasOutput
+<http://bemserver.org/services#hasOutput> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://bemserver.org/services#hasOutput> <http://www.w3.org/2002/07/owl#inverseOf> <http://bemserver.org/services#model> .
+# 
+# http://bemserver.org/services#installedOn
+<http://bemserver.org/services#installedOn> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+# 
+# http://bemserver.org/services#localization
+<http://bemserver.org/services#localization> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+# 
+# http://bemserver.org/services#model
+<http://bemserver.org/services#model> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+# 
+# http://bemserver.org/services#parameters
+<http://bemserver.org/services#parameters> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+# 
+# http://bemserver.org/services#partOfService
+<http://bemserver.org/services#partOfService> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://bemserver.org/services#partOfService> <http://www.w3.org/2002/07/owl#inverseOf> <http://bemserver.org/services#usesModel> .
+# 
+# http://bemserver.org/services#service
+<http://bemserver.org/services#service> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+# 
+# http://bemserver.org/services#usesModel
+<http://bemserver.org/services#usesModel> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+# 
+# http://bemserver.org/services#valueType
+<http://bemserver.org/services#valueType> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+# 
+# http://bemserver.org/services#valueUnit
+<http://bemserver.org/services#valueUnit> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+# 
+# 
+# 
+# #################################################################
+# #
+# #    Data properties
+# #
+# #################################################################
+# 
+# 
+# http://bemserver.org/services#description
+<http://bemserver.org/services#description> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://bemserver.org/services#description> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://www.w3.org/ns/hydra/core#description> .
+<http://www.w3.org/ns/hydra/core#description> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://bemserver.org/services#description> <http://www.w3.org/2000/01/rdf-schema#description> "A description of the service. Must be explicit and clear enough to allow other service developers to understand the suitability of the service for their own use." .
+# 
+# http://bemserver.org/services#externalID
+<http://bemserver.org/services#externalID> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://bemserver.org/services#externalID> <http://www.w3.org/2000/01/rdf-schema#description> "The external Identifier of time series generated by the service if needed (i.e. in case the time series storage uses IDs different from the IDs used to describe time series) " .
+# 
+# http://bemserver.org/services#hasFrontend
+<http://bemserver.org/services#hasFrontend> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://bemserver.org/services#hasFrontend> <http://www.w3.org/2000/01/rdf-schema#description> "A boolean o whether the service has a frontend/user interface or not. This can be used to filter services to present to end users. " .
+# 
+# http://bemserver.org/services#id
+<http://bemserver.org/services#id> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://bemserver.org/services#id> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
+# 
+# http://bemserver.org/services#name
+<http://bemserver.org/services#name> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://bemserver.org/services#name> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://www.w3.org/ns/hydra/core#title> .
+<http://www.w3.org/ns/hydra/core#title> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+# 
+# http://bemserver.org/services#param_name
+<http://bemserver.org/services#param_name> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+# 
+# http://bemserver.org/services#param_value
+<http://bemserver.org/services#param_value> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+# 
+# http://bemserver.org/services#sampling
+<http://bemserver.org/services#sampling> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+# 
+# http://www.w3.org/ns/hydra/core#description
+# 
+# http://www.w3.org/ns/hydra/core#entrypoint
+<http://www.w3.org/ns/hydra/core#entrypoint> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+# 
+# http://www.w3.org/ns/hydra/core#title
+# 
+# 
+# 
+# #################################################################
+# #
+# #    Classes
+# #
+# #################################################################
+# 
+# 
+# http://bemserver.org/property#property
+<http://bemserver.org/property#property> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+# 
+# http://bemserver.org/services#ComposedService
+<http://bemserver.org/services#ComposedService> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/services#ComposedService> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://bemserver.org/services#Service> .
+<http://bemserver.org/services#ComposedService> <http://www.w3.org/2002/07/owl#disjointWith> <http://bemserver.org/services#SingleService> .
+<http://bemserver.org/services#ComposedService> <http://www.w3.org/2000/01/rdf-schema#label> "ComposedService" .
+# 
+# http://bemserver.org/services#DataCollectionService
+<http://bemserver.org/services#DataCollectionService> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/services#DataCollectionService> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://bemserver.org/services#SingleService> .
+<http://bemserver.org/services#DataCollectionService> <http://www.w3.org/2002/07/owl#disjointWith> <http://bemserver.org/services#DataComputationService> .
+<http://bemserver.org/services#DataCollectionService> <http://www.w3.org/2002/07/owl#disjointWith> <http://bemserver.org/services#DataPreProcessingService> .
+<http://bemserver.org/services#DataCollectionService> <http://www.w3.org/2000/01/rdf-schema#description> "A data collection service can only collect information. An example is a weather prediction service, or energy price. It cannot make complex computations on the data." .
+# 
+# http://bemserver.org/services#DataComputationService
+<http://bemserver.org/services#DataComputationService> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/services#DataComputationService> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://bemserver.org/services#SingleService> .
+<http://bemserver.org/services#DataComputationService> <http://www.w3.org/2002/07/owl#disjointWith> <http://bemserver.org/services#DataPreProcessingService> .
+<http://bemserver.org/services#DataComputationService> <http://www.w3.org/2000/01/rdf-schema#description> "A data computation service is one that performs complex operations, in opposition with a data collection service. It typically takes some inputs from BEMServer and performs operations. Results can be pushed back to BEMServer or not." .
+# 
+# http://bemserver.org/services#DataPreProcessingService
+<http://bemserver.org/services#DataPreProcessingService> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/services#DataPreProcessingService> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://bemserver.org/services#SingleService> .
+<http://bemserver.org/services#DataPreProcessingService> <http://www.w3.org/2000/01/rdf-schema#description> "Data preprocessing services are those that are used to transform, accomodate data to ease their exploitation by other services. For instance, a preprocessing service can resample data, perform atomic operations like computing means, sums... on timeseries." .
+# 
+# http://bemserver.org/services#Event
+<http://bemserver.org/services#Event> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/services#Event> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://bemserver.org/services#Output> .
+<http://bemserver.org/services#Event> <http://www.w3.org/2002/07/owl#disjointWith> <http://bemserver.org/services#TimeSeries> .
+<http://bemserver.org/services#Event> <http://www.w3.org/2000/01/rdf-schema#description> "Events are specific outputs, that are notification of some event happening in the building or on BEMServer itself. For instance, an event can be an alert on energy peaks, faulty HVAC systems..." .
+<http://bemserver.org/services#Event> <http://www.w3.org/2000/01/rdf-schema#label> "Event" .
+# 
+# http://bemserver.org/services#Model
+<http://bemserver.org/services#Model> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/services#Model> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid1 .
+_:genid1 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid1 <http://www.w3.org/2002/07/owl#onProperty> <http://bemserver.org/services#hasOutput> .
+_:genid1 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://bemserver.org/services#Output> .
+<http://bemserver.org/services#Model> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid2 .
+_:genid2 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid2 <http://www.w3.org/2002/07/owl#onProperty> <http://bemserver.org/services#parameters> .
+_:genid2 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://bemserver.org/services#Parameter> .
+<http://bemserver.org/services#Model> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid3 .
+_:genid3 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid3 <http://www.w3.org/2002/07/owl#onProperty> <http://bemserver.org/services#partOfService> .
+_:genid3 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://bemserver.org/services#Service> .
+<http://bemserver.org/services#Model> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid4 .
+_:genid4 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid4 <http://www.w3.org/2002/07/owl#onProperty> <http://bemserver.org/services#description> .
+_:genid4 <http://www.w3.org/2002/07/owl#someValuesFrom> <http://www.w3.org/2001/XMLSchema#string> .
+<http://bemserver.org/services#Model> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid5 .
+_:genid5 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid5 <http://www.w3.org/2002/07/owl#onProperty> <http://bemserver.org/services#id> .
+_:genid5 <http://www.w3.org/2002/07/owl#someValuesFrom> <http://www.w3.org/2001/XMLSchema#string> .
+<http://bemserver.org/services#Model> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid6 .
+_:genid6 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid6 <http://www.w3.org/2002/07/owl#onProperty> <http://bemserver.org/services#name> .
+_:genid6 <http://www.w3.org/2002/07/owl#someValuesFrom> <http://www.w3.org/2001/XMLSchema#string> .
+<http://bemserver.org/services#Model> <http://www.w3.org/2000/01/rdf-schema#comment> "A model is a particular configuration of service. As such it can be seen as a sub-service; For instance, if the service runs neural networks, it can run over different neural networks models."@en .
+<http://bemserver.org/services#Model> <http://www.w3.org/2000/01/rdf-schema#label> "Model"@en .
+# 
+# http://bemserver.org/services#Output
+<http://bemserver.org/services#Output> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/services#Output> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid7 .
+_:genid7 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid7 <http://www.w3.org/2002/07/owl#onProperty> <http://bemserver.org/services#model> .
+_:genid7 <http://www.w3.org/2002/07/owl#someValuesFrom> <http://bemserver.org/services#Model> .
+<http://bemserver.org/services#Output> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid8 .
+_:genid8 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid8 <http://www.w3.org/2002/07/owl#onProperty> <http://bemserver.org/services#service> .
+_:genid8 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://bemserver.org/services#Service> .
+<http://bemserver.org/services#Output> <http://www.w3.org/2000/01/rdf-schema#desription> "The output of a service that pushed data to BEMServer. Outputs can be of different kinds. A service may have many outputs." .
+<http://bemserver.org/services#Output> <http://www.w3.org/2000/01/rdf-schema#label> "Output" .
+# 
+# http://bemserver.org/services#Parameter
+<http://bemserver.org/services#Parameter> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/services#Parameter> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid9 .
+_:genid9 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid9 <http://www.w3.org/2002/07/owl#onProperty> <http://bemserver.org/services#param_name> .
+_:genid9 <http://www.w3.org/2002/07/owl#someValuesFrom> <http://www.w3.org/2001/XMLSchema#string> .
+<http://bemserver.org/services#Parameter> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid10 .
+_:genid10 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid10 <http://www.w3.org/2002/07/owl#onProperty> <http://bemserver.org/services#param_value> .
+_:genid10 <http://www.w3.org/2002/07/owl#someValuesFrom> <http://www.w3.org/2001/XMLSchema#string> .
+<http://bemserver.org/services#Parameter> <http://www.w3.org/2000/01/rdf-schema#description> "Parameters of the service or model, presented as a couple (name, value)." .
+<http://bemserver.org/services#Parameter> <http://www.w3.org/2000/01/rdf-schema#label> "Input" .
+<http://bemserver.org/services#Parameter> <http://www.w3.org/2000/01/rdf-schema#label> "Parameter" .
+# 
+# http://bemserver.org/services#Service
+<http://bemserver.org/services#Service> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/services#Service> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid11 .
+_:genid11 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid11 <http://www.w3.org/2002/07/owl#onProperty> <http://bemserver.org/services#usesModel> .
+_:genid11 <http://www.w3.org/2002/07/owl#someValuesFrom> <http://bemserver.org/services#Model> .
+<http://bemserver.org/services#Service> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid12 .
+_:genid12 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid12 <http://www.w3.org/2002/07/owl#onProperty> <http://bemserver.org/services#installedOn> .
+_:genid12 <http://www.w3.org/2002/07/owl#allValuesFrom> <https://w3id.org/bot#Site> .
+<https://w3id.org/bot#Site> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/services#Service> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid13 .
+_:genid13 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid13 <http://www.w3.org/2002/07/owl#onProperty> <http://www.w3.org/ns/hydra/core#description> .
+_:genid13 <http://www.w3.org/2002/07/owl#someValuesFrom> <http://www.w3.org/2001/XMLSchema#string> .
+<http://bemserver.org/services#Service> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid14 .
+_:genid14 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid14 <http://www.w3.org/2002/07/owl#onProperty> <http://www.w3.org/ns/hydra/core#entrypoint> .
+_:genid14 <http://www.w3.org/2002/07/owl#someValuesFrom> <http://www.w3.org/2001/XMLSchema#anyURI> .
+<http://bemserver.org/services#Service> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid15 .
+_:genid15 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid15 <http://www.w3.org/2002/07/owl#onProperty> <http://www.w3.org/ns/hydra/core#title> .
+_:genid15 <http://www.w3.org/2002/07/owl#someValuesFrom> <http://www.w3.org/2001/XMLSchema#string> .
+<http://bemserver.org/services#Service> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid16 .
+_:genid16 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid16 <http://www.w3.org/2002/07/owl#onProperty> <http://bemserver.org/services#id> .
+_:genid16 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://www.w3.org/2001/XMLSchema#string> .
+<http://bemserver.org/services#Service> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid17 .
+_:genid17 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid17 <http://www.w3.org/2002/07/owl#onProperty> <http://bemserver.org/services#hasFrontend> .
+_:genid17 <http://www.w3.org/2002/07/owl#qualifiedCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
+_:genid17 <http://www.w3.org/2002/07/owl#onDataRange> <http://www.w3.org/2001/XMLSchema#boolean> .
+<http://bemserver.org/services#Service> <http://www.w3.org/2000/01/rdf-schema#comment> "A service defined in BEMServer is an external component that is a client of BEMServer. It can get data from BEMServer, or push some new data to it. As such, it can provide one or more functionalities."@en .
+<http://bemserver.org/services#Service> <http://www.w3.org/2000/01/rdf-schema#label> "Service"@en .
+<http://bemserver.org/services#Service> <http://www.w3.org/2000/01/rdf-schema#label> "Service"@fr .
+<http://bemserver.org/services#Service> <http://www.w3.org/2000/01/rdf-schema#label> "Web service"@en .
+# 
+# http://bemserver.org/services#SingleService
+<http://bemserver.org/services#SingleService> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/services#SingleService> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://bemserver.org/services#Service> .
+<http://bemserver.org/services#SingleService> <http://www.w3.org/2000/01/rdf-schema#description> "A single service is a service that is not composed. In a service composition framework, it is the smallest element available." .
+<http://bemserver.org/services#SingleService> <http://www.w3.org/2000/01/rdf-schema#label> "SingleService" .
+# 
+# http://bemserver.org/services#TimeSeries
+<http://bemserver.org/services#TimeSeries> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/services#TimeSeries> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://bemserver.org/services#Output> .
+<http://bemserver.org/services#TimeSeries> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid18 .
+_:genid18 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid18 <http://www.w3.org/2002/07/owl#onProperty> <http://bemserver.org/services#localization> .
+_:genid18 <http://www.w3.org/2002/07/owl#someValuesFrom> <https://w3id.org/bot#Zone> .
+<https://w3id.org/bot#Zone> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/services#TimeSeries> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid19 .
+_:genid19 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid19 <http://www.w3.org/2002/07/owl#onProperty> <http://bemserver.org/services#valueType> .
+_:genid19 <http://www.w3.org/2002/07/owl#someValuesFrom> <http://bemserver.org/property#property> .
+<http://bemserver.org/services#TimeSeries> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid20 .
+_:genid20 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid20 <http://www.w3.org/2002/07/owl#onProperty> <http://bemserver.org/services#valueUnit> .
+_:genid20 <http://www.w3.org/2002/07/owl#someValuesFrom> <http://qudt.org/schema/qudt#Unit> .
+<http://qudt.org/schema/qudt#Unit> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://bemserver.org/services#TimeSeries> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid21 .
+_:genid21 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid21 <http://www.w3.org/2002/07/owl#onProperty> <http://bemserver.org/services#externalID> .
+_:genid21 <http://www.w3.org/2002/07/owl#someValuesFrom> <http://www.w3.org/2001/XMLSchema#string> .
+<http://bemserver.org/services#TimeSeries> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid22 .
+_:genid22 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:genid22 <http://www.w3.org/2002/07/owl#onProperty> <http://bemserver.org/services#sampling> .
+_:genid22 <http://www.w3.org/2002/07/owl#someValuesFrom> <http://www.w3.org/2001/XMLSchema#float> .
+<http://bemserver.org/services#TimeSeries> <http://www.w3.org/2000/01/rdf-schema#description> "Time series are specific outputs, similar to time series collected from sensors. BEMServer services can themselves be timeseries clients, and/or timeseries producers." .
+<http://bemserver.org/services#TimeSeries> <http://www.w3.org/2000/01/rdf-schema#label> "TimeSeries" .
+# 
+# http://qudt.org/schema/qudt#Unit
+# 
+# https://w3id.org/bot#Site
+# 
+# https://w3id.org/bot#Zone
+# 
+# Generated by the OWL API (version 5.1.14) https://github.com/owlcs/owlapi/

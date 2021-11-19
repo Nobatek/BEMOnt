@@ -1,0 +1,1612 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://bemserver.org/occupant#"
+     xml:base="http://bemserver.org/occupant"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:bibo="http://purl.org/ontology/bibo/"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:terms="http://purl.org/dc/terms/"
+     xmlns:schema="http://schema.org/">
+    <owl:Ontology rdf:about="http://bemserver.org/occupant#">
+        <dc:description xml:lang="en">This ontology describes the occupants behaviour inside a building. It  is based on the idetification of Drivers Needs and Actions for each occupant to make underestandable the occupant-building interaction and different comfort states.</dc:description>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/abstract -->
+
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/abstract"/>
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/contributor -->
+
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/contributor"/>
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/creator -->
+
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/creator"/>
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/date -->
+
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/date"/>
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/description -->
+
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/description"/>
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/identifier -->
+
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/identifier"/>
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/title -->
+
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/title"/>
+    
+
+
+    <!-- http://purl.org/dc/terms/license -->
+
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/license"/>
+    
+
+
+    <!-- http://purl.org/ontology/bibo/status -->
+
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/ontology/bibo/status"/>
+    
+
+
+    <!-- http://schema.org/description -->
+
+
+    <owl:AnnotationProperty rdf:about="http://schema.org/description"/>
+    
+
+
+    <!-- http://schema.org/license -->
+
+
+    <owl:AnnotationProperty rdf:about="http://schema.org/license"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+
+    
+
+
+    <!-- http://bemserver.org/occupant#acts -->
+
+
+    <owl:ObjectProperty rdf:about="http://bemserver.org/occupant#acts">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdfs:comment xml:lang="en">Relation to define that an iser acto ober certain device changing their behaviour.</rdfs:comment>
+        <rdfs:label xml:lang="en">acts</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://bemserver.org/occupant#assignedTo -->
+
+
+    <owl:ObjectProperty rdf:about="http://bemserver.org/occupant#assignedTo">
+        <owl:inverseOf rdf:resource="http://bemserver.org/occupant#isAssignedTo"/>
+        <rdfs:comment xml:lang="en">Relation between the context and indoor or outddor factors.</rdfs:comment>
+        <rdfs:label xml:lang="en">assigned to</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://bemserver.org/occupant#associatedTo -->
+
+
+    <owl:ObjectProperty rdf:about="http://bemserver.org/occupant#associatedTo">
+        <rdfs:comment xml:lang="en">Relation between the context and certain sensor output</rdfs:comment>
+        <rdfs:label xml:lang="en">associated to</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://bemserver.org/occupant#changes -->
+
+
+    <owl:ObjectProperty rdf:about="http://bemserver.org/occupant#changes">
+        <rdfs:comment xml:lang="en">The relation to represent the result of an action in terms of changing something inside the buildign (system, sensors, etc).</rdfs:comment>
+        <rdfs:label xml:lang="en">changes</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://bemserver.org/occupant#concerns -->
+
+
+    <owl:ObjectProperty rdf:about="http://bemserver.org/occupant#concerns">
+        <rdfs:comment xml:lang="en">Relation focused on depicting the link between the users and the corresponding feedback</rdfs:comment>
+        <rdfs:label xml:lang="en">concerns</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://bemserver.org/occupant#hasBehaviour -->
+
+
+    <owl:ObjectProperty rdf:about="http://bemserver.org/occupant#hasBehaviour">
+        <rdfs:comment xml:lang="en">relation focused on indicating that certain user have defined certain behaviour</rdfs:comment>
+        <rdfs:label xml:lang="en">has behaviour</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://bemserver.org/occupant#hasComfortRequirements -->
+
+
+    <owl:ObjectProperty rdf:about="http://bemserver.org/occupant#hasComfortRequirements">
+        <rdfs:comment xml:lang="en">The relation to represent that a user has certain comfort requirements to be satisfied</rdfs:comment>
+        <rdfs:label xml:lang="en">has comfort requirements</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://bemserver.org/occupant#hasConstraints -->
+
+
+    <owl:ObjectProperty rdf:about="http://bemserver.org/occupant#hasConstraints">
+        <rdfs:comment xml:lang="en">the relation to represent that an event have a set of contraints</rdfs:comment>
+        <rdfs:label xml:lang="en">has constraints</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://bemserver.org/occupant#hasContext -->
+
+
+    <owl:ObjectProperty rdf:about="http://bemserver.org/occupant#hasContext">
+        <rdfs:comment xml:lang="en">Indicate the relation between an event and certain context</rdfs:comment>
+        <rdfs:label xml:lang="en">has context</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://bemserver.org/occupant#hasFunction -->
+
+
+    <owl:ObjectProperty rdf:about="http://bemserver.org/occupant#hasFunction">
+        <rdfs:comment xml:lang="en">Property to define in the Drivers several functions to measure the comfort.</rdfs:comment>
+        <rdfs:label xml:lang="en">has Function</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://bemserver.org/occupant#hasGender -->
+
+
+    <owl:ObjectProperty rdf:about="http://bemserver.org/occupant#hasGender">
+        <rdfs:comment xml:lang="en">property to associate to the users their corresponding gender</rdfs:comment>
+        <rdfs:label xml:lang="en">has gender</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://bemserver.org/occupant#hasIndicator -->
+
+
+    <owl:ObjectProperty rdf:about="http://bemserver.org/occupant#hasIndicator">
+        <rdfs:label xml:lang="en">has indicator</rdfs:label>
+        <rdfs:label xml:lang="en">property to indicate to the drivers the associations to certain indicators.</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://bemserver.org/occupant#hasModelResult -->
+
+
+    <owl:ObjectProperty rdf:about="http://bemserver.org/occupant#hasModelResult">
+        <rdfs:comment xml:lang="en">property to link the drivers with certain model results.</rdfs:comment>
+        <rdfs:label xml:lang="en">has model result</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://bemserver.org/occupant#hasOccupantAttitude -->
+
+
+    <owl:ObjectProperty rdf:about="http://bemserver.org/occupant#hasOccupantAttitude">
+        <rdfs:range rdf:resource="http://bemserver.org/occupant#OccupantAttitude"/>
+        <rdfs:comment xml:lang="en">object property to represent the occupant attitude of the building occupants.</rdfs:comment>
+        <rdfs:label xml:lang="en">has occupant attitude</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://bemserver.org/occupant#hasOccupantCharacteristics -->
+
+
+    <owl:ObjectProperty rdf:about="http://bemserver.org/occupant#hasOccupantCharacteristics">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdfs:range rdf:resource="http://bemserver.org/occupant#OccupantCharacteristics"/>
+        <rdfs:comment xml:lang="en">property to define the association between users and their daily activities</rdfs:comment>
+        <rdfs:label xml:lang="en">has occuant characteristics</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://bemserver.org/occupant#hasProbability -->
+
+
+    <owl:ObjectProperty rdf:about="http://bemserver.org/occupant#hasProbability">
+        <rdfs:comment xml:lang="en">property to represent the probability of happen certain event</rdfs:comment>
+        <rdfs:label xml:lang="en">has probability</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://bemserver.org/occupant#hasRole -->
+
+
+    <owl:ObjectProperty rdf:about="http://bemserver.org/occupant#hasRole">
+        <rdfs:comment xml:lang="en">property to associate the building occupants to certain role</rdfs:comment>
+        <rdfs:label xml:lang="en">has role</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://bemserver.org/occupant#hasState -->
+
+
+    <owl:ObjectProperty rdf:about="http://bemserver.org/occupant#hasState">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <owl:inverseOf rdf:resource="http://bemserver.org/occupant#isStatedBy"/>
+        <rdfs:range rdf:resource="http://bemserver.org/occupant#BuildingState"/>
+        <rdfs:comment xml:lang="en">property to asign to the building systems certain associated abstract state</rdfs:comment>
+        <rdfs:label xml:lang="en">has state</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://bemserver.org/occupant#hasStatus -->
+
+
+    <owl:ObjectProperty rdf:about="http://bemserver.org/occupant#hasStatus">
+        <rdfs:comment xml:lang="en">property to represent the asignment to the driver of certain status</rdfs:comment>
+        <rdfs:label xml:lang="en">has status</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://bemserver.org/occupant#isAssignedTo -->
+
+
+    <owl:ObjectProperty rdf:about="http://bemserver.org/occupant#isAssignedTo">
+        <rdfs:comment xml:lang="en">is assigned to</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://bemserver.org/occupant#isAssociatedTo -->
+
+
+    <owl:ObjectProperty rdf:about="http://bemserver.org/occupant#isAssociatedTo">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdfs:domain rdf:resource="http://bemserver.org/occupant#Event"/>
+        <rdfs:comment xml:lang="en">property to asign to the event a sosa:Result</rdfs:comment>
+        <rdfs:label xml:lang="en">isAssociatedTo</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://bemserver.org/occupant#isBasedOn -->
+
+
+    <owl:ObjectProperty rdf:about="http://bemserver.org/occupant#isBasedOn">
+        <rdfs:label xml:lang="en">is Based on</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://bemserver.org/occupant#isProvokedBy -->
+
+
+    <owl:ObjectProperty rdf:about="http://bemserver.org/occupant#isProvokedBy">
+        <owl:inverseOf rdf:resource="http://bemserver.org/occupant#provokes"/>
+        <rdfs:label xml:lang="en">is provoked by</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://bemserver.org/occupant#isStatedBy -->
+
+
+    <owl:ObjectProperty rdf:about="http://bemserver.org/occupant#isStatedBy">
+        <rdfs:label xml:lang="en">is stated by</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://bemserver.org/occupant#occupies -->
+
+
+    <owl:ObjectProperty rdf:about="http://bemserver.org/occupant#occupies">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdfs:domain rdf:resource="http://bemserver.org/occupant#Occupant"/>
+        <rdfs:comment xml:lang="en">property to asign to the occupant occupying a certain bot:Zone</rdfs:comment>
+        <rdfs:label xml:lang="en">occupies</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://bemserver.org/occupant#performsAction -->
+
+
+    <owl:ObjectProperty rdf:about="http://bemserver.org/occupant#performsAction">
+        <rdfs:range rdf:resource="http://bemserver.org/occupant#Actions"/>
+        <rdfs:label xml:lang="en">perform action</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://bemserver.org/occupant#prefers -->
+
+
+    <owl:ObjectProperty rdf:about="http://bemserver.org/occupant#prefers">
+        <rdfs:comment xml:lang="en">property to link user with modalitites</rdfs:comment>
+        <rdfs:label xml:lang="en">prefers</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://bemserver.org/occupant#provokes -->
+
+
+    <owl:ObjectProperty rdf:about="http://bemserver.org/occupant#provokes">
+        <rdfs:label xml:lang="en">provokes</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://bemserver.org/occupant#receives -->
+
+
+    <owl:ObjectProperty rdf:about="http://bemserver.org/occupant#receives">
+        <rdfs:comment xml:lang="en">property to represent the action of receiving notification from the system according t certain building anomalies</rdfs:comment>
+        <rdfs:label xml:lang="en">receives</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://bemserver.org/occupant#receivesAlerts -->
+
+
+    <owl:ObjectProperty rdf:about="http://bemserver.org/occupant#receivesAlerts">
+        <rdfs:range rdf:resource="http://bemserver.org/occupant#Alert"/>
+        <rdfs:comment xml:lang="en">relation to represent the recepcion of alerts to certain users</rdfs:comment>
+        <rdfs:label xml:lang="en">receives alerts</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+
+    
+
+
+    <!-- http://bemserver.org/occupant#age -->
+
+
+    <owl:DatatypeProperty rdf:about="http://bemserver.org/occupant#age">
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+        <rdfs:comment xml:lang="en">Data property to define the age of certain building occupant</rdfs:comment>
+        <rdfs:label xml:lang="en">age</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://bemserver.org/occupant#endWorktime -->
+
+
+    <owl:DatatypeProperty rdf:about="http://bemserver.org/occupant#endWorktime">
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+        <rdfs:comment xml:lang="en">proeprty to define the date time of end of wrok</rdfs:comment>
+        <rdfs:label xml:lang="en">end of work time</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://bemserver.org/occupant#id -->
+
+
+    <owl:DatatypeProperty rdf:about="http://bemserver.org/occupant#id">
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:comment xml:lang="en">text representation of the ids</rdfs:comment>
+        <rdfs:label xml:lang="en">id</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://bemserver.org/occupant#jobType -->
+
+
+    <owl:DatatypeProperty rdf:about="http://bemserver.org/occupant#jobType">
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:comment xml:lang="en">text definition of the job type</rdfs:comment>
+        <rdfs:label xml:lang="en">job type</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://bemserver.org/occupant#lifestyle -->
+
+
+    <owl:DatatypeProperty rdf:about="http://bemserver.org/occupant#lifestyle">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:label xml:lang="en">lifestyle</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://bemserver.org/occupant#maxValue -->
+
+
+    <owl:DatatypeProperty rdf:about="http://bemserver.org/occupant#maxValue">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+        <rdfs:comment xml:lang="en">maximun value marked as an upper threshold measure</rdfs:comment>
+        <rdfs:label xml:lang="en">maximun value</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://bemserver.org/occupant#minValue -->
+
+
+    <owl:DatatypeProperty rdf:about="http://bemserver.org/occupant#minValue">
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+        <rdfs:comment xml:lang="en">minimun value marked as the lower limit of the threshold</rdfs:comment>
+        <rdfs:label xml:lang="en">minimun value</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://bemserver.org/occupant#name -->
+
+
+    <owl:DatatypeProperty rdf:about="http://bemserver.org/occupant#name">
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:comment xml:lang="en">name of the instances (text field)</rdfs:comment>
+        <rdfs:label xml:lang="en">name</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://bemserver.org/occupant#numericValue -->
+
+
+    <owl:DatatypeProperty rdf:about="http://bemserver.org/occupant#numericValue">
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+        <rdfs:label xml:lang="en">numeric value</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://bemserver.org/occupant#resultTime -->
+
+
+    <owl:DatatypeProperty rdf:about="http://bemserver.org/occupant#resultTime">
+        <rdfs:comment>The result time is the instant of time when the Observation, Actuation or Sampling activity was completed.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/sosa/"/>
+        <rdfs:label>result time</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://bemserver.org/occupant#startWorktime -->
+
+
+    <owl:DatatypeProperty rdf:about="http://bemserver.org/occupant#startWorktime">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+        <rdfs:comment xml:lang="en">property to define the date time of start of wrok</rdfs:comment>
+        <rdfs:label xml:lang="en">start of work time</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://bemserver.org/sensor#externalID -->
+
+
+    <owl:DatatypeProperty rdf:about="http://bemserver.org/sensor#externalID">
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
+        <rdfs:comment xml:lang="en">Data proeprty to define the external ID regaring the time series stored in Mondas</rdfs:comment>
+        <rdfs:isDefinedBy xml:lang="en">http://bemserver.org/sensor#externalID</rdfs:isDefinedBy>
+        <rdfs:label xml:lang="en">externalID</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+
+    
+
+
+    <!-- http://bemserver.org/occupant#ASHRAEAdaptiveComfort -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/occupant#ASHRAEAdaptiveComfort">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/occupant#ThermalComfort"/>
+        <rdfs:comment xml:lang="en">The ASHRAE Adaptive Comfort is a standard that provides minimum requirements for acceptable thermal indoor environments. It establishes the ranges of indoor environmental conditions that are acceptable to achieve thermal comfort for occupants. It was first published in 1966, and since 2004 has been updated periodically by a technical committee of industry experts in ASHRAE (American Society of Heating, Refrigerating and Air-Conditioning Engineers). The most recent version of the standard was published in 2013.</rdfs:comment>
+        <rdfs:label xml:lang="en">ASHRAE Adaptive Comfort</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/occupant#ASHRAEAdaptiveEnvelope -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/occupant#ASHRAEAdaptiveEnvelope">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/occupant#ThermalComfort"/>
+        <rdfs:comment xml:lang="en">Standard that includes prescriptive requirements for the following:
+- Building Envelope: minimum wall insulation, minimum roof insulation, roof reflectance, minimum glazing performance
+  - HVAC: minimum equipment efficiency, minimum system features, limitation on reheat, limitation on fan power
+  - Domestic Hot Water: minimum equipment efficiency, minimum system features
+  - Power: transformer efficiency, automatic receptacle controls, energy monitoring
+  - Lighting: maximum indoor lighting power density (LPD, expressed in Watts/Sq.Ft.), minimum lighting controls, exterior lighting, parking garage lighting
+  - Other Equipment: electric motors, potable water booster pumps, elevators, and escalators</rdfs:comment>
+        <rdfs:label xml:lang="en">ASHRAE Adaptive Envelope</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/occupant#AcousticComfort -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/occupant#AcousticComfort">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/occupant#Needs"/>
+        <rdfs:comment xml:lang="en">The acoustic comfort refers to the models to measure the level of background noise within an aceptable range.</rdfs:comment>
+        <rdfs:label xml:lang="en">Acoustic Comfort</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/occupant#Actions -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/occupant#Actions">
+        <rdfs:comment xml:lang="en">Actions are the specific building interactions performed by the building occupants. This actions can be caused by an initial discomfort or event as an occupant event. Nevertheless, the actions are connected with the drivers at time as the user changes a parameter in the building facilities. Moreover, the actions also has some influence over the needs due to this actions commonly are performed to satisfy user comfort requirements.</rdfs:comment>
+        <rdfs:label xml:lang="en">Actions</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/occupant#ActivityModel -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/occupant#ActivityModel">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/occupant#Driver"/>
+        <rdfs:comment xml:lang="en">Model that consist on modelling the occupant activity inside the building</rdfs:comment>
+        <rdfs:label xml:lang="en">Activity Model</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/occupant#Age -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/occupant#Age"/>
+    
+
+
+    <!-- http://bemserver.org/occupant#Alert -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/occupant#Alert">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/occupant#Notification"/>
+        <rdfs:comment xml:lang="en">Defined as the quick to notice any unusual and potentially dangerous or difficult circumstances concerning the building state.</rdfs:comment>
+        <rdfs:label xml:lang="en">Alert</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/occupant#BehaviourModel -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/occupant#BehaviourModel">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/occupant#Driver"/>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://bemserver.org/occupant#isBasedOn"/>
+                        <owl:someValuesFrom rdf:resource="http://bemserver.org/occupant#OccupantBehaviour"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://bemserver.org/occupant#isBasedOn"/>
+                        <owl:someValuesFrom rdf:resource="http://bemserver.org/occupant#TimeBehaviour"/>
+                    </owl:Restriction>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:comment xml:lang="en">As variables that serve to measure the habits and activities inside the building. Defined to register and contextualise the occupant events (building interactions with the different systems).</rdfs:comment>
+        <rdfs:label xml:lang="en">Behavioural Model</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/occupant#BlindClose -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/occupant#BlindClose">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/occupant#BlindState"/>
+        <owl:disjointWith rdf:resource="http://bemserver.org/occupant#BlindOpen"/>
+        <rdfs:comment xml:lang="en">Determines that the corresponding blind is close</rdfs:comment>
+        <rdfs:label xml:lang="en">Blind Close</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/occupant#BlindOpen -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/occupant#BlindOpen">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/occupant#BlindState"/>
+        <rdfs:comment xml:lang="en">Determines that the corresponding blind is open</rdfs:comment>
+        <rdfs:label xml:lang="en">Blind Open</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/occupant#BlindState -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/occupant#BlindState">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/occupant#BuildingSimpleState"/>
+        <rdfs:comment xml:lang="en">Refers to the state that a blind could achieve (Open or Closed)</rdfs:comment>
+        <rdfs:label xml:lang="en">Blind State</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/occupant#BuildingComplexState -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/occupant#BuildingComplexState">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/occupant#BuildingState"/>
+        <rdfs:comment xml:lang="en">In reference to the complex states, this refers as the states that require for the combination of different facilities to determine an overall state. For example, one complex state is the determination of the energy state of the building that can be energy efficient state or energy inefficient state considering anomalous energy consumption (e.g., thermostat on at same time as the windows are open)</rdfs:comment>
+        <rdfs:label xml:lang="en">Building Complex State</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/occupant#BuildingSimpleState -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/occupant#BuildingSimpleState">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/occupant#BuildingState"/>
+        <rdfs:comment xml:lang="en">The building simple state refers to specific status of some building elements that highly impacts in the detection of building anomalies even related with energy or user comfort.</rdfs:comment>
+        <rdfs:label xml:lang="en">Building Simple State</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/occupant#BuildingState -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/occupant#BuildingState">
+        <rdfs:comment xml:lang="en">The building state allows to conextualise and determine the building facilities status. This building state determinaton has been divided into simple building states and complex building states.</rdfs:comment>
+        <rdfs:label xml:lang="en">Building State</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/occupant#ComfortState -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/occupant#ComfortState">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/occupant#BuildingComplexState"/>
+        <rdfs:comment xml:lang="en">Comfort state is defined as the ocupant state according to the current building situation.</rdfs:comment>
+        <rdfs:label xml:lang="en">Comfort State</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/occupant#Constraints -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/occupant#Constraints">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/occupant#Event"/>
+        <rdfs:comment xml:lang="en">Event that limits the action of something.</rdfs:comment>
+        <rdfs:label xml:lang="en">Constraints</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/occupant#Context -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/occupant#Context">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/occupant#Event"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://bemserver.org/occupant#isAssignedTo"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://bemserver.org/occupant#Indoor"/>
+                            <rdf:Description rdf:about="http://bemserver.org/occupant#Outdoor"/>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment xml:lang="en">Context in which applies the action</rdfs:comment>
+        <rdfs:label xml:lang="en">Context</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/occupant#DoorClose -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/occupant#DoorClose">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/occupant#DoorState"/>
+        <owl:disjointWith rdf:resource="http://bemserver.org/occupant#DoorOpen"/>
+        <rdfs:comment xml:lang="en">Determines that the corresponding door is close</rdfs:comment>
+        <rdfs:label xml:lang="en">Door Close</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/occupant#DoorOpen -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/occupant#DoorOpen">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/occupant#DoorState"/>
+        <rdfs:comment xml:lang="en">Determines that the corresponding door is open</rdfs:comment>
+        <rdfs:label xml:lang="en">Door Open</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/occupant#DoorState -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/occupant#DoorState">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/occupant#BuildingSimpleState"/>
+        <rdfs:comment xml:lang="en">Determines that the corresponding state of the Door (Open or Close)</rdfs:comment>
+        <rdfs:label xml:lang="en">Door State</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/occupant#Driver -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/occupant#Driver">
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://bemserver.org/occupant#hasFunction"/>
+                        <owl:someValuesFrom rdf:resource="http://bemserver.org/occupant#Function"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://bemserver.org/occupant#hasIndicator"/>
+                        <owl:someValuesFrom rdf:resource="http://bemserver.org/occupant#Indicator"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://bemserver.org/occupant#hasModelResult"/>
+                        <owl:someValuesFrom rdf:resource="http://bemserver.org/occupant#ModelResult"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://bemserver.org/occupant#hasStatus"/>
+                        <owl:someValuesFrom rdf:resource="http://bemserver.org/occupant#Status"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:comment xml:lang="en">Drivers represent the environmental factors from the outside world that stimulate occupants in their inside world to fulfill a physical, physiological or psychological need</rdfs:comment>
+        <rdfs:label xml:lang="en">Driver</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/occupant#EnergyFrugal -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/occupant#EnergyFrugal">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/occupant#OccupantAttitude"/>
+        <rdfs:comment xml:lang="en">Is the quality of being frugal, sparing, thrifty, prudent or economical in the consumption of consumable resources such as food, time or money, and avoiding waste, lavishness or extravagance</rdfs:comment>
+        <rdfs:label xml:lang="en">Energy Frugal</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/occupant#EnergyIndiferent -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/occupant#EnergyIndiferent">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/occupant#OccupantAttitude"/>
+        <rdfs:comment xml:lang="en">Occupant trend to have no preference or being uninterested about building energy consumption and efficiency.</rdfs:comment>
+        <rdfs:label xml:lang="en">Energy Indiferent</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/occupant#EnergyProfligate -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/occupant#EnergyProfligate">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/occupant#OccupantAttitude"/>
+        <rdfs:comment xml:lang="en">Occupant that is recklessly, extravagant or wasteful in the use of resources.</rdfs:comment>
+        <rdfs:label xml:lang="en">Energy Profligate</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/occupant#EnergyState -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/occupant#EnergyState">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/occupant#BuildingComplexState"/>
+        <rdfs:comment xml:lang="en">Energy state is the combination of different direct measures or simple state measures to determine energy inefficiencies.</rdfs:comment>
+        <rdfs:label xml:lang="en">Energy State</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/occupant#EnvironmentalBuildingFactors -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/occupant#EnvironmentalBuildingFactors">
+        <rdfs:comment xml:lang="en">Environmental Building Factors refers to the building inddor and outdor fixeed conditions for comfort and discomfort.</rdfs:comment>
+        <rdfs:label xml:lang="en">Environmental Building Factors</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/occupant#EquipementModel -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/occupant#EquipementModel">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/occupant#Driver"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://bemserver.org/occupant#isBasedOn"/>
+                <owl:someValuesFrom rdf:resource="http://bemserver.org/occupant#EnvironmentalBuildingFactors"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment xml:lang="en">Class for measuring the building features and the environmental factors including indoor and outdoor parameters.</rdfs:comment>
+        <rdfs:label xml:lang="en">Equipement Model</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/occupant#Event -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/occupant#Event">
+        <rdfs:comment xml:lang="en">Circumstances that may be driving occupant actions such as waking up, sleeping, leaving for work or returning from lunch</rdfs:comment>
+        <rdfs:label xml:lang="en">Event</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/occupant#EventModel -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/occupant#EventModel">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/occupant#Driver"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://bemserver.org/occupant#isBasedOn"/>
+                <owl:someValuesFrom rdf:resource="http://bemserver.org/occupant#Event"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment xml:lang="en">Defined to register the events that can be detected from the sensor readings.</rdfs:comment>
+        <rdfs:label xml:lang="en">Event Model</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/occupant#Feedback -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/occupant#Feedback">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/occupant#Actions"/>
+        <rdfs:comment xml:lang="en">In building domain, Feedback is the actor retrofit with information regarding buildn state.</rdfs:comment>
+        <rdfs:label xml:lang="en">Feedback</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/occupant#Function -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/occupant#Function">
+        <rdfs:comment xml:lang="en">Is the model function to determine indoor and outdoor environmental building factors.</rdfs:comment>
+        <rdfs:label xml:lang="en">Function</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/occupant#Gender -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/occupant#Gender">
+        <rdfs:comment xml:lang="en">The Gender is is the range of characteristics pertaining to, and differentiating between, masculinity and femininity</rdfs:comment>
+        <rdfs:label xml:lang="en">Gender</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/occupant#IAQ -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/occupant#IAQ">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/occupant#Needs"/>
+        <rdfs:comment xml:lang="en">The IAQ corresponds to the types of measurements to determine the inddor environmental health.</rdfs:comment>
+        <rdfs:label xml:lang="en">IAQ</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/occupant#ISOAdaptiveComfort -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/occupant#ISOAdaptiveComfort">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/occupant#ThermalComfort"/>
+        <rdfs:comment xml:lang="en">This International Standard covering the evaluation of moderate thermal environments was developed in parallel with the revised ASHRAE) standard 55 and is one of a series of ISO documents specifying methods for the measurement and evaluation of the moderate and extreme thermal environments to which human beings are exposed (ISO 7243, ISO 7933 and ISO/TR 11079, all three dealing with extreme environmental conditions, are others in the series).</rdfs:comment>
+        <rdfs:label xml:lang="en">ISO Adaptive Comfort</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/occupant#Inaction -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/occupant#Inaction">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/occupant#Actions"/>
+        <rdfs:comment xml:lang="en">Refers to the performance of any action in the building.</rdfs:comment>
+        <rdfs:label xml:lang="en">Inaction</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/occupant#Indicator -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/occupant#Indicator">
+        <rdfs:comment xml:lang="en">Complementing the Driver information, the indicator refers to the optimal measure that indicates the state or level of something.</rdfs:comment>
+        <rdfs:label xml:lang="en">Indicator</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/occupant#Indoor -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/occupant#Indoor">
+        <rdfs:comment xml:lang="en">Considering the environmental factors and the context definition, the indoor class refers to those events that occur inside the building.</rdfs:comment>
+        <rdfs:label xml:lang="en">Indoor</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/occupant#Modality -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/occupant#Modality">
+        <rdfs:comment xml:lang="en">Refers to the notification mode to the users. This notification could be via SMS, e-mail or telephone</rdfs:comment>
+        <rdfs:label xml:lang="en">Modality</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/occupant#ModelResult -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/occupant#ModelResult">
+        <rdfs:comment xml:lang="en">Model result is defined by the outputs of applying several user behaviour model according to the collected data.</rdfs:comment>
+        <rdfs:label xml:lang="en">Model Result</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/occupant#Needs -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/occupant#Needs">
+        <rdfs:comment xml:lang="en">Needs represent the physical and non-physical requirements of the occupant&apos;s inside world that must be met in order to ensure the satisfaction of the occupant with their environment</rdfs:comment>
+        <rdfs:label xml:lang="en">Needs</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/occupant#Notification -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/occupant#Notification">
+        <rdfs:comment xml:lang="en">The Notification refers to the mechanims to provide highlighted information to the building users.</rdfs:comment>
+        <rdfs:label xml:lang="en">Notification</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/occupant#Occupant -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/occupant#Occupant">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/occupant#User"/>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/occupant#OccupantAttitude -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/occupant#OccupantAttitude">
+        <rdfs:comment xml:lang="en">Specific occupant attitude inside the building</rdfs:comment>
+        <rdfs:label xml:lang="en">Occupant Attitude</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/occupant#OccupantBehaviour -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/occupant#OccupantBehaviour">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/occupant#Actions"/>
+        <rdfs:comment xml:lang="en">Occupant behaviour influences building systems by movement or actions and further determines the building environment and energy consumption. Both the building environment and energy consumption in turn affect occupant behaviour through psychological, physiological and economic factors together with several external factors like comfort and culture.</rdfs:comment>
+        <rdfs:label xml:lang="en">Occupant Behaviour</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/occupant#OccupantCharacteristics -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/occupant#OccupantCharacteristics">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://bemserver.org/occupant#endWorktime"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://bemserver.org/occupant#startWorktime"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment xml:lang="en">The occupant characteristics refers to the daily or most common activities that building occupants performs inside the building (e.g start or end work)</rdfs:comment>
+        <rdfs:label xml:lang="en">Occupant Characteristics</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/occupant#OccupantComfort -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/occupant#OccupantComfort">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/occupant#ComfortState"/>
+        <owl:disjointWith rdf:resource="http://bemserver.org/occupant#OccupantDiscomfort"/>
+        <rdfs:comment xml:lang="en">Occupamt comfort is the occupant satisfaction with the building situation (thermal, lighting, etc) considering their specific comfrt ranges and parameters.</rdfs:comment>
+        <rdfs:label xml:lang="en">Occupant Comfort</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/occupant#OccupantDiscomfort -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/occupant#OccupantDiscomfort">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/occupant#ComfortState"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://bemserver.org/occupant#isProvokedBy"/>
+                <owl:someValuesFrom rdf:resource="http://bemserver.org/occupant#Actions"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment xml:lang="en">Occupamt discomfort will occur when building do not satisfy user requirements (comparison between needs and drivers).</rdfs:comment>
+        <rdfs:label xml:lang="en">Occupant Discomfort</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/occupant#OccupantPreferences -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/occupant#OccupantPreferences">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/occupant#Needs"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://bemserver.org/occupant#id"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://bemserver.org/occupant#maxValue"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://bemserver.org/occupant#minValue"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment xml:lang="en">The occupant preferences refers to the building occupants prefeerences regarding the comfort sempsation.</rdfs:comment>
+        <rdfs:label xml:lang="en">Occupant Preferences</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/occupant#OtherComfortEnvelope -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/occupant#OtherComfortEnvelope">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/occupant#ThermalComfort"/>
+        <rdfs:comment xml:lang="en">Other kind of standards that could appear or considered within the measurement and assessment of the thermal comfort.</rdfs:comment>
+        <rdfs:label xml:lang="en">Other Comfort Envelope</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/occupant#Outdoor -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/occupant#Outdoor">
+        <rdfs:comment xml:lang="en">Considering the environmental factors and the context definition, the outdoor class refers to those events that occur outside the building.</rdfs:comment>
+        <rdfs:label xml:lang="en">Outdoor</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/occupant#Privacy -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/occupant#Privacy">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/occupant#Needs"/>
+        <rdfs:comment xml:lang="en">The privacy refers to need of privacy associated to the user information and the need to maintain outside views.</rdfs:comment>
+        <rdfs:label xml:lang="en">Privacy</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/occupant#Probability -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/occupant#Probability">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/occupant#Event"/>
+        <rdfs:comment xml:lang="en">Likelihood measure to occur certain action</rdfs:comment>
+        <rdfs:label xml:lang="en">Probability</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/occupant#Recommendation -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/occupant#Recommendation">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/occupant#Notification"/>
+        <rdfs:comment xml:lang="en">The recomendation refers to the suggestions or proposals to improve the building efficiency or comfort.</rdfs:comment>
+        <rdfs:label xml:lang="en">Recommendation</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/occupant#Report -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/occupant#Report">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/occupant#Feedback"/>
+        <rdfs:comment xml:lang="en">Type of occupant feedback based on the building actor feedback using specific documants.</rdfs:comment>
+        <rdfs:label xml:lang="en">Report</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/occupant#Role -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/occupant#Role">
+        <rdfs:comment xml:lang="en">Depending on the interactions and the building type, the occupants interact with the building according to their capacities to perform building actions, as for example, seeing the building thermostats (ssn:Device) or actuating over the temperature fan coils (ifc:Actuator). At this point, it is interesting to consider that the occupants only perform such interactions if building managers permit them according to the building policies.</rdfs:comment>
+        <rdfs:label xml:lang="en">Role</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/occupant#Season -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/occupant#Season">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/occupant#TimeBehaviour"/>
+        <rdfs:comment xml:lang="en">It represent the season</rdfs:comment>
+        <rdfs:label xml:lang="en">Season</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/occupant#Status -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/occupant#Status">
+        <rdfs:comment xml:lang="en">State of the driver</rdfs:comment>
+        <rdfs:label xml:lang="en">Status</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/occupant#SystemActions -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/occupant#SystemActions">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/occupant#Actions"/>
+        <rdfs:comment xml:lang="en">System Actions are the intereactions between the different occupants and the building using the different building systems to modify the building states towards more comfortable states.</rdfs:comment>
+        <rdfs:label xml:lang="en">System Actions</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/occupant#ThermalComfort -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/occupant#ThermalComfort">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/occupant#Needs"/>
+        <rdfs:comment>Thermal Comfort is defined by the models to determine suitable indoor temperature associated to the user comfort.</rdfs:comment>
+        <rdfs:label>Thermal Comfort</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/occupant#TimeBehaviour -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/occupant#TimeBehaviour">
+        <rdfs:comment xml:lang="en">The time of day and the day of the week are fundamental to the presence and location of occupants in a building. Some personal habits are time-driven, for example opening windows when first arriving at work or closing windows before leaving the office, or turning on lights when first arriving and turning off lights before leaving.</rdfs:comment>
+        <rdfs:label xml:lang="en">Time Behaviour</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/occupant#User -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/occupant#User">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://bemserver.org/occupant#concerns"/>
+                <owl:someValuesFrom rdf:resource="http://bemserver.org/occupant#Feedback"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://bemserver.org/occupant#prefers"/>
+                <owl:someValuesFrom rdf:resource="http://bemserver.org/occupant#Modality"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://bemserver.org/occupant#receives"/>
+                <owl:someValuesFrom rdf:resource="http://bemserver.org/occupant#Notification"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment xml:lang="en">Type of actor that corresponds to the BEMServer user.</rdfs:comment>
+        <rdfs:label xml:lang="en">User</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/occupant#VisualComfort -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/occupant#VisualComfort">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/occupant#Needs"/>
+        <rdfs:comment xml:lang="en">Visual comfort criteria measure the ability of an individual to carry out tasks comfortably in terms of their photo-sensory perception of their environment.  They are dependent on many factors including: light intensity, direction of light source, reflection of surfaces, contrast of surfaces, the nature of the task being undertaken and the photo-sensory response of the eye.  International recommendations exist that specify the minimum level of illuminance required to provide visual comfort for various tasks and locations. As with thermal comfort temperatures, these light levels were derived experimentally and reflect an average person engaged in a specific activity within a defined environment.</rdfs:comment>
+        <rdfs:label xml:lang="en">Visual Comfort</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/occupant#WindowState -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/occupant#WindowState">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/occupant#BuildingSimpleState"/>
+        <rdfs:comment xml:lang="en">Determines the state of the specific window (Open or Close)</rdfs:comment>
+        <rdfs:label xml:lang="en">Window State</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/occupant#WindowsClose -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/occupant#WindowsClose">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/occupant#WindowState"/>
+        <owl:disjointWith rdf:resource="http://bemserver.org/occupant#WindowsOpen"/>
+        <rdfs:comment xml:lang="en">Determines that the corresponding Window is close</rdfs:comment>
+        <rdfs:label xml:lang="en">Windows Close</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/occupant#WindowsOpen -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/occupant#WindowsOpen">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/occupant#WindowState"/>
+        <rdfs:comment xml:lang="en">Determines that the corresponding windows is open</rdfs:comment>
+        <rdfs:label xml:lang="en">Windows Open</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/occupant#ZoneEmpty -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/occupant#ZoneEmpty">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/occupant#ZoneOccupancy"/>
+        <owl:disjointWith rdf:resource="http://bemserver.org/occupant#ZoneOccupied"/>
+        <rdfs:comment xml:lang="en">Determines the corrresponding building space have nobody inside (empty room)</rdfs:comment>
+        <rdfs:label xml:lang="en">Zone Empty</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/occupant#ZoneOccupancy -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/occupant#ZoneOccupancy">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/occupant#BuildingSimpleState"/>
+        <rdfs:comment xml:lang="en">Determines the number of people that are in a specific building space. In an abstract way, it determines wether the building space is empty or occupied.</rdfs:comment>
+        <rdfs:label xml:lang="en">Zone Occupancy</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bemserver.org/occupant#ZoneOccupied -->
+
+
+    <owl:Class rdf:about="http://bemserver.org/occupant#ZoneOccupied">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/occupant#ZoneOccupancy"/>
+        <rdfs:comment xml:lang="en">Determines the corresponding building space have someone inside. Thus, the specific building space have one or more people inside.</rdfs:comment>
+        <rdfs:label xml:lang="en">Zone Occupied</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/2006/time#DateTimeInterval -->
+
+
+    <owl:Class rdf:about="http://www.w3.org/2006/time#DateTimeInterval">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/occupant#TimeBehaviour"/>
+        <rdfs:comment xml:lang="en">It enables compact representation of an interval corresponding to a single element in a date-time description (i.e. a specified year, month, week, day, hour, minute, second)</rdfs:comment>
+        <rdfs:label xml:lang="en">Date Time Interval</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/2006/time#DayOfWeek -->
+
+
+    <owl:Class rdf:about="http://www.w3.org/2006/time#DayOfWeek">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/occupant#TimeBehaviour"/>
+        <rdfs:comment xml:lang="en">Correpondence to the seven days used in the Gregorian calendar, and using the English names :Sunday, :Monday, :Tuesday, :Wednesday, :Thursday, :Friday, :Saturday.</rdfs:comment>
+        <rdfs:label xml:lang="en">Day Of Week</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/2006/time#Instant -->
+
+
+    <owl:Class rdf:about="http://www.w3.org/2006/time#Instant">
+        <rdfs:subClassOf rdf:resource="http://bemserver.org/occupant#TimeBehaviour"/>
+        <rdfs:comment xml:lang="en">A temporal entity with zero extent or duration.</rdfs:comment>
+        <rdfs:label xml:lang="en">Instant</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+
+    
+
+
+    <!-- http://bemserver.org/occupant#Autumn -->
+
+
+    <owl:NamedIndividual rdf:about="http://bemserver.org/occupant#Autumn">
+        <rdf:type rdf:resource="http://bemserver.org/occupant#Season"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://bemserver.org/occupant#Email -->
+
+
+    <owl:NamedIndividual rdf:about="http://bemserver.org/occupant#Email">
+        <rdf:type rdf:resource="http://bemserver.org/occupant#Modality"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://bemserver.org/occupant#Female -->
+
+
+    <owl:NamedIndividual rdf:about="http://bemserver.org/occupant#Female">
+        <rdf:type rdf:resource="http://bemserver.org/occupant#Gender"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://bemserver.org/occupant#Male -->
+
+
+    <owl:NamedIndividual rdf:about="http://bemserver.org/occupant#Male">
+        <rdf:type rdf:resource="http://bemserver.org/occupant#Gender"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://bemserver.org/occupant#Manager -->
+
+
+    <owl:NamedIndividual rdf:about="http://bemserver.org/occupant#Manager">
+        <rdf:type rdf:resource="http://bemserver.org/occupant#Role"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://bemserver.org/occupant#Owner -->
+
+
+    <owl:NamedIndividual rdf:about="http://bemserver.org/occupant#Owner">
+        <rdf:type rdf:resource="http://bemserver.org/occupant#Role"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://bemserver.org/occupant#Phone -->
+
+
+    <owl:NamedIndividual rdf:about="http://bemserver.org/occupant#Phone">
+        <rdf:type rdf:resource="http://bemserver.org/occupant#Modality"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://bemserver.org/occupant#SMS -->
+
+
+    <owl:NamedIndividual rdf:about="http://bemserver.org/occupant#SMS">
+        <rdf:type rdf:resource="http://bemserver.org/occupant#Modality"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://bemserver.org/occupant#Spring -->
+
+
+    <owl:NamedIndividual rdf:about="http://bemserver.org/occupant#Spring">
+        <rdf:type rdf:resource="http://bemserver.org/occupant#Season"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://bemserver.org/occupant#Summer -->
+
+
+    <owl:NamedIndividual rdf:about="http://bemserver.org/occupant#Summer">
+        <rdf:type rdf:resource="http://bemserver.org/occupant#Season"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://bemserver.org/occupant#Technician -->
+
+
+    <owl:NamedIndividual rdf:about="http://bemserver.org/occupant#Technician">
+        <rdf:type rdf:resource="http://bemserver.org/occupant#Role"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://bemserver.org/occupant#Winter -->
+
+
+    <owl:NamedIndividual rdf:about="http://bemserver.org/occupant#Winter">
+        <rdf:type rdf:resource="http://bemserver.org/occupant#Season"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://bemserver.org/occupant#ActivityModel"/>
+            <rdf:Description rdf:about="http://bemserver.org/occupant#BehaviourModel"/>
+            <rdf:Description rdf:about="http://bemserver.org/occupant#EquipementModel"/>
+            <rdf:Description rdf:about="http://bemserver.org/occupant#EventModel"/>
+        </owl:members>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 5.1.14) https://github.com/owlcs/owlapi/ -->
+
+

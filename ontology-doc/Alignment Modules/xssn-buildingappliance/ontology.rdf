@@ -1,0 +1,292 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://bemserver.org/sensor/xSSN_BuildingAppliance_Alignment#"
+     xml:base="http://bemserver.org/sensor/xSSN_BuildingAppliance_Alignment"
+     xmlns:ns="http://www.w3.org/2006/vcard/ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:core="https://saref.etsi.org/core/"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:sosa="http://www.w3.org/ns/sosa/"
+     xmlns:vann="http://purl.org/vocab/vann/"
+     xmlns:terms="http://purl.org/dc/terms/"
+     xmlns:schema="https://schema.org/">
+    <owl:Ontology rdf:about="http://bemserver.org/sensor/xSSN_BuildingAppliance_Alignment#">
+        <owl:versionIRI rdf:resource="http://bemserver.org/sensor/xSSN_SAREF_Alignment-1.0"/>
+        <owl:imports rdf:resource="http://bemserver.org/appliance#"/>
+        <owl:imports rdf:resource="http://www.bemserver.org/sensor/xssn/#"/>
+        <terms:creator rdf:resource="https://orcid.org/0000-0002-5520-2270"/>
+        <terms:creator>Nathalie Charbel</terms:creator>
+        <terms:description xml:lang="en">This ontology defines proposed alignments between xSSN and BuildingAppliance ontology.</terms:description>
+        <terms:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-05-26</terms:issued>
+        <terms:title xml:lang="en">xSSN to BuildingAppliance alignment.</terms:title>
+        <owl:versionInfo>v1.0.0</owl:versionInfo>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+
+    
+
+
+    <!-- http://purl.org/dc/terms/contributor -->
+
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/contributor"/>
+    
+
+
+    <!-- http://purl.org/dc/terms/creator -->
+
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/creator"/>
+    
+
+
+    <!-- http://purl.org/dc/terms/description -->
+
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/description"/>
+    
+
+
+    <!-- http://purl.org/dc/terms/issued -->
+
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/issued"/>
+    
+
+
+    <!-- http://purl.org/dc/terms/license -->
+
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/license"/>
+    
+
+
+    <!-- http://purl.org/dc/terms/modified -->
+
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/modified"/>
+    
+
+
+    <!-- http://purl.org/dc/terms/title -->
+
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/title"/>
+    
+
+
+    <!-- http://purl.org/vocab/vann/preferredNamespacePrefix -->
+
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/vocab/vann/preferredNamespacePrefix"/>
+    
+
+
+    <!-- http://purl.org/vocab/vann/preferredNamespaceUri -->
+
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/vocab/vann/preferredNamespaceUri"/>
+    
+
+
+    <!-- http://www.w3.org/2006/vcard/ns#fn -->
+
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2006/vcard/ns#fn"/>
+    
+
+
+    <!-- http://www.w3.org/ns/sosa/hasFeatureOfInterest -->
+
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/ns/sosa/hasFeatureOfInterest">
+        <rdfs:subPropertyOf rdf:resource="https://saref.etsi.org/core/isMeasurementOf"/>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- http://www.w3.org/ns/sosa/madeObervation -->
+
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/ns/sosa/madeObervation">
+        <rdfs:subPropertyOf rdf:resource="https://saref.etsi.org/core/makesMeasurement"/>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- http://www.w3.org/ns/sosa/observes -->
+
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/ns/sosa/observes">
+        <rdfs:subPropertyOf rdf:resource="https://saref.etsi.org/core/measures"/>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- https://saref.etsi.org/core/isMeasurementOf -->
+
+
+    <owl:AnnotationProperty rdf:about="https://saref.etsi.org/core/isMeasurementOf"/>
+    
+
+
+    <!-- https://saref.etsi.org/core/makesMeasurement -->
+
+
+    <owl:AnnotationProperty rdf:about="https://saref.etsi.org/core/makesMeasurement"/>
+    
+
+
+    <!-- https://saref.etsi.org/core/measures -->
+
+
+    <owl:AnnotationProperty rdf:about="https://saref.etsi.org/core/measures"/>
+    
+
+
+    <!-- https://schema.org/name -->
+
+
+    <owl:AnnotationProperty rdf:about="https://schema.org/name"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+
+    
+
+
+    <!-- http://purl.org/vocommons/voaf#Vocabulary -->
+
+
+    <owl:Class rdf:about="http://purl.org/vocommons/voaf#Vocabulary"/>
+    
+
+
+    <!-- http://www.w3.org/2006/vcard/ns#Individual -->
+
+
+    <owl:Class rdf:about="http://www.w3.org/2006/vcard/ns#Individual"/>
+    
+
+
+    <!-- http://www.w3.org/ns/sosa/FeatureOfInterest -->
+
+
+    <owl:Class rdf:about="http://www.w3.org/ns/sosa/FeatureOfInterest">
+        <owl:equivalentClass rdf:resource="https://saref.etsi.org/core/FeatureOfInterest"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/ns/sosa/Observation -->
+
+
+    <owl:Class rdf:about="http://www.w3.org/ns/sosa/Observation">
+        <rdfs:subClassOf rdf:resource="https://saref.etsi.org/core/Measurement"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/ns/sosa/Sensor -->
+
+
+    <owl:Class rdf:about="http://www.w3.org/ns/sosa/Sensor"/>
+    
+
+
+    <!-- https://saref.etsi.org/core/FeatureOfInterest -->
+
+
+    <owl:Class rdf:about="https://saref.etsi.org/core/FeatureOfInterest"/>
+    
+
+
+    <!-- https://saref.etsi.org/core/Measurement -->
+
+
+    <owl:Class rdf:about="https://saref.etsi.org/core/Measurement"/>
+    
+
+
+    <!-- https://saref.etsi.org/core/Sensor -->
+
+
+    <owl:Class rdf:about="https://saref.etsi.org/core/Sensor">
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/sosa/Sensor"/>
+    </owl:Class>
+    
+
+
+    <!-- https://saref.etsi.org/saref4bldg/BuildingDevice -->
+
+
+    <owl:Class rdf:about="https://saref.etsi.org/saref4bldg/BuildingDevice">
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/sosa/FeatureOfInterest"/>
+    </owl:Class>
+    
+
+
+    <!-- https://schema.org/Person -->
+
+
+    <owl:Class rdf:about="https://schema.org/Person"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+
+    
+
+
+    <!-- http://bemserver.org/sensor/xSSN_BuildingAppliance_Alignment# -->
+
+
+    <owl:NamedIndividual rdf:about="http://bemserver.org/sensor/xSSN_BuildingAppliance_Alignment#">
+        <rdf:type rdf:resource="http://purl.org/vocommons/voaf#Vocabulary"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://orcid.org/0000-0002-5520-2270 -->
+
+
+    <owl:NamedIndividual rdf:about="https://orcid.org/0000-0002-5520-2270">
+        <rdf:type rdf:resource="http://www.w3.org/2006/vcard/ns#Individual"/>
+        <rdf:type rdf:resource="https://schema.org/Person"/>
+        <ns:fn>Nathalie Charbel</ns:fn>
+        <schema:name>Nathalie Charbel</schema:name>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 5.1.14) https://github.com/owlcs/owlapi/ -->
+
+

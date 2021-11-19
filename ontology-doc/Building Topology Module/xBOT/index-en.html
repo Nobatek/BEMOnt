@@ -1,0 +1,2182 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+ <link rel="stylesheet" href="resources/primer.css" media="screen" />    <link rel="stylesheet" href="resources/rec.css" media="screen" />    <link rel="stylesheet" href="resources/extra.css" media="screen" />    <link rel="stylesheet" href="resources/owl.css" media="screen" />    <title>xBOT Ontology</title>
+
+
+<!-- SCHEMA.ORG METADATA -->
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","url":"http://bemserver.org/xbot","image":"http://vowl.visualdataweb.org/webvowl/#iri=http://bemserver.org/xbot","name":"xBOT Ontology", "headline":"This ontology is based on BOT for describing building topology and extends it towards representing a wise set of building types (including residential and non residential buildings), spaces and storeys based on the Omniclass standard.", "datePublished":"Thu Nov 18 20:00:06 CET 2021", "author":[{"@type":"Person","name":"Nathalie Charbel"}], "contributor":[{"@type":"Person","name":"Pierre Bourreau"}]}</script>
+
+<script src="resources/jquery.js"></script> 
+<script src="resources/marked.min.js"></script> 
+    <script> 
+function loadHash() {
+  jQuery(".markdown").each(function(el){jQuery(this).after(marked(jQuery(this).text())).remove()});
+	var hash = location.hash;
+	if($(hash).offset()!=null){
+	  $('html, body').animate({scrollTop: $(hash).offset().top}, 0);
+}
+	loadTOC();
+}
+function loadTOC(){
+	//process toc dynamically
+	  var t='<h2>Table of contents</h2><ul>';i = 1;j=0;
+	  jQuery(".list").each(function(){
+		if(jQuery(this).is('h2')){
+			if(j>0){
+				t+='</ul>';
+				j=0;
+			}
+			t+= '<li>'+i+'. <a href=#'+ jQuery(this).attr('id')+'>'+ jQuery(this).ignore("span").text()+'</a></li>';
+			i++;
+		}
+		if(jQuery(this).is('h3')){
+			if(j==0){
+				t+='<ul>';
+			}
+			j++;
+			t+= '<li>'+(i-1)+'.'+j+'. '+'<a href=#'+ jQuery(this).attr('id')+'>'+ jQuery(this).ignore("span").text()+'</a></li>';
+		}
+	  });
+	  t+='</ul>';
+	  $("#toc").html(t); 
+}
+$(function(){
+    loadHash();
+}); $.fn.ignore = function(sel){
+        return this.clone().find(sel||">*").remove().end();
+ }; 
+   </script> 
+  </head> 
+
+<body>
+<div class="container">
+<div class="head">
+<div style="float:right">language <a href="index-en.html"><b>en</b></a> </div>
+<h1>xBOT Ontology</h1>
+
+
+<dl>
+<dt>Latest version:</dt>
+<dd><a href="http://bemserver.org/xbot">http://bemserver.org/xbot</a></dd>
+<dt>Authors:</dt>
+<dd>Nathalie Charbel</dd>
+
+<dt>Contributors:</dt>
+<dd>Pierre Bourreau</dd>
+
+<dt>Imported Ontologies:</dt>
+<dd><a href="https://w3c-lbd-cg.github.io/bot/bot.ttl">BOT</a></dd>
+
+<dt>Download serialization:</dt><dd><span><a href="ontology.jsonld" target="_blank"><img src="https://img.shields.io/badge/Format-JSON_LD-blue.svg" alt="JSON-LD" /></a> </span><span><a href="ontology.rdf" target="_blank"><img src="https://img.shields.io/badge/Format-RDF/XML-blue.svg" alt="RDF/XML" /></a> </span><span><a href="ontology.nt" target="_blank"><img src="https://img.shields.io/badge/Format-N_Triples-blue.svg" alt="N-Triples" /></a> </span><span><a href="ontology.ttl" target="_blank"><img src="https://img.shields.io/badge/Format-TTL-blue.svg" alt="TTL" /></a> </span></dd><dt>License: </dt><dd><a href="http://insertlicenseURIhere.org" target="_blank"><img src="https://img.shields.io/badge/License-license%20name%20goes%20here-blue.svg" alt="http://insertlicenseURIhere.org" /></a>
+</dd><!-- <dt>Evaluation:</dt><dd><a href="OOPSEvaluation/oopsEval.html#" target="_blank"><img src="https://img.shields.io/badge/Evaluate_with-OOPS! (OntOlogy Pitfall Scanner!)-blue.svg" alt="Evaluate with OOPS!" /></a></dd> --></dl>
+
+<hr/>
+</div>
+<div class="status">
+<div>
+<span>Ontology Specification Draft</span>
+</div>
+</div>     <div id="abstract"><h2>Abstract</h2><span class="markdown">
+This ontology is based on BOT for describing building topology and extends it towards representing a wise set of building types (including residential and non residential buildings), spaces and storeys based on the Omniclass standard.</span>
+</div>
+<div id="toc"></div> 
+
+<!--INTRODUCTION SECTION-->
+    <div id="introduction"><h2 id="intro" class="list">Introduction <span class="backlink"> back to <a href="#toc">ToC</a></span></h2>
+<span class="markdown">
+This is a place holder text for the introduction. The introduction should briefly describe the ontology, its motivation, state of the art and goals.</span>
+<div id="namespacedeclarations">
+<h3 id="ns" class="list">Namespace declarations</h3>
+<div id="ns" align="center">
+<table>
+<caption> <a href="#ns"> Table 1</a>: Namespaces used in the document </caption>
+<tbody>
+<tr><td><b>xbot</b></td><td>&lt;http://bemserver.org/xbot&gt;</td></tr>
+<tr><td><b>owl</b></td><td>&lt;http://www.w3.org/2002/07/owl&gt;</td></tr>
+<tr><td><b>rdf</b></td><td>&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns&gt;</td></tr>
+<tr><td><b>bot</b></td><td>&lt;https://w3id.org/bot&gt;</td></tr>
+<tr><td><b>xml</b></td><td>&lt;http://www.w3.org/XML/1998/namespace&gt;</td></tr>
+<tr><td><b>xsd</b></td><td>&lt;http://www.w3.org/2001/XMLSchema&gt;</td></tr>
+<tr><td><b>rdfs</b></td><td>&lt;http://www.w3.org/2000/01/rdf-schema&gt;</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+  
+
+<!--OVERVIEW SECTION-->
+    <div id="overview"><h2 id="overv" class="list">xBOT: Overview <span class="backlink"> back to <a href="#toc">ToC</a></span></h2>
+<span class="markdown">
+This ontology has the following classes and properties.</span>
+<h4>Classes</h4>
+<ul xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" class="hlist">
+   <li>
+      <a href="#Administration" title="http://bemserver.org/xbot#Administration">Administration</a>
+   </li>
+   <li>
+      <a href="#AgriculturalBuilding" title="http://bemserver.org/xbot#AgriculturalBuilding">AgriculturalBuilding</a>
+   </li>
+   <li>
+      <a href="#Airport" title="http://bemserver.org/xbot#Airport">Airport</a>
+   </li>
+   <li>
+      <a href="#Allotment" title="http://bemserver.org/xbot#Allotment">
+         <span>allotment</span>
+      </a>
+   </li>
+   <li>
+      <a href="#Apartment" title="http://bemserver.org/xbot#Apartment">Apartment</a>
+   </li>
+   <li>
+      <a href="#AutomobileRepair" title="http://bemserver.org/xbot#AutomobileRepair">AutomobileRepair</a>
+   </li>
+   <li>
+      <a href="#Balcony" title="http://bemserver.org/xbot#Balcony">Balcony</a>
+   </li>
+   <li>
+      <a href="#Barn" title="http://bemserver.org/xbot#Barn">Barn</a>
+   </li>
+   <li>
+      <a href="#BarRestaurant" title="http://bemserver.org/xbot#BarRestaurant">BarRestaurant</a>
+   </li>
+   <li>
+      <a href="#Bathroom" title="http://bemserver.org/xbot#Bathroom">Bathroom</a>
+   </li>
+   <li>
+      <a href="#https://w3id.org/bot#Building" title="https://w3id.org/bot#Building">
+         <span>building</span>
+      </a>
+   </li>
+   <li>
+      <a href="#Bungalow" title="http://bemserver.org/xbot#Bungalow">Bungalow</a>
+   </li>
+   <li>
+      <a href="#BusStation" title="http://bemserver.org/xbot#BusStation">BusStation</a>
+   </li>
+   <li>
+      <a href="#Cafeteria" title="http://bemserver.org/xbot#Cafeteria">Cafeteria</a>
+   </li>
+   <li>
+      <a href="#Canteen" title="http://bemserver.org/xbot#Canteen">Canteen</a>
+   </li>
+   <li>
+      <a href="#Cellar" title="http://bemserver.org/xbot#Cellar">Cellar</a>
+   </li>
+   <li>
+      <a href="#Cinema" title="http://bemserver.org/xbot#Cinema">Cinema</a>
+   </li>
+   <li>
+      <a href="#CirculationArea" title="http://bemserver.org/xbot#CirculationArea">CirculationArea</a>
+   </li>
+   <li>
+      <a href="#CommercialBuilding" title="http://bemserver.org/xbot#CommercialBuilding">CommercialBuilding</a>
+   </li>
+   <li>
+      <a href="#Condominum" title="http://bemserver.org/xbot#Condominum">Condominum</a>
+   </li>
+   <li>
+      <a href="#ConferenceRoom" title="http://bemserver.org/xbot#ConferenceRoom">ConferenceRoom</a>
+   </li>
+   <li>
+      <a href="#ConventionCenter" title="http://bemserver.org/xbot#ConventionCenter">ConventionCenter</a>
+   </li>
+   <li>
+      <a href="#DataCenter" title="http://bemserver.org/xbot#DataCenter">DataCenter</a>
+   </li>
+   <li>
+      <a href="#Desk" title="http://bemserver.org/xbot#Desk">Desk</a>
+   </li>
+   <li>
+      <a href="#DetachedHouse" title="http://bemserver.org/xbot#DetachedHouse">
+         <span>detached house</span>
+      </a>
+   </li>
+   <li>
+      <a href="#Dormitory" title="http://bemserver.org/xbot#Dormitory">Dormitory</a>
+   </li>
+   <li>
+      <a href="#DrugStore" title="http://bemserver.org/xbot#DrugStore">DrugStore</a>
+   </li>
+   <li>
+      <a href="#EducationalBuilding" title="http://bemserver.org/xbot#EducationalBuilding">EducationalBuilding</a>
+   </li>
+   <li>
+      <a href="#Factory" title="http://bemserver.org/xbot#Factory">Factory</a>
+   </li>
+   <li>
+      <a href="#Farmhouse" title="http://bemserver.org/xbot#Farmhouse">Farmhouse</a>
+   </li>
+   <li>
+      <a href="#Floor" title="http://bemserver.org/xbot#Floor">Floor</a>
+   </li>
+   <li>
+      <a href="#GovernmentSubsidizedBuilding"
+         title="http://bemserver.org/xbot#GovernmentSubsidizedBuilding">Government Subsidized Building</a>
+   </li>
+   <li>
+      <a href="#Greenhouse" title="http://bemserver.org/xbot#Greenhouse">Greenhouse</a>
+   </li>
+   <li>
+      <a href="#Ground" title="http://bemserver.org/xbot#Ground">Ground</a>
+   </li>
+   <li>
+      <a href="#Gym" title="http://bemserver.org/xbot#Gym">Gym</a>
+   </li>
+   <li>
+      <a href="#Hospital" title="http://bemserver.org/xbot#Hospital">Hospital</a>
+   </li>
+   <li>
+      <a href="#Hotel" title="http://bemserver.org/xbot#Hotel">Hotel</a>
+   </li>
+   <li>
+      <a href="#House" title="http://bemserver.org/xbot#House">House</a>
+   </li>
+   <li>
+      <a href="#IndustrialBuilding" title="http://bemserver.org/xbot#IndustrialBuilding">IndustrialBuilding</a>
+   </li>
+   <li>
+      <a href="#Kitchen" title="http://bemserver.org/xbot#Kitchen">Kitchen</a>
+   </li>
+   <li>
+      <a href="#Laboratory" title="http://bemserver.org/xbot#Laboratory">Laboratory</a>
+   </li>
+   <li>
+      <a href="#Library" title="http://bemserver.org/xbot#Library">Library</a>
+   </li>
+   <li>
+      <a href="#LogisticPlatform" title="http://bemserver.org/xbot#LogisticPlatform">LogisticPlatform</a>
+   </li>
+   <li>
+      <a href="#MallSupermarket" title="http://bemserver.org/xbot#MallSupermarket">MallSupermarket</a>
+   </li>
+   <li>
+      <a href="#MeetingRoom" title="http://bemserver.org/xbot#MeetingRoom">MeetingRoom</a>
+   </li>
+   <li>
+      <a href="#MetroStation" title="http://bemserver.org/xbot#MetroStation">MetroStation</a>
+   </li>
+   <li>
+      <a href="#MultiDwellingHousing" title="http://bemserver.org/xbot#MultiDwellingHousing">Multi-Dwelling Housing</a>
+   </li>
+   <li>
+      <a href="#MuseumGallery" title="http://bemserver.org/xbot#MuseumGallery">MuseumGallery</a>
+   </li>
+   <li>
+      <a href="#NightClubConcertHall" title="http://bemserver.org/xbot#NightClubConcertHall">NighClubConcertHall</a>
+   </li>
+   <li>
+      <a href="#Nursery" title="http://bemserver.org/xbot#Nursery">Nursery</a>
+   </li>
+   <li>
+      <a href="#Office" title="http://bemserver.org/xbot#Office">Office</a>
+   </li>
+   <li>
+      <a href="#OfficeBuilding" title="http://bemserver.org/xbot#OfficeBuilding">OfficeBuilding</a>
+   </li>
+   <li>
+      <a href="#OpenSpace" title="http://bemserver.org/xbot#OpenSpace">OpenSpace</a>
+   </li>
+   <li>
+      <a href="#Parking" title="http://bemserver.org/xbot#Parking">Parking</a>
+   </li>
+   <li>
+      <a href="#Pharmacy" title="http://bemserver.org/xbot#Pharmacy">Pharmacy</a>
+   </li>
+   <li>
+      <a href="#PowerPlant" title="http://bemserver.org/xbot#PowerPlant">PowerPlant</a>
+   </li>
+   <li>
+      <a href="#PrimarySchool" title="http://bemserver.org/xbot#PrimarySchool">PrimarySchool</a>
+   </li>
+   <li>
+      <a href="#PublicBuilding" title="http://bemserver.org/xbot#PublicBuilding">PublicBuilding</a>
+   </li>
+   <li>
+      <a href="#ReligiousBuilding" title="http://bemserver.org/xbot#ReligiousBuilding">ReligiousBuilding</a>
+   </li>
+   <li>
+      <a href="#ResidentialBuilding" title="http://bemserver.org/xbot#ResidentialBuilding">ResidentialBuilding</a>
+   </li>
+   <li>
+      <a href="#RestRoom" title="http://bemserver.org/xbot#RestRoom">RestRoom</a>
+   </li>
+   <li>
+      <a href="#Room" title="http://bemserver.org/xbot#Room">Room</a>
+   </li>
+   <li>
+      <a href="#SecondarySchool" title="http://bemserver.org/xbot#SecondarySchool">SecondarySchool</a>
+   </li>
+   <li>
+      <a href="#SeniorHousing" title="http://bemserver.org/xbot#SeniorHousing">
+         <span>senior housing</span>
+      </a>
+   </li>
+   <li>
+      <a href="#Shop" title="http://bemserver.org/xbot#Shop">Shop</a>
+   </li>
+   <li>
+      <a href="#Silo" title="http://bemserver.org/xbot#Silo">Silo</a>
+   </li>
+   <li>
+      <a href="#SingleFamilyHousing" title="http://bemserver.org/xbot#SingleFamilyHousing">
+         <span>single family housing</span>
+      </a>
+   </li>
+   <li>
+      <a href="#SocialHousingBuilding" title="http://bemserver.org/xbot#SocialHousingBuilding">
+         <span>social housing building</span>
+      </a>
+   </li>
+   <li>
+      <a href="#https://w3id.org/bot#Space" title="https://w3id.org/bot#Space">
+         <span>space</span>
+      </a>
+   </li>
+   <li>
+      <a href="#SpecialCareBuilding" title="http://bemserver.org/xbot#SpecialCareBuilding">
+         <span>special care building</span>
+      </a>
+   </li>
+   <li>
+      <a href="#Stockroom" title="http://bemserver.org/xbot#Stockroom">Stockroom</a>
+   </li>
+   <li>
+      <a href="#https://w3id.org/bot#Storey" title="https://w3id.org/bot#Storey">
+         <span>storey</span>
+      </a>
+   </li>
+   <li>
+      <a href="#Subterranean" title="http://bemserver.org/xbot#Subterranean">Subterranean</a>
+   </li>
+   <li>
+      <a href="#SwimmingCenter" title="http://bemserver.org/xbot#SwimmingCenter">SwimmingCenter</a>
+   </li>
+   <li>
+      <a href="#TechnicalArea" title="http://bemserver.org/xbot#TechnicalArea">TechnicalArea</a>
+   </li>
+   <li>
+      <a href="#Terraced" title="http://bemserver.org/xbot#Terraced">
+         <span>terraced</span>
+      </a>
+   </li>
+   <li>
+      <a href="#Toilets" title="http://bemserver.org/xbot#Toilets">Toilets</a>
+   </li>
+   <li>
+      <a href="#TrainStation" title="http://bemserver.org/xbot#TrainStation">TrainStation</a>
+   </li>
+   <li>
+      <a href="#TransportBuilding" title="http://bemserver.org/xbot#TransportBuilding">TransportBuilding</a>
+   </li>
+   <li>
+      <a href="#University" title="http://bemserver.org/xbot#University">University</a>
+   </li>
+   <li>
+      <a href="#Warehouse" title="http://bemserver.org/xbot#Warehouse">Warehouse</a>
+   </li>
+   <li>
+      <a href="#WetArea" title="http://bemserver.org/xbot#WetArea">WetArea</a>
+   </li>
+</ul><h4>Data Properties</h4><ul xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" class="hlist">
+   <li>
+      <a href="#floorLevel" title="http://bemserver.org/xbot#floorLevel">floorLevel</a>
+   </li>
+</ul>
+</div>
+  
+
+<!--DESCRIPTION SECTION-->
+    <div id="description"><h2 id="desc" class="list">xBOT: Description <span class="backlink"> back to <a href="#toc">ToC</a></span></h2>
+<span class="markdown">
+This is a placeholder text for the description of your ontology. The description should include an explanation and a diagram explaining how the classes are related, examples of usage, etc.</span>
+
+</div>
+   
+
+<!--CROSSREF SECTION-->
+   <div id="crossref"><h2 id="crossreference" class="list">Cross reference for xBOT classes, properties and dataproperties <span class="backlink"> back to <a href="#toc">ToC</a></span></h2>
+This section provides details for each class and property defined by xBOT.
+<div xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="classes">
+   <h3 id="classes-headline" class="list">Classes</h3>
+   <ul class="hlist">
+      <li>
+         <a href="#Administration" title="http://bemserver.org/xbot#Administration">Administration</a>
+      </li>
+      <li>
+         <a href="#AgriculturalBuilding" title="http://bemserver.org/xbot#AgriculturalBuilding">AgriculturalBuilding</a>
+      </li>
+      <li>
+         <a href="#Airport" title="http://bemserver.org/xbot#Airport">Airport</a>
+      </li>
+      <li>
+         <a href="#Allotment" title="http://bemserver.org/xbot#Allotment">
+            <span>allotment</span>
+         </a>
+      </li>
+      <li>
+         <a href="#Apartment" title="http://bemserver.org/xbot#Apartment">Apartment</a>
+      </li>
+      <li>
+         <a href="#AutomobileRepair" title="http://bemserver.org/xbot#AutomobileRepair">AutomobileRepair</a>
+      </li>
+      <li>
+         <a href="#Balcony" title="http://bemserver.org/xbot#Balcony">Balcony</a>
+      </li>
+      <li>
+         <a href="#Barn" title="http://bemserver.org/xbot#Barn">Barn</a>
+      </li>
+      <li>
+         <a href="#BarRestaurant" title="http://bemserver.org/xbot#BarRestaurant">BarRestaurant</a>
+      </li>
+      <li>
+         <a href="#Bathroom" title="http://bemserver.org/xbot#Bathroom">Bathroom</a>
+      </li>
+      <li>
+         <a href="#https://w3id.org/bot#Building" title="https://w3id.org/bot#Building">
+            <span>building</span>
+         </a>
+      </li>
+      <li>
+         <a href="#Bungalow" title="http://bemserver.org/xbot#Bungalow">Bungalow</a>
+      </li>
+      <li>
+         <a href="#BusStation" title="http://bemserver.org/xbot#BusStation">BusStation</a>
+      </li>
+      <li>
+         <a href="#Cafeteria" title="http://bemserver.org/xbot#Cafeteria">Cafeteria</a>
+      </li>
+      <li>
+         <a href="#Canteen" title="http://bemserver.org/xbot#Canteen">Canteen</a>
+      </li>
+      <li>
+         <a href="#Cellar" title="http://bemserver.org/xbot#Cellar">Cellar</a>
+      </li>
+      <li>
+         <a href="#Cinema" title="http://bemserver.org/xbot#Cinema">Cinema</a>
+      </li>
+      <li>
+         <a href="#CirculationArea" title="http://bemserver.org/xbot#CirculationArea">CirculationArea</a>
+      </li>
+      <li>
+         <a href="#CommercialBuilding" title="http://bemserver.org/xbot#CommercialBuilding">CommercialBuilding</a>
+      </li>
+      <li>
+         <a href="#Condominum" title="http://bemserver.org/xbot#Condominum">Condominum</a>
+      </li>
+      <li>
+         <a href="#ConferenceRoom" title="http://bemserver.org/xbot#ConferenceRoom">ConferenceRoom</a>
+      </li>
+      <li>
+         <a href="#ConventionCenter" title="http://bemserver.org/xbot#ConventionCenter">ConventionCenter</a>
+      </li>
+      <li>
+         <a href="#DataCenter" title="http://bemserver.org/xbot#DataCenter">DataCenter</a>
+      </li>
+      <li>
+         <a href="#Desk" title="http://bemserver.org/xbot#Desk">Desk</a>
+      </li>
+      <li>
+         <a href="#DetachedHouse" title="http://bemserver.org/xbot#DetachedHouse">
+            <span>detached house</span>
+         </a>
+      </li>
+      <li>
+         <a href="#Dormitory" title="http://bemserver.org/xbot#Dormitory">Dormitory</a>
+      </li>
+      <li>
+         <a href="#DrugStore" title="http://bemserver.org/xbot#DrugStore">DrugStore</a>
+      </li>
+      <li>
+         <a href="#EducationalBuilding" title="http://bemserver.org/xbot#EducationalBuilding">EducationalBuilding</a>
+      </li>
+      <li>
+         <a href="#Factory" title="http://bemserver.org/xbot#Factory">Factory</a>
+      </li>
+      <li>
+         <a href="#Farmhouse" title="http://bemserver.org/xbot#Farmhouse">Farmhouse</a>
+      </li>
+      <li>
+         <a href="#Floor" title="http://bemserver.org/xbot#Floor">Floor</a>
+      </li>
+      <li>
+         <a href="#GovernmentSubsidizedBuilding"
+            title="http://bemserver.org/xbot#GovernmentSubsidizedBuilding">Government Subsidized Building</a>
+      </li>
+      <li>
+         <a href="#Greenhouse" title="http://bemserver.org/xbot#Greenhouse">Greenhouse</a>
+      </li>
+      <li>
+         <a href="#Ground" title="http://bemserver.org/xbot#Ground">Ground</a>
+      </li>
+      <li>
+         <a href="#Gym" title="http://bemserver.org/xbot#Gym">Gym</a>
+      </li>
+      <li>
+         <a href="#Hospital" title="http://bemserver.org/xbot#Hospital">Hospital</a>
+      </li>
+      <li>
+         <a href="#Hotel" title="http://bemserver.org/xbot#Hotel">Hotel</a>
+      </li>
+      <li>
+         <a href="#House" title="http://bemserver.org/xbot#House">House</a>
+      </li>
+      <li>
+         <a href="#IndustrialBuilding" title="http://bemserver.org/xbot#IndustrialBuilding">IndustrialBuilding</a>
+      </li>
+      <li>
+         <a href="#Kitchen" title="http://bemserver.org/xbot#Kitchen">Kitchen</a>
+      </li>
+      <li>
+         <a href="#Laboratory" title="http://bemserver.org/xbot#Laboratory">Laboratory</a>
+      </li>
+      <li>
+         <a href="#Library" title="http://bemserver.org/xbot#Library">Library</a>
+      </li>
+      <li>
+         <a href="#LogisticPlatform" title="http://bemserver.org/xbot#LogisticPlatform">LogisticPlatform</a>
+      </li>
+      <li>
+         <a href="#MallSupermarket" title="http://bemserver.org/xbot#MallSupermarket">MallSupermarket</a>
+      </li>
+      <li>
+         <a href="#MeetingRoom" title="http://bemserver.org/xbot#MeetingRoom">MeetingRoom</a>
+      </li>
+      <li>
+         <a href="#MetroStation" title="http://bemserver.org/xbot#MetroStation">MetroStation</a>
+      </li>
+      <li>
+         <a href="#MultiDwellingHousing" title="http://bemserver.org/xbot#MultiDwellingHousing">Multi-Dwelling Housing</a>
+      </li>
+      <li>
+         <a href="#MuseumGallery" title="http://bemserver.org/xbot#MuseumGallery">MuseumGallery</a>
+      </li>
+      <li>
+         <a href="#NightClubConcertHall" title="http://bemserver.org/xbot#NightClubConcertHall">NighClubConcertHall</a>
+      </li>
+      <li>
+         <a href="#Nursery" title="http://bemserver.org/xbot#Nursery">Nursery</a>
+      </li>
+      <li>
+         <a href="#Office" title="http://bemserver.org/xbot#Office">Office</a>
+      </li>
+      <li>
+         <a href="#OfficeBuilding" title="http://bemserver.org/xbot#OfficeBuilding">OfficeBuilding</a>
+      </li>
+      <li>
+         <a href="#OpenSpace" title="http://bemserver.org/xbot#OpenSpace">OpenSpace</a>
+      </li>
+      <li>
+         <a href="#Parking" title="http://bemserver.org/xbot#Parking">Parking</a>
+      </li>
+      <li>
+         <a href="#Pharmacy" title="http://bemserver.org/xbot#Pharmacy">Pharmacy</a>
+      </li>
+      <li>
+         <a href="#PowerPlant" title="http://bemserver.org/xbot#PowerPlant">PowerPlant</a>
+      </li>
+      <li>
+         <a href="#PrimarySchool" title="http://bemserver.org/xbot#PrimarySchool">PrimarySchool</a>
+      </li>
+      <li>
+         <a href="#PublicBuilding" title="http://bemserver.org/xbot#PublicBuilding">PublicBuilding</a>
+      </li>
+      <li>
+         <a href="#ReligiousBuilding" title="http://bemserver.org/xbot#ReligiousBuilding">ReligiousBuilding</a>
+      </li>
+      <li>
+         <a href="#ResidentialBuilding" title="http://bemserver.org/xbot#ResidentialBuilding">ResidentialBuilding</a>
+      </li>
+      <li>
+         <a href="#RestRoom" title="http://bemserver.org/xbot#RestRoom">RestRoom</a>
+      </li>
+      <li>
+         <a href="#Room" title="http://bemserver.org/xbot#Room">Room</a>
+      </li>
+      <li>
+         <a href="#SecondarySchool" title="http://bemserver.org/xbot#SecondarySchool">SecondarySchool</a>
+      </li>
+      <li>
+         <a href="#SeniorHousing" title="http://bemserver.org/xbot#SeniorHousing">
+            <span>senior housing</span>
+         </a>
+      </li>
+      <li>
+         <a href="#Shop" title="http://bemserver.org/xbot#Shop">Shop</a>
+      </li>
+      <li>
+         <a href="#Silo" title="http://bemserver.org/xbot#Silo">Silo</a>
+      </li>
+      <li>
+         <a href="#SingleFamilyHousing" title="http://bemserver.org/xbot#SingleFamilyHousing">
+            <span>single family housing</span>
+         </a>
+      </li>
+      <li>
+         <a href="#SocialHousingBuilding" title="http://bemserver.org/xbot#SocialHousingBuilding">
+            <span>social housing building</span>
+         </a>
+      </li>
+      <li>
+         <a href="#https://w3id.org/bot#Space" title="https://w3id.org/bot#Space">
+            <span>space</span>
+         </a>
+      </li>
+      <li>
+         <a href="#SpecialCareBuilding" title="http://bemserver.org/xbot#SpecialCareBuilding">
+            <span>special care building</span>
+         </a>
+      </li>
+      <li>
+         <a href="#Stockroom" title="http://bemserver.org/xbot#Stockroom">Stockroom</a>
+      </li>
+      <li>
+         <a href="#https://w3id.org/bot#Storey" title="https://w3id.org/bot#Storey">
+            <span>storey</span>
+         </a>
+      </li>
+      <li>
+         <a href="#Subterranean" title="http://bemserver.org/xbot#Subterranean">Subterranean</a>
+      </li>
+      <li>
+         <a href="#SwimmingCenter" title="http://bemserver.org/xbot#SwimmingCenter">SwimmingCenter</a>
+      </li>
+      <li>
+         <a href="#TechnicalArea" title="http://bemserver.org/xbot#TechnicalArea">TechnicalArea</a>
+      </li>
+      <li>
+         <a href="#Terraced" title="http://bemserver.org/xbot#Terraced">
+            <span>terraced</span>
+         </a>
+      </li>
+      <li>
+         <a href="#Toilets" title="http://bemserver.org/xbot#Toilets">Toilets</a>
+      </li>
+      <li>
+         <a href="#TrainStation" title="http://bemserver.org/xbot#TrainStation">TrainStation</a>
+      </li>
+      <li>
+         <a href="#TransportBuilding" title="http://bemserver.org/xbot#TransportBuilding">TransportBuilding</a>
+      </li>
+      <li>
+         <a href="#University" title="http://bemserver.org/xbot#University">University</a>
+      </li>
+      <li>
+         <a href="#Warehouse" title="http://bemserver.org/xbot#Warehouse">Warehouse</a>
+      </li>
+      <li>
+         <a href="#WetArea" title="http://bemserver.org/xbot#WetArea">WetArea</a>
+      </li>
+   </ul>
+   <div class="entity" id="Administration">
+      <h3>Administration<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#Administration</p>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#PublicBuilding" title="http://bemserver.org/xbot#PublicBuilding">PublicBuilding</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="AgriculturalBuilding">
+      <h3>AgriculturalBuilding<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#AgriculturalBuilding</p>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#https://w3id.org/bot#Building" title="https://w3id.org/bot#Building">building</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+         <dt>has sub-classes</dt>
+         <dd>
+            <a href="#Barn" title="http://bemserver.org/xbot#Barn">Barn</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#Cellar" title="http://bemserver.org/xbot#Cellar">Cellar</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#Farmhouse" title="http://bemserver.org/xbot#Farmhouse">Farmhouse</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#Greenhouse" title="http://bemserver.org/xbot#Greenhouse">Greenhouse</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#Silo" title="http://bemserver.org/xbot#Silo">Silo</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="Airport">
+      <h3>Airport<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#Airport</p>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#TransportBuilding" title="http://bemserver.org/xbot#TransportBuilding">TransportBuilding</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="Allotment">
+      <h3>allotment<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#Allotment</p>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#SingleFamilyHousing" title="http://bemserver.org/xbot#SingleFamilyHousing">single family housing</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="Apartment">
+      <h3>Apartment<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#Apartment</p>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#ResidentialBuilding" title="http://bemserver.org/xbot#ResidentialBuilding">ResidentialBuilding</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="AutomobileRepair">
+      <h3>AutomobileRepair<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#AutomobileRepair</p>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#CommercialBuilding" title="http://bemserver.org/xbot#CommercialBuilding">CommercialBuilding</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="Balcony">
+      <h3>Balcony<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#Balcony</p>
+      <div class="comment">
+         <span class="markdown">Balcony is an instance of IfcSpace in the building representing a balcony.</span>
+      </div>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#https://w3id.org/bot#Space" title="https://w3id.org/bot#Space">space</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="Barn">
+      <h3>Barn<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#Barn</p>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#AgriculturalBuilding" title="http://bemserver.org/xbot#AgriculturalBuilding">AgriculturalBuilding</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="BarRestaurant">
+      <h3>BarRestaurant<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#BarRestaurant</p>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#CommercialBuilding" title="http://bemserver.org/xbot#CommercialBuilding">CommercialBuilding</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="Bathroom">
+      <h3>Bathroom<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#Bathroom</p>
+      <div class="comment">
+         <span class="markdown">Bathroom is an instance of IfcSpace in the building representing a bathroom.</span>
+      </div>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#https://w3id.org/bot#Space" title="https://w3id.org/bot#Space">space</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="https://w3id.org/bot#Building">
+      <h3>building<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://w3id.org/bot#Building</p>
+      <dl class="description">
+         <dt>has sub-classes</dt>
+         <dd>
+            <a href="#AgriculturalBuilding" title="http://bemserver.org/xbot#AgriculturalBuilding">AgriculturalBuilding</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#CommercialBuilding" title="http://bemserver.org/xbot#CommercialBuilding">CommercialBuilding</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#EducationalBuilding" title="http://bemserver.org/xbot#EducationalBuilding">EducationalBuilding</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#IndustrialBuilding" title="http://bemserver.org/xbot#IndustrialBuilding">IndustrialBuilding</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#OfficeBuilding" title="http://bemserver.org/xbot#OfficeBuilding">OfficeBuilding</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#PublicBuilding" title="http://bemserver.org/xbot#PublicBuilding">PublicBuilding</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#ReligiousBuilding" title="http://bemserver.org/xbot#ReligiousBuilding">ReligiousBuilding</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#ResidentialBuilding" title="http://bemserver.org/xbot#ResidentialBuilding">ResidentialBuilding</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#TransportBuilding" title="http://bemserver.org/xbot#TransportBuilding">TransportBuilding</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="Bungalow">
+      <h3>Bungalow<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#Bungalow</p>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#ResidentialBuilding" title="http://bemserver.org/xbot#ResidentialBuilding">ResidentialBuilding</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="BusStation">
+      <h3>BusStation<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#BusStation</p>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#TransportBuilding" title="http://bemserver.org/xbot#TransportBuilding">TransportBuilding</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="Cafeteria">
+      <h3>Cafeteria<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#Cafeteria</p>
+      <div class="comment">
+         <span class="markdown">Cafeteria is an instance of IfcSpace in the building representing a cafeteria.</span>
+      </div>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#https://w3id.org/bot#Space" title="https://w3id.org/bot#Space">space</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="Canteen">
+      <h3>Canteen<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#Canteen</p>
+      <div class="comment">
+         <span class="markdown">Canteen is an instance of IfcSpace in the building representing a canteen.</span>
+      </div>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#https://w3id.org/bot#Space" title="https://w3id.org/bot#Space">space</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="Cellar">
+      <h3>Cellar<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#Cellar</p>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#AgriculturalBuilding" title="http://bemserver.org/xbot#AgriculturalBuilding">AgriculturalBuilding</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="Cinema">
+      <h3>Cinema<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#Cinema</p>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#PublicBuilding" title="http://bemserver.org/xbot#PublicBuilding">PublicBuilding</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="CirculationArea">
+      <h3>CirculationArea<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#CirculationArea</p>
+      <div class="comment">
+         <span class="markdown">CirculationArea is an instance of IfcSpace in the building representing a circulation area.</span>
+      </div>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#https://w3id.org/bot#Space" title="https://w3id.org/bot#Space">space</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="CommercialBuilding">
+      <h3>CommercialBuilding<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#CommercialBuilding</p>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#https://w3id.org/bot#Building" title="https://w3id.org/bot#Building">building</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+         <dt>has sub-classes</dt>
+         <dd>
+            <a href="#AutomobileRepair" title="http://bemserver.org/xbot#AutomobileRepair">AutomobileRepair</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#BarRestaurant" title="http://bemserver.org/xbot#BarRestaurant">BarRestaurant</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#ConventionCenter" title="http://bemserver.org/xbot#ConventionCenter">ConventionCenter</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#DrugStore" title="http://bemserver.org/xbot#DrugStore">DrugStore</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#Hotel" title="http://bemserver.org/xbot#Hotel">Hotel</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#MallSupermarket" title="http://bemserver.org/xbot#MallSupermarket">MallSupermarket</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#Pharmacy" title="http://bemserver.org/xbot#Pharmacy">Pharmacy</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#Shop" title="http://bemserver.org/xbot#Shop">Shop</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="Condominum">
+      <h3>Condominum<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#Condominum</p>
+      <dl class="definedBy">
+         <dt>Is defined by</dt>
+         <dd>http://bemserver.org/xbot</dd>
+      </dl>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#MultiDwellingHousing" title="http://bemserver.org/xbot#MultiDwellingHousing">Multi-Dwelling Housing</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="ConferenceRoom">
+      <h3>ConferenceRoom<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#ConferenceRoom</p>
+      <div class="comment">
+         <span class="markdown">ConferenceRoom is an instance of IfcSpace in the building representing a conference room.</span>
+      </div>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#https://w3id.org/bot#Space" title="https://w3id.org/bot#Space">space</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="ConventionCenter">
+      <h3>ConventionCenter<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#ConventionCenter</p>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#CommercialBuilding" title="http://bemserver.org/xbot#CommercialBuilding">CommercialBuilding</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="DataCenter">
+      <h3>DataCenter<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#DataCenter</p>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#IndustrialBuilding" title="http://bemserver.org/xbot#IndustrialBuilding">IndustrialBuilding</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="Desk">
+      <h3>Desk<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#Desk</p>
+      <div class="comment">
+         <span class="markdown">Desk is an instance of IfcSpace in the building representing a desk.</span>
+      </div>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#https://w3id.org/bot#Space" title="https://w3id.org/bot#Space">space</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="DetachedHouse">
+      <h3>detached house<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#DetachedHouse</p>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#SingleFamilyHousing" title="http://bemserver.org/xbot#SingleFamilyHousing">single family housing</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="Dormitory">
+      <h3>Dormitory<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#Dormitory</p>
+      <div class="comment">
+         <span class="markdown">A single facility containing multiple sleeping quarters and typically shared eating and lavatory facilities typically for students.</span>
+      </div>
+      <dl class="definedBy">
+         <dt>Is defined by</dt>
+         <dd>
+            <a href="http://bsdd.buildingsmart.org/api/4.0/IfdConcept/3LQ_u01P4HtG0000PR1IRl">http://bsdd.buildingsmart.org/api/4.0/IfdConcept/3LQ_u01P4HtG0000PR1IRl</a>
+         </dd>
+      </dl>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#ResidentialBuilding" title="http://bemserver.org/xbot#ResidentialBuilding">ResidentialBuilding</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="DrugStore">
+      <h3>DrugStore<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#DrugStore</p>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#CommercialBuilding" title="http://bemserver.org/xbot#CommercialBuilding">CommercialBuilding</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="EducationalBuilding">
+      <h3>EducationalBuilding<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#EducationalBuilding</p>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#https://w3id.org/bot#Building" title="https://w3id.org/bot#Building">building</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+         <dt>has sub-classes</dt>
+         <dd>
+            <a href="#PrimarySchool" title="http://bemserver.org/xbot#PrimarySchool">PrimarySchool</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#SecondarySchool" title="http://bemserver.org/xbot#SecondarySchool">SecondarySchool</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#University" title="http://bemserver.org/xbot#University">University</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="Factory">
+      <h3>Factory<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#Factory</p>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#IndustrialBuilding" title="http://bemserver.org/xbot#IndustrialBuilding">IndustrialBuilding</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="Farmhouse">
+      <h3>Farmhouse<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#Farmhouse</p>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#AgriculturalBuilding" title="http://bemserver.org/xbot#AgriculturalBuilding">AgriculturalBuilding</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="Floor">
+      <h3>Floor<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#Floor</p>
+      <div class="comment">
+         <span class="markdown">A Floor is an instance of a story in the building.</span>
+      </div>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#https://w3id.org/bot#Storey" title="https://w3id.org/bot#Storey">storey</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+         <dt>has sub-classes</dt>
+         <dd>
+            <a href="#Ground" title="http://bemserver.org/xbot#Ground">Ground</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#Subterranean" title="http://bemserver.org/xbot#Subterranean">Subterranean</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="GovernmentSubsidizedBuilding">
+      <h3>Government Subsidized Building<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#GovernmentSubsidizedBuilding</p>
+      <div class="comment">
+         <span class="markdown">A dwelling (or dwellings) that has a lowered cost of ownership due to government funding and support.</span>
+      </div>
+      <dl class="definedBy">
+         <dt>Is defined by</dt>
+         <dd>http://bemserver.org/xbot</dd>
+      </dl>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#MultiDwellingHousing" title="http://bemserver.org/xbot#MultiDwellingHousing">Multi-Dwelling Housing</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="Greenhouse">
+      <h3>Greenhouse<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#Greenhouse</p>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#AgriculturalBuilding" title="http://bemserver.org/xbot#AgriculturalBuilding">AgriculturalBuilding</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="Ground">
+      <h3>Ground<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#Ground</p>
+      <div class="comment">
+         <span class="markdown">A Ground represents a ground floor.</span>
+      </div>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#Floor" title="http://bemserver.org/xbot#Floor">Floor</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="Gym">
+      <h3>Gym<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#Gym</p>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#PublicBuilding" title="http://bemserver.org/xbot#PublicBuilding">PublicBuilding</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="Hospital">
+      <h3>Hospital<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#Hospital</p>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#PublicBuilding" title="http://bemserver.org/xbot#PublicBuilding">PublicBuilding</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="Hotel">
+      <h3>Hotel<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#Hotel</p>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#CommercialBuilding" title="http://bemserver.org/xbot#CommercialBuilding">CommercialBuilding</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="House">
+      <h3>House<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#House</p>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#ResidentialBuilding" title="http://bemserver.org/xbot#ResidentialBuilding">ResidentialBuilding</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="IndustrialBuilding">
+      <h3>IndustrialBuilding<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#IndustrialBuilding</p>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#https://w3id.org/bot#Building" title="https://w3id.org/bot#Building">building</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+         <dt>has sub-classes</dt>
+         <dd>
+            <a href="#DataCenter" title="http://bemserver.org/xbot#DataCenter">DataCenter</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#Factory" title="http://bemserver.org/xbot#Factory">Factory</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#LogisticPlatform" title="http://bemserver.org/xbot#LogisticPlatform">LogisticPlatform</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#PowerPlant" title="http://bemserver.org/xbot#PowerPlant">PowerPlant</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#Warehouse" title="http://bemserver.org/xbot#Warehouse">Warehouse</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="Kitchen">
+      <h3>Kitchen<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#Kitchen</p>
+      <div class="comment">
+         <span class="markdown">Kitchen is an instance of IfcSpace in the building representing a kitchen.</span>
+      </div>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#https://w3id.org/bot#Space" title="https://w3id.org/bot#Space">space</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="Laboratory">
+      <h3>Laboratory<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#Laboratory</p>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#https://w3id.org/bot#Space" title="https://w3id.org/bot#Space">space</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="Library">
+      <h3>Library<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#Library</p>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#PublicBuilding" title="http://bemserver.org/xbot#PublicBuilding">PublicBuilding</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="LogisticPlatform">
+      <h3>LogisticPlatform<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#LogisticPlatform</p>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#IndustrialBuilding" title="http://bemserver.org/xbot#IndustrialBuilding">IndustrialBuilding</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="MallSupermarket">
+      <h3>MallSupermarket<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#MallSupermarket</p>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#CommercialBuilding" title="http://bemserver.org/xbot#CommercialBuilding">CommercialBuilding</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="MeetingRoom">
+      <h3>MeetingRoom<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#MeetingRoom</p>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#https://w3id.org/bot#Space" title="https://w3id.org/bot#Space">space</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="MetroStation">
+      <h3>MetroStation<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#MetroStation</p>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#TransportBuilding" title="http://bemserver.org/xbot#TransportBuilding">TransportBuilding</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="MultiDwellingHousing">
+      <h3>Multi-Dwelling Housing<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#MultiDwellingHousing</p>
+      <div class="comment">
+         <span class="markdown">Multiple dwellings contained in a single structure.</span>
+      </div>
+      <dl class="definedBy">
+         <dt>Is defined by</dt>
+         <dd>http://bemserver.org/xbot</dd>
+      </dl>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#ResidentialBuilding" title="http://bemserver.org/xbot#ResidentialBuilding">ResidentialBuilding</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+         <dt>has sub-classes</dt>
+         <dd>
+            <a href="#Condominum" title="http://bemserver.org/xbot#Condominum">Condominum</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#GovernmentSubsidizedBuilding"
+               title="http://bemserver.org/xbot#GovernmentSubsidizedBuilding">Government Subsidized Building</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#SocialHousingBuilding" title="http://bemserver.org/xbot#SocialHousingBuilding">social housing building</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="MuseumGallery">
+      <h3>MuseumGallery<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#MuseumGallery</p>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#PublicBuilding" title="http://bemserver.org/xbot#PublicBuilding">PublicBuilding</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="NightClubConcertHall">
+      <h3>NighClubConcertHall<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#NightClubConcertHall</p>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#PublicBuilding" title="http://bemserver.org/xbot#PublicBuilding">PublicBuilding</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="Nursery">
+      <h3>Nursery<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#Nursery</p>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#PublicBuilding" title="http://bemserver.org/xbot#PublicBuilding">PublicBuilding</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="Office">
+      <h3>Office<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#Office</p>
+      <div class="comment">
+         <span class="markdown">Office is an instance of IfcSpace in the building representing an office.</span>
+      </div>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#https://w3id.org/bot#Space" title="https://w3id.org/bot#Space">space</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="OfficeBuilding">
+      <h3>OfficeBuilding<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#OfficeBuilding</p>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#https://w3id.org/bot#Building" title="https://w3id.org/bot#Building">building</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="OpenSpace">
+      <h3>OpenSpace<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#OpenSpace</p>
+      <div class="comment">
+         <span class="markdown">OpenSpace is an instance of IfcSpace in the building representing an open space.</span>
+      </div>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#https://w3id.org/bot#Space" title="https://w3id.org/bot#Space">space</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="Parking">
+      <h3>Parking<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#Parking</p>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#https://w3id.org/bot#Space" title="https://w3id.org/bot#Space">space</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="Pharmacy">
+      <h3>Pharmacy<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#Pharmacy</p>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#CommercialBuilding" title="http://bemserver.org/xbot#CommercialBuilding">CommercialBuilding</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="PowerPlant">
+      <h3>PowerPlant<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#PowerPlant</p>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#IndustrialBuilding" title="http://bemserver.org/xbot#IndustrialBuilding">IndustrialBuilding</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="PrimarySchool">
+      <h3>PrimarySchool<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#PrimarySchool</p>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#EducationalBuilding" title="http://bemserver.org/xbot#EducationalBuilding">EducationalBuilding</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="PublicBuilding">
+      <h3>PublicBuilding<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#PublicBuilding</p>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#https://w3id.org/bot#Building" title="https://w3id.org/bot#Building">building</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+         <dt>has sub-classes</dt>
+         <dd>
+            <a href="#Administration" title="http://bemserver.org/xbot#Administration">Administration</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#Cinema" title="http://bemserver.org/xbot#Cinema">Cinema</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#Gym" title="http://bemserver.org/xbot#Gym">Gym</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#Hospital" title="http://bemserver.org/xbot#Hospital">Hospital</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#Library" title="http://bemserver.org/xbot#Library">Library</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#MuseumGallery" title="http://bemserver.org/xbot#MuseumGallery">MuseumGallery</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#NightClubConcertHall" title="http://bemserver.org/xbot#NightClubConcertHall">NighClubConcertHall</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#Nursery" title="http://bemserver.org/xbot#Nursery">Nursery</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#SwimmingCenter" title="http://bemserver.org/xbot#SwimmingCenter">SwimmingCenter</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="ReligiousBuilding">
+      <h3>ReligiousBuilding<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#ReligiousBuilding</p>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#https://w3id.org/bot#Building" title="https://w3id.org/bot#Building">building</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="ResidentialBuilding">
+      <h3>ResidentialBuilding<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#ResidentialBuilding</p>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#https://w3id.org/bot#Building" title="https://w3id.org/bot#Building">building</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+         <dt>has sub-classes</dt>
+         <dd>
+            <a href="#Apartment" title="http://bemserver.org/xbot#Apartment">Apartment</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#Bungalow" title="http://bemserver.org/xbot#Bungalow">Bungalow</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#Dormitory" title="http://bemserver.org/xbot#Dormitory">Dormitory</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#House" title="http://bemserver.org/xbot#House">House</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#MultiDwellingHousing" title="http://bemserver.org/xbot#MultiDwellingHousing">Multi-Dwelling Housing</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#SeniorHousing" title="http://bemserver.org/xbot#SeniorHousing">senior housing</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#SingleFamilyHousing" title="http://bemserver.org/xbot#SingleFamilyHousing">single family housing</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#SpecialCareBuilding" title="http://bemserver.org/xbot#SpecialCareBuilding">special care building</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="RestRoom">
+      <h3>RestRoom<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#RestRoom</p>
+      <div class="comment">
+         <span class="markdown">RestRoom is an instance of IfcSpace in the building representing a rest room.</span>
+      </div>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#https://w3id.org/bot#Space" title="https://w3id.org/bot#Space">space</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="Room">
+      <h3>Room<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#Room</p>
+      <div class="comment">
+         <span class="markdown">Room is an instance of IfcSpace in the building representing a Room.</span>
+      </div>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#https://w3id.org/bot#Space" title="https://w3id.org/bot#Space">space</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="SecondarySchool">
+      <h3>SecondarySchool<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#SecondarySchool</p>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#EducationalBuilding" title="http://bemserver.org/xbot#EducationalBuilding">EducationalBuilding</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="SeniorHousing">
+      <h3>senior housing<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#SeniorHousing</p>
+      <div class="comment">
+         <span class="markdown">Dwellings and commercial facilities designed and/or retrofitted for occupancy by Seniors.</span>
+      </div>
+      <dl class="definedBy">
+         <dt>Is defined by</dt>
+         <dd>http://bemserver.org/xbot</dd>
+      </dl>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#ResidentialBuilding" title="http://bemserver.org/xbot#ResidentialBuilding">ResidentialBuilding</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="Shop">
+      <h3>Shop<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#Shop</p>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#CommercialBuilding" title="http://bemserver.org/xbot#CommercialBuilding">CommercialBuilding</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="Silo">
+      <h3>Silo<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#Silo</p>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#AgriculturalBuilding" title="http://bemserver.org/xbot#AgriculturalBuilding">AgriculturalBuilding</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="SingleFamilyHousing">
+      <h3>single family housing<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#SingleFamilyHousing</p>
+      <div class="comment">
+         <span class="markdown">A dwelling unit for a service member or for an authorized government civilian and his/her authorized dependents when accompanied by those dependents.</span>
+      </div>
+      <dl class="definedBy">
+         <dt>Is defined by</dt>
+         <dd>
+            <a href="http://bsdd.buildingsmart.org/api/4.0/IfdConcept/2dXgc01P4HtG0000PR1IRl">http://bsdd.buildingsmart.org/api/4.0/IfdConcept/2dXgc01P4HtG0000PR1IRl</a>
+         </dd>
+         <dd>http://bemserver.org/xbot</dd>
+      </dl>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#ResidentialBuilding" title="http://bemserver.org/xbot#ResidentialBuilding">ResidentialBuilding</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+         <dt>has sub-classes</dt>
+         <dd>
+            <a href="#Allotment" title="http://bemserver.org/xbot#Allotment">allotment</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#DetachedHouse" title="http://bemserver.org/xbot#DetachedHouse">detached house</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#Terraced" title="http://bemserver.org/xbot#Terraced">terraced</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="SocialHousingBuilding">
+      <h3>social housing building<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#SocialHousingBuilding</p>
+      <dl class="definedBy">
+         <dt>Is defined by</dt>
+         <dd>http://bemserver.org/xbot</dd>
+      </dl>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#MultiDwellingHousing" title="http://bemserver.org/xbot#MultiDwellingHousing">Multi-Dwelling Housing</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="https://w3id.org/bot#Space">
+      <h3>space<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://w3id.org/bot#Space</p>
+      <dl class="description">
+         <dt>has sub-classes</dt>
+         <dd>
+            <a href="#Balcony" title="http://bemserver.org/xbot#Balcony">Balcony</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#Bathroom" title="http://bemserver.org/xbot#Bathroom">Bathroom</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#Cafeteria" title="http://bemserver.org/xbot#Cafeteria">Cafeteria</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#Canteen" title="http://bemserver.org/xbot#Canteen">Canteen</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#CirculationArea" title="http://bemserver.org/xbot#CirculationArea">CirculationArea</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#ConferenceRoom" title="http://bemserver.org/xbot#ConferenceRoom">ConferenceRoom</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#Desk" title="http://bemserver.org/xbot#Desk">Desk</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#Kitchen" title="http://bemserver.org/xbot#Kitchen">Kitchen</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#Laboratory" title="http://bemserver.org/xbot#Laboratory">Laboratory</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#MeetingRoom" title="http://bemserver.org/xbot#MeetingRoom">MeetingRoom</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#Office" title="http://bemserver.org/xbot#Office">Office</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#OpenSpace" title="http://bemserver.org/xbot#OpenSpace">OpenSpace</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#Parking" title="http://bemserver.org/xbot#Parking">Parking</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#RestRoom" title="http://bemserver.org/xbot#RestRoom">RestRoom</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#Room" title="http://bemserver.org/xbot#Room">Room</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#Stockroom" title="http://bemserver.org/xbot#Stockroom">Stockroom</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#TechnicalArea" title="http://bemserver.org/xbot#TechnicalArea">TechnicalArea</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#Toilets" title="http://bemserver.org/xbot#Toilets">Toilets</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#WetArea" title="http://bemserver.org/xbot#WetArea">WetArea</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="SpecialCareBuilding">
+      <h3>special care building<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#SpecialCareBuilding</p>
+      <div class="comment">
+         <span class="markdown">A dwelling containing multiple sleeping quarters with shared eating, living and lavatory facilities in addition to offering additional care and medical/health assistance from trained staff.</span>
+      </div>
+      <dl class="definedBy">
+         <dt>Is defined by</dt>
+         <dd>
+            <a href="http://bsdd.buildingsmart.org/api/4.0/IfdConcept/3UzLO01P4HtG0000PR1IRl">http://bsdd.buildingsmart.org/api/4.0/IfdConcept/3UzLO01P4HtG0000PR1IRl</a>
+         </dd>
+         <dd>http://bemserver.org/xbot</dd>
+      </dl>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#ResidentialBuilding" title="http://bemserver.org/xbot#ResidentialBuilding">ResidentialBuilding</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="Stockroom">
+      <h3>Stockroom<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#Stockroom</p>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#https://w3id.org/bot#Space" title="https://w3id.org/bot#Space">space</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="https://w3id.org/bot#Storey">
+      <h3>storey<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://w3id.org/bot#Storey</p>
+      <dl class="description">
+         <dt>has sub-classes</dt>
+         <dd>
+            <a href="#Floor" title="http://bemserver.org/xbot#Floor">Floor</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="Subterranean">
+      <h3>Subterranean<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#Subterranean</p>
+      <div class="comment">
+         <span class="markdown">A Sunterranean represents a subterranean floor.</span>
+      </div>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#Floor" title="http://bemserver.org/xbot#Floor">Floor</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="SwimmingCenter">
+      <h3>SwimmingCenter<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#SwimmingCenter</p>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#PublicBuilding" title="http://bemserver.org/xbot#PublicBuilding">PublicBuilding</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="TechnicalArea">
+      <h3>TechnicalArea<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#TechnicalArea</p>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#https://w3id.org/bot#Space" title="https://w3id.org/bot#Space">space</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="Terraced">
+      <h3>terraced<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#Terraced</p>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#SingleFamilyHousing" title="http://bemserver.org/xbot#SingleFamilyHousing">single family housing</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="Toilets">
+      <h3>Toilets<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#Toilets</p>
+      <div class="comment">
+         <span class="markdown">Toilets is an instance of IfcSpace in the building representing toilets.</span>
+      </div>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#https://w3id.org/bot#Space" title="https://w3id.org/bot#Space">space</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="TrainStation">
+      <h3>TrainStation<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#TrainStation</p>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#TransportBuilding" title="http://bemserver.org/xbot#TransportBuilding">TransportBuilding</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="TransportBuilding">
+      <h3>TransportBuilding<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#TransportBuilding</p>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#https://w3id.org/bot#Building" title="https://w3id.org/bot#Building">building</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+         <dt>has sub-classes</dt>
+         <dd>
+            <a href="#Airport" title="http://bemserver.org/xbot#Airport">Airport</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#BusStation" title="http://bemserver.org/xbot#BusStation">BusStation</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#MetroStation" title="http://bemserver.org/xbot#MetroStation">MetroStation</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#TrainStation" title="http://bemserver.org/xbot#TrainStation">TrainStation</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="University">
+      <h3>University<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#University</p>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#EducationalBuilding" title="http://bemserver.org/xbot#EducationalBuilding">EducationalBuilding</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="Warehouse">
+      <h3>Warehouse<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#Warehouse</p>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#IndustrialBuilding" title="http://bemserver.org/xbot#IndustrialBuilding">IndustrialBuilding</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="WetArea">
+      <h3>WetArea<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#WetArea</p>
+      <div class="comment">
+         <span class="markdown">WetArea is an instance of IfcSpace in the building representing a wet area.</span>
+      </div>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#https://w3id.org/bot#Space" title="https://w3id.org/bot#Space">space</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+</div><div xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="dataproperties">
+   <h3 id="dataproperties-headline" class="list">Data Properties</h3>
+   <ul class="hlist">
+      <li>
+         <a href="#floorLevel" title="http://bemserver.org/xbot#floorLevel">floorLevel</a>
+      </li>
+   </ul>
+   <div class="entity" id="floorLevel">
+      <h3>floorLevel<sup class="type-dp" title="data property">dp</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#dataproperties">Data Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/xbot#floorLevel</p>
+      <div class="description">
+         <dl>
+            <dt>has range</dt>
+            <dd>
+               <a href="http://www.w3.org/2001/XMLSchema#integer"
+                  target="_blank"
+                  title="http://www.w3.org/2001/XMLSchema#integer">integer</a>
+            </dd>
+         </dl>
+      </div>
+   </div>
+</div><div id="legend">
+<h2>Legend <span class="backlink"> back to <a href="#toc">ToC</a></span></h2>
+<div   class="entity">
+<sup class="type-c" title="Classes">c</sup>: Classes <br/>
+<sup class="type-op" title="Object Properties">op</sup>: Object Properties <br/>
+<sup class="type-dp" title="Data Properties">dp</sup>: Data Properties <br/>
+<sup class="type-ni" title="Named Individuals">ni</sup>: Named Individuals
+</div>
+</div>
+</div>
+    
+
+<!--REFERENCES SECTION-->
+  <div id="references">
+<h2 id="ref" class="list">References <span class="backlink"> back to <a href="#toc">ToC</a></span></h2>
+<span class="markdown">
+Add your references here. It is recommended to have them as a list.</span>
+
+</div>
+<div id="acknowledgments">
+<h2 id="ack" class="list">Acknowledgments <span class="backlink"> back to <a href="#toc">ToC</a></span></h2>
+<p>
+The authors would like to thank <a href="http://www.essepuntato.it/">Silvio Peroni</a> for developing <a href="http://www.essepuntato.it/lode">LODE</a>, a Live OWL Documentation Environment, which is used for representing the Cross Referencing Section of this document and <a href="https://w3id.org/people/dgarijo">Daniel Garijo</a> for developing <a href="https://github.com/dgarijo/Widoco">Widoco</a>, the program used to create the template used in this documentation.</p>
+</div>
+
+
+</div>
+</body>
+</html>

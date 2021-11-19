@@ -1,0 +1,558 @@
+@prefix : <http://bemserver.org/xbot#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://bemserver.org/xbot> .
+
+<http://bemserver.org/xbot> rdf:type owl:Ontology ;
+                             owl:imports <https://w3id.org/bot-0.3.2> ;
+                             rdfs:comment "This ontology is based on BOT for describing building topology and extends it towards representing a wise set of building types (including residential and non residential buildings), spaces and storeys based on the Omniclass standard."@en .
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://bemserver.org/xbot#floorLevel
+:floorLevel rdf:type owl:DatatypeProperty ;
+            rdfs:range xsd:integer ;
+            rdfs:label "floorLevel"@en .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://bemserver.org/xbot#Administration
+:Administration rdf:type owl:Class ;
+                rdfs:subClassOf :PublicBuilding ;
+                rdfs:label "Administration" .
+
+
+###  http://bemserver.org/xbot#AgriculturalBuilding
+:AgriculturalBuilding rdf:type owl:Class ;
+                      rdfs:subClassOf <https://w3id.org/bot#Building> ;
+                      rdfs:label "AgriculturalBuilding" .
+
+
+###  http://bemserver.org/xbot#Airport
+:Airport rdf:type owl:Class ;
+         rdfs:subClassOf :TransportBuilding ;
+         rdfs:label "Airport" .
+
+
+###  http://bemserver.org/xbot#Allotment
+:Allotment rdf:type owl:Class ;
+           rdfs:subClassOf :SingleFamilyHousing .
+
+
+###  http://bemserver.org/xbot#Apartment
+:Apartment rdf:type owl:Class ;
+           rdfs:subClassOf :ResidentialBuilding ;
+           rdfs:label "Apartment" .
+
+
+###  http://bemserver.org/xbot#AutomobileRepair
+:AutomobileRepair rdf:type owl:Class ;
+                  rdfs:subClassOf :CommercialBuilding ;
+                  rdfs:label "AutomobileRepair" .
+
+
+###  http://bemserver.org/xbot#Balcony
+:Balcony rdf:type owl:Class ;
+         rdfs:subClassOf <https://w3id.org/bot#Space> ;
+         rdfs:comment "Balcony is an instance of IfcSpace in the building representing a balcony."@en ;
+         rdfs:label "Balcony"@en ;
+         rdfs:seeAlso "https://w3id.org/seas/Balcony" .
+
+
+###  http://bemserver.org/xbot#BarRestaurant
+:BarRestaurant rdf:type owl:Class ;
+               rdfs:subClassOf :CommercialBuilding ;
+               rdfs:label "BarRestaurant" .
+
+
+###  http://bemserver.org/xbot#Barn
+:Barn rdf:type owl:Class ;
+      rdfs:subClassOf :AgriculturalBuilding ;
+      rdfs:label "Barn" .
+
+
+###  http://bemserver.org/xbot#Bathroom
+:Bathroom rdf:type owl:Class ;
+          rdfs:subClassOf <https://w3id.org/bot#Space> ;
+          rdfs:comment "Bathroom is an instance of IfcSpace in the building representing a bathroom."@en ;
+          rdfs:label "Bathroom"@en ;
+          rdfs:seeAlso "https://w3id.org/seas/Bathroom" .
+
+
+###  http://bemserver.org/xbot#Bungalow
+:Bungalow rdf:type owl:Class ;
+          rdfs:subClassOf :ResidentialBuilding ;
+          rdfs:label "Bungalow" .
+
+
+###  http://bemserver.org/xbot#BusStation
+:BusStation rdf:type owl:Class ;
+            rdfs:subClassOf :TransportBuilding ;
+            rdfs:label "BusStation" .
+
+
+###  http://bemserver.org/xbot#Cafeteria
+:Cafeteria rdf:type owl:Class ;
+           rdfs:subClassOf <https://w3id.org/bot#Space> ;
+           rdfs:comment "Cafeteria is an instance of IfcSpace in the building representing a cafeteria."@en ;
+           rdfs:label "Cafeteria"@en .
+
+
+###  http://bemserver.org/xbot#Canteen
+:Canteen rdf:type owl:Class ;
+         rdfs:subClassOf <https://w3id.org/bot#Space> ;
+         rdfs:comment "Canteen is an instance of IfcSpace in the building representing a canteen."@en ;
+         rdfs:label "Canteen"@en .
+
+
+###  http://bemserver.org/xbot#Cellar
+:Cellar rdf:type owl:Class ;
+        rdfs:subClassOf :AgriculturalBuilding ;
+        rdfs:label "Cellar" .
+
+
+###  http://bemserver.org/xbot#Cinema
+:Cinema rdf:type owl:Class ;
+        rdfs:subClassOf :PublicBuilding ;
+        rdfs:label "Cinema" .
+
+
+###  http://bemserver.org/xbot#CirculationArea
+:CirculationArea rdf:type owl:Class ;
+                 rdfs:subClassOf <https://w3id.org/bot#Space> ;
+                 rdfs:comment "CirculationArea is an instance of IfcSpace in the building representing a circulation area."@en ;
+                 rdfs:label "CirculationArea"@en .
+
+
+###  http://bemserver.org/xbot#CommercialBuilding
+:CommercialBuilding rdf:type owl:Class ;
+                    rdfs:subClassOf <https://w3id.org/bot#Building> ;
+                    rdfs:label "CommercialBuilding" .
+
+
+###  http://bemserver.org/xbot#Condominum
+:Condominum rdf:type owl:Class ;
+            rdfs:subClassOf :MultiDwellingHousing ;
+            rdfs:isDefinedBy "Part of 'Duplex' in Omniclass 11 (2013 02 26)"@en ;
+            rdfs:label "Condominum"@en .
+
+
+###  http://bemserver.org/xbot#ConferenceRoom
+:ConferenceRoom rdf:type owl:Class ;
+                rdfs:subClassOf <https://w3id.org/bot#Space> ;
+                rdfs:comment "ConferenceRoom is an instance of IfcSpace in the building representing a conference room."@en ;
+                rdfs:label "ConferenceRoom"@en .
+
+
+###  http://bemserver.org/xbot#ConventionCenter
+:ConventionCenter rdf:type owl:Class ;
+                  rdfs:subClassOf :CommercialBuilding ;
+                  rdfs:label "ConventionCenter" .
+
+
+###  http://bemserver.org/xbot#DataCenter
+:DataCenter rdf:type owl:Class ;
+            rdfs:subClassOf :IndustrialBuilding ;
+            rdfs:label "DataCenter" .
+
+
+###  http://bemserver.org/xbot#Desk
+:Desk rdf:type owl:Class ;
+      rdfs:subClassOf <https://w3id.org/bot#Space> ;
+      rdfs:comment "Desk is an instance of IfcSpace in the building representing a desk."@en ;
+      rdfs:label "Desk"@en .
+
+
+###  http://bemserver.org/xbot#DetachedHouse
+:DetachedHouse rdf:type owl:Class ;
+               rdfs:subClassOf :SingleFamilyHousing .
+
+
+###  http://bemserver.org/xbot#Dormitory
+:Dormitory rdf:type owl:Class ;
+           rdfs:subClassOf :ResidentialBuilding ;
+           rdfs:comment "A single facility containing multiple sleeping quarters and typically shared eating and lavatory facilities typically for students."@en ;
+           rdfs:isDefinedBy <http://bsdd.buildingsmart.org/api/4.0/IfdConcept/3LQ_u01P4HtG0000PR1IRl> ;
+           rdfs:label "Dormitory"@en ,
+                      "Dortoir"@fr .
+
+
+###  http://bemserver.org/xbot#DrugStore
+:DrugStore rdf:type owl:Class ;
+           rdfs:subClassOf :CommercialBuilding ;
+           rdfs:label "DrugStore" .
+
+
+###  http://bemserver.org/xbot#EducationalBuilding
+:EducationalBuilding rdf:type owl:Class ;
+                     rdfs:subClassOf <https://w3id.org/bot#Building> ;
+                     rdfs:label "EducationalBuilding" ;
+                     rdfs:seeAlso "https://w3id.org/seas/EducationalBuilding" .
+
+
+###  http://bemserver.org/xbot#Factory
+:Factory rdf:type owl:Class ;
+         rdfs:subClassOf :IndustrialBuilding ;
+         rdfs:label "Factory" .
+
+
+###  http://bemserver.org/xbot#Farmhouse
+:Farmhouse rdf:type owl:Class ;
+           rdfs:subClassOf :AgriculturalBuilding ;
+           rdfs:label "Farmhouse" .
+
+
+###  http://bemserver.org/xbot#Floor
+:Floor rdf:type owl:Class ;
+       rdfs:subClassOf <https://w3id.org/bot#Storey> ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :floorLevel ;
+                         owl:allValuesFrom xsd:integer
+                       ] ;
+       rdfs:comment "A Floor is an instance of a story in the building."@en ;
+       rdfs:label "Floor"@en ;
+       rdfs:seeAlso "https://w3id.org/seas/Floor" .
+
+
+###  http://bemserver.org/xbot#GovernmentSubsidizedBuilding
+:GovernmentSubsidizedBuilding rdf:type owl:Class ;
+                              rdfs:subClassOf :MultiDwellingHousing ;
+                              rdfs:comment "A dwelling (or dwellings) that has a lowered cost of ownership due to government funding and support."@en ;
+                              rdfs:isDefinedBy "'Government Subsiduzed Building' in Omniclass 11 (2013 02 26)" ;
+                              rdfs:label "Government Subsidized Building"@en .
+
+
+###  http://bemserver.org/xbot#Greenhouse
+:Greenhouse rdf:type owl:Class ;
+            rdfs:subClassOf :AgriculturalBuilding ;
+            rdfs:label "Greenhouse" ;
+            rdfs:seeAlso "https://w3id.org/seas/Greenhouse" .
+
+
+###  http://bemserver.org/xbot#Ground
+:Ground rdf:type owl:Class ;
+        rdfs:subClassOf :Floor ;
+        rdfs:comment "A Ground represents a ground floor."@en ;
+        rdfs:label "Ground"@en .
+
+
+###  http://bemserver.org/xbot#Gym
+:Gym rdf:type owl:Class ;
+     rdfs:subClassOf :PublicBuilding ;
+     rdfs:label "Gym" .
+
+
+###  http://bemserver.org/xbot#Hospital
+:Hospital rdf:type owl:Class ;
+          rdfs:subClassOf :PublicBuilding ;
+          rdfs:label "Hospital" .
+
+
+###  http://bemserver.org/xbot#Hotel
+:Hotel rdf:type owl:Class ;
+       rdfs:subClassOf :CommercialBuilding ;
+       rdfs:label "Hotel" .
+
+
+###  http://bemserver.org/xbot#House
+:House rdf:type owl:Class ;
+       rdfs:subClassOf :ResidentialBuilding ;
+       rdfs:label "House" .
+
+
+###  http://bemserver.org/xbot#IndustrialBuilding
+:IndustrialBuilding rdf:type owl:Class ;
+                    rdfs:subClassOf <https://w3id.org/bot#Building> ;
+                    rdfs:label "IndustrialBuilding" ;
+                    rdfs:seeAlso "https://w3id.org/seas/InstitutionalBuilding" .
+
+
+###  http://bemserver.org/xbot#Kitchen
+:Kitchen rdf:type owl:Class ;
+         rdfs:subClassOf <https://w3id.org/bot#Space> ;
+         rdfs:comment "Kitchen is an instance of IfcSpace in the building representing a kitchen."@en ;
+         rdfs:label "Kitchen"@en ;
+         rdfs:seeAlso "https://w3id.org/seas/Kitchen" .
+
+
+###  http://bemserver.org/xbot#Laboratory
+:Laboratory rdf:type owl:Class ;
+            rdfs:subClassOf <https://w3id.org/bot#Space> ;
+            rdfs:label "Laboratory" .
+
+
+###  http://bemserver.org/xbot#Library
+:Library rdf:type owl:Class ;
+         rdfs:subClassOf :PublicBuilding ;
+         rdfs:label "Library" .
+
+
+###  http://bemserver.org/xbot#LogisticPlatform
+:LogisticPlatform rdf:type owl:Class ;
+                  rdfs:subClassOf :IndustrialBuilding ;
+                  rdfs:label "LogisticPlatform" .
+
+
+###  http://bemserver.org/xbot#MallSupermarket
+:MallSupermarket rdf:type owl:Class ;
+                 rdfs:subClassOf :CommercialBuilding ;
+                 rdfs:label "MallSupermarket" .
+
+
+###  http://bemserver.org/xbot#MeetingRoom
+:MeetingRoom rdf:type owl:Class ;
+             rdfs:subClassOf <https://w3id.org/bot#Space> ;
+             rdfs:label "MeetingRoom" .
+
+
+###  http://bemserver.org/xbot#MetroStation
+:MetroStation rdf:type owl:Class ;
+              rdfs:subClassOf :TransportBuilding ;
+              rdfs:label "MetroStation" .
+
+
+###  http://bemserver.org/xbot#MultiDwellingHousing
+:MultiDwellingHousing rdf:type owl:Class ;
+                      rdfs:subClassOf :ResidentialBuilding ;
+                      rdfs:comment "Multiple dwellings contained in a single structure."@en ;
+                      rdfs:isDefinedBy "'Multiple Family Residences' in Omniclass 11 (2013 02 26)"@en ;
+                      rdfs:label "Multi-Dwelling Housing"@en .
+
+
+###  http://bemserver.org/xbot#MuseumGallery
+:MuseumGallery rdf:type owl:Class ;
+               rdfs:subClassOf :PublicBuilding ;
+               rdfs:label "MuseumGallery" .
+
+
+###  http://bemserver.org/xbot#NightClubConcertHall
+:NightClubConcertHall rdf:type owl:Class ;
+                      rdfs:subClassOf :PublicBuilding ;
+                      rdfs:label "NighClubConcertHall" .
+
+
+###  http://bemserver.org/xbot#Nursery
+:Nursery rdf:type owl:Class ;
+         rdfs:subClassOf :PublicBuilding ;
+         rdfs:label "Nursery" .
+
+
+###  http://bemserver.org/xbot#Office
+:Office rdf:type owl:Class ;
+        rdfs:subClassOf <https://w3id.org/bot#Space> ;
+        rdfs:comment "Office is an instance of IfcSpace in the building representing an office."@en ;
+        rdfs:label "Office"@en ;
+        rdfs:seeAlso "https://w3id.org/seas/Office" .
+
+
+###  http://bemserver.org/xbot#OfficeBuilding
+:OfficeBuilding rdf:type owl:Class ;
+                rdfs:subClassOf <https://w3id.org/bot#Building> ;
+                rdfs:label "OfficeBuilding" ;
+                rdfs:seeAlso "https://w3id.org/seas/OfficeBuilding" .
+
+
+###  http://bemserver.org/xbot#OpenSpace
+:OpenSpace rdf:type owl:Class ;
+           rdfs:subClassOf <https://w3id.org/bot#Space> ;
+           rdfs:comment "OpenSpace is an instance of IfcSpace in the building representing an open space."@en ;
+           rdfs:label "OpenSpace"@en .
+
+
+###  http://bemserver.org/xbot#Parking
+:Parking rdf:type owl:Class ;
+         rdfs:subClassOf <https://w3id.org/bot#Space> ;
+         rdfs:label "Parking" .
+
+
+###  http://bemserver.org/xbot#Pharmacy
+:Pharmacy rdf:type owl:Class ;
+          rdfs:subClassOf :CommercialBuilding ;
+          rdfs:label "Pharmacy" .
+
+
+###  http://bemserver.org/xbot#PowerPlant
+:PowerPlant rdf:type owl:Class ;
+            rdfs:subClassOf :IndustrialBuilding ;
+            rdfs:label "PowerPlant" .
+
+
+###  http://bemserver.org/xbot#PrimarySchool
+:PrimarySchool rdf:type owl:Class ;
+               rdfs:subClassOf :EducationalBuilding ;
+               rdfs:label "PrimarySchool" .
+
+
+###  http://bemserver.org/xbot#PublicBuilding
+:PublicBuilding rdf:type owl:Class ;
+                rdfs:subClassOf <https://w3id.org/bot#Building> ;
+                rdfs:label "PublicBuilding" .
+
+
+###  http://bemserver.org/xbot#ReligiousBuilding
+:ReligiousBuilding rdf:type owl:Class ;
+                   rdfs:subClassOf <https://w3id.org/bot#Building> ;
+                   rdfs:label "ReligiousBuilding" .
+
+
+###  http://bemserver.org/xbot#ResidentialBuilding
+:ResidentialBuilding rdf:type owl:Class ;
+                     rdfs:subClassOf <https://w3id.org/bot#Building> ;
+                     rdfs:label "ResidentialBuilding" ;
+                     rdfs:seeAlso "https://w3id.org/seas/ResidentalBuilding" .
+
+
+###  http://bemserver.org/xbot#RestRoom
+:RestRoom rdf:type owl:Class ;
+          rdfs:subClassOf <https://w3id.org/bot#Space> ;
+          rdfs:comment "RestRoom is an instance of IfcSpace in the building representing a rest room."@en ;
+          rdfs:label "RestRoom"@en .
+
+
+###  http://bemserver.org/xbot#Room
+:Room rdf:type owl:Class ;
+      rdfs:subClassOf <https://w3id.org/bot#Space> ;
+      rdfs:comment "Room is an instance of IfcSpace in the building representing a Room."@en ;
+      rdfs:label "Room"@en ;
+      rdfs:seeAlso "https://w3id.org/seas/Room" .
+
+
+###  http://bemserver.org/xbot#SecondarySchool
+:SecondarySchool rdf:type owl:Class ;
+                 rdfs:subClassOf :EducationalBuilding ;
+                 rdfs:label "SecondarySchool" .
+
+
+###  http://bemserver.org/xbot#SeniorHousing
+:SeniorHousing rdf:type owl:Class ;
+               rdfs:subClassOf :ResidentialBuilding ;
+               rdfs:comment "Dwellings and commercial facilities designed and/or retrofitted for occupancy by Seniors."@en ;
+               rdfs:isDefinedBy "'Senior Housing' in Omniclass 11 (2013 02 26)" .
+
+
+###  http://bemserver.org/xbot#Shop
+:Shop rdf:type owl:Class ;
+      rdfs:subClassOf :CommercialBuilding ;
+      rdfs:label "Shop" .
+
+
+###  http://bemserver.org/xbot#Silo
+:Silo rdf:type owl:Class ;
+      rdfs:subClassOf :AgriculturalBuilding ;
+      rdfs:label "Silo" .
+
+
+###  http://bemserver.org/xbot#SingleFamilyHousing
+:SingleFamilyHousing rdf:type owl:Class ;
+                     rdfs:subClassOf :ResidentialBuilding ;
+                     rdfs:comment "A dwelling unit for a service member or for an authorized government civilian and his/her authorized dependents when accompanied by those dependents."@en ;
+                     rdfs:isDefinedBy <http://bsdd.buildingsmart.org/api/4.0/IfdConcept/2dXgc01P4HtG0000PR1IRl> ,
+                                      "'Single Family Residence' in Omniclass 11 (2013 02 26)" .
+
+
+###  http://bemserver.org/xbot#SocialHousingBuilding
+:SocialHousingBuilding rdf:type owl:Class ;
+                       rdfs:subClassOf :MultiDwellingHousing ;
+                       rdfs:isDefinedBy "'LIHTC Tax Credit Housing' in Omniclass 11 (2013 02 26)"@en .
+
+
+###  http://bemserver.org/xbot#SpecialCareBuilding
+:SpecialCareBuilding rdf:type owl:Class ;
+                     rdfs:subClassOf :ResidentialBuilding ;
+                     rdfs:comment "A dwelling containing multiple sleeping quarters with shared eating, living and lavatory facilities in addition to offering additional care and medical/health assistance from trained staff."@en ;
+                     rdfs:isDefinedBy <http://bsdd.buildingsmart.org/api/4.0/IfdConcept/3UzLO01P4HtG0000PR1IRl> ,
+                                      "'Special Care Residence' in Omniclass 11 (2013 02 26)" .
+
+
+###  http://bemserver.org/xbot#Stockroom
+:Stockroom rdf:type owl:Class ;
+           rdfs:subClassOf <https://w3id.org/bot#Space> ;
+           rdfs:label "Stockroom" .
+
+
+###  http://bemserver.org/xbot#Subterranean
+:Subterranean rdf:type owl:Class ;
+              rdfs:subClassOf :Floor ;
+              rdfs:comment "A Sunterranean represents a subterranean floor."@en ;
+              rdfs:label "Subterranean"@en .
+
+
+###  http://bemserver.org/xbot#SwimmingCenter
+:SwimmingCenter rdf:type owl:Class ;
+                rdfs:subClassOf :PublicBuilding ;
+                rdfs:label "SwimmingCenter" .
+
+
+###  http://bemserver.org/xbot#TechnicalArea
+:TechnicalArea rdf:type owl:Class ;
+               rdfs:subClassOf <https://w3id.org/bot#Space> ;
+               rdfs:label "TechnicalArea" .
+
+
+###  http://bemserver.org/xbot#Terraced
+:Terraced rdf:type owl:Class ;
+          rdfs:subClassOf :SingleFamilyHousing .
+
+
+###  http://bemserver.org/xbot#Toilets
+:Toilets rdf:type owl:Class ;
+         rdfs:subClassOf <https://w3id.org/bot#Space> ;
+         rdfs:comment "Toilets is an instance of IfcSpace in the building representing toilets."@en ;
+         rdfs:label "Toilets"@en .
+
+
+###  http://bemserver.org/xbot#TrainStation
+:TrainStation rdf:type owl:Class ;
+              rdfs:subClassOf :TransportBuilding ;
+              rdfs:label "TrainStation" .
+
+
+###  http://bemserver.org/xbot#TransportBuilding
+:TransportBuilding rdf:type owl:Class ;
+                   rdfs:subClassOf <https://w3id.org/bot#Building> ;
+                   rdfs:label "TransportBuilding" .
+
+
+###  http://bemserver.org/xbot#University
+:University rdf:type owl:Class ;
+            rdfs:subClassOf :EducationalBuilding ;
+            rdfs:label "University" .
+
+
+###  http://bemserver.org/xbot#Warehouse
+:Warehouse rdf:type owl:Class ;
+           rdfs:subClassOf :IndustrialBuilding ;
+           rdfs:label "Warehouse" .
+
+
+###  http://bemserver.org/xbot#WetArea
+:WetArea rdf:type owl:Class ;
+         rdfs:subClassOf <https://w3id.org/bot#Space> ;
+         rdfs:comment "WetArea is an instance of IfcSpace in the building representing a wet area."@en ;
+         rdfs:label "WetArea"@en .
+
+
+###  https://w3id.org/bot#Building
+<https://w3id.org/bot#Building> rdf:type owl:Class ;
+                                rdfs:seeAlso "https://w3id.org/seas/Building" .
+
+
+###  https://w3id.org/bot#Space
+<https://w3id.org/bot#Space> rdf:type owl:Class ;
+                             rdfs:seeAlso "https://w3id.org/seas/BuildingSpace" .
+
+
+###  https://w3id.org/bot#Storey
+<https://w3id.org/bot#Storey> rdf:type owl:Class ;
+                              rdfs:seeAlso "https://w3id.org/seas/BuildingStorey" .
+
+
+###  Generated by the OWL API (version 5.1.14) https://github.com/owlcs/owlapi/

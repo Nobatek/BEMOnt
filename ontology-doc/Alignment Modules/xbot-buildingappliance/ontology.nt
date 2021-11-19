@@ -1,0 +1,135 @@
+<http://bemserver.org/appliance/BuildingAppliance_xBOT_Alignment#> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Ontology> .
+<http://bemserver.org/appliance/BuildingAppliance_xBOT_Alignment#> <http://www.w3.org/2002/07/owl#versionIRI> <http://bemserver.org/appliance/BuildingAppliance_xBOT_Alignment-1.0.0> .
+<http://bemserver.org/appliance/BuildingAppliance_xBOT_Alignment#> <http://www.w3.org/2002/07/owl#imports> <http://bemserver.org/appliance#> .
+<http://bemserver.org/appliance/BuildingAppliance_xBOT_Alignment#> <http://www.w3.org/2002/07/owl#imports> <http://bemserver.org/xbot#> .
+<http://bemserver.org/appliance/BuildingAppliance_xBOT_Alignment#> <http://purl.org/dc/terms/description> "This ontology defines proposed alignments of BuildingAppliance with the xBOT ontology."@en .
+<http://bemserver.org/appliance/BuildingAppliance_xBOT_Alignment#> <http://purl.org/dc/terms/issued> "2021-06-22"^^<http://www.w3.org/2001/XMLSchema#date> .
+<http://bemserver.org/appliance/BuildingAppliance_xBOT_Alignment#> <http://purl.org/dc/terms/title> "BuildingAppliance xBOT Alignment."@en .
+<http://bemserver.org/appliance/BuildingAppliance_xBOT_Alignment#> <http://www.w3.org/2002/07/owl#versionInfo> "v1.0.0" .
+# 
+# 
+# #################################################################
+# #
+# #    Annotation properties
+# #
+# #################################################################
+# 
+# 
+# http://purl.org/dc/terms/contributor
+<http://purl.org/dc/terms/contributor> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
+# 
+# http://purl.org/dc/terms/creator
+<http://purl.org/dc/terms/creator> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
+# 
+# http://purl.org/dc/terms/description
+<http://purl.org/dc/terms/description> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
+# 
+# http://purl.org/dc/terms/issued
+<http://purl.org/dc/terms/issued> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
+# 
+# http://purl.org/dc/terms/license
+<http://purl.org/dc/terms/license> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
+# 
+# http://purl.org/dc/terms/modified
+<http://purl.org/dc/terms/modified> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
+# 
+# http://purl.org/dc/terms/title
+<http://purl.org/dc/terms/title> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
+# 
+# http://purl.org/vocab/vann/preferredNamespacePrefix
+<http://purl.org/vocab/vann/preferredNamespacePrefix> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
+# 
+# http://purl.org/vocab/vann/preferredNamespaceUri
+<http://purl.org/vocab/vann/preferredNamespaceUri> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
+# 
+# http://www.w3.org/2003/06/sw-vocab-status/ns#term_status
+<http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
+# 
+# http://www.w3.org/2006/vcard/ns#fn
+<http://www.w3.org/2006/vcard/ns#fn> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
+# 
+# https://saref.etsi.org/saref4bldg/contains
+<https://saref.etsi.org/saref4bldg/contains> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
+<https://saref.etsi.org/saref4bldg/contains> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <https://w3id.org/bot#containsElement> .
+<https://w3id.org/bot#containsElement> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
+# 
+# https://saref.etsi.org/saref4bldg/hasSpace
+<https://saref.etsi.org/saref4bldg/hasSpace> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
+<https://saref.etsi.org/saref4bldg/hasSpace> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <https://w3id.org/bot#containsZone> .
+<https://w3id.org/bot#containsZone> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
+# 
+# https://schema.org/name
+<https://schema.org/name> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
+# 
+# https://w3id.org/bot#containsElement
+# 
+# https://w3id.org/bot#containsZone
+# 
+# 
+# 
+# #################################################################
+# #
+# #    Classes
+# #
+# #################################################################
+# 
+# 
+# http://purl.org/vocommons/voaf#Vocabulary
+<http://purl.org/vocommons/voaf#Vocabulary> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+# 
+# http://www.w3.org/2006/vcard/ns#Individual
+<http://www.w3.org/2006/vcard/ns#Individual> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+# 
+# https://saref.etsi.org/saref4bldg/Actuator
+<https://saref.etsi.org/saref4bldg/Actuator> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://saref.etsi.org/saref4bldg/Actuator> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://w3id.org/bot#Element> .
+<https://w3id.org/bot#Element> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+# 
+# https://saref.etsi.org/saref4bldg/Building
+<https://saref.etsi.org/saref4bldg/Building> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://saref.etsi.org/saref4bldg/Building> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://w3id.org/bot#Building> .
+<https://w3id.org/bot#Building> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+# 
+# https://saref.etsi.org/saref4bldg/BuildingSpace
+<https://saref.etsi.org/saref4bldg/BuildingSpace> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://saref.etsi.org/saref4bldg/BuildingSpace> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://w3id.org/bot#Space> .
+<https://w3id.org/bot#Space> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+# 
+# https://saref.etsi.org/saref4bldg/PhysicalObject
+<https://saref.etsi.org/saref4bldg/PhysicalObject> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://saref.etsi.org/saref4bldg/PhysicalObject> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://w3id.org/bot#Element> .
+# 
+# https://saref.etsi.org/saref4bldg/Sensor
+<https://saref.etsi.org/saref4bldg/Sensor> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://saref.etsi.org/saref4bldg/Sensor> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://w3id.org/bot#Element> .
+# 
+# https://schema.org/Person
+<https://schema.org/Person> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+# 
+# https://w3id.org/bot#Building
+# 
+# https://w3id.org/bot#Element
+# 
+# https://w3id.org/bot#Space
+# 
+# 
+# 
+# #################################################################
+# #
+# #    Individuals
+# #
+# #################################################################
+# 
+# 
+# http://bemserver.org/appliance/BuildingAppliance_xBOT_Alignment#
+<http://bemserver.org/appliance/BuildingAppliance_xBOT_Alignment#> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<http://bemserver.org/appliance/BuildingAppliance_xBOT_Alignment#> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/vocommons/voaf#Vocabulary> .
+# 
+# https://orcid.org/0000-0002-5520-2270
+<https://orcid.org/0000-0002-5520-2270> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<https://orcid.org/0000-0002-5520-2270> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2006/vcard/ns#Individual> .
+<https://orcid.org/0000-0002-5520-2270> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://schema.org/Person> .
+<https://orcid.org/0000-0002-5520-2270> <http://www.w3.org/2006/vcard/ns#fn> "Nathalie Charbel" .
+<https://orcid.org/0000-0002-5520-2270> <https://schema.org/name> "Nathalie Charbel" .
+# 
+# Generated by the OWL API (version 5.1.14) https://github.com/owlcs/owlapi/

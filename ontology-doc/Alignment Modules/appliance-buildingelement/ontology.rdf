@@ -1,0 +1,196 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://bemserver.org/appliance/SAREF_BuildingElements_Alignment#"
+     xml:base="http://bemserver.org/appliance/SAREF_BuildingElements_Alignment"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:ns="http://www.w3.org/2006/vcard/ns#"
+     xmlns:ns1="http://www.w3.org/2003/06/sw-vocab-status/ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:vann="http://purl.org/vocab/vann/"
+     xmlns:terms="http://purl.org/dc/terms/"
+     xmlns:schema="https://schema.org/">
+    <owl:Ontology rdf:about="http://bemserver.org/appliance/SAREF_BuildingElements_Alignment#">
+        <owl:versionIRI rdf:resource="http://bemserver.org/appliance/SAREF_BuildingElements_Alignment-1.0"/>
+        <owl:imports rdf:resource="http://bemserver.org/appliance#"/>
+        <owl:imports rdf:resource="https://pi.pauwel.be/voc/buildingelement#"/>
+        <terms:creator rdf:resource="https://orcid.org/0000-0002-5520-2270"/>
+        <terms:creator>Nathalie Charbel</terms:creator>
+        <terms:description xml:lang="en">This ontology defines proposed alignments between BuildingAppliance and BuildingElements ontology.</terms:description>
+        <terms:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-04-27</terms:issued>
+        <terms:title xml:lang="en">BuildingAppliance to Building Elements alignment.</terms:title>
+        <owl:versionInfo>v1.0.0</owl:versionInfo>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+
+    
+
+
+    <!-- http://purl.org/dc/terms/contributor -->
+
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/contributor"/>
+    
+
+
+    <!-- http://purl.org/dc/terms/creator -->
+
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/creator"/>
+    
+
+
+    <!-- http://purl.org/dc/terms/description -->
+
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/description"/>
+    
+
+
+    <!-- http://purl.org/dc/terms/issued -->
+
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/issued"/>
+    
+
+
+    <!-- http://purl.org/dc/terms/license -->
+
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/license"/>
+    
+
+
+    <!-- http://purl.org/dc/terms/modified -->
+
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/modified"/>
+    
+
+
+    <!-- http://purl.org/dc/terms/title -->
+
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/title"/>
+    
+
+
+    <!-- http://purl.org/vocab/vann/preferredNamespacePrefix -->
+
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/vocab/vann/preferredNamespacePrefix"/>
+    
+
+
+    <!-- http://purl.org/vocab/vann/preferredNamespaceUri -->
+
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/vocab/vann/preferredNamespaceUri"/>
+    
+
+
+    <!-- http://www.w3.org/2006/vcard/ns#fn -->
+
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2006/vcard/ns#fn"/>
+    
+
+
+    <!-- https://schema.org/name -->
+
+
+    <owl:AnnotationProperty rdf:about="https://schema.org/name"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+
+    
+
+
+    <!-- http://www.w3.org/2006/vcard/ns#Individual -->
+
+
+    <owl:Class rdf:about="http://www.w3.org/2006/vcard/ns#Individual"/>
+    
+
+
+    <!-- https://pi.pauwel.be/voc/buildingelement#BuildingElement -->
+
+
+    <rdf:Description rdf:about="https://pi.pauwel.be/voc/buildingelement#BuildingElement">
+        <rdfs:subClassOf rdf:resource="https://saref.etsi.org/core#FeatureOfInterest"/>
+    </rdf:Description>
+    
+
+
+    <!-- https://saref.etsi.org/core#FeatureOfInterest -->
+
+
+    <owl:Class rdf:about="https://saref.etsi.org/core#FeatureOfInterest"/>
+    
+
+
+    <!-- https://schema.org/Person -->
+
+
+    <owl:Class rdf:about="https://schema.org/Person"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+
+    
+
+
+    <!-- http://bemserver.org/appliance/SAREF_BuildingElements_Alignment# -->
+
+
+    <owl:NamedIndividual rdf:about="http://bemserver.org/appliance/SAREF_BuildingElements_Alignment#">
+        <rdf:type rdf:resource="http://purl.org/vocommons/voaf#Vocabulary"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://orcid.org/0000-0002-5520-2270 -->
+
+
+    <owl:NamedIndividual rdf:about="https://orcid.org/0000-0002-5520-2270">
+        <rdf:type rdf:resource="http://www.w3.org/2006/vcard/ns#Individual"/>
+        <rdf:type rdf:resource="https://schema.org/Person"/>
+        <ns:fn>Nathalie Charbel</ns:fn>
+        <schema:name>Nathalie Charbel</schema:name>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 5.1.14) https://github.com/owlcs/owlapi/ -->
+
+

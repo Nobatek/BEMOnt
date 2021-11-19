@@ -1,0 +1,158 @@
+@prefix : <http://bemserver.org/appliance/BuildingAppliance_xBOT_Alignment#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://bemserver.org/appliance/BuildingAppliance_xBOT_Alignment#> .
+
+<http://bemserver.org/appliance/BuildingAppliance_xBOT_Alignment#> rdf:type owl:Ontology ;
+                                                                    owl:versionIRI <http://bemserver.org/appliance/BuildingAppliance_xBOT_Alignment-1.0.0> ;
+                                                                    owl:imports <http://bemserver.org/appliance#> ,
+                                                                                <http://bemserver.org/xbot#> ;
+                                                                    <http://purl.org/dc/terms/description> "This ontology defines proposed alignments of BuildingAppliance with the xBOT ontology."@en ;
+                                                                    <http://purl.org/dc/terms/issued> "2021-06-22"^^xsd:date ;
+                                                                    <http://purl.org/dc/terms/title> "BuildingAppliance xBOT Alignment."@en ;
+                                                                    owl:versionInfo "v1.0.0" .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/terms/contributor
+<http://purl.org/dc/terms/contributor> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/creator
+<http://purl.org/dc/terms/creator> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/description
+<http://purl.org/dc/terms/description> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/issued
+<http://purl.org/dc/terms/issued> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/license
+<http://purl.org/dc/terms/license> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/modified
+<http://purl.org/dc/terms/modified> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/title
+<http://purl.org/dc/terms/title> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/vocab/vann/preferredNamespacePrefix
+<http://purl.org/vocab/vann/preferredNamespacePrefix> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/vocab/vann/preferredNamespaceUri
+<http://purl.org/vocab/vann/preferredNamespaceUri> rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2003/06/sw-vocab-status/ns#term_status
+<http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2006/vcard/ns#fn
+<http://www.w3.org/2006/vcard/ns#fn> rdf:type owl:AnnotationProperty .
+
+
+###  https://saref.etsi.org/saref4bldg/contains
+<https://saref.etsi.org/saref4bldg/contains> rdf:type owl:AnnotationProperty ;
+                                             rdfs:subPropertyOf <https://w3id.org/bot#containsElement> .
+
+
+###  https://saref.etsi.org/saref4bldg/hasSpace
+<https://saref.etsi.org/saref4bldg/hasSpace> rdf:type owl:AnnotationProperty ;
+                                             rdfs:subPropertyOf <https://w3id.org/bot#containsZone> .
+
+
+###  https://schema.org/name
+<https://schema.org/name> rdf:type owl:AnnotationProperty .
+
+
+###  https://w3id.org/bot#containsElement
+<https://w3id.org/bot#containsElement> rdf:type owl:AnnotationProperty .
+
+
+###  https://w3id.org/bot#containsZone
+<https://w3id.org/bot#containsZone> rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://purl.org/vocommons/voaf#Vocabulary
+<http://purl.org/vocommons/voaf#Vocabulary> rdf:type owl:Class .
+
+
+###  http://www.w3.org/2006/vcard/ns#Individual
+<http://www.w3.org/2006/vcard/ns#Individual> rdf:type owl:Class .
+
+
+###  https://saref.etsi.org/saref4bldg/Actuator
+<https://saref.etsi.org/saref4bldg/Actuator> rdf:type owl:Class ;
+                                             rdfs:subClassOf <https://w3id.org/bot#Element> .
+
+
+###  https://saref.etsi.org/saref4bldg/Building
+<https://saref.etsi.org/saref4bldg/Building> rdf:type owl:Class ;
+                                             rdfs:subClassOf <https://w3id.org/bot#Building> .
+
+
+###  https://saref.etsi.org/saref4bldg/BuildingSpace
+<https://saref.etsi.org/saref4bldg/BuildingSpace> rdf:type owl:Class ;
+                                                  rdfs:subClassOf <https://w3id.org/bot#Space> .
+
+
+###  https://saref.etsi.org/saref4bldg/PhysicalObject
+<https://saref.etsi.org/saref4bldg/PhysicalObject> rdf:type owl:Class ;
+                                                   rdfs:subClassOf <https://w3id.org/bot#Element> .
+
+
+###  https://saref.etsi.org/saref4bldg/Sensor
+<https://saref.etsi.org/saref4bldg/Sensor> rdf:type owl:Class ;
+                                           rdfs:subClassOf <https://w3id.org/bot#Element> .
+
+
+###  https://schema.org/Person
+<https://schema.org/Person> rdf:type owl:Class .
+
+
+###  https://w3id.org/bot#Building
+<https://w3id.org/bot#Building> rdf:type owl:Class .
+
+
+###  https://w3id.org/bot#Element
+<https://w3id.org/bot#Element> rdf:type owl:Class .
+
+
+###  https://w3id.org/bot#Space
+<https://w3id.org/bot#Space> rdf:type owl:Class .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://bemserver.org/appliance/BuildingAppliance_xBOT_Alignment#
+<http://bemserver.org/appliance/BuildingAppliance_xBOT_Alignment#> rdf:type owl:NamedIndividual ,
+                                                                            <http://purl.org/vocommons/voaf#Vocabulary> .
+
+
+###  https://orcid.org/0000-0002-5520-2270
+<https://orcid.org/0000-0002-5520-2270> rdf:type owl:NamedIndividual ,
+                                                 <http://www.w3.org/2006/vcard/ns#Individual> ,
+                                                 <https://schema.org/Person> ;
+                                        <http://www.w3.org/2006/vcard/ns#fn> "Nathalie Charbel" ;
+                                        <https://schema.org/name> "Nathalie Charbel" .
+
+
+###  Generated by the OWL API (version 5.1.14) https://github.com/owlcs/owlapi/

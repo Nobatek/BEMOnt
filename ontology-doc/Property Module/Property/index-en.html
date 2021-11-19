@@ -1,0 +1,2793 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+ <link rel="stylesheet" href="resources/primer.css" media="screen" />    <link rel="stylesheet" href="resources/rec.css" media="screen" />    <link rel="stylesheet" href="resources/extra.css" media="screen" />    <link rel="stylesheet" href="resources/owl.css" media="screen" />    <title>Property Ontology</title>
+
+
+<!-- SCHEMA.ORG METADATA -->
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","url":"http://bemserver.org/property#","image":"http://vowl.visualdataweb.org/webvowl/#iri=http://bemserver.org/property#","name":"Property Ontology", "headline":"skos:definition", "datePublished":"Fri Nov 19 09:34:33 CET 2021", "author":[{"@type":"Person","name":"Nathalie Charbel"}], "contributor":[{"@type":"Person","name":"Pierre Bourreau"}]}</script>
+
+<script src="resources/jquery.js"></script> 
+<script src="resources/marked.min.js"></script> 
+    <script> 
+function loadHash() {
+  jQuery(".markdown").each(function(el){jQuery(this).after(marked(jQuery(this).text())).remove()});
+	var hash = location.hash;
+	if($(hash).offset()!=null){
+	  $('html, body').animate({scrollTop: $(hash).offset().top}, 0);
+}
+	loadTOC();
+}
+function loadTOC(){
+	//process toc dynamically
+	  var t='<h2>Table of contents</h2><ul>';i = 1;j=0;
+	  jQuery(".list").each(function(){
+		if(jQuery(this).is('h2')){
+			if(j>0){
+				t+='</ul>';
+				j=0;
+			}
+			t+= '<li>'+i+'. <a href=#'+ jQuery(this).attr('id')+'>'+ jQuery(this).ignore("span").text()+'</a></li>';
+			i++;
+		}
+		if(jQuery(this).is('h3')){
+			if(j==0){
+				t+='<ul>';
+			}
+			j++;
+			t+= '<li>'+(i-1)+'.'+j+'. '+'<a href=#'+ jQuery(this).attr('id')+'>'+ jQuery(this).ignore("span").text()+'</a></li>';
+		}
+	  });
+	  t+='</ul>';
+	  $("#toc").html(t); 
+}
+$(function(){
+    loadHash();
+}); $.fn.ignore = function(sel){
+        return this.clone().find(sel||">*").remove().end();
+ }; 
+   </script> 
+  </head> 
+
+<body>
+<div class="container">
+<div class="head">
+<div style="float:right">language <a href="index-en.html"><b>en</b></a> </div>
+<h1>Property Ontology</h1>
+
+
+<dl>
+<dt>Latest version:</dt>
+<dd><a href="http://bemserver.org/property#">http://bemserver.org/property#</a></dd>
+<dt>Authors:</dt>
+<dd>Nathalie Charbel</dd>
+
+<dt>Contributors:</dt>
+<dd>Pierre Bourreau</dd>
+
+<dt>Imported Ontologies:</dt>
+<dd><a href="http://qudt.org/2.1/schema/qudt">qudt</a></dd><dd><a href="http://qudt.org/vocab/quantitykind">quantitykind</a></dd><dd>sml-owl</dd>
+
+<dt>Download serialization:</dt><dd><span><a href="ontology.jsonld" target="_blank"><img src="https://img.shields.io/badge/Format-JSON_LD-blue.svg" alt="JSON-LD" /></a> </span><span><a href="ontology.rdf" target="_blank"><img src="https://img.shields.io/badge/Format-RDF/XML-blue.svg" alt="RDF/XML" /></a> </span><span><a href="ontology.nt" target="_blank"><img src="https://img.shields.io/badge/Format-N_Triples-blue.svg" alt="N-Triples" /></a> </span><span><a href="ontology.ttl" target="_blank"><img src="https://img.shields.io/badge/Format-TTL-blue.svg" alt="TTL" /></a> </span></dd><dt>License: </dt><dd><a href="http://insertlicenseURIhere.org" target="_blank"><img src="https://img.shields.io/badge/License-license%20name%20goes%20here-blue.svg" alt="http://insertlicenseURIhere.org" /></a>
+</dd><!-- <dt>Evaluation:</dt><dd><a href="OOPSEvaluation/oopsEval.html#" target="_blank"><img src="https://img.shields.io/badge/Evaluate_with-OOPS! (OntOlogy Pitfall Scanner!)-blue.svg" alt="Evaluate with OOPS!" /></a></dd> --><dt>Cite as:</dt>
+<dd> Refactored BEMServerProperty ontology.</dd>
+</dl>
+
+<hr/>
+</div>
+<div class="status">
+<div>
+<span>Ontology Specification Draft</span>
+</div>
+</div>     <div id="abstract"><h2>Abstract</h2><span class="markdown">
+skos:definition</span>
+</div>
+<div id="toc"></div> 
+
+<!--INTRODUCTION SECTION-->
+    <div id="introduction"><h2 id="intro" class="list">Introduction <span class="backlink"> back to <a href="#toc">ToC</a></span></h2>
+<span class="markdown">
+This is a place holder text for the introduction. The introduction should briefly describe the ontology, its motivation, state of the art and goals.</span>
+<div id="namespacedeclarations">
+<h3 id="ns" class="list">Namespace declarations</h3>
+<div id="ns" align="center">
+<table>
+<caption> <a href="#ns"> Table 1</a>: Namespaces used in the document </caption>
+<tbody>
+<tr><td><b>property</b></td><td>&lt;http://bemserver.org/property#&gt;</td></tr>
+<tr><td><b>qudt</b></td><td>&lt;http://qudt.org/schema/qudt&gt;</td></tr>
+<tr><td><b>vaem</b></td><td>&lt;http://www.linkedmodel.org/schema/vaem&gt;</td></tr>
+<tr><td><b>owl</b></td><td>&lt;http://www.w3.org/2002/07/owl&gt;</td></tr>
+<tr><td><b>xsd</b></td><td>&lt;http://www.w3.org/2001/XMLSchema&gt;</td></tr>
+<tr><td><b>skos</b></td><td>&lt;http://www.w3.org/2004/02/skos/core&gt;</td></tr>
+<tr><td><b>dtype</b></td><td>&lt;http://www.linkedmodel.org/schema/dtype&gt;</td></tr>
+<tr><td><b>rdfs</b></td><td>&lt;http://www.w3.org/2000/01/rdf-schema&gt;</td></tr>
+<tr><td><b>xssn</b></td><td>&lt;http://www.bemserver.org/sensor/xssn/&gt;</td></tr>
+<tr><td><b>ssn</b></td><td>&lt;http://www.w3.org/ns/ssn&gt;</td></tr>
+<tr><td><b>quantitykind</b></td><td>&lt;http://qudt.org/vocab/quantitykind&gt;</td></tr>
+<tr><td><b>sml</b></td><td>&lt;https://w3id.org/sml/owl/def&gt;</td></tr>
+<tr><td><b>[Ontology NS Prefix]</b></td><td>&lt;http://bemserver.org/property&gt;</td></tr>
+<tr><td><b>rdf</b></td><td>&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns&gt;</td></tr>
+<tr><td><b>terms</b></td><td>&lt;http://purl.org/dc/terms&gt;</td></tr>
+<tr><td><b>xml</b></td><td>&lt;http://www.w3.org/XML/1998/namespace&gt;</td></tr>
+<tr><td><b>owl1</b></td><td>&lt;https://w3id.org/sml/owl&gt;</td></tr>
+<tr><td><b>dc</b></td><td>&lt;http://purl.org/dc/elements/1.1&gt;</td></tr>
+<tr><td><b>sosa</b></td><td>&lt;http://www.w3.org/ns/sosa&gt;</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+  
+
+<!--OVERVIEW SECTION-->
+    <div id="overview"><h2 id="overv" class="list">Property: Overview <span class="backlink"> back to <a href="#toc">ToC</a></span></h2>
+<span class="markdown">
+This ontology has the following classes and properties.</span>
+<h4>Classes</h4>
+<ul xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" class="hlist">
+   <li>
+      <a href="#http://www.bemserver.org/sensor/xssn/#Property" title="http://www.bemserver.org/sensor/xssn/#Property">
+         <span>property</span>
+      </a>
+   </li>
+</ul><h4>Object Properties</h4><ul xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" class="hlist">
+   <li>
+      <a href="#absorbedIncidentRadiation"
+         title="http://bemserver.org/property#absorbedIncidentRadiation">absorbedIncidentRadiation</a>
+   </li>
+   <li>
+      <a href="#absorbedScatteredIncidentRadiation"
+         title="http://bemserver.org/property#absorbedScatteredIncidentRadiation">absorbedScatteredIncidentRadiation</a>
+   </li>
+   <li>
+      <a href="#airQuality" title="http://bemserver.org/property#airQuality">airQuality</a>
+   </li>
+   <li>
+      <a href="#altitude" title="http://bemserver.org/property#altitude">altitude</a>
+   </li>
+   <li>
+      <a href="#area" title="http://bemserver.org/property#area">area</a>
+   </li>
+   <li>
+      <a href="#capacity" title="http://bemserver.org/property#capacity">capacity</a>
+   </li>
+   <li>
+      <a href="#climateProperty" title="http://bemserver.org/property#climateProperty">
+         <span>climate property</span>
+      </a>
+   </li>
+   <li>
+      <a href="#cloudiness" title="http://bemserver.org/property#cloudiness">cloudiness</a>
+   </li>
+   <li>
+      <a href="#co2Rate" title="http://bemserver.org/property#co2Rate">
+         <span>co2 rate</span>
+      </a>
+   </li>
+   <li>
+      <a href="#color" title="http://bemserver.org/property#color">color</a>
+   </li>
+   <li>
+      <a href="#condensation" title="http://bemserver.org/property#condensation">condensation</a>
+   </li>
+   <li>
+      <a href="#conductivity" title="http://bemserver.org/property#conductivity">conductivity</a>
+   </li>
+   <li>
+      <a href="#continuousState" title="http://bemserver.org/property#continuousState">continuousState</a>
+   </li>
+   <li>
+      <a href="#coefficientOfPerformance"
+         title="http://bemserver.org/property#coefficientOfPerformance">COP</a>
+   </li>
+   <li>
+      <a href="#crossSection" title="http://bemserver.org/property#crossSection">crossSection</a>
+   </li>
+   <li>
+      <a href="#degreeDays" title="http://bemserver.org/property#degreeDays">degreeDays</a>
+   </li>
+   <li>
+      <a href="#density" title="http://bemserver.org/property#density">density</a>
+   </li>
+   <li>
+      <a href="#depth" title="http://bemserver.org/property#depth">depth</a>
+   </li>
+   <li>
+      <a href="#discharge" title="http://bemserver.org/property#discharge">discharge</a>
+   </li>
+   <li>
+      <a href="#discreteState" title="http://bemserver.org/property#discreteState">discreteState</a>
+   </li>
+   <li>
+      <a href="#distributionElementState"
+         title="http://bemserver.org/property#distributionElementState">distributionElementState</a>
+   </li>
+   <li>
+      <a href="#energy" title="http://bemserver.org/property#energy">energy</a>
+   </li>
+   <li>
+      <a href="#enthalpy" title="http://bemserver.org/property#enthalpy">enthalpy</a>
+   </li>
+   <li>
+      <a href="#evaporation" title="http://bemserver.org/property#evaporation">evaporation</a>
+   </li>
+   <li>
+      <a href="#flow" title="http://bemserver.org/property#flow">flow</a>
+   </li>
+   <li>
+      <a href="#frequency" title="http://bemserver.org/property#frequency">frequency</a>
+   </li>
+   <li>
+      <a href="#geometryProperty" title="http://bemserver.org/property#geometryProperty">
+         <span>geometry property</span>
+      </a>
+   </li>
+   <li>
+      <a href="#hasOccupantProperty"
+         title="http://bemserver.org/property#hasOccupantProperty">
+         <span>has occupant property</span>
+      </a>
+   </li>
+   <li>
+      <a href="#hasPhenomenonProperty"
+         title="http://bemserver.org/property#hasPhenomenonProperty">
+         <span>has phenomenon property</span>
+      </a>
+   </li>
+   <li>
+      <a href="#hasPhysicalProperty"
+         title="http://bemserver.org/property#hasPhysicalProperty">
+         <span>has physical property</span>
+      </a>
+   </li>
+   <li>
+      <a href="#height" title="http://bemserver.org/property#height">height</a>
+   </li>
+   <li>
+      <a href="#humidity" title="http://bemserver.org/property#humidity">humidity</a>
+   </li>
+   <li>
+      <a href="#illuminance" title="http://bemserver.org/property#illuminance">illuminance</a>
+   </li>
+   <li>
+      <a href="#incidentRadiation" title="http://bemserver.org/property#incidentRadiation">incidentRadiation</a>
+   </li>
+   <li>
+      <a href="#inflow" title="http://bemserver.org/property#inflow">inflow</a>
+   </li>
+   <li>
+      <a href="#intensity" title="http://bemserver.org/property#intensity">intensity</a>
+   </li>
+   <li>
+      <a href="#irradiance" title="http://bemserver.org/property#irradiance">irradiance</a>
+   </li>
+   <li>
+      <a href="#latitude" title="http://bemserver.org/property#latitude">latitude</a>
+   </li>
+   <li>
+      <a href="#length" title="http://bemserver.org/property#length">length</a>
+   </li>
+   <li>
+      <a href="#lightRadiation" title="http://bemserver.org/property#lightRadiation">lightRadiation</a>
+   </li>
+   <li>
+      <a href="#ligthningProperty" title="http://bemserver.org/property#ligthningProperty">
+         <span>ligthning property</span>
+      </a>
+   </li>
+   <li>
+      <a href="#longitude" title="http://bemserver.org/property#longitude">longitude</a>
+   </li>
+   <li>
+      <a href="#matterMovement" title="http://bemserver.org/property#matterMovement">
+         <span>matter movement</span>
+      </a>
+   </li>
+   <li>
+      <a href="#matterStateChange" title="http://bemserver.org/property#matterStateChange">
+         <span>matter state change</span>
+      </a>
+   </li>
+   <li>
+      <a href="#maxOccupancy" title="http://bemserver.org/property#maxOccupancy">maxOccupancy</a>
+   </li>
+   <li>
+      <a href="#movement" title="http://bemserver.org/property#movement">Movement</a>
+   </li>
+   <li>
+      <a href="#nbEntries" title="http://bemserver.org/property#nbEntries">nbEntries</a>
+   </li>
+   <li>
+      <a href="#nbExit" title="http://bemserver.org/property#nbExit">nbEntries</a>
+   </li>
+   <li>
+      <a href="#occupancyCapacityProperty"
+         title="http://bemserver.org/property#occupancyCapacityProperty">occupancyCapacityProperty</a>
+   </li>
+   <li>
+      <a href="#occupantStateProperty"
+         title="http://bemserver.org/property#occupantStateProperty">occupantStateProperty</a>
+   </li>
+   <li>
+      <a href="#outflow" title="http://bemserver.org/property#outflow">outflow</a>
+   </li>
+   <li>
+      <a href="#permanentOccupancy" title="http://bemserver.org/property#permanentOccupancy">permanentOccupancy</a>
+   </li>
+   <li>
+      <a href="#position" title="http://bemserver.org/property#position">position</a>
+   </li>
+   <li>
+      <a href="#Power" title="http://bemserver.org/property#Power">power</a>
+   </li>
+   <li>
+      <a href="#presence" title="http://bemserver.org/property#presence">presence</a>
+   </li>
+   <li>
+      <a href="#pressure" title="http://bemserver.org/property#pressure">pressure</a>
+   </li>
+   <li>
+      <a href="#productionCapacity" title="http://bemserver.org/property#productionCapacity">productionCapacity</a>
+   </li>
+   <li>
+      <a href="#pulse" title="http://bemserver.org/property#pulse">pulse</a>
+   </li>
+   <li>
+      <a href="#radiation" title="http://bemserver.org/property#radiation">radiation</a>
+   </li>
+   <li>
+      <a href="#rainfall" title="http://bemserver.org/property#rainfall">rainfall</a>
+   </li>
+   <li>
+      <a href="#reflectedIncidentradiation"
+         title="http://bemserver.org/property#reflectedIncidentradiation">reflectedIncidentRadiation</a>
+   </li>
+   <li>
+      <a href="#reflectivity" title="http://bemserver.org/property#reflectivity">reflectivity</a>
+   </li>
+   <li>
+      <a href="#runningTime" title="http://bemserver.org/property#runningTime">RunningTime</a>
+   </li>
+   <li>
+      <a href="#shape" title="http://bemserver.org/property#shape">shape</a>
+   </li>
+   <li>
+      <a href="#slope" title="http://bemserver.org/property#slope">slope</a>
+   </li>
+   <li>
+      <a href="#spaceCapacity" title="http://bemserver.org/property#spaceCapacity">spaceCapacity</a>
+   </li>
+   <li>
+      <a href="#speed" title="http://bemserver.org/property#speed">speed</a>
+   </li>
+   <li>
+      <a href="#state" title="http://bemserver.org/property#state">state</a>
+   </li>
+   <li>
+      <a href="#stress" title="http://bemserver.org/property#stress">stress</a>
+   </li>
+   <li>
+      <a href="#temperature" title="http://bemserver.org/property#temperature">temperature</a>
+   </li>
+   <li>
+      <a href="#tension" title="http://bemserver.org/property#tension">tension</a>
+   </li>
+   <li>
+      <a href="#time" title="http://bemserver.org/property#time">time</a>
+   </li>
+   <li>
+      <a href="#transmittedIncidentRadiation"
+         title="http://bemserver.org/property#transmittedIncidentRadiation">transmittedIncidentRadiation</a>
+   </li>
+   <li>
+      <a href="#transparency" title="http://bemserver.org/property#transparency">transparency</a>
+   </li>
+   <li>
+      <a href="#velocity" title="http://bemserver.org/property#velocity">velocity</a>
+   </li>
+   <li>
+      <a href="#visibility" title="http://bemserver.org/property#visibility">visibility</a>
+   </li>
+   <li>
+      <a href="#volume" title="http://bemserver.org/property#volume">volume</a>
+   </li>
+   <li>
+      <a href="#weight" title="http://bemserver.org/property#weight">weight</a>
+   </li>
+   <li>
+      <a href="#width" title="http://bemserver.org/property#width">width</a>
+   </li>
+   <li>
+      <a href="#windProperty" title="http://bemserver.org/property#windProperty">
+         <span>wind property</span>
+      </a>
+   </li>
+   <li>
+      <a href="#windDirection" title="http://bemserver.org/property#windDirection">windDirection</a>
+   </li>
+   <li>
+      <a href="#windOrientation" title="http://bemserver.org/property#windOrientation">windOrientation</a>
+   </li>
+   <li>
+      <a href="#windSpeed" title="http://bemserver.org/property#windSpeed">windSpeed</a>
+   </li>
+</ul><h4>Annotation Properties</h4><ul xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" class="hlist">
+   <li>
+      <a href="#http://www.w3.org/2004/02/skos/core#closeMatch" title="http://www.w3.org/2004/02/skos/core#closeMatch">
+         <span>close match</span>
+      </a>
+   </li>
+   <li>
+      <a href="#http://qudt.org/schema/qudt#code" title="http://qudt.org/schema/qudt#code">
+         <span>code</span>
+      </a>
+   </li>
+   <li>
+      <a href="#http://purl.org/dc/elements/1.1/contributor" title="http://purl.org/dc/elements/1.1/contributor">
+         <span>contributor</span>
+      </a>
+   </li>
+   <li>
+      <a href="#http://purl.org/dc/elements/1.1/creator" title="http://purl.org/dc/elements/1.1/creator">
+         <span>creator</span>
+      </a>
+   </li>
+   <li>
+      <a href="#http://www.w3.org/2004/02/skos/core#definition" title="http://www.w3.org/2004/02/skos/core#definition">
+         <span>definition</span>
+      </a>
+   </li>
+   <li>
+      <a href="#https://w3id.org/sml/owl/defquantityKind" title="https://w3id.org/sml/owl/defquantityKind">
+         <span>defquantity kind</span>
+      </a>
+   </li>
+   <li>
+      <a href="#http://purl.org/dc/elements/1.1/description" title="http://purl.org/dc/elements/1.1/description">
+         <span>description</span>
+      </a>
+   </li>
+   <li>
+      <a href="#http://www.w3.org/2004/02/skos/core#exactMatch" title="http://www.w3.org/2004/02/skos/core#exactMatch">
+         <span>exact match</span>
+      </a>
+   </li>
+   <li>
+      <a href="#http://www.w3.org/2004/02/skos/core#example" title="http://www.w3.org/2004/02/skos/core#example">
+         <span>example</span>
+      </a>
+   </li>
+   <li>
+      <a href="#http://purl.org/dc/terms/license" title="http://purl.org/dc/terms/license">
+         <span>license</span>
+      </a>
+   </li>
+   <li>
+      <a href="#http://purl.org/dc/elements/1.1/title" title="http://purl.org/dc/elements/1.1/title">
+         <span>title</span>
+      </a>
+   </li>
+</ul>
+</div>
+  
+
+<!--DESCRIPTION SECTION-->
+    <div id="description"><h2 id="desc" class="list">Property: Description <span class="backlink"> back to <a href="#toc">ToC</a></span></h2>
+<span class="markdown">
+This is a placeholder text for the description of your ontology. The description should include an explanation and a diagram explaining how the classes are related, examples of usage, etc.</span>
+
+</div>
+   
+
+<!--CROSSREF SECTION-->
+   <div id="crossref"><h2 id="crossreference" class="list">Cross reference for Property classes, properties and dataproperties <span class="backlink"> back to <a href="#toc">ToC</a></span></h2>
+This section provides details for each class and property defined by Property.
+<div xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="classes">
+   <h3 id="classes-headline" class="list">Classes</h3>
+   <ul class="hlist">
+      <li>
+         <a href="#http://www.bemserver.org/sensor/xssn/#Property" title="http://www.bemserver.org/sensor/xssn/#Property">
+            <span>property</span>
+         </a>
+      </li>
+   </ul>
+   <div class="entity" id="http://www.bemserver.org/sensor/xssn/#Property">
+      <h3>property<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://www.bemserver.org/sensor/xssn/#Property</p>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="http://qudt.org/schema/qudt#QuantityValue"
+               target="_blank"
+               title="http://qudt.org/schema/qudt#QuantityValue">quantity value</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+         <dt>is in range of</dt>
+         <dd>
+            <a href="#hasPhenomenonProperty"
+               title="http://bemserver.org/property#hasPhenomenonProperty">has phenomenon property</a>
+            <sup class="type-op" title="object property">op</sup>
+         </dd>
+      </dl>
+   </div>
+</div><div xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="objectproperties">
+   <h3 id="properties" class="list">Object Properties</h3>
+   <ul class="hlist">
+      <li>
+         <a href="#absorbedIncidentRadiation"
+            title="http://bemserver.org/property#absorbedIncidentRadiation">absorbedIncidentRadiation</a>
+      </li>
+      <li>
+         <a href="#absorbedScatteredIncidentRadiation"
+            title="http://bemserver.org/property#absorbedScatteredIncidentRadiation">absorbedScatteredIncidentRadiation</a>
+      </li>
+      <li>
+         <a href="#airQuality" title="http://bemserver.org/property#airQuality">airQuality</a>
+      </li>
+      <li>
+         <a href="#altitude" title="http://bemserver.org/property#altitude">altitude</a>
+      </li>
+      <li>
+         <a href="#area" title="http://bemserver.org/property#area">area</a>
+      </li>
+      <li>
+         <a href="#capacity" title="http://bemserver.org/property#capacity">capacity</a>
+      </li>
+      <li>
+         <a href="#climateProperty" title="http://bemserver.org/property#climateProperty">
+            <span>climate property</span>
+         </a>
+      </li>
+      <li>
+         <a href="#cloudiness" title="http://bemserver.org/property#cloudiness">cloudiness</a>
+      </li>
+      <li>
+         <a href="#co2Rate" title="http://bemserver.org/property#co2Rate">
+            <span>co2 rate</span>
+         </a>
+      </li>
+      <li>
+         <a href="#color" title="http://bemserver.org/property#color">color</a>
+      </li>
+      <li>
+         <a href="#condensation" title="http://bemserver.org/property#condensation">condensation</a>
+      </li>
+      <li>
+         <a href="#conductivity" title="http://bemserver.org/property#conductivity">conductivity</a>
+      </li>
+      <li>
+         <a href="#continuousState" title="http://bemserver.org/property#continuousState">continuousState</a>
+      </li>
+      <li>
+         <a href="#coefficientOfPerformance"
+            title="http://bemserver.org/property#coefficientOfPerformance">COP</a>
+      </li>
+      <li>
+         <a href="#crossSection" title="http://bemserver.org/property#crossSection">crossSection</a>
+      </li>
+      <li>
+         <a href="#degreeDays" title="http://bemserver.org/property#degreeDays">degreeDays</a>
+      </li>
+      <li>
+         <a href="#density" title="http://bemserver.org/property#density">density</a>
+      </li>
+      <li>
+         <a href="#depth" title="http://bemserver.org/property#depth">depth</a>
+      </li>
+      <li>
+         <a href="#discharge" title="http://bemserver.org/property#discharge">discharge</a>
+      </li>
+      <li>
+         <a href="#discreteState" title="http://bemserver.org/property#discreteState">discreteState</a>
+      </li>
+      <li>
+         <a href="#distributionElementState"
+            title="http://bemserver.org/property#distributionElementState">distributionElementState</a>
+      </li>
+      <li>
+         <a href="#energy" title="http://bemserver.org/property#energy">energy</a>
+      </li>
+      <li>
+         <a href="#enthalpy" title="http://bemserver.org/property#enthalpy">enthalpy</a>
+      </li>
+      <li>
+         <a href="#evaporation" title="http://bemserver.org/property#evaporation">evaporation</a>
+      </li>
+      <li>
+         <a href="#flow" title="http://bemserver.org/property#flow">flow</a>
+      </li>
+      <li>
+         <a href="#frequency" title="http://bemserver.org/property#frequency">frequency</a>
+      </li>
+      <li>
+         <a href="#geometryProperty" title="http://bemserver.org/property#geometryProperty">
+            <span>geometry property</span>
+         </a>
+      </li>
+      <li>
+         <a href="#hasOccupantProperty"
+            title="http://bemserver.org/property#hasOccupantProperty">
+            <span>has occupant property</span>
+         </a>
+      </li>
+      <li>
+         <a href="#hasPhenomenonProperty"
+            title="http://bemserver.org/property#hasPhenomenonProperty">
+            <span>has phenomenon property</span>
+         </a>
+      </li>
+      <li>
+         <a href="#hasPhysicalProperty"
+            title="http://bemserver.org/property#hasPhysicalProperty">
+            <span>has physical property</span>
+         </a>
+      </li>
+      <li>
+         <a href="#height" title="http://bemserver.org/property#height">height</a>
+      </li>
+      <li>
+         <a href="#humidity" title="http://bemserver.org/property#humidity">humidity</a>
+      </li>
+      <li>
+         <a href="#illuminance" title="http://bemserver.org/property#illuminance">illuminance</a>
+      </li>
+      <li>
+         <a href="#incidentRadiation" title="http://bemserver.org/property#incidentRadiation">incidentRadiation</a>
+      </li>
+      <li>
+         <a href="#inflow" title="http://bemserver.org/property#inflow">inflow</a>
+      </li>
+      <li>
+         <a href="#intensity" title="http://bemserver.org/property#intensity">intensity</a>
+      </li>
+      <li>
+         <a href="#irradiance" title="http://bemserver.org/property#irradiance">irradiance</a>
+      </li>
+      <li>
+         <a href="#latitude" title="http://bemserver.org/property#latitude">latitude</a>
+      </li>
+      <li>
+         <a href="#length" title="http://bemserver.org/property#length">length</a>
+      </li>
+      <li>
+         <a href="#lightRadiation" title="http://bemserver.org/property#lightRadiation">lightRadiation</a>
+      </li>
+      <li>
+         <a href="#ligthningProperty" title="http://bemserver.org/property#ligthningProperty">
+            <span>ligthning property</span>
+         </a>
+      </li>
+      <li>
+         <a href="#longitude" title="http://bemserver.org/property#longitude">longitude</a>
+      </li>
+      <li>
+         <a href="#matterMovement" title="http://bemserver.org/property#matterMovement">
+            <span>matter movement</span>
+         </a>
+      </li>
+      <li>
+         <a href="#matterStateChange" title="http://bemserver.org/property#matterStateChange">
+            <span>matter state change</span>
+         </a>
+      </li>
+      <li>
+         <a href="#maxOccupancy" title="http://bemserver.org/property#maxOccupancy">maxOccupancy</a>
+      </li>
+      <li>
+         <a href="#movement" title="http://bemserver.org/property#movement">Movement</a>
+      </li>
+      <li>
+         <a href="#nbEntries" title="http://bemserver.org/property#nbEntries">nbEntries</a>
+      </li>
+      <li>
+         <a href="#nbExit" title="http://bemserver.org/property#nbExit">nbEntries</a>
+      </li>
+      <li>
+         <a href="#occupancyCapacityProperty"
+            title="http://bemserver.org/property#occupancyCapacityProperty">occupancyCapacityProperty</a>
+      </li>
+      <li>
+         <a href="#occupantStateProperty"
+            title="http://bemserver.org/property#occupantStateProperty">occupantStateProperty</a>
+      </li>
+      <li>
+         <a href="#outflow" title="http://bemserver.org/property#outflow">outflow</a>
+      </li>
+      <li>
+         <a href="#permanentOccupancy" title="http://bemserver.org/property#permanentOccupancy">permanentOccupancy</a>
+      </li>
+      <li>
+         <a href="#position" title="http://bemserver.org/property#position">position</a>
+      </li>
+      <li>
+         <a href="#Power" title="http://bemserver.org/property#Power">power</a>
+      </li>
+      <li>
+         <a href="#presence" title="http://bemserver.org/property#presence">presence</a>
+      </li>
+      <li>
+         <a href="#pressure" title="http://bemserver.org/property#pressure">pressure</a>
+      </li>
+      <li>
+         <a href="#productionCapacity" title="http://bemserver.org/property#productionCapacity">productionCapacity</a>
+      </li>
+      <li>
+         <a href="#pulse" title="http://bemserver.org/property#pulse">pulse</a>
+      </li>
+      <li>
+         <a href="#radiation" title="http://bemserver.org/property#radiation">radiation</a>
+      </li>
+      <li>
+         <a href="#rainfall" title="http://bemserver.org/property#rainfall">rainfall</a>
+      </li>
+      <li>
+         <a href="#reflectedIncidentradiation"
+            title="http://bemserver.org/property#reflectedIncidentradiation">reflectedIncidentRadiation</a>
+      </li>
+      <li>
+         <a href="#reflectivity" title="http://bemserver.org/property#reflectivity">reflectivity</a>
+      </li>
+      <li>
+         <a href="#runningTime" title="http://bemserver.org/property#runningTime">RunningTime</a>
+      </li>
+      <li>
+         <a href="#shape" title="http://bemserver.org/property#shape">shape</a>
+      </li>
+      <li>
+         <a href="#slope" title="http://bemserver.org/property#slope">slope</a>
+      </li>
+      <li>
+         <a href="#spaceCapacity" title="http://bemserver.org/property#spaceCapacity">spaceCapacity</a>
+      </li>
+      <li>
+         <a href="#speed" title="http://bemserver.org/property#speed">speed</a>
+      </li>
+      <li>
+         <a href="#state" title="http://bemserver.org/property#state">state</a>
+      </li>
+      <li>
+         <a href="#stress" title="http://bemserver.org/property#stress">stress</a>
+      </li>
+      <li>
+         <a href="#temperature" title="http://bemserver.org/property#temperature">temperature</a>
+      </li>
+      <li>
+         <a href="#tension" title="http://bemserver.org/property#tension">tension</a>
+      </li>
+      <li>
+         <a href="#time" title="http://bemserver.org/property#time">time</a>
+      </li>
+      <li>
+         <a href="#transmittedIncidentRadiation"
+            title="http://bemserver.org/property#transmittedIncidentRadiation">transmittedIncidentRadiation</a>
+      </li>
+      <li>
+         <a href="#transparency" title="http://bemserver.org/property#transparency">transparency</a>
+      </li>
+      <li>
+         <a href="#velocity" title="http://bemserver.org/property#velocity">velocity</a>
+      </li>
+      <li>
+         <a href="#visibility" title="http://bemserver.org/property#visibility">visibility</a>
+      </li>
+      <li>
+         <a href="#volume" title="http://bemserver.org/property#volume">volume</a>
+      </li>
+      <li>
+         <a href="#weight" title="http://bemserver.org/property#weight">weight</a>
+      </li>
+      <li>
+         <a href="#width" title="http://bemserver.org/property#width">width</a>
+      </li>
+      <li>
+         <a href="#windProperty" title="http://bemserver.org/property#windProperty">
+            <span>wind property</span>
+         </a>
+      </li>
+      <li>
+         <a href="#windDirection" title="http://bemserver.org/property#windDirection">windDirection</a>
+      </li>
+      <li>
+         <a href="#windOrientation" title="http://bemserver.org/property#windOrientation">windOrientation</a>
+      </li>
+      <li>
+         <a href="#windSpeed" title="http://bemserver.org/property#windSpeed">windSpeed</a>
+      </li>
+   </ul>
+   <div class="entity" id="absorbedIncidentRadiation">
+      <h3>absorbedIncidentRadiation<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#absorbedIncidentRadiation</p>
+      <div class="comment">
+         <span class="markdown">absorbedIncidentRadiation represents an observation of the measure of the absorbed incident radiation in a specific time.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#incidentRadiation" title="http://bemserver.org/property#incidentRadiation">incidentRadiation</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="absorbedScatteredIncidentRadiation">
+      <h3>absorbedScatteredIncidentRadiation<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#absorbedScatteredIncidentRadiation</p>
+      <div class="comment">
+         <span class="markdown">absorbedScatteredIncidentRadiation represents an observation of the measure of the absorbed scattered incident radiation in a specific time.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#incidentRadiation" title="http://bemserver.org/property#incidentRadiation">incidentRadiation</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="airQuality">
+      <h3>airQuality<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#airQuality</p>
+      <div class="comment">
+         <span class="markdown">airQuality represents an observation of the measure of the air quality in a specific time.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#hasPhysicalProperty"
+                  title="http://bemserver.org/property#hasPhysicalProperty">has physical property</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="altitude">
+      <h3>altitude<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#altitude</p>
+      <div class="comment">
+         <span class="markdown">altitude represents an observation of the measure of the position altitude of an element in the building in a specific time.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#position" title="http://bemserver.org/property#position">position</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="area">
+      <h3>area<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#area</p>
+      <div class="comment">
+         <span class="markdown">area represents an observation of the measure of the area.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#geometryProperty" title="http://bemserver.org/property#geometryProperty">geometry property</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="capacity">
+      <h3>capacity<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#capacity</p>
+      <div class="comment">
+         <span class="markdown">capacity represents an observation of the measure of the capacity of an elment in the building.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#hasPhysicalProperty"
+                  title="http://bemserver.org/property#hasPhysicalProperty">has physical property</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+            <dt>has sub-properties</dt>
+            <dd>
+               <a href="#productionCapacity" title="http://bemserver.org/property#productionCapacity">productionCapacity</a>
+               <sup class="type-op" title="object property">op</sup>, <a href="#spaceCapacity" title="http://bemserver.org/property#spaceCapacity">spaceCapacity</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="climateProperty">
+      <h3>climate property<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#climateProperty</p>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#hasPhysicalProperty"
+                  title="http://bemserver.org/property#hasPhysicalProperty">has physical property</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+            <dt>has sub-properties</dt>
+            <dd>
+               <a href="#cloudiness" title="http://bemserver.org/property#cloudiness">cloudiness</a>
+               <sup class="type-op" title="object property">op</sup>, <a href="#rainfall" title="http://bemserver.org/property#rainfall">rainfall</a>
+               <sup class="type-op" title="object property">op</sup>, <a href="#windProperty" title="http://bemserver.org/property#windProperty">wind property</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="cloudiness">
+      <h3>cloudiness<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#cloudiness</p>
+      <div class="comment">
+         <span class="markdown">cloudiness represents the percentage of clouds in a surface of the sky.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#climateProperty" title="http://bemserver.org/property#climateProperty">climate property</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="co2Rate">
+      <h3>co2 rate<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#co2Rate</p>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#hasPhysicalProperty"
+                  title="http://bemserver.org/property#hasPhysicalProperty">has physical property</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="color">
+      <h3>color<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#color</p>
+      <div class="comment">
+         <span class="markdown">color represents an observation of the value of the color of an element in the building in a specific time.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#hasPhysicalProperty"
+                  title="http://bemserver.org/property#hasPhysicalProperty">has physical property</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="condensation">
+      <h3>condensation<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#condensation</p>
+      <div class="comment">
+         <span class="markdown">condensation represents an observation of the measure of the condensation in a specific time.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#matterStateChange" title="http://bemserver.org/property#matterStateChange">matter state change</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="conductivity">
+      <h3>conductivity<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#conductivity</p>
+      <div class="comment">
+         <span class="markdown">conductivity represents an observation of the measure of the conductivity of an element in the building in a specific time.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#hasPhysicalProperty"
+                  title="http://bemserver.org/property#hasPhysicalProperty">has physical property</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="continuousState">
+      <h3>continuousState<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#continuousState</p>
+      <div class="comment">
+         <span class="markdown">represents an observation of a continuous state</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#distributionElementState"
+                  title="http://bemserver.org/property#distributionElementState">distributionElementState</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="coefficientOfPerformance">
+      <h3>COP<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#coefficientOfPerformance</p>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#energy" title="http://bemserver.org/property#energy">energy</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="crossSection">
+      <h3>crossSection<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#crossSection</p>
+      <div class="comment">
+         <span class="markdown">crossSection represents an observation of the cross section of an element in the building.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#shape" title="http://bemserver.org/property#shape">shape</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="degreeDays">
+      <h3>degreeDays<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#degreeDays</p>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#hasPhysicalProperty"
+                  title="http://bemserver.org/property#hasPhysicalProperty">has physical property</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="density">
+      <h3>density<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#density</p>
+      <div class="comment">
+         <span class="markdown">density represents an observation of the measure of the density of an element in the building in a specific time.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#hasPhysicalProperty"
+                  title="http://bemserver.org/property#hasPhysicalProperty">has physical property</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="depth">
+      <h3>depth<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#depth</p>
+      <div class="comment">
+         <span class="markdown">depth represents an observation of the measure of the depth of an element in the building in a specific time.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#shape" title="http://bemserver.org/property#shape">shape</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="discharge">
+      <h3>discharge<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#discharge</p>
+      <div class="comment">
+         <span class="markdown">discharge represents an observation of the measure of the volume of a discharge in the building in a specific time.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#velocity" title="http://bemserver.org/property#velocity">velocity</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="discreteState">
+      <h3>discreteState<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#discreteState</p>
+      <div class="comment">
+         <span class="markdown">represents an observation of a discrete state.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#distributionElementState"
+                  title="http://bemserver.org/property#distributionElementState">distributionElementState</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="distributionElementState">
+      <h3>distributionElementState<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#distributionElementState</p>
+      <div class="comment">
+         <span class="markdown">distributionElementState represents an observation of the state of a distribution element in the building.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#state" title="http://bemserver.org/property#state">state</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+            <dt>has sub-properties</dt>
+            <dd>
+               <a href="#continuousState" title="http://bemserver.org/property#continuousState">continuousState</a>
+               <sup class="type-op" title="object property">op</sup>, <a href="#discreteState" title="http://bemserver.org/property#discreteState">discreteState</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="energy">
+      <h3>energy<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#energy</p>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#hasPhysicalProperty"
+                  title="http://bemserver.org/property#hasPhysicalProperty">has physical property</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+            <dt>has sub-properties</dt>
+            <dd>
+               <a href="#coefficientOfPerformance"
+                  title="http://bemserver.org/property#coefficientOfPerformance">COP</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="enthalpy">
+      <h3>enthalpy<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#enthalpy</p>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#hasPhysicalProperty"
+                  title="http://bemserver.org/property#hasPhysicalProperty">has physical property</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="evaporation">
+      <h3>evaporation<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#evaporation</p>
+      <div class="comment">
+         <span class="markdown">evaporation represents an observation of the measure of the evaporation in a specific time.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#matterStateChange" title="http://bemserver.org/property#matterStateChange">matter state change</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="flow">
+      <h3>flow<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#flow</p>
+      <div class="comment">
+         <span class="markdown">flow represents an observation of the measure of the volume of a flow in the building in a specific time.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#velocity" title="http://bemserver.org/property#velocity">velocity</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+            <dt>has sub-properties</dt>
+            <dd>
+               <a href="#inflow" title="http://bemserver.org/property#inflow">inflow</a>
+               <sup class="type-op" title="object property">op</sup>, <a href="#outflow" title="http://bemserver.org/property#outflow">outflow</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="frequency">
+      <h3>frequency<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#frequency</p>
+      <div class="comment">
+         <span class="markdown">frequency represents an observation of the measure of the rate of occurrence.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#time" title="http://bemserver.org/property#time">time</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="geometryProperty">
+      <h3>geometry property<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#geometryProperty</p>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#hasPhysicalProperty"
+                  title="http://bemserver.org/property#hasPhysicalProperty">has physical property</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+            <dt>has sub-properties</dt>
+            <dd>
+               <a href="#area" title="http://bemserver.org/property#area">area</a>
+               <sup class="type-op" title="object property">op</sup>, <a href="#shape" title="http://bemserver.org/property#shape">shape</a>
+               <sup class="type-op" title="object property">op</sup>, <a href="#volume" title="http://bemserver.org/property#volume">volume</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="hasOccupantProperty">
+      <h3>has occupant property<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#hasOccupantProperty</p>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#hasPhenomenonProperty"
+                  title="http://bemserver.org/property#hasPhenomenonProperty">has phenomenon property</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="hasPhenomenonProperty">
+      <h3>has phenomenon property<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#hasPhenomenonProperty</p>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="http://www.w3.org/ns/ssn/hasProperty"
+                  target="_blank"
+                  title="http://www.w3.org/ns/ssn/hasProperty">has property</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+            <dt>has sub-properties</dt>
+            <dd>
+               <a href="#hasOccupantProperty"
+                  title="http://bemserver.org/property#hasOccupantProperty">has occupant property</a>
+               <sup class="type-op" title="object property">op</sup>, <a href="#hasPhysicalProperty"
+                  title="http://bemserver.org/property#hasPhysicalProperty">has physical property</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+            <dt>has range</dt>
+            <dd>
+               <a href="#http://www.bemserver.org/sensor/xssn/#Property" title="http://www.bemserver.org/sensor/xssn/#Property">property</a>
+               <sup class="type-c" title="class">c</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="hasPhysicalProperty">
+      <h3>has physical property<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#hasPhysicalProperty</p>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#hasPhenomenonProperty"
+                  title="http://bemserver.org/property#hasPhenomenonProperty">has phenomenon property</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+            <dt>has sub-properties</dt>
+            <dd>
+               <a href="#airQuality" title="http://bemserver.org/property#airQuality">airQuality</a>
+               <sup class="type-op" title="object property">op</sup>, <a href="#capacity" title="http://bemserver.org/property#capacity">capacity</a>
+               <sup class="type-op" title="object property">op</sup>, <a href="#climateProperty" title="http://bemserver.org/property#climateProperty">climate property</a>
+               <sup class="type-op" title="object property">op</sup>, <a href="#co2Rate" title="http://bemserver.org/property#co2Rate">co2 rate</a>
+               <sup class="type-op" title="object property">op</sup>, <a href="#color" title="http://bemserver.org/property#color">color</a>
+               <sup class="type-op" title="object property">op</sup>, <a href="#conductivity" title="http://bemserver.org/property#conductivity">conductivity</a>
+               <sup class="type-op" title="object property">op</sup>, <a href="#degreeDays" title="http://bemserver.org/property#degreeDays">degreeDays</a>
+               <sup class="type-op" title="object property">op</sup>, <a href="#density" title="http://bemserver.org/property#density">density</a>
+               <sup class="type-op" title="object property">op</sup>, <a href="#energy" title="http://bemserver.org/property#energy">energy</a>
+               <sup class="type-op" title="object property">op</sup>, <a href="#enthalpy" title="http://bemserver.org/property#enthalpy">enthalpy</a>
+               <sup class="type-op" title="object property">op</sup>, <a href="#geometryProperty" title="http://bemserver.org/property#geometryProperty">geometry property</a>
+               <sup class="type-op" title="object property">op</sup>, <a href="#humidity" title="http://bemserver.org/property#humidity">humidity</a>
+               <sup class="type-op" title="object property">op</sup>, <a href="#intensity" title="http://bemserver.org/property#intensity">intensity</a>
+               <sup class="type-op" title="object property">op</sup>, <a href="#ligthningProperty" title="http://bemserver.org/property#ligthningProperty">ligthning property</a>
+               <sup class="type-op" title="object property">op</sup>, <a href="#matterMovement" title="http://bemserver.org/property#matterMovement">matter movement</a>
+               <sup class="type-op" title="object property">op</sup>, <a href="#matterStateChange" title="http://bemserver.org/property#matterStateChange">matter state change</a>
+               <sup class="type-op" title="object property">op</sup>, <a href="#position" title="http://bemserver.org/property#position">position</a>
+               <sup class="type-op" title="object property">op</sup>, <a href="#Power" title="http://bemserver.org/property#Power">power</a>
+               <sup class="type-op" title="object property">op</sup>, <a href="#pressure" title="http://bemserver.org/property#pressure">pressure</a>
+               <sup class="type-op" title="object property">op</sup>, <a href="#reflectivity" title="http://bemserver.org/property#reflectivity">reflectivity</a>
+               <sup class="type-op" title="object property">op</sup>, <a href="#state" title="http://bemserver.org/property#state">state</a>
+               <sup class="type-op" title="object property">op</sup>, <a href="#temperature" title="http://bemserver.org/property#temperature">temperature</a>
+               <sup class="type-op" title="object property">op</sup>, <a href="#tension" title="http://bemserver.org/property#tension">tension</a>
+               <sup class="type-op" title="object property">op</sup>, <a href="#time" title="http://bemserver.org/property#time">time</a>
+               <sup class="type-op" title="object property">op</sup>, <a href="#transparency" title="http://bemserver.org/property#transparency">transparency</a>
+               <sup class="type-op" title="object property">op</sup>, <a href="#visibility" title="http://bemserver.org/property#visibility">visibility</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="height">
+      <h3>height<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#height</p>
+      <div class="comment">
+         <span class="markdown">height represents an observation of the height of an element in the building.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#shape" title="http://bemserver.org/property#shape">shape</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="humidity">
+      <h3>humidity<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#humidity</p>
+      <div class="comment">
+         <span class="markdown">humidity represents an observation of the  measure of the humidity in a specific time.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#hasPhysicalProperty"
+                  title="http://bemserver.org/property#hasPhysicalProperty">has physical property</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="illuminance">
+      <h3>illuminance<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#illuminance</p>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#ligthningProperty" title="http://bemserver.org/property#ligthningProperty">ligthning property</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="incidentRadiation">
+      <h3>incidentRadiation<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#incidentRadiation</p>
+      <div class="comment">
+         <span class="markdown">incidentRadiation represents an observation of the measure of the incident radiation in a specific time.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#radiation" title="http://bemserver.org/property#radiation">radiation</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+            <dt>has sub-properties</dt>
+            <dd>
+               <a href="#absorbedIncidentRadiation"
+                  title="http://bemserver.org/property#absorbedIncidentRadiation">absorbedIncidentRadiation</a>
+               <sup class="type-op" title="object property">op</sup>, <a href="#absorbedScatteredIncidentRadiation"
+                  title="http://bemserver.org/property#absorbedScatteredIncidentRadiation">absorbedScatteredIncidentRadiation</a>
+               <sup class="type-op" title="object property">op</sup>, <a href="#reflectedIncidentradiation"
+                  title="http://bemserver.org/property#reflectedIncidentradiation">reflectedIncidentRadiation</a>
+               <sup class="type-op" title="object property">op</sup>, <a href="#transmittedIncidentRadiation"
+                  title="http://bemserver.org/property#transmittedIncidentRadiation">transmittedIncidentRadiation</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="inflow">
+      <h3>inflow<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#inflow</p>
+      <div class="comment">
+         <span class="markdown">inflow represents an observation of the measure of the volume of an input flow in the building in a specific time.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#flow" title="http://bemserver.org/property#flow">flow</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="intensity">
+      <h3>intensity<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#intensity</p>
+      <div class="comment">
+         <span class="markdown">intensity represents an observation of the measure of the intensity in a specific time.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#hasPhysicalProperty"
+                  title="http://bemserver.org/property#hasPhysicalProperty">has physical property</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="irradiance">
+      <h3>irradiance<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#irradiance</p>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#ligthningProperty" title="http://bemserver.org/property#ligthningProperty">ligthning property</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="latitude">
+      <h3>latitude<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#latitude</p>
+      <div class="comment">
+         <span class="markdown">latitude represents an observation of the measure of the position latitude of an element in the building in a specific time.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#position" title="http://bemserver.org/property#position">position</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="length">
+      <h3>length<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#length</p>
+      <div class="comment">
+         <span class="markdown">length represents an observation of the length of an element in the building.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#shape" title="http://bemserver.org/property#shape">shape</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="lightRadiation">
+      <h3>lightRadiation<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#lightRadiation</p>
+      <div class="comment">
+         <span class="markdown">lightRadiation represents an observation of the measure of the light radiation in a specific time.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#radiation" title="http://bemserver.org/property#radiation">radiation</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="ligthningProperty">
+      <h3>ligthning property<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#ligthningProperty</p>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#hasPhysicalProperty"
+                  title="http://bemserver.org/property#hasPhysicalProperty">has physical property</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+            <dt>has sub-properties</dt>
+            <dd>
+               <a href="#illuminance" title="http://bemserver.org/property#illuminance">illuminance</a>
+               <sup class="type-op" title="object property">op</sup>, <a href="#irradiance" title="http://bemserver.org/property#irradiance">irradiance</a>
+               <sup class="type-op" title="object property">op</sup>, <a href="#radiation" title="http://bemserver.org/property#radiation">radiation</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="longitude">
+      <h3>longitude<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#longitude</p>
+      <div class="comment">
+         <span class="markdown">longitude represents an observation of the  measure of the position longitude  of an element in the building  in a specific time..</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#position" title="http://bemserver.org/property#position">position</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="matterMovement">
+      <h3>matter movement<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#matterMovement</p>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#hasPhysicalProperty"
+                  title="http://bemserver.org/property#hasPhysicalProperty">has physical property</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+            <dt>has sub-properties</dt>
+            <dd>
+               <a href="#speed" title="http://bemserver.org/property#speed">speed</a>
+               <sup class="type-op" title="object property">op</sup>, <a href="#velocity" title="http://bemserver.org/property#velocity">velocity</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="matterStateChange">
+      <h3>matter state change<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#matterStateChange</p>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#hasPhysicalProperty"
+                  title="http://bemserver.org/property#hasPhysicalProperty">has physical property</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+            <dt>has sub-properties</dt>
+            <dd>
+               <a href="#condensation" title="http://bemserver.org/property#condensation">condensation</a>
+               <sup class="type-op" title="object property">op</sup>, <a href="#evaporation" title="http://bemserver.org/property#evaporation">evaporation</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="maxOccupancy">
+      <h3>maxOccupancy<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#maxOccupancy</p>
+      <div class="comment">
+         <span class="markdown">maxOccupancy represents an observation of the measure of the maximum capacity of occupants in a structiral element of the building.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#occupancyCapacityProperty"
+                  title="http://bemserver.org/property#occupancyCapacityProperty">occupancyCapacityProperty</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="movement">
+      <h3>Movement<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#movement</p>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="http://bemserver.org/property#occupantProperty"
+                  target="_blank"
+                  title="http://bemserver.org/property#occupantProperty">occupant property</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="nbEntries">
+      <h3>nbEntries<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#nbEntries</p>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#presence" title="http://bemserver.org/property#presence">presence</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="nbExit">
+      <h3>nbEntries<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#nbExit</p>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#presence" title="http://bemserver.org/property#presence">presence</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="occupancyCapacityProperty">
+      <h3>occupancyCapacityProperty<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#occupancyCapacityProperty</p>
+      <div class="comment">
+         <span class="markdown">The occupancy capacity property describes the capacity for occupants in the structural elements of the building. For example, this part of the ontology allows to represent the maximum occupancy capacity and the permanent occupancy in an structural element of the building.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="http://bemserver.org/property#occupantProperty"
+                  target="_blank"
+                  title="http://bemserver.org/property#occupantProperty">occupant property</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+            <dt>has sub-properties</dt>
+            <dd>
+               <a href="#maxOccupancy" title="http://bemserver.org/property#maxOccupancy">maxOccupancy</a>
+               <sup class="type-op" title="object property">op</sup>, <a href="#permanentOccupancy" title="http://bemserver.org/property#permanentOccupancy">permanentOccupancy</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="occupantStateProperty">
+      <h3>occupantStateProperty<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#occupantStateProperty</p>
+      <div class="comment">
+         <span class="markdown">The occupant state property describes the state of an occupant of the building. For example, this part of the ontology allows to represent the pulse and stress of an occupant.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="http://bemserver.org/property#occupantProperty"
+                  target="_blank"
+                  title="http://bemserver.org/property#occupantProperty">occupant property</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+            <dt>has sub-properties</dt>
+            <dd>
+               <a href="#pulse" title="http://bemserver.org/property#pulse">pulse</a>
+               <sup class="type-op" title="object property">op</sup>, <a href="#stress" title="http://bemserver.org/property#stress">stress</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="outflow">
+      <h3>outflow<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#outflow</p>
+      <div class="comment">
+         <span class="markdown">outflow represents an observation of the measure of the volume of an output flow in the building in a specific time.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#flow" title="http://bemserver.org/property#flow">flow</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="permanentOccupancy">
+      <h3>permanentOccupancy<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#permanentOccupancy</p>
+      <div class="comment">
+         <span class="markdown">permanent Occupancy represents an observation of the measure of the permanent number of occupants in a structiral element of the building.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#occupancyCapacityProperty"
+                  title="http://bemserver.org/property#occupancyCapacityProperty">occupancyCapacityProperty</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="position">
+      <h3>position<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#position</p>
+      <div class="comment">
+         <span class="markdown">position represents an observation of the measure of the position of an element in the building  in a specific time.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#hasPhysicalProperty"
+                  title="http://bemserver.org/property#hasPhysicalProperty">has physical property</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+            <dt>has sub-properties</dt>
+            <dd>
+               <a href="#altitude" title="http://bemserver.org/property#altitude">altitude</a>
+               <sup class="type-op" title="object property">op</sup>, <a href="#latitude" title="http://bemserver.org/property#latitude">latitude</a>
+               <sup class="type-op" title="object property">op</sup>, <a href="#longitude" title="http://bemserver.org/property#longitude">longitude</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="Power">
+      <h3>power<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#Power</p>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#hasPhysicalProperty"
+                  title="http://bemserver.org/property#hasPhysicalProperty">has physical property</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="presence">
+      <h3>presence<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#presence</p>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="http://bemserver.org/property#occupantProperty"
+                  target="_blank"
+                  title="http://bemserver.org/property#occupantProperty">occupant property</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+            <dt>has sub-properties</dt>
+            <dd>
+               <a href="#nbEntries" title="http://bemserver.org/property#nbEntries">nbEntries</a>
+               <sup class="type-op" title="object property">op</sup>, <a href="#nbExit" title="http://bemserver.org/property#nbExit">nbEntries</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="pressure">
+      <h3>pressure<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#pressure</p>
+      <div class="comment">
+         <span class="markdown">pressure represents an observation of the measure of the pressure in a specific time.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#hasPhysicalProperty"
+                  title="http://bemserver.org/property#hasPhysicalProperty">has physical property</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="productionCapacity">
+      <h3>productionCapacity<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#productionCapacity</p>
+      <div class="comment">
+         <span class="markdown">productionCapacity represents an observation of the measure of the capacity of production of an element in the building.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#capacity" title="http://bemserver.org/property#capacity">capacity</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="pulse">
+      <h3>pulse<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#pulse</p>
+      <div class="comment">
+         <span class="markdown">pulse represents an observation of the measure of the pulse of an occupant of the building in a specific time.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#occupantStateProperty"
+                  title="http://bemserver.org/property#occupantStateProperty">occupantStateProperty</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="radiation">
+      <h3>radiation<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#radiation</p>
+      <div class="comment">
+         <span class="markdown">radiation represents an observation of the measure of the radiation in a specific time.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#ligthningProperty" title="http://bemserver.org/property#ligthningProperty">ligthning property</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+            <dt>has sub-properties</dt>
+            <dd>
+               <a href="#incidentRadiation" title="http://bemserver.org/property#incidentRadiation">incidentRadiation</a>
+               <sup class="type-op" title="object property">op</sup>, <a href="#lightRadiation" title="http://bemserver.org/property#lightRadiation">lightRadiation</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="rainfall">
+      <h3>rainfall<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#rainfall</p>
+      <div class="comment">
+         <span class="markdown">rainfall represents an observation of the  measure of the rainfall.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#climateProperty" title="http://bemserver.org/property#climateProperty">climate property</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="reflectedIncidentradiation">
+      <h3>reflectedIncidentRadiation<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#reflectedIncidentradiation</p>
+      <div class="comment">
+         <span class="markdown">reflectedIncidentRadiation represents an observation of the measure of the reflected incident radiation in a specific time.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#incidentRadiation" title="http://bemserver.org/property#incidentRadiation">incidentRadiation</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="reflectivity">
+      <h3>reflectivity<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#reflectivity</p>
+      <div class="comment">
+         <span class="markdown">reflectivity represents an observation of the reflectivity of an element in the building.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#hasPhysicalProperty"
+                  title="http://bemserver.org/property#hasPhysicalProperty">has physical property</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="runningTime">
+      <h3>RunningTime<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#runningTime</p>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#time" title="http://bemserver.org/property#time">time</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="shape">
+      <h3>shape<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#shape</p>
+      <div class="comment">
+         <span class="markdown">shape represents an observation of the measure of the shape of an element in the building.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#geometryProperty" title="http://bemserver.org/property#geometryProperty">geometry property</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+            <dt>has sub-properties</dt>
+            <dd>
+               <a href="#crossSection" title="http://bemserver.org/property#crossSection">crossSection</a>
+               <sup class="type-op" title="object property">op</sup>, <a href="#depth" title="http://bemserver.org/property#depth">depth</a>
+               <sup class="type-op" title="object property">op</sup>, <a href="#height" title="http://bemserver.org/property#height">height</a>
+               <sup class="type-op" title="object property">op</sup>, <a href="#length" title="http://bemserver.org/property#length">length</a>
+               <sup class="type-op" title="object property">op</sup>, <a href="#slope" title="http://bemserver.org/property#slope">slope</a>
+               <sup class="type-op" title="object property">op</sup>, <a href="#weight" title="http://bemserver.org/property#weight">weight</a>
+               <sup class="type-op" title="object property">op</sup>, <a href="#width" title="http://bemserver.org/property#width">width</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="slope">
+      <h3>slope<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#slope</p>
+      <div class="comment">
+         <span class="markdown">slope represents an observation of the slope of an element in the building.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#shape" title="http://bemserver.org/property#shape">shape</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="spaceCapacity">
+      <h3>spaceCapacity<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#spaceCapacity</p>
+      <div class="comment">
+         <span class="markdown">spaceCapacity represents an observation of the measure of the capacity of the space in the building.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#capacity" title="http://bemserver.org/property#capacity">capacity</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="speed">
+      <h3>speed<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#speed</p>
+      <div class="comment">
+         <span class="markdown">speed represents an observation of the measure of the speed of an element in the building in a specific time.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#matterMovement" title="http://bemserver.org/property#matterMovement">matter movement</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="state">
+      <h3>state<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#state</p>
+      <div class="comment">
+         <span class="markdown">state represents an observation of the state of an element in the building.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#hasPhysicalProperty"
+                  title="http://bemserver.org/property#hasPhysicalProperty">has physical property</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+            <dt>has sub-properties</dt>
+            <dd>
+               <a href="#distributionElementState"
+                  title="http://bemserver.org/property#distributionElementState">distributionElementState</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="stress">
+      <h3>stress<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#stress</p>
+      <div class="comment">
+         <span class="markdown">stress represents an observation of the measure of the stress of an occupant of the building in a specific time.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#occupantStateProperty"
+                  title="http://bemserver.org/property#occupantStateProperty">occupantStateProperty</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="temperature">
+      <h3>temperature<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#temperature</p>
+      <div class="comment">
+         <span class="markdown">temperature represents an observation of the measure of the temperature in a specific time.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#hasPhysicalProperty"
+                  title="http://bemserver.org/property#hasPhysicalProperty">has physical property</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="tension">
+      <h3>tension<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#tension</p>
+      <div class="comment">
+         <span class="markdown">tension represents an observation of the measure of the tension of an element in the building.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#hasPhysicalProperty"
+                  title="http://bemserver.org/property#hasPhysicalProperty">has physical property</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="time">
+      <h3>time<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#time</p>
+      <div class="comment">
+         <span class="markdown">time represents an observation of the  measure of the time.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#hasPhysicalProperty"
+                  title="http://bemserver.org/property#hasPhysicalProperty">has physical property</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+            <dt>has sub-properties</dt>
+            <dd>
+               <a href="#runningTime" title="http://bemserver.org/property#runningTime">RunningTime</a>
+               <sup class="type-op" title="object property">op</sup>, <a href="#frequency" title="http://bemserver.org/property#frequency">frequency</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="transmittedIncidentRadiation">
+      <h3>transmittedIncidentRadiation<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#transmittedIncidentRadiation</p>
+      <div class="comment">
+         <span class="markdown">transmittedIncidentRadiation represents an observation of the measure of the transmittedincident radiation in a specific time.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#incidentRadiation" title="http://bemserver.org/property#incidentRadiation">incidentRadiation</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="transparency">
+      <h3>transparency<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#transparency</p>
+      <div class="comment">
+         <span class="markdown">transparency represents an observation of the measure of the transparence of an element in the building in a specific time.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#hasPhysicalProperty"
+                  title="http://bemserver.org/property#hasPhysicalProperty">has physical property</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="velocity">
+      <h3>velocity<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#velocity</p>
+      <div class="comment">
+         <span class="markdown">velocity represents an observation of the measure of the velocity of an element in the building in a specific time.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#matterMovement" title="http://bemserver.org/property#matterMovement">matter movement</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+            <dt>has sub-properties</dt>
+            <dd>
+               <a href="#discharge" title="http://bemserver.org/property#discharge">discharge</a>
+               <sup class="type-op" title="object property">op</sup>, <a href="#flow" title="http://bemserver.org/property#flow">flow</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="visibility">
+      <h3>visibility<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#visibility</p>
+      <div class="comment">
+         <span class="markdown">visibility represents an observation of the measure of the visibility of an elment in the building in a specific time.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#hasPhysicalProperty"
+                  title="http://bemserver.org/property#hasPhysicalProperty">has physical property</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="volume">
+      <h3>volume<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#volume</p>
+      <div class="comment">
+         <span class="markdown">volume represents an observation of the measure of the volume of an element in the building in a specific time.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#geometryProperty" title="http://bemserver.org/property#geometryProperty">geometry property</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="weight">
+      <h3>weight<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#weight</p>
+      <div class="comment">
+         <span class="markdown">weight represents an observation of the weight of an element in the building.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#shape" title="http://bemserver.org/property#shape">shape</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="width">
+      <h3>width<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#width</p>
+      <div class="comment">
+         <span class="markdown">width represents an observation of the width of an element in the building.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#shape" title="http://bemserver.org/property#shape">shape</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="windProperty">
+      <h3>wind property<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#windProperty</p>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#climateProperty" title="http://bemserver.org/property#climateProperty">climate property</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+            <dt>has sub-properties</dt>
+            <dd>
+               <a href="#windDirection" title="http://bemserver.org/property#windDirection">windDirection</a>
+               <sup class="type-op" title="object property">op</sup>, <a href="#windOrientation" title="http://bemserver.org/property#windOrientation">windOrientation</a>
+               <sup class="type-op" title="object property">op</sup>, <a href="#windSpeed" title="http://bemserver.org/property#windSpeed">windSpeed</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="windDirection">
+      <h3>windDirection<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#windDirection</p>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#windProperty" title="http://bemserver.org/property#windProperty">wind property</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="windOrientation">
+      <h3>windOrientation<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#windOrientation</p>
+      <div class="comment">
+         <span class="markdown">windOrientation represents an observation of the measure of the wind orientation in a specific time.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#windProperty" title="http://bemserver.org/property#windProperty">wind property</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="windSpeed">
+      <h3>windSpeed<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/property#windSpeed</p>
+      <div class="comment">
+         <span class="markdown">windSpeed represents an observation of the measure of the wind speed in a specific time.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#windProperty" title="http://bemserver.org/property#windProperty">wind property</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+</div><div xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     id="annotationproperties">
+   <h3 id="annotationproperties" class="list">Annotation Properties</h3>
+   <ul class="hlist">
+      <li>
+         <a href="#http://www.w3.org/2004/02/skos/core#closeMatch" title="http://www.w3.org/2004/02/skos/core#closeMatch">
+            <span>close match</span>
+         </a>
+      </li>
+      <li>
+         <a href="#http://qudt.org/schema/qudt#code" title="http://qudt.org/schema/qudt#code">
+            <span>code</span>
+         </a>
+      </li>
+      <li>
+         <a href="#http://purl.org/dc/elements/1.1/contributor" title="http://purl.org/dc/elements/1.1/contributor">
+            <span>contributor</span>
+         </a>
+      </li>
+      <li>
+         <a href="#http://purl.org/dc/elements/1.1/creator" title="http://purl.org/dc/elements/1.1/creator">
+            <span>creator</span>
+         </a>
+      </li>
+      <li>
+         <a href="#http://www.w3.org/2004/02/skos/core#definition" title="http://www.w3.org/2004/02/skos/core#definition">
+            <span>definition</span>
+         </a>
+      </li>
+      <li>
+         <a href="#https://w3id.org/sml/owl/defquantityKind" title="https://w3id.org/sml/owl/defquantityKind">
+            <span>defquantity kind</span>
+         </a>
+      </li>
+      <li>
+         <a href="#http://purl.org/dc/elements/1.1/description" title="http://purl.org/dc/elements/1.1/description">
+            <span>description</span>
+         </a>
+      </li>
+      <li>
+         <a href="#http://www.w3.org/2004/02/skos/core#exactMatch" title="http://www.w3.org/2004/02/skos/core#exactMatch">
+            <span>exact match</span>
+         </a>
+      </li>
+      <li>
+         <a href="#http://www.w3.org/2004/02/skos/core#example" title="http://www.w3.org/2004/02/skos/core#example">
+            <span>example</span>
+         </a>
+      </li>
+      <li>
+         <a href="#http://purl.org/dc/terms/license" title="http://purl.org/dc/terms/license">
+            <span>license</span>
+         </a>
+      </li>
+      <li>
+         <a href="#http://purl.org/dc/elements/1.1/title" title="http://purl.org/dc/elements/1.1/title">
+            <span>title</span>
+         </a>
+      </li>
+   </ul>
+   <div class="entity" id="http://www.w3.org/2004/02/skos/core#closeMatch">
+      <h3>close match<sup class="type-ap" title="annotation property">ap</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#annotationproperties">Annotation Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://www.w3.org/2004/02/skos/core#closeMatch</p>
+   </div>
+   <div class="entity" id="http://qudt.org/schema/qudt#code">
+      <h3>code<sup class="type-ap" title="annotation property">ap</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#annotationproperties">Annotation Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://qudt.org/schema/qudt#code</p>
+   </div>
+   <div class="entity" id="http://purl.org/dc/elements/1.1/contributor">
+      <h3>contributor<sup class="type-ap" title="annotation property">ap</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#annotationproperties">Annotation Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://purl.org/dc/elements/1.1/contributor</p>
+   </div>
+   <div class="entity" id="http://purl.org/dc/elements/1.1/creator">
+      <h3>creator<sup class="type-ap" title="annotation property">ap</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#annotationproperties">Annotation Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://purl.org/dc/elements/1.1/creator</p>
+   </div>
+   <div class="entity" id="http://www.w3.org/2004/02/skos/core#definition">
+      <h3>definition<sup class="type-ap" title="annotation property">ap</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#annotationproperties">Annotation Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://www.w3.org/2004/02/skos/core#definition</p>
+   </div>
+   <div class="entity" id="https://w3id.org/sml/owl/defquantityKind">
+      <h3>defquantity kind<sup class="type-ap" title="annotation property">ap</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#annotationproperties">Annotation Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://w3id.org/sml/owl/defquantityKind</p>
+   </div>
+   <div class="entity" id="http://purl.org/dc/elements/1.1/description">
+      <h3>description<sup class="type-ap" title="annotation property">ap</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#annotationproperties">Annotation Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://purl.org/dc/elements/1.1/description</p>
+   </div>
+   <div class="entity" id="http://www.w3.org/2004/02/skos/core#exactMatch">
+      <h3>exact match<sup class="type-ap" title="annotation property">ap</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#annotationproperties">Annotation Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://www.w3.org/2004/02/skos/core#exactMatch</p>
+   </div>
+   <div class="entity" id="http://www.w3.org/2004/02/skos/core#example">
+      <h3>example<sup class="type-ap" title="annotation property">ap</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#annotationproperties">Annotation Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://www.w3.org/2004/02/skos/core#example</p>
+   </div>
+   <div class="entity" id="http://purl.org/dc/terms/license">
+      <h3>license<sup class="type-ap" title="annotation property">ap</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#annotationproperties">Annotation Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://purl.org/dc/terms/license</p>
+   </div>
+   <div class="entity" id="http://purl.org/dc/elements/1.1/title">
+      <h3>title<sup class="type-ap" title="annotation property">ap</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#annotationproperties">Annotation Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://purl.org/dc/elements/1.1/title</p>
+   </div>
+</div><div id="legend">
+<h2>Legend <span class="backlink"> back to <a href="#toc">ToC</a></span></h2>
+<div   class="entity">
+<sup class="type-c" title="Classes">c</sup>: Classes <br/>
+<sup class="type-op" title="Object Properties">op</sup>: Object Properties <br/>
+<sup class="type-dp" title="Data Properties">dp</sup>: Data Properties <br/>
+<sup class="type-ni" title="Named Individuals">ni</sup>: Named Individuals
+</div>
+</div>
+</div>
+    
+
+<!--REFERENCES SECTION-->
+  <div id="references">
+<h2 id="ref" class="list">References <span class="backlink"> back to <a href="#toc">ToC</a></span></h2>
+<span class="markdown">
+Add your references here. It is recommended to have them as a list.</span>
+
+</div>
+<div id="acknowledgments">
+<h2 id="ack" class="list">Acknowledgments <span class="backlink"> back to <a href="#toc">ToC</a></span></h2>
+<p>
+The authors would like to thank <a href="http://www.essepuntato.it/">Silvio Peroni</a> for developing <a href="http://www.essepuntato.it/lode">LODE</a>, a Live OWL Documentation Environment, which is used for representing the Cross Referencing Section of this document and <a href="https://w3id.org/people/dgarijo">Daniel Garijo</a> for developing <a href="https://github.com/dgarijo/Widoco">Widoco</a>, the program used to create the template used in this documentation.</p>
+</div>
+
+
+</div>
+</body>
+</html>

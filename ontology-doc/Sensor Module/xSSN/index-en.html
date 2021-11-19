@@ -1,0 +1,1498 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+ <link rel="stylesheet" href="resources/primer.css" media="screen" />    <link rel="stylesheet" href="resources/rec.css" media="screen" />    <link rel="stylesheet" href="resources/extra.css" media="screen" />    <link rel="stylesheet" href="resources/owl.css" media="screen" />    <title>xSSN Ontology</title>
+
+
+<!-- SCHEMA.ORG METADATA -->
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","url":"http://www.bemserver.org/sensor/xssn/#","image":"http://vowl.visualdataweb.org/webvowl/#iri=http://www.bemserver.org/sensor/xssn/#","name":"xSSN Ontology", "headline":"This ontology is based on BOT for describing building topology and extends it towards representing a wise set of building types (including residential and non residential buildings), spaces and storeys based on the Omniclass standard.", "datePublished":"Thu Nov 18 20:05:58 CET 2021", "author":[{"@type":"Person","name":"Nathalie Charbel"}], "contributor":[{"@type":"Person","name":"Pierre Bourreau"}]}</script>
+
+<script src="resources/jquery.js"></script> 
+<script src="resources/marked.min.js"></script> 
+    <script> 
+function loadHash() {
+  jQuery(".markdown").each(function(el){jQuery(this).after(marked(jQuery(this).text())).remove()});
+	var hash = location.hash;
+	if($(hash).offset()!=null){
+	  $('html, body').animate({scrollTop: $(hash).offset().top}, 0);
+}
+	loadTOC();
+}
+function loadTOC(){
+	//process toc dynamically
+	  var t='<h2>Table of contents</h2><ul>';i = 1;j=0;
+	  jQuery(".list").each(function(){
+		if(jQuery(this).is('h2')){
+			if(j>0){
+				t+='</ul>';
+				j=0;
+			}
+			t+= '<li>'+i+'. <a href=#'+ jQuery(this).attr('id')+'>'+ jQuery(this).ignore("span").text()+'</a></li>';
+			i++;
+		}
+		if(jQuery(this).is('h3')){
+			if(j==0){
+				t+='<ul>';
+			}
+			j++;
+			t+= '<li>'+(i-1)+'.'+j+'. '+'<a href=#'+ jQuery(this).attr('id')+'>'+ jQuery(this).ignore("span").text()+'</a></li>';
+		}
+	  });
+	  t+='</ul>';
+	  $("#toc").html(t); 
+}
+$(function(){
+    loadHash();
+}); $.fn.ignore = function(sel){
+        return this.clone().find(sel||">*").remove().end();
+ }; 
+   </script> 
+  </head> 
+
+<body>
+<div class="container">
+<div class="head">
+<div style="float:right">language <a href="index-en.html"><b>en</b></a> </div>
+<h1>xSSN Ontology</h1>
+
+
+<dl>
+<dt>Latest version:</dt>
+<dd><a href="http://www.bemserver.org/sensor/xssn/#">http://www.bemserver.org/sensor/xssn/#</a></dd>
+<dt>Authors:</dt>
+<dd>Nathalie Charbel</dd>
+
+<dt>Contributors:</dt>
+<dd>Pierre Bourreau</dd>
+
+<dt>Imported Ontologies:</dt>
+<dd><a href="http://www.w3.org/ns/sosa/">SOSA</a></dd><dd><a href="http://www.w3.org/ns/ssn/">SSN </a></dd>
+
+<dt>Download serialization:</dt><dd><span><a href="ontology.jsonld" target="_blank"><img src="https://img.shields.io/badge/Format-JSON_LD-blue.svg" alt="JSON-LD" /></a> </span><span><a href="ontology.rdf" target="_blank"><img src="https://img.shields.io/badge/Format-RDF/XML-blue.svg" alt="RDF/XML" /></a> </span><span><a href="ontology.nt" target="_blank"><img src="https://img.shields.io/badge/Format-N_Triples-blue.svg" alt="N-Triples" /></a> </span><span><a href="ontology.ttl" target="_blank"><img src="https://img.shields.io/badge/Format-TTL-blue.svg" alt="TTL" /></a> </span></dd><dt>License: </dt><dd><a href="http://insertlicenseURIhere.org" target="_blank"><img src="https://img.shields.io/badge/License-license%20name%20goes%20here-blue.svg" alt="http://insertlicenseURIhere.org" /></a>
+</dd><!-- <dt>Evaluation:</dt><dd><a href="OOPSEvaluation/oopsEval.html#" target="_blank"><img src="https://img.shields.io/badge/Evaluate_with-OOPS! (OntOlogy Pitfall Scanner!)-blue.svg" alt="Evaluate with OOPS!" /></a></dd> --></dl>
+
+<hr/>
+</div>
+<div class="status">
+<div>
+<span>Ontology Specification Draft</span>
+</div>
+</div>     <div id="abstract"><h2>Abstract</h2><span class="markdown">
+This ontology is based on BOT for describing building topology and extends it towards representing a wise set of building types (including residential and non residential buildings), spaces and storeys based on the Omniclass standard.</span>
+</div>
+<div id="toc"></div> 
+
+<!--INTRODUCTION SECTION-->
+    <div id="introduction"><h2 id="intro" class="list">Introduction <span class="backlink"> back to <a href="#toc">ToC</a></span></h2>
+<span class="markdown">
+This is a place holder text for the introduction. The introduction should briefly describe the ontology, its motivation, state of the art and goals.</span>
+<div id="namespacedeclarations">
+<h3 id="ns" class="list">Namespace declarations</h3>
+<div id="ns" align="center">
+<table>
+<caption> <a href="#ns"> Table 1</a>: Namespaces used in the document </caption>
+<tbody>
+<tr><td><b>xssn</b></td><td>&lt;http://www.bemserver.org/sensor/xssn/#&gt;</td></tr>
+<tr><td><b>[Ontology NS Prefix]</b></td><td>&lt;http://www.bemserver.org/sensor/xssn/&gt;</td></tr>
+<tr><td><b>owl</b></td><td>&lt;http://www.w3.org/2002/07/owl&gt;</td></tr>
+<tr><td><b>rdf</b></td><td>&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns&gt;</td></tr>
+<tr><td><b>xml</b></td><td>&lt;http://www.w3.org/XML/1998/namespace&gt;</td></tr>
+<tr><td><b>xsd</b></td><td>&lt;http://www.w3.org/2001/XMLSchema&gt;</td></tr>
+<tr><td><b>rdfs</b></td><td>&lt;http://www.w3.org/2000/01/rdf-schema&gt;</td></tr>
+<tr><td><b>ssn</b></td><td>&lt;http://www.w3.org/ns/ssn&gt;</td></tr>
+<tr><td><b>sosa</b></td><td>&lt;http://www.w3.org/ns/sosa&gt;</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+  
+
+<!--OVERVIEW SECTION-->
+    <div id="overview"><h2 id="overv" class="list">xSSN: Overview <span class="backlink"> back to <a href="#toc">ToC</a></span></h2>
+<span class="markdown">
+This ontology has the following classes and properties.</span>
+<h4>Classes</h4>
+<ul xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" class="hlist">
+   <li>
+      <a href="#http://www.w3.org/ns/sosa/Actuation" title="http://www.w3.org/ns/sosa/Actuation">
+         <span>actuation</span>
+      </a>
+   </li>
+   <li>
+      <a href="#http://www.w3.org/ns/ssn/Deployment" title="http://www.w3.org/ns/ssn/Deployment">Deployment</a>
+   </li>
+   <li>
+      <a href="#http://www.w3.org/ns/ssn/Input" title="http://www.w3.org/ns/ssn/Input">Input</a>
+   </li>
+   <li>
+      <a href="#Location" title="http://www.bemserver.org/sensor/xssn/#Location">
+         <span>location</span>
+      </a>
+   </li>
+   <li>
+      <a href="#MediumType" title="http://www.bemserver.org/sensor/xssn/#MediumType">
+         <span>medium type</span>
+      </a>
+   </li>
+   <li>
+      <a href="#http://www.w3.org/ns/sosa/Observation" title="http://www.w3.org/ns/sosa/Observation">
+         <span>observation</span>
+      </a>
+   </li>
+   <li>
+      <a href="#http://www.w3.org/ns/ssn/Output" title="http://www.w3.org/ns/ssn/Output">Output</a>
+   </li>
+   <li>
+      <a href="#Property" title="http://www.bemserver.org/sensor/xssn/#Property">Property</a>
+   </li>
+   <li>
+      <a href="#http://www.w3.org/ns/ssn/Property" title="http://www.w3.org/ns/ssn/Property">Property</a>
+   </li>
+   <li>
+      <a href="#http://www.w3.org/ns/sosa/Sampling" title="http://www.w3.org/ns/sosa/Sampling">
+         <span>sampling</span>
+      </a>
+   </li>
+   <li>
+      <a href="#http://www.w3.org/ns/ssn/Stimulus" title="http://www.w3.org/ns/ssn/Stimulus">Stimulus</a>
+   </li>
+   <li>
+      <a href="#http://www.w3.org/ns/ssn/System" title="http://www.w3.org/ns/ssn/System">System</a>
+   </li>
+</ul><h4>Object Properties</h4><ul xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" class="hlist">
+   <li>
+      <a href="#http://www.w3.org/ns/ssn/deployedOnPlatform" title="http://www.w3.org/ns/ssn/deployedOnPlatform">deployed on platform</a>
+   </li>
+   <li>
+      <a href="#http://www.w3.org/ns/ssn/deployedSystem" title="http://www.w3.org/ns/ssn/deployedSystem">deployed system</a>
+   </li>
+   <li>
+      <a href="#http://www.w3.org/ns/ssn/detects" title="http://www.w3.org/ns/ssn/detects">detects</a>
+   </li>
+   <li>
+      <a href="#http://www.w3.org/ns/ssn/forProperty" title="http://www.w3.org/ns/ssn/forProperty">for property</a>
+   </li>
+   <li>
+      <a href="#http://www.w3.org/ns/ssn/hasDeployment" title="http://www.w3.org/ns/ssn/hasDeployment">has deployment</a>
+   </li>
+   <li>
+      <a href="#http://www.w3.org/ns/ssn/hasInput" title="http://www.w3.org/ns/ssn/hasInput">has input</a>
+   </li>
+   <li>
+      <a href="#http://www.w3.org/ns/ssn/hasOutput" title="http://www.w3.org/ns/ssn/hasOutput">has output</a>
+   </li>
+   <li>
+      <a href="#http://www.w3.org/ns/ssn/hasProperty" title="http://www.w3.org/ns/ssn/hasProperty">has property</a>
+   </li>
+   <li>
+      <a href="#http://www.w3.org/ns/sosa/hasSample" title="http://www.w3.org/ns/sosa/hasSample">
+         <span>has sample</span>
+      </a>
+   </li>
+   <li>
+      <a href="#http://www.w3.org/ns/ssn/hasSubSystem" title="http://www.w3.org/ns/ssn/hasSubSystem">has subsystem</a>
+   </li>
+   <li>
+      <a href="#http://www.w3.org/ns/ssn/implementedBy" title="http://www.w3.org/ns/ssn/implementedBy">implemented by</a>
+   </li>
+   <li>
+      <a href="#http://www.w3.org/ns/ssn/implements" title="http://www.w3.org/ns/ssn/implements">implements</a>
+   </li>
+   <li>
+      <a href="#http://www.w3.org/ns/ssn/inDeployment" title="http://www.w3.org/ns/ssn/inDeployment">in deployment</a>
+   </li>
+   <li>
+      <a href="#http://www.w3.org/ns/ssn/isPropertyOf" title="http://www.w3.org/ns/ssn/isPropertyOf">is property of</a>
+   </li>
+   <li>
+      <a href="#http://www.w3.org/ns/ssn/isProxyFor" title="http://www.w3.org/ns/ssn/isProxyFor">is proxy for</a>
+   </li>
+   <li>
+      <a href="#http://www.w3.org/ns/ssn/wasOriginatedBy" title="http://www.w3.org/ns/ssn/wasOriginatedBy">was originated by</a>
+   </li>
+</ul><h4>Data Properties</h4><ul xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" class="hlist">
+   <li>
+      <a href="#accuracy" title="http://www.bemserver.org/sensor/xssn/#accuracy">
+         <span>accuracy</span>
+      </a>
+   </li>
+   <li>
+      <a href="#frequency" title="http://www.bemserver.org/sensor/xssn/#frequency">
+         <span>frequency</span>
+      </a>
+   </li>
+   <li>
+      <a href="#isAmbient" title="http://www.bemserver.org/sensor/xssn/#isAmbient">
+         <span>is ambient</span>
+      </a>
+   </li>
+   <li>
+      <a href="#isIndexValue"
+         title="http://www.bemserver.org/sensor/xssn/#isIndexValue">
+         <span>is index value</span>
+      </a>
+   </li>
+   <li>
+      <a href="#isSetPoint" title="http://www.bemserver.org/sensor/xssn/#isSetPoint">
+         <span>is set point</span>
+      </a>
+   </li>
+   <li>
+      <a href="#latency" title="http://www.bemserver.org/sensor/xssn/#latency">
+         <span>latency</span>
+      </a>
+   </li>
+   <li>
+      <a href="#maxValue" title="http://www.bemserver.org/sensor/xssn/#maxValue">
+         <span>max value</span>
+      </a>
+   </li>
+   <li>
+      <a href="#minValue" title="http://www.bemserver.org/sensor/xssn/#minValue">
+         <span>min value</span>
+      </a>
+   </li>
+   <li>
+      <a href="#precision" title="http://www.bemserver.org/sensor/xssn/#precision">
+         <span>precision</span>
+      </a>
+   </li>
+   <li>
+      <a href="#sensitivity"
+         title="http://www.bemserver.org/sensor/xssn/#sensitivity">
+         <span>sensitivity</span>
+      </a>
+   </li>
+</ul><h4>Annotation Properties</h4><ul xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" class="hlist">
+   <li>
+      <a href="#http://purl.org/dc/terms/created" title="http://purl.org/dc/terms/created">
+         <span>created</span>
+      </a>
+   </li>
+   <li>
+      <a href="#http://purl.org/dc/terms/creator" title="http://purl.org/dc/terms/creator">
+         <span>creator</span>
+      </a>
+   </li>
+   <li>
+      <a href="#http://www.w3.org/2004/02/skos/core#definition" title="http://www.w3.org/2004/02/skos/core#definition">
+         <span>definition</span>
+      </a>
+   </li>
+   <li>
+      <a href="#http://purl.org/dc/terms/description" title="http://purl.org/dc/terms/description">
+         <span>description</span>
+      </a>
+   </li>
+   <li>
+      <a href="#http://www.w3.org/2004/02/skos/core#example" title="http://www.w3.org/2004/02/skos/core#example">
+         <span>example</span>
+      </a>
+   </li>
+   <li>
+      <a href="#http://purl.org/dc/terms/license" title="http://purl.org/dc/terms/license">
+         <span>license</span>
+      </a>
+   </li>
+   <li>
+      <a href="#http://xmlns.com/foaf/0.1/name" title="http://xmlns.com/foaf/0.1/name">
+         <span>name</span>
+      </a>
+   </li>
+   <li>
+      <a href="#http://purl.org/vocab/vann/preferredNamespacePrefix"
+         title="http://purl.org/vocab/vann/preferredNamespacePrefix">
+         <span>preferred namespace prefix</span>
+      </a>
+   </li>
+   <li>
+      <a href="#http://purl.org/vocab/vann/preferredNamespaceUri" title="http://purl.org/vocab/vann/preferredNamespaceUri">
+         <span>preferred namespace uri</span>
+      </a>
+   </li>
+   <li>
+      <a href="#http://purl.org/dc/terms/rights" title="http://purl.org/dc/terms/rights">
+         <span>rights</span>
+      </a>
+   </li>
+   <li>
+      <a href="#http://purl.org/dc/terms/title" title="http://purl.org/dc/terms/title">
+         <span>title</span>
+      </a>
+   </li>
+</ul><h4>Named Individuals</h4><ul xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" class="hlist">
+   <li>
+      <a href="#http://www.w3.org/ns/ssn/" title="http://www.w3.org/ns/ssn/">
+         <span>ssn:</span>
+      </a>
+   </li>
+</ul>
+</div>
+  
+
+<!--DESCRIPTION SECTION-->
+    <div id="description"><h2 id="desc" class="list">xSSN: Description <span class="backlink"> back to <a href="#toc">ToC</a></span></h2>
+<span class="markdown">
+This is a placeholder text for the description of your ontology. The description should include an explanation and a diagram explaining how the classes are related, examples of usage, etc.</span>
+
+</div>
+   
+
+<!--CROSSREF SECTION-->
+   <div id="crossref"><h2 id="crossreference" class="list">Cross reference for xSSN classes, properties and dataproperties <span class="backlink"> back to <a href="#toc">ToC</a></span></h2>
+This section provides details for each class and property defined by xSSN.
+<div xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="classes">
+   <h3 id="classes-headline" class="list">Classes</h3>
+   <ul class="hlist">
+      <li>
+         <a href="#http://www.w3.org/ns/sosa/Actuation" title="http://www.w3.org/ns/sosa/Actuation">
+            <span>actuation</span>
+         </a>
+      </li>
+      <li>
+         <a href="#http://www.w3.org/ns/ssn/Deployment" title="http://www.w3.org/ns/ssn/Deployment">Deployment</a>
+      </li>
+      <li>
+         <a href="#http://www.w3.org/ns/ssn/Input" title="http://www.w3.org/ns/ssn/Input">Input</a>
+      </li>
+      <li>
+         <a href="#Location" title="http://www.bemserver.org/sensor/xssn/#Location">
+            <span>location</span>
+         </a>
+      </li>
+      <li>
+         <a href="#MediumType" title="http://www.bemserver.org/sensor/xssn/#MediumType">
+            <span>medium type</span>
+         </a>
+      </li>
+      <li>
+         <a href="#http://www.w3.org/ns/sosa/Observation" title="http://www.w3.org/ns/sosa/Observation">
+            <span>observation</span>
+         </a>
+      </li>
+      <li>
+         <a href="#http://www.w3.org/ns/ssn/Output" title="http://www.w3.org/ns/ssn/Output">Output</a>
+      </li>
+      <li>
+         <a href="#Property" title="http://www.bemserver.org/sensor/xssn/#Property">Property</a>
+      </li>
+      <li>
+         <a href="#http://www.w3.org/ns/ssn/Property" title="http://www.w3.org/ns/ssn/Property">Property</a>
+      </li>
+      <li>
+         <a href="#http://www.w3.org/ns/sosa/Sampling" title="http://www.w3.org/ns/sosa/Sampling">
+            <span>sampling</span>
+         </a>
+      </li>
+      <li>
+         <a href="#http://www.w3.org/ns/ssn/Stimulus" title="http://www.w3.org/ns/ssn/Stimulus">Stimulus</a>
+      </li>
+      <li>
+         <a href="#http://www.w3.org/ns/ssn/System" title="http://www.w3.org/ns/ssn/System">System</a>
+      </li>
+   </ul>
+   <div class="entity" id="http://www.w3.org/ns/sosa/Actuation">
+      <h3>actuation<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://www.w3.org/ns/sosa/Actuation</p>
+      <dl class="definedBy">
+         <dt>Is defined by</dt>
+         <dd>
+            <a href="http://www.w3.org/ns/sosa/">http://www.w3.org/ns/sosa/</a>
+         </dd>
+      </dl>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd/>
+      </dl>
+   </div>
+   <div class="entity" id="http://www.w3.org/ns/ssn/Deployment">
+      <h3>Deployment<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://www.w3.org/ns/ssn/Deployment</p>
+      <div class="comment">
+         <span class="markdown">Describes the Deployment of one or more Systems for a particular purpose. Deployment may be done on a Platform.</span>
+      </div>
+      <div class="comment">
+         <span class="markdown">Describes the Deployment of one or more Systems for a particular purpose. Deployment may be done on a Platform.</span>
+      </div>
+      <dl class="definedBy">
+         <dt>Is defined by</dt>
+         <dd>
+            <a href="http://www.w3.org/ns/ssn/">http://www.w3.org/ns/ssn/</a>
+         </dd>
+      </dl>
+      <dl>
+         <dt>Example</dt>
+         <dd>
+            <pre>For example, a temperature Sensor deployed on a wall, or a whole network of Sensors deployed for an Observation campaign.</pre>
+         </dd>
+      </dl>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd/>
+      </dl>
+   </div>
+   <div class="entity" id="http://www.w3.org/ns/ssn/Input">
+      <h3>Input<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://www.w3.org/ns/ssn/Input</p>
+      <div class="comment">
+         <span class="markdown">Any information that is provided to a Procedure for its use.</span>
+      </div>
+      <div class="comment">
+         <span class="markdown">Any information that is provided to a Procedure for its use.</span>
+      </div>
+      <dl class="definedBy">
+         <dt>Is defined by</dt>
+         <dd>
+            <a href="http://www.w3.org/ns/ssn/">http://www.w3.org/ns/ssn/</a>
+         </dd>
+      </dl>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd/>
+      </dl>
+   </div>
+   <div class="entity" id="Location">
+      <h3>location<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://www.bemserver.org/sensor/xssn/#Location</p>
+      <div class="comment">
+         <span class="markdown">Location represents the location of an observation or the location of a sensor. More details on Location can be represented through alignements with other ontologies such as xBOT</span>
+      </div>
+   </div>
+   <div class="entity" id="MediumType">
+      <h3>medium type<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://www.bemserver.org/sensor/xssn/#MediumType</p>
+      <div class="comment">
+         <span class="markdown">The physical medium on which the measure is performed.This is to be read in conjunction with the observation type. For instance an ambient air temperature sensor would have observation:type = Temperature and medium = Air.</span>
+      </div>
+      <dl class="description">
+         <dt>is equivalent to</dt>
+         <dd>{ <a href="http://www.bemserver.org/sensor/xssn/#AIR"
+               target="_blank"
+               title="http://www.bemserver.org/sensor/xssn/#AIR">a i r</a> , <a href="http://www.bemserver.org/sensor/xssn/#GAS"
+               target="_blank"
+               title="http://www.bemserver.org/sensor/xssn/#GAS">g a s</a> , <a href="http://www.bemserver.org/sensor/xssn/#OIL"
+               target="_blank"
+               title="http://www.bemserver.org/sensor/xssn/#OIL">o i l</a> , <a href="http://www.bemserver.org/sensor/xssn/#RADIATION"
+               target="_blank"
+               title="http://www.bemserver.org/sensor/xssn/#RADIATION">r a d i a t i o n</a> , <a href="http://www.bemserver.org/sensor/xssn/#STEAM"
+               target="_blank"
+               title="http://www.bemserver.org/sensor/xssn/#STEAM">s t e a m</a> , <a href="http://www.bemserver.org/sensor/xssn/#WATER"
+               target="_blank"
+               title="http://www.bemserver.org/sensor/xssn/#WATER">w a t e r</a> }</dd>
+      </dl>
+   </div>
+   <div class="entity" id="http://www.w3.org/ns/sosa/Observation">
+      <h3>observation<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://www.w3.org/ns/sosa/Observation</p>
+      <dl class="definedBy">
+         <dt>Is defined by</dt>
+         <dd>
+            <a href="http://www.w3.org/ns/sosa/">http://www.w3.org/ns/sosa/</a>
+         </dd>
+      </dl>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd/>
+      </dl>
+   </div>
+   <div class="entity" id="http://www.w3.org/ns/ssn/Output">
+      <h3>Output<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://www.w3.org/ns/ssn/Output</p>
+      <div class="comment">
+         <span class="markdown">Any information that is reported from a Procedure.</span>
+      </div>
+      <div class="comment">
+         <span class="markdown">Any information that is reported from a Procedure.</span>
+      </div>
+      <dl class="definedBy">
+         <dt>Is defined by</dt>
+         <dd>
+            <a href="http://www.w3.org/ns/ssn/">http://www.w3.org/ns/ssn/</a>
+         </dd>
+      </dl>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd/>
+      </dl>
+   </div>
+   <div class="entity" id="Property">
+      <h3>Property<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://www.bemserver.org/sensor/xssn/#Property</p>
+      <div class="comment">
+         <span class="markdown">A quality of an entity. An aspect of an entity that can be intrinsic to and cannot exist without the entity (such as sensors and devices) or can be optional for some entities (such building elements).</span>
+      </div>
+      <dl class="description">
+         <dt>has sub-classes</dt>
+         <dd>
+            <a href="#http://www.w3.org/ns/ssn/Property" title="http://www.w3.org/ns/ssn/Property">Property</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="http://www.w3.org/ns/ssn/Property">
+      <h3>Property<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://www.w3.org/ns/ssn/Property</p>
+      <div class="comment">
+         <span class="markdown">A quality of an entity. An aspect of an entity that is intrinsic to and cannot exist without the entity.</span>
+      </div>
+      <div class="comment">
+         <span class="markdown">A quality of an entity. An aspect of an entity that is intrinsic to and cannot exist without the entity.</span>
+      </div>
+      <dl class="definedBy">
+         <dt>Is defined by</dt>
+         <dd>
+            <a href="http://www.w3.org/ns/ssn/">http://www.w3.org/ns/ssn/</a>
+         </dd>
+      </dl>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#Property" title="http://www.bemserver.org/sensor/xssn/#Property">Property</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="http://www.w3.org/ns/sosa/Sampling">
+      <h3>sampling<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://www.w3.org/ns/sosa/Sampling</p>
+      <dl class="definedBy">
+         <dt>Is defined by</dt>
+         <dd>
+            <a href="http://www.w3.org/ns/sosa/">http://www.w3.org/ns/sosa/</a>
+         </dd>
+      </dl>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd/>
+      </dl>
+   </div>
+   <div class="entity" id="http://www.w3.org/ns/ssn/Stimulus">
+      <h3>Stimulus<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://www.w3.org/ns/ssn/Stimulus</p>
+      <div class="comment">
+         <span class="markdown">An event in the real world that 'triggers' the Sensor. The properties associated to the Stimulus may be different to the eventual observed ObservableProperty. It is the event, not the object, that triggers the Sensor.</span>
+      </div>
+      <div class="comment">
+         <span class="markdown">An event in the real world that 'triggers' the Sensor. The properties associated to the Stimulus may be different to the eventual observed ObservableProperty. It is the event, not the object, that triggers the Sensor.</span>
+      </div>
+      <dl class="definedBy">
+         <dt>Is defined by</dt>
+         <dd>
+            <a href="http://www.w3.org/ns/ssn/">http://www.w3.org/ns/ssn/</a>
+         </dd>
+      </dl>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd/>
+      </dl>
+   </div>
+   <div class="entity" id="http://www.w3.org/ns/ssn/System">
+      <h3>System<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://www.w3.org/ns/ssn/System</p>
+      <div class="comment">
+         <span class="markdown">System is a unit of abstraction for pieces of infrastructure that implement Procedures. A System may have components, its subsystems, which are other systems.</span>
+      </div>
+      <div class="comment">
+         <span class="markdown">System is a unit of abstraction for pieces of infrastructure that implement Procedures. A System may have components, its subsystems, which are other systems.</span>
+      </div>
+      <dl class="definedBy">
+         <dt>Is defined by</dt>
+         <dd>
+            <a href="http://www.w3.org/ns/ssn/">http://www.w3.org/ns/ssn/</a>
+         </dd>
+      </dl>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd/>
+      </dl>
+   </div>
+</div><div xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="objectproperties">
+   <h3 id="properties" class="list">Object Properties</h3>
+   <ul class="hlist">
+      <li>
+         <a href="#http://www.w3.org/ns/ssn/deployedOnPlatform" title="http://www.w3.org/ns/ssn/deployedOnPlatform">deployed on platform</a>
+      </li>
+      <li>
+         <a href="#http://www.w3.org/ns/ssn/deployedSystem" title="http://www.w3.org/ns/ssn/deployedSystem">deployed system</a>
+      </li>
+      <li>
+         <a href="#http://www.w3.org/ns/ssn/detects" title="http://www.w3.org/ns/ssn/detects">detects</a>
+      </li>
+      <li>
+         <a href="#http://www.w3.org/ns/ssn/forProperty" title="http://www.w3.org/ns/ssn/forProperty">for property</a>
+      </li>
+      <li>
+         <a href="#http://www.w3.org/ns/ssn/hasDeployment" title="http://www.w3.org/ns/ssn/hasDeployment">has deployment</a>
+      </li>
+      <li>
+         <a href="#http://www.w3.org/ns/ssn/hasInput" title="http://www.w3.org/ns/ssn/hasInput">has input</a>
+      </li>
+      <li>
+         <a href="#http://www.w3.org/ns/ssn/hasOutput" title="http://www.w3.org/ns/ssn/hasOutput">has output</a>
+      </li>
+      <li>
+         <a href="#http://www.w3.org/ns/ssn/hasProperty" title="http://www.w3.org/ns/ssn/hasProperty">has property</a>
+      </li>
+      <li>
+         <a href="#http://www.w3.org/ns/sosa/hasSample" title="http://www.w3.org/ns/sosa/hasSample">
+            <span>has sample</span>
+         </a>
+      </li>
+      <li>
+         <a href="#http://www.w3.org/ns/ssn/hasSubSystem" title="http://www.w3.org/ns/ssn/hasSubSystem">has subsystem</a>
+      </li>
+      <li>
+         <a href="#http://www.w3.org/ns/ssn/implementedBy" title="http://www.w3.org/ns/ssn/implementedBy">implemented by</a>
+      </li>
+      <li>
+         <a href="#http://www.w3.org/ns/ssn/implements" title="http://www.w3.org/ns/ssn/implements">implements</a>
+      </li>
+      <li>
+         <a href="#http://www.w3.org/ns/ssn/inDeployment" title="http://www.w3.org/ns/ssn/inDeployment">in deployment</a>
+      </li>
+      <li>
+         <a href="#http://www.w3.org/ns/ssn/isPropertyOf" title="http://www.w3.org/ns/ssn/isPropertyOf">is property of</a>
+      </li>
+      <li>
+         <a href="#http://www.w3.org/ns/ssn/isProxyFor" title="http://www.w3.org/ns/ssn/isProxyFor">is proxy for</a>
+      </li>
+      <li>
+         <a href="#http://www.w3.org/ns/ssn/wasOriginatedBy" title="http://www.w3.org/ns/ssn/wasOriginatedBy">was originated by</a>
+      </li>
+   </ul>
+   <div class="entity" id="http://www.w3.org/ns/ssn/deployedOnPlatform">
+      <h3>deployed on platform<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://www.w3.org/ns/ssn/deployedOnPlatform</p>
+      <div class="comment">
+         <span class="markdown">Relation between a Deployment and the Platform on which the Systems are deployed.</span>
+      </div>
+      <div class="comment">
+         <span class="markdown">Relation between a Deployment and the Platform on which the Systems are deployed.</span>
+      </div>
+      <dl class="definedBy">
+         <dt>Is defined by</dt>
+         <dd>
+            <a href="http://www.w3.org/ns/ssn/">http://www.w3.org/ns/ssn/</a>
+         </dd>
+      </dl>
+      <div class="description">
+         <dl>
+            <dt>is inverse of</dt>
+            <dd>
+               <a href="#http://www.w3.org/ns/ssn/inDeployment" title="http://www.w3.org/ns/ssn/inDeployment">in deployment</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="http://www.w3.org/ns/ssn/deployedSystem">
+      <h3>deployed system<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://www.w3.org/ns/ssn/deployedSystem</p>
+      <div class="comment">
+         <span class="markdown">Relation between a Deployment and a deployed System.</span>
+      </div>
+      <div class="comment">
+         <span class="markdown">Relation between a Deployment and a deployed System.</span>
+      </div>
+      <dl class="definedBy">
+         <dt>Is defined by</dt>
+         <dd>
+            <a href="http://www.w3.org/ns/ssn/">http://www.w3.org/ns/ssn/</a>
+         </dd>
+      </dl>
+      <div class="description">
+         <dl>
+            <dt>is inverse of</dt>
+            <dd>
+               <a href="#http://www.w3.org/ns/ssn/hasDeployment" title="http://www.w3.org/ns/ssn/hasDeployment">has deployment</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="http://www.w3.org/ns/ssn/detects">
+      <h3>detects<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://www.w3.org/ns/ssn/detects</p>
+      <div class="comment">
+         <span class="markdown">A relation from a Sensor to the Stimulus that the Sensor detects. The Stimulus itself will be serving as a proxy for some ObservableProperty.</span>
+      </div>
+      <div class="comment">
+         <span class="markdown">A relation from a Sensor to the Stimulus that the Sensor detects. The Stimulus itself will be serving as a proxy for some ObservableProperty.</span>
+      </div>
+      <dl class="definedBy">
+         <dt>Is defined by</dt>
+         <dd>
+            <a href="http://www.w3.org/ns/ssn/">http://www.w3.org/ns/ssn/</a>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="http://www.w3.org/ns/ssn/forProperty">
+      <h3>for property<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://www.w3.org/ns/ssn/forProperty</p>
+      <div class="comment">
+         <span class="markdown">A relation between some aspect of an entity and a Property.</span>
+      </div>
+      <div class="comment">
+         <span class="markdown">A relation between some aspect of an entity and a Property.</span>
+      </div>
+      <dl class="definedBy">
+         <dt>Is defined by</dt>
+         <dd>
+            <a href="http://www.w3.org/ns/ssn/">http://www.w3.org/ns/ssn/</a>
+         </dd>
+      </dl>
+      <dl>
+         <dt>Example</dt>
+         <dd>
+            <pre>For example, from a Sensor to the properties it can observe; from an Actuator to the properties it can act on; from a Deployment to the properties it was installed to observe or act on; from a SystemCapability to the Property the capability is described for.</pre>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="http://www.w3.org/ns/ssn/hasDeployment">
+      <h3>has deployment<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://www.w3.org/ns/ssn/hasDeployment</p>
+      <div class="comment">
+         <span class="markdown">Relation between a System and a Deployment, recording that the System is deployed in that Deployment.</span>
+      </div>
+      <div class="comment">
+         <span class="markdown">Relation between a System and a Deployment, recording that the System is deployed in that Deployment.</span>
+      </div>
+      <dl class="definedBy">
+         <dt>Is defined by</dt>
+         <dd>
+            <a href="http://www.w3.org/ns/ssn/">http://www.w3.org/ns/ssn/</a>
+         </dd>
+      </dl>
+      <div class="description">
+         <dl>
+            <dt>is inverse of</dt>
+            <dd>
+               <a href="#http://www.w3.org/ns/ssn/deployedSystem" title="http://www.w3.org/ns/ssn/deployedSystem">deployed system</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="http://www.w3.org/ns/ssn/hasInput">
+      <h3>has input<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://www.w3.org/ns/ssn/hasInput</p>
+      <div class="comment">
+         <span class="markdown">Relation between a Procedure and an Input to it.</span>
+      </div>
+      <div class="comment">
+         <span class="markdown">Relation between a Procedure and an Input to it.</span>
+      </div>
+      <dl class="definedBy">
+         <dt>Is defined by</dt>
+         <dd>
+            <a href="http://www.w3.org/ns/ssn/">http://www.w3.org/ns/ssn/</a>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="http://www.w3.org/ns/ssn/hasOutput">
+      <h3>has output<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://www.w3.org/ns/ssn/hasOutput</p>
+      <div class="comment">
+         <span class="markdown">Relation between a Procedure and an Output of it.</span>
+      </div>
+      <div class="comment">
+         <span class="markdown">Relation between a Procedure and an Output of it.</span>
+      </div>
+      <dl class="definedBy">
+         <dt>Is defined by</dt>
+         <dd>
+            <a href="http://www.w3.org/ns/ssn/">http://www.w3.org/ns/ssn/</a>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="http://www.w3.org/ns/ssn/hasProperty">
+      <h3>has property<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://www.w3.org/ns/ssn/hasProperty</p>
+      <div class="comment">
+         <span class="markdown">Relation between an entity and a Property of that entity.</span>
+      </div>
+      <div class="comment">
+         <span class="markdown">Relation between an entity and a Property of that entity.</span>
+      </div>
+      <dl class="definedBy">
+         <dt>Is defined by</dt>
+         <dd>
+            <a href="http://www.w3.org/ns/ssn/">http://www.w3.org/ns/ssn/</a>
+         </dd>
+      </dl>
+      <div class="description">
+         <dl>
+            <dt>is inverse of</dt>
+            <dd>
+               <a href="#http://www.w3.org/ns/ssn/isPropertyOf" title="http://www.w3.org/ns/ssn/isPropertyOf">is property of</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="http://www.w3.org/ns/sosa/hasSample">
+      <h3>has sample<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://www.w3.org/ns/sosa/hasSample</p>
+      <dl class="definedBy">
+         <dt>Is defined by</dt>
+         <dd>
+            <a href="http://www.w3.org/ns/sosa/">http://www.w3.org/ns/sosa/</a>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="http://www.w3.org/ns/ssn/hasSubSystem">
+      <h3>has subsystem<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://www.w3.org/ns/ssn/hasSubSystem</p>
+      <div class="comment">
+         <span class="markdown">Relation between a System and its component parts.</span>
+      </div>
+      <div class="comment">
+         <span class="markdown">Relation between a System and its component parts.</span>
+      </div>
+      <dl class="definedBy">
+         <dt>Is defined by</dt>
+         <dd>
+            <a href="http://www.w3.org/ns/ssn/">http://www.w3.org/ns/ssn/</a>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="http://www.w3.org/ns/ssn/implementedBy">
+      <h3>implemented by<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://www.w3.org/ns/ssn/implementedBy</p>
+      <div class="comment">
+         <span class="markdown">Relation between a Procedure (an algorithm, procedure or method) and an entity that implements that Procedure in some executable way.</span>
+      </div>
+      <div class="comment">
+         <span class="markdown">Relation between a Procedure (an algorithm, procedure or method) and an entity that implements that Procedure in some executable way.</span>
+      </div>
+      <dl class="definedBy">
+         <dt>Is defined by</dt>
+         <dd>
+            <a href="http://www.w3.org/ns/ssn/">http://www.w3.org/ns/ssn/</a>
+         </dd>
+      </dl>
+      <dl>
+         <dt>Example</dt>
+         <dd>
+            <pre>For example, the relationship between a scientific measuring Procedure and a sensor that senses via that Procedure.</pre>
+         </dd>
+      </dl>
+      <div class="description">
+         <dl>
+            <dt>is inverse of</dt>
+            <dd>
+               <a href="#http://www.w3.org/ns/ssn/implements" title="http://www.w3.org/ns/ssn/implements">implements</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="http://www.w3.org/ns/ssn/implements">
+      <h3>implements<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://www.w3.org/ns/ssn/implements</p>
+      <div class="comment">
+         <span class="markdown">Relation between an entity that implements a Procedure in some executable way and the Procedure (an algorithm, procedure or method).</span>
+      </div>
+      <div class="comment">
+         <span class="markdown">Relation between an entity that implements a Procedure in some executable way and the Procedure (an algorithm, procedure or method).</span>
+      </div>
+      <dl class="definedBy">
+         <dt>Is defined by</dt>
+         <dd>
+            <a href="http://www.w3.org/ns/ssn/">http://www.w3.org/ns/ssn/</a>
+         </dd>
+      </dl>
+      <dl>
+         <dt>Example</dt>
+         <dd>
+            <pre>For example, the relationship between a sensor and the scientific measuring Procedure via which it senses.</pre>
+         </dd>
+      </dl>
+      <div class="description">
+         <dl>
+            <dt>is inverse of</dt>
+            <dd>
+               <a href="#http://www.w3.org/ns/ssn/implementedBy" title="http://www.w3.org/ns/ssn/implementedBy">implemented by</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="http://www.w3.org/ns/ssn/inDeployment">
+      <h3>in deployment<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://www.w3.org/ns/ssn/inDeployment</p>
+      <div class="comment">
+         <span class="markdown">Relation between a Platform and a Deployment, meaning that the deployedSystems of the Deployment are hosted on the Platform.</span>
+      </div>
+      <div class="comment">
+         <span class="markdown">Relation between a Platform and a Deployment, meaning that the deployedSystems of the Deployment are hosted on the Platform.</span>
+      </div>
+      <dl class="definedBy">
+         <dt>Is defined by</dt>
+         <dd>
+            <a href="http://www.w3.org/ns/ssn/">http://www.w3.org/ns/ssn/</a>
+         </dd>
+      </dl>
+      <dl>
+         <dt>Example</dt>
+         <dd>
+            <pre>For example, a relation between a buoy and a deployment of several Sensors.</pre>
+         </dd>
+      </dl>
+      <div class="description">
+         <dl>
+            <dt>is inverse of</dt>
+            <dd>
+               <a href="#http://www.w3.org/ns/ssn/deployedOnPlatform" title="http://www.w3.org/ns/ssn/deployedOnPlatform">deployed on platform</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="http://www.w3.org/ns/ssn/isPropertyOf">
+      <h3>is property of<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://www.w3.org/ns/ssn/isPropertyOf</p>
+      <div class="comment">
+         <span class="markdown">Relation between a Property and the entity it belongs to.</span>
+      </div>
+      <div class="comment">
+         <span class="markdown">Relation between a Property and the entity it belongs to.</span>
+      </div>
+      <dl class="definedBy">
+         <dt>Is defined by</dt>
+         <dd>
+            <a href="http://www.w3.org/ns/ssn/">http://www.w3.org/ns/ssn/</a>
+         </dd>
+      </dl>
+      <div class="description">
+         <dl>
+            <dt>is inverse of</dt>
+            <dd>
+               <a href="#http://www.w3.org/ns/ssn/hasProperty" title="http://www.w3.org/ns/ssn/hasProperty">has property</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="http://www.w3.org/ns/ssn/isProxyFor">
+      <h3>is proxy for<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://www.w3.org/ns/ssn/isProxyFor</p>
+      <div class="comment">
+         <span class="markdown">A relation from a Stimulus to the Property that the Stimulus is serving as a proxy for.</span>
+      </div>
+      <div class="comment">
+         <span class="markdown">A relation from a Stimulus to the Property that the Stimulus is serving as a proxy for.</span>
+      </div>
+      <dl class="definedBy">
+         <dt>Is defined by</dt>
+         <dd>
+            <a href="http://www.w3.org/ns/ssn/">http://www.w3.org/ns/ssn/</a>
+         </dd>
+      </dl>
+      <dl>
+         <dt>Example</dt>
+         <dd>
+            <pre>For example, the expansion of quicksilver is a stimulus that serves as a proxy for some temperature property. An increase or decrease in the velocity of spinning cups on a wind sensor is serving as a proxy for the wind speed.</pre>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="http://www.w3.org/ns/ssn/wasOriginatedBy">
+      <h3>was originated by<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://www.w3.org/ns/ssn/wasOriginatedBy</p>
+      <div class="comment">
+         <span class="markdown">Relation between an Observation and the Stimulus that originated it.</span>
+      </div>
+      <div class="comment">
+         <span class="markdown">Relation between an Observation and the Stimulus that originated it.</span>
+      </div>
+      <dl class="definedBy">
+         <dt>Is defined by</dt>
+         <dd>
+            <a href="http://www.w3.org/ns/ssn/">http://www.w3.org/ns/ssn/</a>
+         </dd>
+      </dl>
+   </div>
+</div><div xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="dataproperties">
+   <h3 id="dataproperties-headline" class="list">Data Properties</h3>
+   <ul class="hlist">
+      <li>
+         <a href="#accuracy" title="http://www.bemserver.org/sensor/xssn/#accuracy">
+            <span>accuracy</span>
+         </a>
+      </li>
+      <li>
+         <a href="#frequency" title="http://www.bemserver.org/sensor/xssn/#frequency">
+            <span>frequency</span>
+         </a>
+      </li>
+      <li>
+         <a href="#isAmbient" title="http://www.bemserver.org/sensor/xssn/#isAmbient">
+            <span>is ambient</span>
+         </a>
+      </li>
+      <li>
+         <a href="#isIndexValue"
+            title="http://www.bemserver.org/sensor/xssn/#isIndexValue">
+            <span>is index value</span>
+         </a>
+      </li>
+      <li>
+         <a href="#isSetPoint" title="http://www.bemserver.org/sensor/xssn/#isSetPoint">
+            <span>is set point</span>
+         </a>
+      </li>
+      <li>
+         <a href="#latency" title="http://www.bemserver.org/sensor/xssn/#latency">
+            <span>latency</span>
+         </a>
+      </li>
+      <li>
+         <a href="#maxValue" title="http://www.bemserver.org/sensor/xssn/#maxValue">
+            <span>max value</span>
+         </a>
+      </li>
+      <li>
+         <a href="#minValue" title="http://www.bemserver.org/sensor/xssn/#minValue">
+            <span>min value</span>
+         </a>
+      </li>
+      <li>
+         <a href="#precision" title="http://www.bemserver.org/sensor/xssn/#precision">
+            <span>precision</span>
+         </a>
+      </li>
+      <li>
+         <a href="#sensitivity"
+            title="http://www.bemserver.org/sensor/xssn/#sensitivity">
+            <span>sensitivity</span>
+         </a>
+      </li>
+   </ul>
+   <div class="entity" id="accuracy">
+      <h3>accuracy<sup class="type-dp" title="data property">dp</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#dataproperties">Data Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://www.bemserver.org/sensor/xssn/#accuracy</p>
+      <div class="comment">
+         <span class="markdown">Accuracy represnts the closeness of agreement between the value of an observation and the true value of the observed quality.</span>
+      </div>
+   </div>
+   <div class="entity" id="frequency">
+      <h3>frequency<sup class="type-dp" title="data property">dp</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#dataproperties">Data Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://www.bemserver.org/sensor/xssn/#frequency</p>
+      <div class="comment">
+         <span class="markdown">Frequency represents the frequency of an observation capture in ms.</span>
+      </div>
+   </div>
+   <div class="entity" id="isAmbient">
+      <h3>is ambient<sup class="type-dp" title="data property">dp</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#dataproperties">Data Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://www.bemserver.org/sensor/xssn/#isAmbient</p>
+      <div class="comment">
+         <span class="markdown">isAmbient indicates whether the measure is an ambient one or not. For instance, a sensor measurement performed on the temperature in ome room/area of a building. Set points and measures made on HVAC equipment must not be ambient.</span>
+      </div>
+   </div>
+   <div class="entity" id="isIndexValue">
+      <h3>is index value<sup class="type-dp" title="data property">dp</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#dataproperties">Data Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://www.bemserver.org/sensor/xssn/#isIndexValue</p>
+      <div class="comment">
+         <span class="markdown">isIndexValue indicates whether the measure is made on an index. In this case, values are cumulative.</span>
+      </div>
+   </div>
+   <div class="entity" id="isSetPoint">
+      <h3>is set point<sup class="type-dp" title="data property">dp</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#dataproperties">Data Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://www.bemserver.org/sensor/xssn/#isSetPoint</p>
+      <div class="comment">
+         <span class="markdown">isSetPoint indicates whether the measure is a set point.</span>
+      </div>
+   </div>
+   <div class="entity" id="latency">
+      <h3>latency<sup class="type-dp" title="data property">dp</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#dataproperties">Data Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://www.bemserver.org/sensor/xssn/#latency</p>
+      <div class="comment">
+         <span class="markdown">Latency represents the time (in ms) between a request for an observation and the sensor providing a result.</span>
+      </div>
+   </div>
+   <div class="entity" id="maxValue">
+      <h3>max value<sup class="type-dp" title="data property">dp</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#dataproperties">Data Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://www.bemserver.org/sensor/xssn/#maxValue</p>
+      <div class="comment">
+         <span class="markdown">minValue represents the maximum value accepted by the sensor</span>
+      </div>
+   </div>
+   <div class="entity" id="minValue">
+      <h3>min value<sup class="type-dp" title="data property">dp</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#dataproperties">Data Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://www.bemserver.org/sensor/xssn/#minValue</p>
+      <div class="comment">
+         <span class="markdown">minValue represents the minimum value accepted by the sensor</span>
+      </div>
+   </div>
+   <div class="entity" id="precision">
+      <h3>precision<sup class="type-dp" title="data property">dp</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#dataproperties">Data Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://www.bemserver.org/sensor/xssn/#precision</p>
+      <div class="comment">
+         <span class="markdown">Precision represents the closeness of agreement between replicate observations on an unchanged or similar quality value: i.e., a measure of a sensor's ability to consitently reproduce an observation.</span>
+      </div>
+   </div>
+   <div class="entity" id="sensitivity">
+      <h3>sensitivity<sup class="type-dp" title="data property">dp</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#dataproperties">Data Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://www.bemserver.org/sensor/xssn/#sensitivity</p>
+      <div class="comment">
+         <span class="markdown">Sensitivity represents the quotient of the change in a result of sensor and the corresponding change in a value of a quality being observed.</span>
+      </div>
+   </div>
+</div><div xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     id="annotationproperties">
+   <h3 id="annotationproperties" class="list">Annotation Properties</h3>
+   <ul class="hlist">
+      <li>
+         <a href="#http://purl.org/dc/terms/created" title="http://purl.org/dc/terms/created">
+            <span>created</span>
+         </a>
+      </li>
+      <li>
+         <a href="#http://purl.org/dc/terms/creator" title="http://purl.org/dc/terms/creator">
+            <span>creator</span>
+         </a>
+      </li>
+      <li>
+         <a href="#http://www.w3.org/2004/02/skos/core#definition" title="http://www.w3.org/2004/02/skos/core#definition">
+            <span>definition</span>
+         </a>
+      </li>
+      <li>
+         <a href="#http://purl.org/dc/terms/description" title="http://purl.org/dc/terms/description">
+            <span>description</span>
+         </a>
+      </li>
+      <li>
+         <a href="#http://www.w3.org/2004/02/skos/core#example" title="http://www.w3.org/2004/02/skos/core#example">
+            <span>example</span>
+         </a>
+      </li>
+      <li>
+         <a href="#http://purl.org/dc/terms/license" title="http://purl.org/dc/terms/license">
+            <span>license</span>
+         </a>
+      </li>
+      <li>
+         <a href="#http://xmlns.com/foaf/0.1/name" title="http://xmlns.com/foaf/0.1/name">
+            <span>name</span>
+         </a>
+      </li>
+      <li>
+         <a href="#http://purl.org/vocab/vann/preferredNamespacePrefix"
+            title="http://purl.org/vocab/vann/preferredNamespacePrefix">
+            <span>preferred namespace prefix</span>
+         </a>
+      </li>
+      <li>
+         <a href="#http://purl.org/vocab/vann/preferredNamespaceUri" title="http://purl.org/vocab/vann/preferredNamespaceUri">
+            <span>preferred namespace uri</span>
+         </a>
+      </li>
+      <li>
+         <a href="#http://purl.org/dc/terms/rights" title="http://purl.org/dc/terms/rights">
+            <span>rights</span>
+         </a>
+      </li>
+      <li>
+         <a href="#http://purl.org/dc/terms/title" title="http://purl.org/dc/terms/title">
+            <span>title</span>
+         </a>
+      </li>
+   </ul>
+   <div class="entity" id="http://purl.org/dc/terms/created">
+      <h3>created<sup class="type-ap" title="annotation property">ap</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#annotationproperties">Annotation Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://purl.org/dc/terms/created</p>
+   </div>
+   <div class="entity" id="http://purl.org/dc/terms/creator">
+      <h3>creator<sup class="type-ap" title="annotation property">ap</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#annotationproperties">Annotation Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://purl.org/dc/terms/creator</p>
+   </div>
+   <div class="entity" id="http://www.w3.org/2004/02/skos/core#definition">
+      <h3>definition<sup class="type-ap" title="annotation property">ap</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#annotationproperties">Annotation Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://www.w3.org/2004/02/skos/core#definition</p>
+   </div>
+   <div class="entity" id="http://purl.org/dc/terms/description">
+      <h3>description<sup class="type-ap" title="annotation property">ap</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#annotationproperties">Annotation Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://purl.org/dc/terms/description</p>
+   </div>
+   <div class="entity" id="http://www.w3.org/2004/02/skos/core#example">
+      <h3>example<sup class="type-ap" title="annotation property">ap</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#annotationproperties">Annotation Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://www.w3.org/2004/02/skos/core#example</p>
+   </div>
+   <div class="entity" id="http://purl.org/dc/terms/license">
+      <h3>license<sup class="type-ap" title="annotation property">ap</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#annotationproperties">Annotation Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://purl.org/dc/terms/license</p>
+   </div>
+   <div class="entity" id="http://xmlns.com/foaf/0.1/name">
+      <h3>name<sup class="type-ap" title="annotation property">ap</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#annotationproperties">Annotation Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://xmlns.com/foaf/0.1/name</p>
+   </div>
+   <div class="entity" id="http://purl.org/vocab/vann/preferredNamespacePrefix">
+      <h3>preferred namespace prefix<sup class="type-ap" title="annotation property">ap</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#annotationproperties">Annotation Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://purl.org/vocab/vann/preferredNamespacePrefix</p>
+   </div>
+   <div class="entity" id="http://purl.org/vocab/vann/preferredNamespaceUri">
+      <h3>preferred namespace uri<sup class="type-ap" title="annotation property">ap</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#annotationproperties">Annotation Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://purl.org/vocab/vann/preferredNamespaceUri</p>
+   </div>
+   <div class="entity" id="http://purl.org/dc/terms/rights">
+      <h3>rights<sup class="type-ap" title="annotation property">ap</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#annotationproperties">Annotation Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://purl.org/dc/terms/rights</p>
+   </div>
+   <div class="entity" id="http://purl.org/dc/terms/title">
+      <h3>title<sup class="type-ap" title="annotation property">ap</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#annotationproperties">Annotation Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://purl.org/dc/terms/title</p>
+   </div>
+</div><div xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="namedindividuals">
+   <h3 id="namedindividuals" class="list">Named Individuals</h3>
+   <ul class="hlist">
+      <li>
+         <a href="#http://www.w3.org/ns/ssn/" title="http://www.w3.org/ns/ssn/">
+            <span>ssn:</span>
+         </a>
+      </li>
+   </ul>
+   <div class="entity" id="http://www.w3.org/ns/ssn/">
+      <h3>ssn:<sup class="type-ni" title="named individual">ni</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#namedindividuals">Named Individual ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://www.w3.org/ns/ssn/</p>
+      <dl class="description">
+         <dt>belongs to</dt>
+         <dd>
+            <a href="http://purl.org/vocommons/voaf#Vocabulary"
+               target="_blank"
+               title="http://purl.org/vocommons/voaf#Vocabulary">vocabulary</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+</div><div id="legend">
+<h2>Legend <span class="backlink"> back to <a href="#toc">ToC</a></span></h2>
+<div   class="entity">
+<sup class="type-c" title="Classes">c</sup>: Classes <br/>
+<sup class="type-op" title="Object Properties">op</sup>: Object Properties <br/>
+<sup class="type-dp" title="Data Properties">dp</sup>: Data Properties <br/>
+<sup class="type-ni" title="Named Individuals">ni</sup>: Named Individuals
+</div>
+</div>
+</div>
+    
+
+<!--REFERENCES SECTION-->
+  <div id="references">
+<h2 id="ref" class="list">References <span class="backlink"> back to <a href="#toc">ToC</a></span></h2>
+<span class="markdown">
+Add your references here. It is recommended to have them as a list.</span>
+
+</div>
+<div id="acknowledgments">
+<h2 id="ack" class="list">Acknowledgments <span class="backlink"> back to <a href="#toc">ToC</a></span></h2>
+<p>
+The authors would like to thank <a href="http://www.essepuntato.it/">Silvio Peroni</a> for developing <a href="http://www.essepuntato.it/lode">LODE</a>, a Live OWL Documentation Environment, which is used for representing the Cross Referencing Section of this document and <a href="https://w3id.org/people/dgarijo">Daniel Garijo</a> for developing <a href="https://github.com/dgarijo/Widoco">Widoco</a>, the program used to create the template used in this documentation.</p>
+</div>
+
+
+</div>
+</body>
+</html>

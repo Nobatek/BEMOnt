@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+ <link rel="stylesheet" href="resources/primer.css" media="screen" />    <link rel="stylesheet" href="resources/rec.css" media="screen" />    <link rel="stylesheet" href="resources/extra.css" media="screen" />    <link rel="stylesheet" href="resources/owl.css" media="screen" />    <title>Energy Ontology</title>
+
+
+<!-- SCHEMA.ORG METADATA -->
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","url":"http://bemserver.org/energy#","image":"http://vowl.visualdataweb.org/webvowl/#iri=http://bemserver.org/energy#","name":"Energy Ontology", "headline":"This ontology represents a building energy consumption system (heating, cooling, ventilation, etc.) and its elements (boiler, chiller, radiaotor, etc.). It provides the users with the flexibility to model such systems in very simplistic or detailed way.", "datePublished":"Fri Nov 19 09:52:13 CET 2021", "author":[{"@type":"Person","name":"Nathalie Charbel"}], "contributor":[{"@type":"Person","name":"Pierre Bourreau"}]}</script>
+
+<script src="resources/jquery.js"></script> 
+<script src="resources/marked.min.js"></script> 
+    <script> 
+function loadHash() {
+  jQuery(".markdown").each(function(el){jQuery(this).after(marked(jQuery(this).text())).remove()});
+	var hash = location.hash;
+	if($(hash).offset()!=null){
+	  $('html, body').animate({scrollTop: $(hash).offset().top}, 0);
+}
+	loadTOC();
+}
+function loadTOC(){
+	//process toc dynamically
+	  var t='<h2>Table of contents</h2><ul>';i = 1;j=0;
+	  jQuery(".list").each(function(){
+		if(jQuery(this).is('h2')){
+			if(j>0){
+				t+='</ul>';
+				j=0;
+			}
+			t+= '<li>'+i+'. <a href=#'+ jQuery(this).attr('id')+'>'+ jQuery(this).ignore("span").text()+'</a></li>';
+			i++;
+		}
+		if(jQuery(this).is('h3')){
+			if(j==0){
+				t+='<ul>';
+			}
+			j++;
+			t+= '<li>'+(i-1)+'.'+j+'. '+'<a href=#'+ jQuery(this).attr('id')+'>'+ jQuery(this).ignore("span").text()+'</a></li>';
+		}
+	  });
+	  t+='</ul>';
+	  $("#toc").html(t); 
+}
+$(function(){
+    loadHash();
+}); $.fn.ignore = function(sel){
+        return this.clone().find(sel||">*").remove().end();
+ }; 
+   </script> 
+  </head> 
+
+<body>
+<div class="container">
+<div class="head">
+<div style="float:right">language <a href="index-en.html"><b>en</b></a> </div>
+<h1>Energy Ontology</h1>
+
+
+<dl>
+<dt>Latest version:</dt>
+<dd><a href="http://bemserver.org/energy#">http://bemserver.org/energy#</a></dd>
+<dt>Authors:</dt>
+<dd>Nathalie Charbel</dd>
+
+<dt>Contributors:</dt>
+<dd>Pierre Bourreau</dd>
+
+<dt>Imported Ontologies:</dt>
+<dd><a href="http://qudt.org/2.1/schema/qudt">qudt</a></dd><dd><a href="http://qudt.org/vocab/quantitykind">quantitykind</a></dd><dd>sml-owl</dd>
+
+<dt>Download serialization:</dt><dd><span><a href="ontology.jsonld" target="_blank"><img src="https://img.shields.io/badge/Format-JSON_LD-blue.svg" alt="JSON-LD" /></a> </span><span><a href="ontology.rdf" target="_blank"><img src="https://img.shields.io/badge/Format-RDF/XML-blue.svg" alt="RDF/XML" /></a> </span><span><a href="ontology.nt" target="_blank"><img src="https://img.shields.io/badge/Format-N_Triples-blue.svg" alt="N-Triples" /></a> </span><span><a href="ontology.ttl" target="_blank"><img src="https://img.shields.io/badge/Format-TTL-blue.svg" alt="TTL" /></a> </span></dd><dt>License: </dt><dd><a href="http://insertlicenseURIhere.org" target="_blank"><img src="https://img.shields.io/badge/License-license%20name%20goes%20here-blue.svg" alt="http://insertlicenseURIhere.org" /></a>
+</dd><!-- <dt>Evaluation:</dt><dd><a href="OOPSEvaluation/oopsEval.html#" target="_blank"><img src="https://img.shields.io/badge/Evaluate_with-OOPS! (OntOlogy Pitfall Scanner!)-blue.svg" alt="Evaluate with OOPS!" /></a></dd> --></dl>
+
+<hr/>
+</div>
+<div class="status">
+<div>
+<span>Ontology Specification Draft</span>
+</div>
+</div>     <div id="abstract"><h2>Abstract</h2><span class="markdown">
+This ontology represents a building energy consumption system (heating, cooling, ventilation, etc.) and its elements (boiler, chiller, radiaotor, etc.). It provides the users with the flexibility to model such systems in very simplistic or detailed way.</span>
+</div>
+<div id="toc"></div> 
+
+<!--INTRODUCTION SECTION-->
+    <div id="introduction"><h2 id="intro" class="list">Introduction <span class="backlink"> back to <a href="#toc">ToC</a></span></h2>
+<span class="markdown">
+This is a place holder text for the introduction. The introduction should briefly describe the ontology, its motivation, state of the art and goals.</span>
+<div id="namespacedeclarations">
+<h3 id="ns" class="list">Namespace declarations</h3>
+<div id="ns" align="center">
+<table>
+<caption> <a href="#ns"> Table 1</a>: Namespaces used in the document </caption>
+<tbody>
+<tr><td><b>energy</b></td><td>&lt;http://bemserver.org/energy#&gt;</td></tr>
+<tr><td><b>quantitykind</b></td><td>&lt;http://qudt.org/vocab/quantitykind&gt;</td></tr>
+<tr><td><b>sml</b></td><td>&lt;https://w3id.org/sml/owl/def&gt;</td></tr>
+<tr><td><b>[Ontology NS Prefix]</b></td><td>&lt;http://bemserver.org/energy&gt;</td></tr>
+<tr><td><b>owl</b></td><td>&lt;http://www.w3.org/2002/07/owl&gt;</td></tr>
+<tr><td><b>rdf</b></td><td>&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns&gt;</td></tr>
+<tr><td><b>xml</b></td><td>&lt;http://www.w3.org/XML/1998/namespace&gt;</td></tr>
+<tr><td><b>xsd</b></td><td>&lt;http://www.w3.org/2001/XMLSchema&gt;</td></tr>
+<tr><td><b>owl1</b></td><td>&lt;https://w3id.org/sml/owl&gt;</td></tr>
+<tr><td><b>rdfs</b></td><td>&lt;http://www.w3.org/2000/01/rdf-schema&gt;</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+  
+
+<!--OVERVIEW SECTION-->
+    <div id="overview"><h2 id="overv" class="list">Energy: Overview <span class="backlink"> back to <a href="#toc">ToC</a></span></h2>
+<span class="markdown">
+This ontology has the following classes and properties.</span>
+<h4>Classes</h4>
+<ul xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" class="hlist">
+   <li>
+      <a href="#FixedTariff" title="http://bemserver.org/energy#FixedTariff">
+         <span>fixed tariff</span>
+      </a>
+   </li>
+   <li>
+      <a href="#NonRenewableEnergySource"
+         title="http://bemserver.org/energy#NonRenewableEnergySource">Non renewable energy source</a>
+   </li>
+   <li>
+      <a href="#PeakHours" title="http://bemserver.org/energy#PeakHours">Peak hours</a>
+   </li>
+   <li>
+      <a href="#PeakOffHours" title="http://bemserver.org/energy#PeakOffHours">
+         <span>peak off hours</span>
+      </a>
+   </li>
+   <li>
+      <a href="#PeakOffPeakHours" title="http://bemserver.org/energy#PeakOffPeakHours">Peak off peak hours</a>
+   </li>
+   <li>
+      <a href="#RenewableEnergySource"
+         title="http://bemserver.org/energy#RenewableEnergySource">Renewable energy source</a>
+   </li>
+   <li>
+      <a href="#Tariff" title="http://bemserver.org/energy#Tariff">Tariff</a>
+   </li>
+   <li>
+      <a href="#VariableTariff" title="http://bemserver.org/energy#VariableTariff">Variable tariff</a>
+   </li>
+   <li>
+      <a href="#WeekDaysHours" title="http://bemserver.org/energy#WeekDaysHours">
+         <span>week days hours</span>
+      </a>
+   </li>
+   <li>
+      <a href="#WeekEndHours" title="http://bemserver.org/energy#WeekEndHours">
+         <span>week end hours</span>
+      </a>
+   </li>
+   <li>
+      <a href="#WeekEndWeekDays" title="http://bemserver.org/energy#WeekEndWeekDays">
+         <span>week end week days</span>
+      </a>
+   </li>
+</ul><h4>Object Properties</h4><ul xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" class="hlist">
+   <li>
+      <a href="#fromTime" title="http://bemserver.org/energy#fromTime">From time</a>
+   </li>
+   <li>
+      <a href="#meterPower" title="http://bemserver.org/energy#meterPower">Meter power</a>
+   </li>
+   <li>
+      <a href="#price" title="http://bemserver.org/energy#price">Price</a>
+   </li>
+   <li>
+      <a href="#toTime" title="http://bemserver.org/energy#toTime">To time</a>
+   </li>
+</ul><h4>Annotation Properties</h4><ul xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" class="hlist">
+   <li>
+      <a href="#https://w3id.org/sml/owl/defquantityKind" title="https://w3id.org/sml/owl/defquantityKind">
+         <span>defquantity kind</span>
+      </a>
+   </li>
+</ul><h4>Named Individuals</h4><ul xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" class="hlist">
+   <li>
+      <a href="#BIOMASS" title="http://bemserver.org/energy#BIOMASS">Biomass</a>
+   </li>
+   <li>
+      <a href="#COAL" title="http://bemserver.org/energy#COAL">Coal</a>
+   </li>
+   <li>
+      <a href="#DIESEL" title="http://bemserver.org/energy#DIESEL">Diesel</a>
+   </li>
+   <li>
+      <a href="#FUEL" title="http://bemserver.org/energy#FUEL">Fuel</a>
+   </li>
+   <li>
+      <a href="#GAS" title="http://bemserver.org/energy#GAS">Gas</a>
+   </li>
+   <li>
+      <a href="#GEOTHERMAL" title="http://bemserver.org/energy#GEOTHERMAL">Geothermal</a>
+   </li>
+   <li>
+      <a href="#HYDROPOWER" title="http://bemserver.org/energy#HYDROPOWER">HYDROPOWER represents a source from which energy is produced by using falling water or fast running water.</a>
+   </li>
+   <li>
+      <a href="#MICROTURBINE" title="http://bemserver.org/energy#MICROTURBINE">Microturbine represents a source from which energy is produced by using  both heat and electricity on a relatively small scale.</a>
+   </li>
+   <li>
+      <a href="#NUCLEAR" title="http://bemserver.org/energy#NUCLEAR">Nuclear</a>
+   </li>
+   <li>
+      <a href="#OIL" title="http://bemserver.org/energy#OIL">Oil</a>
+   </li>
+   <li>
+      <a href="#PHOTOVOLTAIC" title="http://bemserver.org/energy#PHOTOVOLTAIC">PHOTOVOLTAIC represents a photovoltaic power system that directly converts solar energy into electricity.</a>
+   </li>
+   <li>
+      <a href="#SOLARHYBRID" title="http://bemserver.org/energy#SOLARHYBRID">SOLARHYBRID represents a power system that transforms energy from sunlight into electricity, either directly by using photovoltaics (PV) or indirectly by using concentrated solar power or by using them both.</a>
+   </li>
+   <li>
+      <a href="#SOLARPOWER" title="http://bemserver.org/energy#SOLARPOWER">SOLARPOWER represents a power system that directly converts solar energy into electricity.</a>
+   </li>
+   <li>
+      <a href="#WINDPOWER" title="http://bemserver.org/energy#WINDPOWER">Wind power</a>
+   </li>
+   <li>
+      <a href="#WINDHYBRID" title="http://bemserver.org/energy#WINDHYBRID">WINDHYBRID represents a source from which energy is produced by using air flow through wind turbines and power generators.</a>
+   </li>
+</ul>
+</div>
+  
+
+<!--DESCRIPTION SECTION-->
+    <div id="description"><h2 id="desc" class="list">Energy: Description <span class="backlink"> back to <a href="#toc">ToC</a></span></h2>
+<span class="markdown">
+This is a placeholder text for the description of your ontology. The description should include an explanation and a diagram explaining how the classes are related, examples of usage, etc.</span>
+
+</div>
+   
+
+<!--CROSSREF SECTION-->
+   <div id="crossref"><h2 id="crossreference" class="list">Cross reference for Energy classes, properties and dataproperties <span class="backlink"> back to <a href="#toc">ToC</a></span></h2>
+This section provides details for each class and property defined by Energy.
+<div xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="classes">
+   <h3 id="classes-headline" class="list">Classes</h3>
+   <ul class="hlist">
+      <li>
+         <a href="#FixedTariff" title="http://bemserver.org/energy#FixedTariff">
+            <span>fixed tariff</span>
+         </a>
+      </li>
+      <li>
+         <a href="#NonRenewableEnergySource"
+            title="http://bemserver.org/energy#NonRenewableEnergySource">Non renewable energy source</a>
+      </li>
+      <li>
+         <a href="#PeakHours" title="http://bemserver.org/energy#PeakHours">Peak hours</a>
+      </li>
+      <li>
+         <a href="#PeakOffHours" title="http://bemserver.org/energy#PeakOffHours">
+            <span>peak off hours</span>
+         </a>
+      </li>
+      <li>
+         <a href="#PeakOffPeakHours" title="http://bemserver.org/energy#PeakOffPeakHours">Peak off peak hours</a>
+      </li>
+      <li>
+         <a href="#RenewableEnergySource"
+            title="http://bemserver.org/energy#RenewableEnergySource">Renewable energy source</a>
+      </li>
+      <li>
+         <a href="#Tariff" title="http://bemserver.org/energy#Tariff">Tariff</a>
+      </li>
+      <li>
+         <a href="#VariableTariff" title="http://bemserver.org/energy#VariableTariff">Variable tariff</a>
+      </li>
+      <li>
+         <a href="#WeekDaysHours" title="http://bemserver.org/energy#WeekDaysHours">
+            <span>week days hours</span>
+         </a>
+      </li>
+      <li>
+         <a href="#WeekEndHours" title="http://bemserver.org/energy#WeekEndHours">
+            <span>week end hours</span>
+         </a>
+      </li>
+      <li>
+         <a href="#WeekEndWeekDays" title="http://bemserver.org/energy#WeekEndWeekDays">
+            <span>week end week days</span>
+         </a>
+      </li>
+   </ul>
+   <div class="entity" id="FixedTariff">
+      <h3>fixed tariff<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/energy#FixedTariff</p>
+      <div class="comment">
+         <span class="markdown">Fixed tariff</span>
+      </div>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#Tariff" title="http://bemserver.org/energy#Tariff">Tariff</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="NonRenewableEnergySource">
+      <h3>Non renewable energy source<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/energy#NonRenewableEnergySource</p>
+      <div class="comment">
+         <span class="markdown">NonRenewableEnergySource represents a natural substance that is not replenished with the speed at which it is consumed.</span>
+      </div>
+      <dl class="description">
+         <dt>is equivalent to</dt>
+         <dd>{ <a href="#COAL" title="http://bemserver.org/energy#COAL">Coal</a> , <a href="#DIESEL" title="http://bemserver.org/energy#DIESEL">Diesel</a> , <a href="#FUEL" title="http://bemserver.org/energy#FUEL">Fuel</a> , <a href="#GAS" title="http://bemserver.org/energy#GAS">Gas</a> , <a href="#NUCLEAR" title="http://bemserver.org/energy#NUCLEAR">Nuclear</a> , <a href="#OIL" title="http://bemserver.org/energy#OIL">Oil</a> }</dd>
+      </dl>
+   </div>
+   <div class="entity" id="PeakHours">
+      <h3>Peak hours<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/energy#PeakHours</p>
+      <div class="comment">
+         <span class="markdown">PeakHours represents a period of time during a day which has a specific energy cost. It is part of a variable energy tariff, specifically PeakOffPeakHours.</span>
+      </div>
+   </div>
+   <div class="entity" id="PeakOffHours">
+      <h3>peak off hours<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/energy#PeakOffHours</p>
+      <div class="comment">
+         <span class="markdown">Peak off hours</span>
+      </div>
+   </div>
+   <div class="entity" id="PeakOffPeakHours">
+      <h3>Peak off peak hours<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/energy#PeakOffPeakHours</p>
+   </div>
+   <div class="entity" id="RenewableEnergySource">
+      <h3>Renewable energy source<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/energy#RenewableEnergySource</p>
+      <div class="comment">
+         <span class="markdown">RenewableEnergySource represents a natural source or a process that is constantly replenished.</span>
+      </div>
+      <dl class="description">
+         <dt>is equivalent to</dt>
+         <dd>{ <a href="#BIOMASS" title="http://bemserver.org/energy#BIOMASS">Biomass</a> , <a href="#GEOTHERMAL" title="http://bemserver.org/energy#GEOTHERMAL">Geothermal</a> , <a href="#MICROTURBINE" title="http://bemserver.org/energy#MICROTURBINE">Microturbine represents a source from which energy is produced by using  both heat and electricity on a relatively small scale.</a> , <a href="#PHOTOVOLTAIC" title="http://bemserver.org/energy#PHOTOVOLTAIC">PHOTOVOLTAIC represents a photovoltaic power system that directly converts solar energy into electricity.</a> , <a href="#SOLARHYBRID" title="http://bemserver.org/energy#SOLARHYBRID">SOLARHYBRID represents a power system that transforms energy from sunlight into electricity, either directly by using photovoltaics (PV) or indirectly by using concentrated solar power or by using them both.</a> , <a href="#SOLARPOWER" title="http://bemserver.org/energy#SOLARPOWER">SOLARPOWER represents a power system that directly converts solar energy into electricity.</a> , <a href="#WINDHYBRID" title="http://bemserver.org/energy#WINDHYBRID">WINDHYBRID represents a source from which energy is produced by using air flow through wind turbines and power generators.</a> , <a href="#WINDPOWER" title="http://bemserver.org/energy#WINDPOWER">Wind power</a> }</dd>
+      </dl>
+   </div>
+   <div class="entity" id="Tariff">
+      <h3>Tariff<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/energy#Tariff</p>
+      <div class="comment">
+         <span class="markdown">Tariff represents energy tariff type.</span>
+      </div>
+      <dl class="description">
+         <dt>has sub-classes</dt>
+         <dd>
+            <a href="#VariableTariff" title="http://bemserver.org/energy#VariableTariff">Variable tariff</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#FixedTariff" title="http://bemserver.org/energy#FixedTariff">fixed tariff</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="VariableTariff">
+      <h3>Variable tariff<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/energy#VariableTariff</p>
+      <div class="comment">
+         <span class="markdown">VariableTariff represents a variable energy tariff type</span>
+      </div>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#Tariff" title="http://bemserver.org/energy#Tariff">Tariff</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="WeekDaysHours">
+      <h3>week days hours<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/energy#WeekDaysHours</p>
+      <div class="comment">
+         <span class="markdown">Week day hours</span>
+      </div>
+   </div>
+   <div class="entity" id="WeekEndHours">
+      <h3>week end hours<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/energy#WeekEndHours</p>
+      <div class="comment">
+         <span class="markdown">Week end hours</span>
+      </div>
+   </div>
+   <div class="entity" id="WeekEndWeekDays">
+      <h3>week end week days<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/energy#WeekEndWeekDays</p>
+      <div class="comment">
+         <span class="markdown">Week days week ends</span>
+      </div>
+   </div>
+</div><div xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="objectproperties">
+   <h3 id="properties" class="list">Object Properties</h3>
+   <ul class="hlist">
+      <li>
+         <a href="#fromTime" title="http://bemserver.org/energy#fromTime">From time</a>
+      </li>
+      <li>
+         <a href="#meterPower" title="http://bemserver.org/energy#meterPower">Meter power</a>
+      </li>
+      <li>
+         <a href="#price" title="http://bemserver.org/energy#price">Price</a>
+      </li>
+      <li>
+         <a href="#toTime" title="http://bemserver.org/energy#toTime">To time</a>
+      </li>
+   </ul>
+   <div class="entity" id="fromTime">
+      <h3>From time<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/energy#fromTime</p>
+      <div class="comment">
+         <span class="markdown">fromTime represents a starting hour of an energy tariff.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has range</dt>
+            <dd>
+               <a href="https://w3id.org/sml/owl/defQuantityValue"
+                  target="_blank"
+                  title="https://w3id.org/sml/owl/defQuantityValue">def quantity value</a>
+               <sup class="type-c" title="class">c</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="meterPower">
+      <h3>Meter power<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/energy#meterPower</p>
+      <div class="comment">
+         <span class="markdown">meterPower represents the maximum quantity of electricity that can be used simultaneously by the electrical equipments and is expressed in kilovoltampere (kVA).</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has range</dt>
+            <dd>
+               <a href="https://w3id.org/sml/owl/defQuantityValue"
+                  target="_blank"
+                  title="https://w3id.org/sml/owl/defQuantityValue">def quantity value</a>
+               <sup class="type-c" title="class">c</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="price">
+      <h3>Price<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/energy#price</p>
+      <div class="comment">
+         <span class="markdown">Price represents energy price in euros.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has range</dt>
+            <dd>
+               <a href="https://w3id.org/sml/owl/defQuantityValue"
+                  target="_blank"
+                  title="https://w3id.org/sml/owl/defQuantityValue">def quantity value</a>
+               <sup class="type-c" title="class">c</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="toTime">
+      <h3>To time<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/energy#toTime</p>
+      <div class="comment">
+         <span class="markdown">toTime represents an end hour of an energy tariff.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has range</dt>
+            <dd>
+               <a href="https://w3id.org/sml/owl/defQuantityValue"
+                  target="_blank"
+                  title="https://w3id.org/sml/owl/defQuantityValue">def quantity value</a>
+               <sup class="type-c" title="class">c</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+</div><div xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     id="annotationproperties">
+   <h3 id="annotationproperties" class="list">Annotation Properties</h3>
+   <ul class="hlist">
+      <li>
+         <a href="#https://w3id.org/sml/owl/defquantityKind" title="https://w3id.org/sml/owl/defquantityKind">
+            <span>defquantity kind</span>
+         </a>
+      </li>
+   </ul>
+   <div class="entity" id="https://w3id.org/sml/owl/defquantityKind">
+      <h3>defquantity kind<sup class="type-ap" title="annotation property">ap</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#annotationproperties">Annotation Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://w3id.org/sml/owl/defquantityKind</p>
+   </div>
+</div><div xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="namedindividuals">
+   <h3 id="namedindividuals" class="list">Named Individuals</h3>
+   <ul class="hlist">
+      <li>
+         <a href="#BIOMASS" title="http://bemserver.org/energy#BIOMASS">Biomass</a>
+      </li>
+      <li>
+         <a href="#COAL" title="http://bemserver.org/energy#COAL">Coal</a>
+      </li>
+      <li>
+         <a href="#DIESEL" title="http://bemserver.org/energy#DIESEL">Diesel</a>
+      </li>
+      <li>
+         <a href="#FUEL" title="http://bemserver.org/energy#FUEL">Fuel</a>
+      </li>
+      <li>
+         <a href="#GAS" title="http://bemserver.org/energy#GAS">Gas</a>
+      </li>
+      <li>
+         <a href="#GEOTHERMAL" title="http://bemserver.org/energy#GEOTHERMAL">Geothermal</a>
+      </li>
+      <li>
+         <a href="#HYDROPOWER" title="http://bemserver.org/energy#HYDROPOWER">HYDROPOWER represents a source from which energy is produced by using falling water or fast running water.</a>
+      </li>
+      <li>
+         <a href="#MICROTURBINE" title="http://bemserver.org/energy#MICROTURBINE">Microturbine represents a source from which energy is produced by using  both heat and electricity on a relatively small scale.</a>
+      </li>
+      <li>
+         <a href="#NUCLEAR" title="http://bemserver.org/energy#NUCLEAR">Nuclear</a>
+      </li>
+      <li>
+         <a href="#OIL" title="http://bemserver.org/energy#OIL">Oil</a>
+      </li>
+      <li>
+         <a href="#PHOTOVOLTAIC" title="http://bemserver.org/energy#PHOTOVOLTAIC">PHOTOVOLTAIC represents a photovoltaic power system that directly converts solar energy into electricity.</a>
+      </li>
+      <li>
+         <a href="#SOLARHYBRID" title="http://bemserver.org/energy#SOLARHYBRID">SOLARHYBRID represents a power system that transforms energy from sunlight into electricity, either directly by using photovoltaics (PV) or indirectly by using concentrated solar power or by using them both.</a>
+      </li>
+      <li>
+         <a href="#SOLARPOWER" title="http://bemserver.org/energy#SOLARPOWER">SOLARPOWER represents a power system that directly converts solar energy into electricity.</a>
+      </li>
+      <li>
+         <a href="#WINDPOWER" title="http://bemserver.org/energy#WINDPOWER">Wind power</a>
+      </li>
+      <li>
+         <a href="#WINDHYBRID" title="http://bemserver.org/energy#WINDHYBRID">WINDHYBRID represents a source from which energy is produced by using air flow through wind turbines and power generators.</a>
+      </li>
+   </ul>
+   <div class="entity" id="BIOMASS">
+      <h3>Biomass<sup class="type-ni" title="named individual">ni</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#namedindividuals">Named Individual ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/energy#BIOMASS</p>
+      <div class="comment">
+         <span class="markdown">BIOMASS a source from which energy is produced  by burning wood and other organic matter.</span>
+      </div>
+   </div>
+   <div class="entity" id="COAL">
+      <h3>Coal<sup class="type-ni" title="named individual">ni</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#namedindividuals">Named Individual ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/energy#COAL</p>
+      <div class="comment">
+         <span class="markdown">COAL represents a source from which energy is produced.</span>
+      </div>
+   </div>
+   <div class="entity" id="DIESEL">
+      <h3>Diesel<sup class="type-ni" title="named individual">ni</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#namedindividuals">Named Individual ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/energy#DIESEL</p>
+      <div class="comment">
+         <span class="markdown">DIESEL represents a source from which energy is produced.</span>
+      </div>
+   </div>
+   <div class="entity" id="FUEL">
+      <h3>Fuel<sup class="type-ni" title="named individual">ni</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#namedindividuals">Named Individual ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/energy#FUEL</p>
+      <div class="comment">
+         <span class="markdown">FUEL represents a source from which energy is produced.</span>
+      </div>
+   </div>
+   <div class="entity" id="GAS">
+      <h3>Gas<sup class="type-ni" title="named individual">ni</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#namedindividuals">Named Individual ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/energy#GAS</p>
+      <div class="comment">
+         <span class="markdown">GAS represents a source from which energy is produced.</span>
+      </div>
+   </div>
+   <div class="entity" id="GEOTHERMAL">
+      <h3>Geothermal<sup class="type-ni" title="named individual">ni</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#namedindividuals">Named Individual ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/energy#GEOTHERMAL</p>
+      <div class="comment">
+         <span class="markdown">GEOTHERMAL represents a source from which energy is produced by using reservoirs of hot water that exist at varying temperatures and depths below the Earth's surface.</span>
+      </div>
+   </div>
+   <div class="entity" id="HYDROPOWER">
+      <h3>HYDROPOWER represents a source from which energy is produced by using falling water or fast running water.<sup class="type-ni" title="named individual">ni</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#namedindividuals">Named Individual ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/energy#HYDROPOWER</p>
+   </div>
+   <div class="entity" id="MICROTURBINE">
+      <h3>Microturbine represents a source from which energy is produced by using  both heat and electricity on a relatively small scale.<sup class="type-ni" title="named individual">ni</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#namedindividuals">Named Individual ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/energy#MICROTURBINE</p>
+   </div>
+   <div class="entity" id="NUCLEAR">
+      <h3>Nuclear<sup class="type-ni" title="named individual">ni</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#namedindividuals">Named Individual ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/energy#NUCLEAR</p>
+      <div class="comment">
+         <span class="markdown">NUCLEAR represents a source from which energy is produced.</span>
+      </div>
+   </div>
+   <div class="entity" id="OIL">
+      <h3>Oil<sup class="type-ni" title="named individual">ni</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#namedindividuals">Named Individual ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/energy#OIL</p>
+      <div class="comment">
+         <span class="markdown">OIL represents a source from which energy is produced.</span>
+      </div>
+   </div>
+   <div class="entity" id="PHOTOVOLTAIC">
+      <h3>PHOTOVOLTAIC represents a photovoltaic power system that directly converts solar energy into electricity.<sup class="type-ni" title="named individual">ni</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#namedindividuals">Named Individual ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/energy#PHOTOVOLTAIC</p>
+   </div>
+   <div class="entity" id="SOLARHYBRID">
+      <h3>SOLARHYBRID represents a power system that transforms energy from sunlight into electricity, either directly by using photovoltaics (PV) or indirectly by using concentrated solar power or by using them both.<sup class="type-ni" title="named individual">ni</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#namedindividuals">Named Individual ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/energy#SOLARHYBRID</p>
+   </div>
+   <div class="entity" id="SOLARPOWER">
+      <h3>SOLARPOWER represents a power system that directly converts solar energy into electricity.<sup class="type-ni" title="named individual">ni</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#namedindividuals">Named Individual ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/energy#SOLARPOWER</p>
+   </div>
+   <div class="entity" id="WINDPOWER">
+      <h3>Wind power<sup class="type-ni" title="named individual">ni</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#namedindividuals">Named Individual ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/energy#WINDPOWER</p>
+      <div class="comment">
+         <span class="markdown">WINDPOWER represents a source from which energy is produced by using air flow through wind turbines.</span>
+      </div>
+   </div>
+   <div class="entity" id="WINDHYBRID">
+      <h3>WINDHYBRID represents a source from which energy is produced by using air flow through wind turbines and power generators.<sup class="type-ni" title="named individual">ni</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#namedindividuals">Named Individual ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> http://bemserver.org/energy#WINDHYBRID</p>
+   </div>
+</div><div id="legend">
+<h2>Legend <span class="backlink"> back to <a href="#toc">ToC</a></span></h2>
+<div   class="entity">
+<sup class="type-c" title="Classes">c</sup>: Classes <br/>
+<sup class="type-op" title="Object Properties">op</sup>: Object Properties <br/>
+<sup class="type-dp" title="Data Properties">dp</sup>: Data Properties <br/>
+<sup class="type-ni" title="Named Individuals">ni</sup>: Named Individuals
+</div>
+</div>
+</div>
+    
+
+<!--REFERENCES SECTION-->
+  <div id="references">
+<h2 id="ref" class="list">References <span class="backlink"> back to <a href="#toc">ToC</a></span></h2>
+<span class="markdown">
+Add your references here. It is recommended to have them as a list.</span>
+
+</div>
+<div id="acknowledgments">
+<h2 id="ack" class="list">Acknowledgments <span class="backlink"> back to <a href="#toc">ToC</a></span></h2>
+<p>
+The authors would like to thank <a href="http://www.essepuntato.it/">Silvio Peroni</a> for developing <a href="http://www.essepuntato.it/lode">LODE</a>, a Live OWL Documentation Environment, which is used for representing the Cross Referencing Section of this document and <a href="https://w3id.org/people/dgarijo">Daniel Garijo</a> for developing <a href="https://github.com/dgarijo/Widoco">Widoco</a>, the program used to create the template used in this documentation.</p>
+</div>
+
+
+</div>
+</body>
+</html>
