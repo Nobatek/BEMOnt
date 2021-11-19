@@ -1,59 +1,30 @@
-# BEMOnt (formerly HIT2GAPOnt)
+# BEMOnt (formerly HIT2GAPOnt)  refactored ontology
+![alt text](./overview.png)
 
-[![CircleCI](https://circleci.com/gh/HIT2GAP-EU-PROJECT/BEMOnt.svg?style=shield&circle-token)](https://circleci.com/gh/HIT2GAP-EU-PROJECT/BEMOnt)
+The refactored ontology mainly relies on well known existing ontologies (BOT, SAREF4BLDG, SSN, SOSA, BuildingElements, sml-owl and QUDT).
+IfcOWL is excluded but links to its concepts are maintained in the form of rdfs:seeAlso.
 
-BEMont (formerly **HIT2GAPOnt**) is focused on establising a common data model and semantic knolwedge management for buildings, including their interecction with the occupants. Whith this aim, the proposed ontology will take into consideration the following aspects:
+The idea behind the refactored model is to be able to import only required modules to answer a particular use case. 
+The modules are summarized as below:
+- Building topology module: the xBOT ontology is based on BOT for describing building topology and extends it towards representing a wide set of building types (including residential and non residential buildings), spaces and storeys based on the Omniclass standard.
+- Sensor module: the xSSN ontology is based on the SSN ontology to model sensors, observations, features of intereset, etc. and extends it towards representing a location of a sensor or a location of an observation made by the sensor,  observation properties, and medium types on which the measurements are performed. It also introduces a new concept xssn:Property, which generalizes ssn:Property to further represent a wider set of properties including physical and occupant properties. 
+- Property module: the Property ontology imports xSSN ontology and extends it towards covering physical and occupant properties. It also imports sml-owl ontology to follow the same method proposed by the CEN comittee in defining well-known physical measures and units based on QUDT ontology
+- Building appliance module: the BuildingAppliance ontology is based on SAREF4BLDG since it is the standardized ontology for representing building appliances. It extends it towards representing specific building appliances and types.
+- Building Element module: The BuildingElement Ontology is based on the BuildingElement proposed by Pauwels with the exclusion of jointing component and transport element and their sublclasses. This ontology is also based on the IfcBuildingElement subtree in the IFC specification, containing a taxonomy of classes that allow to define common building elements.
+- Energy module: the Energy ontology represents the different energy tarriffs, price, and renewable energy source types.
+- System module: the BuildingSystem ontology represents a building energy consumption system (heating, cooling, ventilation, etc.) and its elements (boiler, chiller, radiaotor, etc.). It provides the users with the flexibility to model such systems in very simplistic or detailed way.
+- Occupant module: the UserBehaviour ontology describes the occupants behaviour inside a building. It  is based on the idetification of Drivers Needs and Actions for each occupant to make underestandable the occupant-building interaction and different comfort states.
+- Service module: the Services ontology is used to describe services that are client of BEMServer. Services are programs that can read/get data from BEMServer to perform specific operations, and/or push/write information on BEMServer. In some cases, services can also be seen as specific cases of sensors, producing timeseries to BEMServer. The ontology can be used to generate a catalogue of services that are installed on BEMServer.
 
-- **Building infrastructure data models and semantic representation** ([Building Infrastructure Ontology](https://rawgit.com/HIT2GAP-EU-PROJECT/BEMOnt/master/owlSpecificationDoc/BuildingInfraestructure/index-en.html)): As mechanims to represent the different systems and infrastructure involved in BIM and required for the performance of the project tools (building simulation tols, building behaviour tools, visualization tools, etc).
-
-- **User Behaviour data models and semantic representation** ([User Behaviour Ontology](https://cdn.rawgit.com/HIT2GAP-EU-PROJECT/BEMOnt/gh-pages/owlSpecificationDoc/index-en.html)): This part of the ontology is aimed at representing building occupants DNA (Drivers, Needs and Actions). This type of modelling will serve to represent the user-building interaction not only in form of activities but also considering comfort parameters and other aspects that motivate users to perform buildign actions.
-
-Therefore and since semantic representation, HIT2GAP project will harmonise all information related to buildings monitoring and control activities (management activities), considering the user as an important aspect to adjust energy according to their preferences.
-
-## Getting Started
-
-To run the project, you only need to fork it or download it into your local machine. Then, the ontology could be opened and edited using either semantic modeler IDEs. As IDE, we recomend to use:
-
-- [Protege/Protege Web](http://protege.stanford.edu/).
-- [TopBraid Composer Community edition or higher](http://www.topquadrant.com/tools/ide-topbraid-composer-maestro-edition/).
-
-## Description
-
-- The models contain the ontology files, splitted in two (for OWL or RDF files). The bemont.rules is the inference file associated to the BEMOnt. It has been used and tested on Jena.
-- The ontology-docs folder contain the online documentation of the ontology generated with widoco.
-- The docs folder contain some additional documentation associated to BEMOnt.
-
-## Installing
-
-For running the ontology, we recommend to use the IDEs mentioned in the Getting Started section. Moreover, if you want to publish the ontology or use it for public consumption and inference, we recomend to use a [Semantic Repository or Graph data base](https://www.w3.org/2001/sw/wiki/Category:Triple_Store)
-
-## Built With
-
-TBD
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://github.com/HIT2GAP-EU-PROJECT/HIT2GAPOnt/blob/master/CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/HIT2GAP-EU-PROJECT/HIT2GAPOnt/tags).
+Alignments between the different modules are also done. The below list summarizes the most important ones:
+1. The sosa:FeatureOfInterest concept can represent a bot:Zone, a building element, a building device appliance, a building element and an energy concuption element;
+2. The bot:Element concept generalizes sosa:Sensor, sosa:Actuator, energy:EnergyConsumptionElement, buildingelement:BuildingElement, etc.;
+3. saref4bldg:BuildingSpace and saref4bldg:Building concepts overlap with bot:Space and bot:Building;
+4. saref:Sensor and saref:Measurement parts overlap with sosa:Sensor and sosa:Observation;
+5. xssn:Location added in xssn could be any bot:Zone.
 
 ## Authors
 
-- **[Pierre Bourreau]()** - Initial author
-- **[Gulben Calis]()** - Initial author
-- **[Yudith Cardinale]()** - Initial author
-- **[Richard Chbeir]()** - Initial author
-- **[Aitor Corchero](https://github.com/aolite)** - Intial author
+- **[Pierre Bourreau]()**
+- **[Nathalie Charbel]()** 
 
-See also the list of [contributors](https://github.com/HIT2GAP-EU-PROJECT/HIT2GAPOnt/blob/master/CONTRIBUTORS.md) who participated in this project.
-
-## How to cite?
-
-If you wish to cite, or find additional information on the BEMOnt ontology, please use the following:
-
-Chbeir R. et al. (2019) [*OntoH2G: A Semantic Model to Represent Building Infrastructure and Occupant Interactions*](https://link.springer.com/chapter/10.1007/978-3-030-04293-6_15). In: Kaparaju P., Howlett R., Littlewood J., Ekanyake C., Vlacic L. (eds) Sustainability in Energy and Buildings 2018. KES-SEB 2018. Smart Innovation, Systems and Technologies, vol 131. Springer, Cham
-
-## License
-This work is licensed under a [MIT License](BEMOnt/LICENSE).
