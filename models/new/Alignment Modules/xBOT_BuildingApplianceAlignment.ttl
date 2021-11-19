@@ -12,16 +12,16 @@
 @prefix dbo:    	<http://dbpedia.org/ontology/> .
 @prefix saref4bldg:	<https://saref.etsi.org/saref4bldg/> .
 @prefix bot: <https://w3id.org/bot#> .
-@base <http://bemserver.org/appliance/SAREF_xBOT_Alignment#> .
+@base <http://bemserver.org/appliance/BuildingAppliance_xBOT_Alignment#> .
 
-<http://bemserver.org/appliance/SAREF_xBOT_Alignment#> a owl:Ontology , voaf:Vocabulary ;
-  dcterms:title "SAREF4BLDG xBOT Alignment."@en ;
-  dcterms:description """This ontology defines proposed alignments of SAREF4BLDG with the xBOT ontology."""@en ;
+<http://bemserver.org/appliance/BuildingAppliance_xBOT_Alignment#> a owl:Ontology , voaf:Vocabulary ;
+  dcterms:title "BuildingAppliance xBOT Alignment."@en ;
+  dcterms:description """This ontology defines proposed alignments of BuildingAppliance with the xBOT ontology."""@en ;
   dcterms:issued "2021-06-22"^^xsd:date ;
   owl:versionInfo "v1.0.0" ;
-  owl:versionIRI <https://bemserver.org/appliance/SAREF_xBOT_Alignment-1.0.0> ;
+  owl:versionIRI <http://bemserver.org/appliance/BuildingAppliance_xBOT_Alignment-1.0.0> ;
   owl:imports <http://bemserver.org/xbot#> ;
-  owl:imports <https://saref.etsi.org/saref4bldg> .
+  owl:imports <http://bemserver.org/appliance#> .
 
 voaf:Vocabulary a owl:Class .
 dcterms:title a owl:AnnotationProperty .

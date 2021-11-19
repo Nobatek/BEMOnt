@@ -10,7 +10,7 @@
 
 <http://bemserver.org/xbot> rdf:type owl:Ontology ;
                              owl:imports <https://w3id.org/bot-0.3.2> ;
-                             rdfs:comment "This ontology is based on on BOT for describing building topology and extends it towards representing a wise set of building types (including residential and non residential buildings), spaces and storeys based on the Omniclass standard."@en .
+                             rdfs:comment "This ontology is based on BOT for describing building topology and extends it towards representing a wise set of building types (including residential and non residential buildings), spaces and storeys based on the Omniclass standard."@en .
 
 #################################################################
 #    Data properties
